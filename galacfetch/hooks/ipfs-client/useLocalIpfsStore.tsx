@@ -1,8 +1,10 @@
 import { create } from 'zustand';
-import { isFilePreloaded } from './utils/file';
+import { fileToBlobUrl, isFilePreloaded } from './utils/file';
+import { useRemoteIpfsClient } from './useRemoteIpfsClient';
+import { ipfsGalactFetchClient } from './ipfsGalactFetchClient';
 type Store = {
   ipfs: any;
-  init: () => Promise<void>;
+  initIpfs: (repoName: string) => Promise<void>;
   localCheckIsFile: (cid: string) => Promise<Boolean>;
   localGetFile: (cid: string) => Promise<string | undefined>;
   localAddFile: (blob: Blob) => Promise<string | undefined>;
@@ -10,13 +12,13 @@ type Store = {
   localGetAllFiles: (cid: string) => Promise<string[] | undefined>;
 };
 
-export const useIpfsStore = create<Store>((set) => ({
+export const useLocalIpfsStore = create<Store>((set) => ({
   ipfs: null,
-  init: async () => {
+  initIpfs: async (repoName: string) => {
     console.time('ipfsInit');
 
     const config = {
-      repo: 'ipfs-8', //+ Math.random(),
+      repo: repoName,
       config: {
         Addresses: {},
         Datastore: {
@@ -55,7 +57,7 @@ export const useIpfsStore = create<Store>((set) => ({
   },
   localCheckIsFile: async (cid) => {
     if (!cid) throw new Error('no cid provided');
-    const { ipfs } = useIpfsStore.getState();
+    const { ipfs } = useLocalIpfsStore.getState();
     if (!ipfs) throw new Error('ipfs not initialized');
     let isFileInLocalIpfs = false;
 
@@ -75,11 +77,17 @@ export const useIpfsStore = create<Store>((set) => ({
     return isFileInLocalIpfs;
   },
   localGetFile: async (cid: string) => {
-    // TODO:  we need to get the urlList updated.
+    const {
+      addNewBlobUrl,
+      remoteCheckIntegrityFile,
+      remoteRestoreIntegrityFile,
+    } = useRemoteIpfsClient.getState();
+
+    const { urlFileList } = ipfsGalactFetchClient.getState();
+
     if (!cid) throw new Error('no cid provided');
-    const urlList = [];
-    if (isFilePreloaded(urlList, cid)) return undefined;
-    const { ipfs } = useIpfsStore.getState();
+    if (isFilePreloaded(urlFileList, cid)) return undefined;
+    const { ipfs } = useLocalIpfsStore.getState();
     if (!ipfs) throw new Error('ipfs not initialized');
 
     const fileBlobList = [] as any;
@@ -95,17 +103,25 @@ export const useIpfsStore = create<Store>((set) => ({
 
     const blob = new Blob(fileBlobList);
 
-    const href = URL.createObjectURL(blob);
+    const url = fileToBlobUrl(blob);
+    addNewBlobUrl({
+      cid,
+      url,
+    });
 
-    // TODO: we need to add this file to the urlList in blobk format.
-    // TODO: we need to update file to the server if not found.
+    const isFileGoodIntegrity = await remoteCheckIntegrityFile(cid);
 
-    return href;
+    if (isFileGoodIntegrity) {
+      remoteRestoreIntegrityFile(blob, cid);
+    }
+
+    return url;
   },
   localAddFile: async (blob: Blob) => {
     if (!blob) throw new Error('no blob provided');
 
-    const { ipfs } = useIpfsStore.getState();
+    const { ipfs } = useLocalIpfsStore.getState();
+    const { addNewBlobUrl } = useRemoteIpfsClient.getState();
     if (!ipfs) throw new Error('ipfs not initialized');
 
     const infoFile = await ipfs
@@ -123,18 +139,24 @@ export const useIpfsStore = create<Store>((set) => ({
     if (!infoFile) return undefined;
     const cid = infoFile.cid?.toString();
 
+    const url = fileToBlobUrl(new Blob([blob]));
+    addNewBlobUrl({
+      cid,
+      url,
+    });
+
     return cid;
   },
   localRemoveFile: async (cid: string) => {
     if (!cid) throw new Error('no cid provided');
-    const { ipfs } = useIpfsStore.getState();
+    const { ipfs } = useLocalIpfsStore.getState();
     if (!ipfs) throw new Error('ipfs not initialized');
 
     await ipfs.files.rm(cid, { recursive: true });
     await ipfs.pin.rm(cid, { recursive: true });
   },
   localGetAllFiles: async () => {
-    const { ipfs } = useIpfsStore.getState();
+    const { ipfs } = useLocalIpfsStore.getState();
     if (!ipfs) throw new Error('ipfs not initialized');
     const localPinnedFiles = [] as string[];
     for await (const file of ipfs.pin.ls('/')) {

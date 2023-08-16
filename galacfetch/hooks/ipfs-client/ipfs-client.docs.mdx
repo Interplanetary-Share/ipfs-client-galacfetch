@@ -3,18 +3,193 @@ description: 'A React Hook that increments a count by 1 each time it is called.'
 labels: ['hook', 'counter']
 ---
 
-## A React Hook to increment a count
+## An IPFS Client Hook to connect to galacfetch IPFS nodes
 
-Increments the state of `count` by 1 each time `increment` is called
+This hook is used to manage files on the IPFS network using the galacfetch IPFS nodes and as a Gateway.
 
 ### Component usage
 
-In this example clicking the button calls `increment` which increments the `count` by 1
+In this example, we use ipfsGalactFetchClient hook that interact with useLocalIpfsStore and useRemoteIpfsStore hooks to manage files on the IPFS network.
+
+This is the Main hook
 
 ```js
+const { status, init, getFile, getFiles, uploadFile, urlFileList } =
+  ipfsGalactFetchClient();
+```
 
-const { count, increment } = ipfsClient();
+You can also interact with the other 2 hooks directly if you want to use them separately.
 
-<h1>The count is {count}</h1>
-<button onClick={increment}>increment</button>
+```js
+const { ipfs
+        initIpfs
+        localCheckIsFile
+        localGetFile
+        localAddFile
+        localRemoveFile
+        localGetAllFiles } = useLocalIpfsStore();
+
+const { servers
+        init
+        addNewBlobUrl
+        api
+        remoteCheckIntegrityFile
+        remoteGetFileInfo
+        remoteGetFilesInfo
+        remoteGetFile
+        remoteUploadFile
+        remoteRestoreIntegrityFile
+        remotegetFileExtraProps } = useRemoteIpfsStore();
+
+```
+
+## ipfsGalactFetchClient hook
+
+First we initialize the hook by calling the init function.
+This will connect to the IPFS galacfetch nodes and you will get access to your files through your api.
+
+The init function expect 2 props to be passed to it. api and repoName.
+
+The api is the token that you get from galacfetch.
+You can get a free API here. https://galacfetch.com/
+
+The repoName is the name of the repo that you want to use to store your files. You can use the same repoName for multiple projects or change the repo based in environment.
+
+```js
+const api = 'ABC123';
+const repoName = 'ExampleRepoName';
+useEffect(() => {
+  init(api, repoName);
+}, []);
+```
+
+After initialize, the status will be set to iddle. and you can start using the hook.
+
+### status
+
+the status is an object that contains the status of the hook.
+
+```js
+{
+  status: 'idle' | 'loading' | undefined;
+}
+```
+
+### init
+
+After call the init function we initialized properly the hook and we can start using it.
+
+```js
+const { status, init } = ipfsGalactFetchClient();
+const api = 'ABC123';
+const repoName = 'ExampleRepoName';
+useEffect(() => {
+  init(api, repoName);
+}, []);
+
+useEffect(() => {
+  if (status === 'idle') {
+    console.log('Ready to rock!');
+  }
+  if (status === 'loading') {
+    console.log('loading');
+  }
+}, [status]);
+```
+
+### getFile
+
+the getFile function is used to get a file from the IPFS network. expect 2 props to be passed to it. CID, and the config object.
+
+```js
+const { getFile } = ipfsGalactFetchClient();
+export interface getFileConfig {
+  showBlobUrl?: boolean;
+  showInfoFile?: boolean;
+  showExtraProps?: boolean;
+}
+const config: getFileConfig = {
+  showBlobUrl: true,
+  showInfoFile: true,
+  showExtraProps: true,
+};
+// By default all the props are set to true.
+
+const fileInfo = await getFile(cid, config);
+```
+
+### uploadFile
+
+the uploadFile function is used to upload a file to the IPFS network. expect 2 props to be passed to it. file, and an optional serverAlias
+
+```js
+const { uploadFile } = ipfsGalactFetchClient();
+
+await uploadFile(file, fileProps, serverAlias);
+```
+
+Basic Example of upload file
+
+```js
+const uploadConfig = {name:"fileNameTest",description:"DescriptionTest",extraProperties:{"likes":["test2","another"],"ownerID":"me"}}
+<input
+  type="file"
+  onChange={(e) => {
+    if (!e.target.files) return console.log('error no file selected');
+    const file = e.target.files[0];
+    uploadFile(file, uploadConfig);
+  }}
+/>
+```
+
+#### FileProps (UploadConfig)
+
+```js
+export type FileProps = {
+  name: string,
+  description: string,
+  extraProperties?: Object,
+};
+```
+
+The config object has the name, description and extraProperties props.
+the extraProperties is an object that can contain any extra properties you want to add to the file, for example tags, likes, ownerID, attachments, etc. You can add anything while it is in JSON format.
+
+The serverAlias is optional. If you don't pass it, the file will be uploaded to the best server available.
+In case you want to upload the file to a specific server, you can pass the serverAlias to the function.
+
+#### serverAlias
+
+The serverAlias that you have access can be found in your dashboard. https://galacfetch.com/ and is determined by the token you are using.
+
+### urlFileList
+
+the hook preload the files in memory and in a local IPFS node to save bandwidth and improve performance. The urlFileList function is used to get the list of files that are in memory and in the local IPFS node.
+the urlFileList is an array of UrlFileList interface
+
+This hook is mainly used internally to avoid downloading the same file multiple times.
+
+```js
+UrlFileList {
+  url: string;
+  cid: string;
+}
+```
+
+Example
+
+```js
+const { urlFileList } = ipfsGalactFetchClient();
+
+return (
+     <h4>Preloaded Files</h4>
+        {urlFileList.map((urlFile) => {
+          return (
+              <div>
+              blobUrl: {urlFile.url} <br>
+              cid: {urlFile.cid}
+            </div>
+          );
+        })}
+)
 ```
