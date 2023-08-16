@@ -10,16 +10,10 @@
 
 {
     "hooks/ipfs-client": {
-        "scope": "",
-        "version": "",
+        "scope": "intershare.galacfetch",
+        "version": "b2170e150373f53d3d6fd16eb61295d144bbcf5a",
         "mainFile": "index.ts",
-        "rootDir": "galacfetch/hooks/ipfs-client",
-        "config": {
-            "teambit.react/react": {},
-            "teambit.envs/envs": {
-                "env": "teambit.react/react"
-            }
-        }
+        "rootDir": "galacfetch/hooks/ipfs-client"
     },
     "$schema-version": "16.0.0"
 }

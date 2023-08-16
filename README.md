@@ -16,7 +16,6 @@ This is the main configuration file of your bit workspace. Here you can modify t
 
 This is an auto-generated file and includes the mapping of your components. There is one component included here. In order to remove this component you can run the following command.
 
-
 - **Demo Components**
 
 A folder (unless the --empty flag was used) containing demo components are included in this workspace. These components are used to demonstrate the different features of Bit. If you would like to remove these components you can run the following command.
@@ -27,7 +26,17 @@ bit remove "ui/*" --delete files
 
 This removes the components from the bitmap as well as removes the files.
 
-
 - **.gitignore**
 
 Ignoring any files from version control
+
+- **publicar**
+
+bit compile (Compila los componentes)
+bit status (tiene que estar todo OK)
+
+bit snap --message ":start: examplew" (Crea un snapshot) => crea un tag
+
+bit login (Inicia sesion en la nube)
+bit export (Lo envia a la nube)
+bit publish hooks/ipfs-client (Lo publica en npm)

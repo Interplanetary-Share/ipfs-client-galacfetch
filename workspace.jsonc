@@ -1,7 +1,7 @@
 /**
  * this is the main configuration file of your bit workspace.
  * for full documentation, please see: https://bit.dev/docs/workspace/workspace-configuration
- **/{
+ **/ {
   "$schema": "https://static.bit.dev/teambit/schemas/schema.json",
   /**
    * main configuration of the Bit workspace.
@@ -70,5 +70,15 @@
    * wrap the rule with curly brackets (e.g. `"{ui/*}": {}`)
    * see https://bit.dev/docs/workspace/variants for more info.
    **/
-  "teambit.workspace/variants": {}
+  "teambit.workspace/variants": {
+    "*": {
+      "teambit.pkg/pkg": {
+        "packageManagerPublishArgs": ["--access public"],
+        "packageJson": {
+          "private": false,
+          "name": "@interplanetary-share/{name}"
+        }
+      }
+    }
+  }
 }
