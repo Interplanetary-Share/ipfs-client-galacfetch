@@ -4,6 +4,8 @@ import { useLocalIpfsStore } from './useLocalIpfsStore';
 import { fileToBlobUrl } from './utils/file';
 import { useRemoteIpfsClient } from './useRemoteIpfsClient';
 import { ipfsGalactFetchClient } from './ipfsGalactFetchClient';
+import 'ipfs.js';
+
 export const BasicipfsClient = () => {
   const { status, init, getFile, getFiles, uploadFile, urlFileList } =
     ipfsGalactFetchClient();
@@ -22,12 +24,11 @@ export const BasicipfsClient = () => {
   const [initilized, setInitilized] = React.useState<boolean>(false);
 
   return (
-    <>
-      <Helmet>
-        <script src="https://cdn.jsdelivr.net/npm/ipfs-core/dist/index.min.js"></script>
-      </Helmet>
-
-      <br />
+    <div
+      style={{
+        width: '100%',
+      }}
+    >
       <label>Introduce your API and initilize the IPFS</label>
       <input
         style={{
@@ -159,6 +160,6 @@ export const BasicipfsClient = () => {
           </div>
         </div>
       </div>
-    </>
+    </div>
   );
 };
