@@ -28,3 +28,15 @@ export const byteNormalize = (bytes = 0) => {
   const i = Math.floor(Math.log(bytes) / Math.log(k));
   return parseFloat((bytes / Math.pow(k, i)).toFixed(dm)) + ' ' + sizes[i];
 };
+
+export const loadScript = (url: string): Promise<void> => {
+  return new Promise((resolve, reject) => {
+    const script = document.createElement('script') as any;
+    script.src = url;
+    script.async = true;
+    script.onload = resolve;
+    script.onerror = reject;
+
+    document.body.appendChild(script);
+  });
+};
