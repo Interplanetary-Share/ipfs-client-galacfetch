@@ -1,6 +1,16 @@
 ---
-description: 'A React Hook that increments a count by 1 each time it is called.'
-labels: ['hook', 'counter']
+description: 'A React Hook that connect to galacfetch IPFS nodes to manage files on the IPFS network.'
+labels:
+  [
+    'hook',
+    'ipfs',
+    'galacfetch',
+    'react',
+    'interplanetary',
+    'file',
+    'storage',
+    'decentralized',
+  ]
 ---
 
 ## An IPFS Client Hook to connect to galacfetch IPFS nodes
@@ -118,9 +128,118 @@ const config: getFileConfig = {
 const fileInfo = await getFile(cid, config);
 ```
 
+### getFiles
+
+the getFiles function is used to get a list of files from the IPFS network.
+
+Expect 3 props to be passed to it. the `isPublic` scope, the configProps, and the filter/sort/page params, all optionals.
+
+Basic example of use:
+
+```js
+const { getFiles } = ipfsGalactFetchClient();
+const isPublic = false;
+const config = {
+  showBlobUrl: true,
+  showInfoFile: true,
+  showExtraProps: true,
+};
+copnst queryParams = {
+  page:1,
+  size:10,
+  sort: { createdAt: -1 },
+}
+
+await getFiles(isPublic, config, queryParams);
+```
+
+There are 2 scopes
+
+#### isPublic true vs isPublic false
+
+the `isPublic` props of the files, by default is false, meaning you will get your files from your api token.
+
+if you want to get the public files from the galacfetch network you need to set public to true,
+meaning you will get the files that the `isPublic` is set to true.
+
+```js
+public?: boolean; // default false
+```
+
+#### configProps
+
+same as getFile method above. optional, and all props are set to true by default.
+
+```js
+export interface getFileConfig {
+  showBlobUrl?: boolean;
+  showInfoFile?: boolean;
+  showExtraProps?: boolean;
+}
+```
+
+#### queryParams (Optional)
+
+page, size, filter, sort.
+
+```js
+export interface queryParams {
+  page?: number;
+  size?: number;
+  filter?: object | undefined;
+  sort?: object | undefined;
+}
+```
+
+##### page
+
+page: number - The page number that you want to get. Default 1
+
+##### size
+
+size: number - The number of files per page. Default 10
+
+##### filter
+
+filter: object - The filter that you want to apply to the files, default undefined.
+
+The filter obeys to query selectors https://docs.mongodb.com/manual/reference/operator/query/
+
+```js
+// filter by name
+{
+  name: "fileName";
+}
+
+// search by name
+{
+  name: { $regex: "fileName", $options: "i" };
+}
+
+//  TODO: WIP - not working with extra props already... :(
+// filter by extra properties
+{
+  extraProperties: { $elemMatch: { ownerID: "me" } };
+}
+```
+
+sort: object - The sort that you want to apply to the files. Default undefined
+the sort obeys to cursor sort of mongo https://www.mongodb.com/docs/upcoming/reference/method/cursor.sort/#mongodb-method-cursor.sort
+
+```js
+// date descending sort
+{
+  createdAt: -1;
+}
+// date ascending sort
+{
+  createdAt: 1;
+}
+```
+
 ### uploadFile
 
-the uploadFile function is used to upload a file to the IPFS network. expect 2 props to be passed to it. file, and an optional serverAlias
+the uploadFile function is used to upload a file to the IPFS network. expect 3 props to be passed to it. file, fileProps, and an optional serverAlias
 
 ```js
 const { uploadFile } = ipfsGalactFetchClient();
@@ -149,11 +268,15 @@ export type FileProps = {
   name: string,
   description: string,
   extraProperties?: Object,
+  isPublic?: boolean,
 };
 ```
 
 The config object has the name, description and extraProperties props.
+
 the extraProperties is an object that can contain any extra properties you want to add to the file, for example tags, likes, ownerID, attachments, etc. You can add anything while it is in JSON format.
+
+the isPublic is a boolean that by default is set to false. If you set it to true, the file will be uploaded and be visible in public scope to anyone, for example when we getfiles with public scope.
 
 The serverAlias is optional. If you don't pass it, the file will be uploaded to the best server available.
 In case you want to upload the file to a specific server, you can pass the serverAlias to the function.
@@ -183,9 +306,9 @@ const { urlFileList } = ipfsGalactFetchClient();
 
 return (
      <h4>Preloaded Files</h4>
-        {urlFileList.map((urlFile) => {
+        {urlFileList.map((urlFile,idx) => {
           return (
-              <div>
+              <div key={idx}>
               blobUrl: {urlFile.url} <br>
               cid: {urlFile.cid}
             </div>
