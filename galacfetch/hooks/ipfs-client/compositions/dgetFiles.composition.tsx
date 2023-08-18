@@ -7,8 +7,15 @@ export const GetFiles = () => {
   const [getFilesResponse, setGetFilesResponse] = React.useState<string>('');
   const [pageNumber, setPageNumber] = React.useState<number>(1);
   const [pageSize, setPageSize] = React.useState<number>(10);
-  const [filter, setFilter] = React.useState<object>({});
-  const [sort, setSort] = React.useState<object>({});
+  const [filter, setFilter] = React.useState<object>({
+    extraProperties: {
+      likes: 'test2',
+      ownerID: { $regex: 'me', $options: 'i' },
+    },
+  });
+  const [sort, setSort] = React.useState<object>({
+    createdAt: -1,
+  });
   const [isPublic, setIsPublic] = React.useState<boolean>(false);
 
   return (

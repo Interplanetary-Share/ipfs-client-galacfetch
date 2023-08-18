@@ -216,10 +216,13 @@ The filter obeys to query selectors https://docs.mongodb.com/manual/reference/op
   name: { $regex: "fileName", $options: "i" };
 }
 
-//  TODO: WIP - not working with extra props already... :(
-// filter by extra properties
+
+// filter by extra properties, example searching in  array of string "test2" and using regex to search in ownerID
 {
-  extraProperties: { $elemMatch: { ownerID: "me" } };
+  extraProperties: {
+    likes:"test2", // search in array of string "test2"
+    ownerID: {"$regex":"me","$options":"i" }  // search in ownerID using regex
+    }
 }
 ```
 
@@ -227,11 +230,11 @@ sort: object - The sort that you want to apply to the files. Default undefined
 the sort obeys to cursor sort of mongo https://www.mongodb.com/docs/upcoming/reference/method/cursor.sort/#mongodb-method-cursor.sort
 
 ```js
-// date descending sort
+// date descending sort from newest to oldest
 {
   createdAt: -1;
 }
-// date ascending sort
+// date ascending sort from oldest to newest
 {
   createdAt: 1;
 }
