@@ -319,3 +319,40 @@ return (
         })}
 )
 ```
+
+### updateFile
+
+the updateFile function is used to update the information or extraprops from a file.
+
+basic example of use
+
+```js
+const { updateFile } = ipfsGalactFetchClient();
+
+const editFileProps ={
+  name: "newName",
+  description: "newDescription",
+  isPublic: true,
+  extraProperties: { likes: ["newlikes"] },
+}
+
+ updateFile(cid:string, editFileProps:FilePropsEdit);
+```
+
+#### FilePropsEdit
+
+```js
+export type FilePropsEdit = {
+  name?: string,
+  description?: string,
+  isPublic?: boolean,
+  extraProperties?: Object,
+};
+```
+
+- name: string - The new name of the file
+- description: string - The new description of the file
+- isPublic: boolean - in case change of scope is needed
+- extraProperties: Object - The new extraProperties of the file, (this will update or create new keys in extraproperties, not delete)
+
+the extraproperties can not be deleted yet WIP :( only replaced or added.
