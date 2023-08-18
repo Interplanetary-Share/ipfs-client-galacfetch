@@ -11,6 +11,7 @@ import {
   fileUpload,
   getAllFiles,
   getExtraPropsFiles,
+  restoreIntegrity,
   serverCheck,
   serverGetHost,
 } from './types/api';
@@ -71,11 +72,7 @@ type Store = {
     queryParams?: queryParams
   ) => Promise<remoteFileInfoResponse[]>;
   remoteGetFile: (cid: string) => Promise<void>;
-  remoteUploadFile: (
-    file: File,
-    fileProps: FileProps,
-    alias?: string
-  ) => Promise<void>;
+  remoteUploadFile: (file: File, fileProps: FileProps) => Promise<void>;
   remoteRestoreIntegrityFile: (blob: Blob, cid: string) => Promise<void>;
   remotegetFileExtraProps: (cid: string) => Promise<any>;
 };
@@ -247,7 +244,7 @@ export const useRemoteIpfsClient = create<Store>(
       });
     },
 
-    remoteUploadFile: async (file: File, fileProps, alias?: string) => {
+    remoteUploadFile: async (file: File, fileProps) => {
       const { api } = useRemoteIpfsClient.getState();
       const { localAddFile } = useLocalIpfsStore.getState();
 
@@ -264,10 +261,8 @@ export const useRemoteIpfsClient = create<Store>(
       formData.append('description', description);
       formData.append('extraProperties', JSON.stringify(extraProperties));
 
-      const uploadApiUrl = alias ? fileUpload + '/' + alias : fileUpload;
-
       return await axios
-        .post(uploadApiUrl, formData, {
+        .post(fileUpload, formData, {
           headers: {
             'Content-Type': 'multipart/form-data',
             authorization: `Bearer ${api}`,
@@ -284,18 +279,31 @@ export const useRemoteIpfsClient = create<Store>(
         });
     },
     remoteRestoreIntegrityFile: async (blob: Blob, cid: string) => {
-      const { api, remoteGetFileInfo, remoteUploadFile } =
-        useRemoteIpfsClient.getState();
+      const { api, remoteGetFileInfo } = useRemoteIpfsClient.getState();
+      const { localAddFile } = useLocalIpfsStore.getState();
       if (!api) throw new Error('no api provided');
 
       const infoFile = await remoteGetFileInfo(cid);
       const { serverAlias } = infoFile;
 
       const file = blobBufferToFile(blob, cid);
-      console.log('hey this is not ready yet, sorry.');
-      // remoteUploadFile(file, fileProps, alias)
-      // TODO:  add remoteUploadFile just to node without update any db.
-      // await remoteUploadFile(file, serverAlias);
+      await localAddFile(blob);
+      const formData = new FormData();
+      formData.append('file', file);
+
+      return await axios
+        .post(restoreIntegrity + '/' + serverAlias.trim(), formData, {
+          headers: {
+            'Content-Type': 'multipart/form-data',
+            authorization: `Bearer ${api}`,
+          },
+        })
+        .then((res) => {
+          console.log(`fastlog => res:`, res);
+        })
+        .catch((err) => {
+          console.log(`fastlog => err:`, err);
+        });
     },
     remotegetFileExtraProps: async (cid: string) => {
       const { api } = useRemoteIpfsClient.getState();

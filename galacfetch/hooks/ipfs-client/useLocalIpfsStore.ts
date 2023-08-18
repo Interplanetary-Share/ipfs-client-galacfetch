@@ -115,7 +115,7 @@ export const useLocalIpfsStore = create<Store>(
 
       const isFileGoodIntegrity = await remoteCheckIntegrityFile(cid);
 
-      if (isFileGoodIntegrity) {
+      if (!isFileGoodIntegrity) {
         remoteRestoreIntegrityFile(blob, cid);
       }
 

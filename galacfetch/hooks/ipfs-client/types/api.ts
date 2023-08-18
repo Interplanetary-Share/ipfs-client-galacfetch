@@ -11,3 +11,4 @@ export const fileApi = baseApi + '/file';
 export const fileUpload = fileApi + '/upload';
 export const getAllFiles = fileApi + '/files';
 export const getExtraPropsFiles = fileApi + '/extra';
+export const restoreIntegrity = fileApi + '/restore/integrity';
