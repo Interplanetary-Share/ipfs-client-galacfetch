@@ -40,3 +40,9 @@ bit snap --message ":start: examplew" (Crea un snapshot) => crea un tag
 bit login (Inicia sesion en la nube)
 bit export (Lo envia a la nube)
 bit publish hooks/ipfs-client (Lo publica en npm)
+
+## to work again in the workspace
+
+bit use <workspace name>
+bit install
+bit start
