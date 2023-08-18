@@ -9,6 +9,7 @@ export const UploadFile = () => {
       name: 'fileNameTest',
       description: 'DescriptionTest',
       extraProperties: { likes: ['test2', 'another'], ownerID: 'me' },
+      isPublic: false,
     })
   );
 

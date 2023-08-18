@@ -55,6 +55,7 @@ type remoteFileInfoResponse = {
 export type FileProps = {
   name: string;
   description: string;
+  isPublic: boolean;
   extraProperties?: Object;
 };
 
@@ -226,7 +227,7 @@ export const useRemoteIpfsClient = create<Store>(
           },
           params: {
             ...queryParams,
-            public: isPublic,
+            isPublic,
           },
         })
         .then((res) => {
@@ -252,7 +253,7 @@ export const useRemoteIpfsClient = create<Store>(
 
       if (!api) throw new Error('no api provided');
 
-      const { name, description, extraProperties } = fileProps;
+      const { name, description, extraProperties, isPublic } = fileProps;
 
       const blob = await file.arrayBuffer();
       await localAddFile(blob);
@@ -270,6 +271,9 @@ export const useRemoteIpfsClient = create<Store>(
           headers: {
             'Content-Type': 'multipart/form-data',
             authorization: `Bearer ${api}`,
+          },
+          params: {
+            isPublic: isPublic,
           },
         })
         .then((res) => {

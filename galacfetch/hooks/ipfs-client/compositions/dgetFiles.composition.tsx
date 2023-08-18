@@ -5,7 +5,7 @@ export const GetFiles = () => {
   const { getFiles } = ipfsGalactFetchClient();
 
   const [getFilesResponse, setGetFilesResponse] = React.useState<string>('');
-  const [pageNumber, setPageNumber] = React.useState<number>(0);
+  const [pageNumber, setPageNumber] = React.useState<number>(1);
   const [pageSize, setPageSize] = React.useState<number>(10);
   const [filter, setFilter] = React.useState<object>({});
   const [sort, setSort] = React.useState<object>({});
@@ -39,7 +39,7 @@ export const GetFiles = () => {
           gap: '.5em',
         }}
       >
-        <label>Public</label>
+        <label>isPublic</label>
         <input
           type="checkbox"
           checked={isPublic}
@@ -86,7 +86,7 @@ export const GetFiles = () => {
       <button
         onClick={async () => {
           getFiles(
-            false,
+            isPublic,
             {
               showBlobUrl: true,
               showInfoFile: true,
