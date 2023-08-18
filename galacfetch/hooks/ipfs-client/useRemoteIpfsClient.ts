@@ -40,15 +40,15 @@ export interface UrlFileList {
   cid: string;
 }
 
-type remoteFileInfoResponse = {
+export type remoteFileInfoResponse = {
   cid: string;
   name: string;
   description: string;
   type: string;
   size: number;
-  extraProperties: any;
   token: string;
   serverAlias: string;
+  isPublic: boolean;
   updatedAt: string;
   createdAt: string;
 };
@@ -57,6 +57,13 @@ export type FileProps = {
   name: string;
   description: string;
   isPublic: boolean;
+  extraProperties?: Object;
+};
+
+export type FilePropsEdit = {
+  name?: string;
+  description?: string;
+  isPublic?: boolean;
   extraProperties?: Object;
 };
 
@@ -74,14 +81,14 @@ type Store = {
   remoteGetFile: (cid: string) => Promise<void>;
   remoteUploadFile: (file: File, fileProps: FileProps) => Promise<void>;
   remoteRestoreIntegrityFile: (blob: Blob, cid: string) => Promise<void>;
-  remotegetFileExtraProps: (cid: string) => Promise<any>;
+  remotegetFileExtraProps: (cid: string) => Promise<any>; //TODO add response promises
+  remoteUpdateFile: (cid: string, fileprops: FilePropsEdit) => Promise<any>;
 };
 
 export const useRemoteIpfsClient = create<Store>(
   (set): Store => ({
     servers: [],
     api: null,
-    // @public
     init: async (api, repoName = 'galactfetch') => {
       const { addNewBlobUrl } = useRemoteIpfsClient.getState();
       const { localAddFile, initIpfs } = useLocalIpfsStore.getState();
@@ -111,6 +118,11 @@ export const useRemoteIpfsClient = create<Store>(
             token: api,
           },
         });
+
+        // TODO: check if WS connect on new user, new file, etc.
+        // TODO: make a function to check if WS is connected
+        // TODO: make a function to connect WS
+        // TODO: make a function to add new server to list
 
         serversList.push({
           host: server,
@@ -164,8 +176,6 @@ export const useRemoteIpfsClient = create<Store>(
 
       set({ servers: serversList });
       set({ api });
-
-      console.log(`fastlog => serversList:`, serversList);
     },
 
     addNewBlobUrl: (blobToAdd: UrlFileList) => {
@@ -252,7 +262,8 @@ export const useRemoteIpfsClient = create<Store>(
 
       const { name, description, extraProperties, isPublic } = fileProps;
 
-      const blob = await file.arrayBuffer();
+      const arrayBuffer = await file.arrayBuffer();
+      const blob = new Blob([arrayBuffer]);
       await localAddFile(blob);
 
       const formData = new FormData();
@@ -323,6 +334,25 @@ export const useRemoteIpfsClient = create<Store>(
         });
 
       return extraProps;
+    },
+    remoteUpdateFile: async (cid: string, fileProps: FilePropsEdit) => {
+      const { api } = useRemoteIpfsClient.getState();
+      if (!api) throw new Error('no api provided');
+
+      const response = await axios
+        .put(fileApi + '/' + cid, fileProps, {
+          headers: {
+            authorization: `Bearer ${api}`,
+          },
+        })
+        .then((res) => {
+          return res.data;
+        })
+        .catch((err) => {
+          console.log(`fastlog => err:`, err);
+        });
+
+      return response;
     },
   })
 );

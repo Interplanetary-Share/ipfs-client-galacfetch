@@ -1,6 +1,11 @@
 import { create } from 'zustand';
 import { useLocalIpfsStore } from './useLocalIpfsStore';
-import { FileProps, useRemoteIpfsClient } from './useRemoteIpfsClient';
+import {
+  FileProps,
+  FilePropsEdit,
+  remoteFileInfoResponse,
+  useRemoteIpfsClient,
+} from './useRemoteIpfsClient';
 
 export interface UrlFileList {
   url: string;
@@ -20,22 +25,25 @@ export interface queryParams {
   sort?: object | undefined;
 }
 
+export type getFileResponse = {
+  url?: string;
+  info?: remoteFileInfoResponse;
+  extraProps?: object;
+};
+
 type Store = {
   status: undefined | 'idle' | 'loading';
   init: (api: string, repoName: string) => Promise<void>;
-  getFile: (cid: string, config?: getFileConfig) => Promise<any>; //TODO add response promises
+  getFile: (cid: string, config?: getFileConfig) => Promise<getFileResponse>;
   getFiles: (
     isPublic?: boolean,
     config?: getFileConfig,
     queryParams?: queryParams
-  ) => Promise<any>;
-  uploadFile: (
-    file: File,
-    fileProps: FileProps,
-    alias?: string
-  ) => Promise<void>;
+  ) => Promise<getFileResponse[]>;
+  uploadFile: (file: File, fileProps: FileProps) => Promise<void>;
   urlFileList: UrlFileList[];
   findPreloadFile: (cid: string) => UrlFileList | undefined;
+  updateFile: (cid: string, fileprops: FilePropsEdit) => Promise<void>;
 };
 
 export const ipfsGalactFetchClient = create<Store>()(
@@ -134,14 +142,21 @@ export const ipfsGalactFetchClient = create<Store>()(
       return urlFileList.find((file) => file.cid === cid);
     },
 
-    uploadFile: async (file: File, fileProps: FileProps, alias?: string) => {
+    uploadFile: async (file: File, fileProps: FileProps) => {
       set({ status: 'loading' });
       const { api } = useRemoteIpfsClient.getState();
       if (!api) throw new Error('no api provided');
       const { remoteUploadFile } = useRemoteIpfsClient.getState();
 
       set({ status: 'idle' });
-      return await remoteUploadFile(file, fileProps, alias);
+      return await remoteUploadFile(file, fileProps);
+    },
+    updateFile: async (cid: string, fileProps: FilePropsEdit) => {
+      set({ status: 'loading' });
+      const { api, remoteUpdateFile } = useRemoteIpfsClient.getState();
+      if (!api) throw new Error('no api provided');
+
+      await remoteUpdateFile(cid, fileProps);
     },
   })
 );
