@@ -6,6 +6,7 @@ import {
   remoteFileInfoResponse,
   useRemoteIpfsClient,
 } from './useRemoteIpfsClient';
+import indexDbStore from './indexDb';
 
 export interface UrlFileList {
   url: string;
@@ -32,7 +33,14 @@ export type getFileResponse = {
 };
 
 type Store = {
-  status: undefined | 'idle' | 'loading';
+  status:
+    | undefined
+    | 'idle'
+    | 'loading'
+    | {
+        error: string;
+        message: string;
+      };
   init: (api: string, repoName: string) => Promise<void>;
   getFile: (cid: string, config?: getFileConfig) => Promise<getFileResponse>;
   getFiles: (
@@ -49,10 +57,31 @@ type Store = {
 export const ipfsGalactFetchClient = create<Store>()(
   (set): Store => ({
     status: undefined,
-    init: async (api: string, repoName = 'galactfetch') => {
+    init: async (api: string, dbName = 'galactfetch') => {
       const { init } = useRemoteIpfsClient.getState();
+      const { initIndexedDb } = indexDbStore.getState();
       set({ status: 'loading' });
-      const response = await init(api, repoName);
+      const response = await init(api).catch((error) => {
+        set({
+          status: {
+            error: 'error',
+            message: error,
+          },
+        });
+        return error;
+      });
+
+      if (response instanceof Error) {
+        set({
+          status: {
+            error: 'error',
+            message: response.message,
+          },
+        });
+        return response;
+      }
+
+      initIndexedDb(dbName); // Loads in bg, TODO: add loading state and monitor progress.
       set({ status: 'idle' });
       return response;
     },
@@ -71,16 +100,14 @@ export const ipfsGalactFetchClient = create<Store>()(
       if (!api) throw new Error('no api provided');
       set({ status: 'loading' });
 
-      const { localCheckIsFile, localGetFile } = useLocalIpfsStore.getState();
+      const { localGetFile } = useLocalIpfsStore.getState();
       const { remoteGetFile, remotegetFileExtraProps, remoteGetFileInfo } =
         useRemoteIpfsClient.getState();
       const { findPreloadFile } = ipfsGalactFetchClient.getState();
 
-      const isFile = await localCheckIsFile(cid);
+      const isFile = await localGetFile(cid);
 
-      if (isFile) {
-        await localGetFile(cid);
-      } else {
+      if (!isFile) {
         await remoteGetFile(cid);
       }
 
@@ -94,13 +121,18 @@ export const ipfsGalactFetchClient = create<Store>()(
 
       set({ status: 'idle' });
 
-      return {
+      const response = {
         url,
-        info,
-        extraProps,
+        ...info,
+        ...extraProps,
       };
-    },
 
+      const { _id, __v, ...rest } = response;
+
+      return rest;
+    },
+    // TODO: change order queryParams, config to easy the use.
+    // TODO: sort by extraparams too.
     getFiles: async (
       isPublic = false,
       config?: getFileConfig,
@@ -122,12 +154,8 @@ export const ipfsGalactFetchClient = create<Store>()(
 
       const response = await Promise.all(
         files.map(async (file) => {
-          const { url, info, extraProps } = await getFile(file.cid, config);
-          return {
-            url,
-            info,
-            extraProps,
-          };
+          const response = await getFile(file.cid, config);
+          return response;
         })
       );
 

@@ -40,3 +40,24 @@ export const loadScript = (url: string): Promise<void> => {
     document.body.appendChild(script);
   });
 };
+
+const defaultChunkSize = 1024 * 1024 * 6; // 6MB
+
+export const chunkBlobToBuffer = async (
+  blob: Blob,
+  chunkSize = defaultChunkSize
+) => {
+  const chunks: ArrayBuffer[] = [];
+  const totalChunks = Math.ceil(blob.size / chunkSize);
+  let currentChunk = 0;
+
+  while (currentChunk < totalChunks) {
+    const start = currentChunk * chunkSize;
+    const end = start + chunkSize >= blob.size ? blob.size : start + chunkSize;
+    const chunk = await blob.slice(start, end).arrayBuffer();
+    chunks.push(chunk);
+    currentChunk++;
+  }
+
+  return chunks;
+};

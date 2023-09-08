@@ -1,11 +1,7 @@
-import { create } from 'zustand';
-import {
-  blobBufferToFile,
-  byteNormalize,
-  fileToBlobUrl,
-  isFilePreloaded,
-} from './utils/file';
 import axios from 'axios';
+import { io } from 'socket.io-client';
+import { create } from 'zustand';
+import { ipfsGalactFetchClient, queryParams } from './ipfsGalactFetchClient';
 import {
   fileApi,
   fileUpload,
@@ -15,9 +11,8 @@ import {
   serverCheck,
   serverGetHost,
 } from './types/api';
-import { io } from 'socket.io-client';
 import { useLocalIpfsStore } from './useLocalIpfsStore';
-import { ipfsGalactFetchClient, queryParams } from './ipfsGalactFetchClient';
+import { blobBufferToFile, fileToBlobUrl, isFilePreloaded } from './utils/file';
 
 interface IDownloadChunk {
   status: string;
@@ -51,6 +46,8 @@ export type remoteFileInfoResponse = {
   isPublic: boolean;
   updatedAt: string;
   createdAt: string;
+  __v: number;
+  _id: string;
 };
 
 export type FileProps = {
@@ -69,7 +66,7 @@ export type FilePropsEdit = {
 
 type Store = {
   servers: serverItem[];
-  init: (api: string, repoName: string) => Promise<void>;
+  init: (api: string) => Promise<void>;
   addNewBlobUrl: (urlFile: UrlFileList) => void;
   api: string | null;
   remoteCheckIntegrityFile: (cid: string) => Promise<Boolean>;
@@ -89,9 +86,9 @@ export const useRemoteIpfsClient = create<Store>(
   (set): Store => ({
     servers: [],
     api: null,
-    init: async (api, repoName = 'galactfetch') => {
+    init: async (api) => {
       const { addNewBlobUrl } = useRemoteIpfsClient.getState();
-      const { localAddFile, initIpfs } = useLocalIpfsStore.getState();
+      const { localAddFile } = useLocalIpfsStore.getState();
 
       const getServers = await axios
         .get(serverGetHost, {
@@ -100,11 +97,10 @@ export const useRemoteIpfsClient = create<Store>(
           },
         })
         .then(async (res) => {
-          await initIpfs(repoName);
           return res.data;
         })
         .catch((err) => {
-          console.log(`fastlog => err:`, err);
+          throw new Error(err);
         });
 
       // TODO: test with user without servers, should return empty array
@@ -167,7 +163,7 @@ export const useRemoteIpfsClient = create<Store>(
 
               const url = fileToBlobUrl(temporalBlobFile);
               addNewBlobUrl({ url: url, cid: cid });
-              localAddFile(temporalBlobFile);
+              localAddFile(temporalBlobFile, cid);
               blobList[cid] = [];
             }
           }
@@ -264,7 +260,6 @@ export const useRemoteIpfsClient = create<Store>(
 
       const arrayBuffer = await file.arrayBuffer();
       const blob = new Blob([arrayBuffer]);
-      await localAddFile(blob);
 
       const formData = new FormData();
       formData.append('file', file);
@@ -272,7 +267,7 @@ export const useRemoteIpfsClient = create<Store>(
       formData.append('description', description);
       formData.append('extraProperties', JSON.stringify(extraProperties));
 
-      return await axios
+      const response = await axios
         .post(fileUpload, formData, {
           headers: {
             'Content-Type': 'multipart/form-data',
@@ -283,11 +278,17 @@ export const useRemoteIpfsClient = create<Store>(
           },
         })
         .then((res) => {
-          console.log(`fastlog => res:`, res);
+          const {
+            meta: { cid },
+          } = res.data;
+          localAddFile(blob, cid);
+          return res.data;
         })
         .catch((err) => {
-          console.log(`fastlog => err:`, err);
+          console.error(err);
         });
+
+      return response;
     },
     remoteRestoreIntegrityFile: async (blob: Blob, cid: string) => {
       const { api, remoteGetFileInfo } = useRemoteIpfsClient.getState();
@@ -298,7 +299,7 @@ export const useRemoteIpfsClient = create<Store>(
       const { serverAlias } = infoFile;
 
       const file = blobBufferToFile(blob, cid);
-      await localAddFile(blob);
+      await localAddFile(blob, cid);
       const formData = new FormData();
       formData.append('file', file);
 
@@ -310,7 +311,7 @@ export const useRemoteIpfsClient = create<Store>(
           },
         })
         .then((res) => {
-          console.log(`fastlog => res:`, res);
+          return res.data;
         })
         .catch((err) => {
           console.log(`fastlog => err:`, err);

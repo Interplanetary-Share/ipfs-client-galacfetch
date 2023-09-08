@@ -31,13 +31,11 @@ const { status, init, getFile, getFiles, uploadFile, urlFileList } =
 You can also interact with the other 2 hooks directly if you want to use them separately.
 
 ```js
-const { ipfs
-        initIpfs
-        localCheckIsFile
+const {
         localGetFile
         localAddFile
         localRemoveFile
-        localGetAllFiles } = useLocalIpfsStore();
+        localGetAllFiles } = useLocalIpfsStore(); // Used as a local cache to save bandwidth and improve performance
 
 const { servers
         init
@@ -49,7 +47,7 @@ const { servers
         remoteGetFile
         remoteUploadFile
         remoteRestoreIntegrityFile
-        remotegetFileExtraProps } = useRemoteIpfsStore();
+        remotegetFileExtraProps } = useRemoteIpfsStore(); // Used to interact with the galacfetch IPFS nodes
 
 ```
 
@@ -81,7 +79,7 @@ the status is an object that contains the status of the hook.
 
 ```js
 {
-  status: 'idle' | 'loading' | undefined;
+  status: undefined | 'idle' | 'loading' | 'error';
 }
 ```
 
@@ -240,6 +238,29 @@ the sort obeys to cursor sort of mongo https://www.mongodb.com/docs/upcoming/ref
 }
 ```
 
+To sort by extraProperties you need to use the dot notation
+
+```js
+// sort by likes descending
+{
+  "extraProperties.likes": -1;
+}
+// sort by likes ascending
+{
+  "extraProperties.likes": 1;
+}
+```
+
+If the extraProperties key is an array, will be created a new key with the Length of the array to sort by it. For example if you have an array of likes, will be created a new key likesLength with the length of the array to sort by it.
+
+````js
+// sort by likes descending by array  ["test2","another", "another2"]
+{
+  "extraProperties.likesLength": -1;
+}
+```js
+
+
 ### uploadFile
 
 the uploadFile function is used to upload a file to the IPFS network. expect 3 props to be passed to it. file, fileProps, and an optional serverAlias
@@ -248,7 +269,7 @@ the uploadFile function is used to upload a file to the IPFS network. expect 3 p
 const { uploadFile } = ipfsGalactFetchClient();
 
 await uploadFile(file, fileProps, serverAlias);
-```
+````
 
 Basic Example of upload file
 
@@ -353,6 +374,4 @@ export type FilePropsEdit = {
 - name: string - The new name of the file
 - description: string - The new description of the file
 - isPublic: boolean - in case change of scope is needed
-- extraProperties: Object - The new extraProperties of the file, (this will update or create new keys in extraproperties, not delete)
-
-the extraproperties can not be deleted yet WIP :( only replaced or added.
+- extraProperties: Object - The new extraProperties of the file, (`this will update or create new keys` in extraproperties, if `null will delete the key`)
