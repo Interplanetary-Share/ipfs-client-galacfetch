@@ -8,15 +8,13 @@ export const GetAndUpdateFile = () => {
   const { getFile, updateFile } = ipfsGalactFetchClient();
 
   const [currentCid, setCurrentCid] = React.useState<string>('');
-  const [getFileResponse, setGetFileResponse] = React.useState<getFileResponse>(
-    {}
-  );
+  const [getFileResponse, setGetFileResponse] =
+    React.useState<getFileResponse>();
   const [editFile, setEditFile] = React.useState<string>('');
 
   useEffect(() => {
-    const { name, description, isPublic } = getFileResponse.info || {};
-
-    const { extraProperties } = getFileResponse.extraProps || ({} as any);
+    const { name, description, isPublic, extraProperties } =
+      getFileResponse || {};
 
     setEditFile(
       JSON.stringify({ name, description, isPublic, extraProperties })
