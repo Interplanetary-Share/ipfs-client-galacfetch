@@ -116,3 +116,11 @@ This project is [MIT](#) licensed.
 - Implement WebRTC to share data between nodes
 - Implement a garbage Collector to remove old data
 - set config on init Client (use local cache, max cache size, file size limit, etc)
+
+### Remote:
+
+- increase security allow tokens management and split enviroments. (dev/test, prod)
+
+### Client:
+
+- allow edit public and private files (only if you are the owner)
