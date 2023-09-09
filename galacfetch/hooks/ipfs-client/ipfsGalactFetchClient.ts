@@ -27,11 +27,10 @@ export interface queryParams {
   sort?: object | undefined;
 }
 
-export type getFileResponse = {
+export interface getFileResponse extends remoteFileInfoResponse {
   url?: string;
-  info?: remoteFileInfoResponse;
-  extraProps?: object;
-};
+  extraProperties?: object;
+}
 
 export type ErrorStatus = {
   error: string;

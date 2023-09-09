@@ -40,7 +40,7 @@ export interface UrlFileList {
   url: string;
   cid: string;
 }
-
+// TODO: delete from response _v and _id
 export type remoteFileInfoResponse = {
   cid: string;
   name: string;
@@ -52,8 +52,6 @@ export type remoteFileInfoResponse = {
   isPublic: boolean;
   updatedAt: string;
   createdAt: string;
-  __v: number;
-  _id: string;
 };
 
 export type FileProps = {
