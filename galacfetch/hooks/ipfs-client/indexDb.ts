@@ -17,7 +17,7 @@ const indexDbStore = create<Store>()(
     initIndexedDb: (dbName) => {
       const request = indexedDB.open(dbName);
       request.onsuccess = function () {
-        console.log('all good');
+        console.info('IndexedDB initialized');
         set({ iDb: request.result });
       };
       // Run migrations
@@ -35,22 +35,28 @@ const indexDbStore = create<Store>()(
       console.log('saving data');
       const transaction = iDb.transaction([tableName], 'readwrite');
       const tableItem = transaction.objectStore(tableName);
-      console.log(`fastlog => tableItem:`, tableItem);
-      console.log('fastlog => id:', id);
-      console.log('fastlog => id2:', btoa(id));
       const request = tableItem.put(dataToAppend, id);
-      console.log(`fastlog => request:`, request);
       request.onsuccess = function () {
-        console.log('Data Saved Propertly => ', request.result);
+        console.info('Data Saved Locally => ', request.result);
       };
     },
     getData: async (id, tableName) => {
       const { iDb } = indexDbStore.getState();
-      if (!iDb) return;
-      const transaction = iDb.transaction([tableName], 'readwrite');
-      if (!transaction.objectStoreNames.contains(tableName)) {
-        transaction.db.createObjectStore(tableName, { keyPath: 'id' });
+      if (!iDb) {
+        console.error('iDb not initialized');
+        return;
       }
+      if (!id) {
+        console.error('no id provided');
+        return;
+      }
+      if (!tableName) {
+        console.error('no tableName provided');
+        return;
+      }
+
+      const transaction = iDb.transaction([tableName], 'readwrite');
+
       const tableItem = transaction.objectStore(tableName);
       const request = tableItem.get(id);
       request.onsuccess = function () {

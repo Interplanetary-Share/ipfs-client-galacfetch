@@ -1,7 +1,11 @@
 import axios from 'axios';
 import { io } from 'socket.io-client';
 import { create } from 'zustand';
-import { ipfsGalactFetchClient, queryParams } from './ipfsGalactFetchClient';
+import {
+  ErrorStatus,
+  ipfsGalactFetchClient,
+  queryParams,
+} from './ipfsGalactFetchClient';
 import {
   fileApi,
   fileUpload,
@@ -13,12 +17,14 @@ import {
 } from './types/api';
 import { useLocalIpfsStore } from './useLocalIpfsStore';
 import { blobBufferToFile, fileToBlobUrl, isFilePreloaded } from './utils/file';
+import { wrapperProtect } from './utils/api';
 
 interface IDownloadChunk {
-  status: string;
+  status: number; // 1: start, 2: downloading, 3: end 4: error 0: unknown 5: canceled 6: paused
   chunk: any;
   progress: number;
   sizeSent: number;
+  // Fileinfo
   cid: string;
   name: string;
   type: string;
@@ -65,6 +71,7 @@ export type FilePropsEdit = {
 };
 
 type Store = {
+  status: undefined | 'idle' | 'loading' | ErrorStatus;
   servers: serverItem[];
   init: (api: string) => Promise<void>;
   addNewBlobUrl: (urlFile: UrlFileList) => void;
@@ -80,15 +87,17 @@ type Store = {
   remoteRestoreIntegrityFile: (blob: Blob, cid: string) => Promise<void>;
   remotegetFileExtraProps: (cid: string) => Promise<any>; //TODO add response promises
   remoteUpdateFile: (cid: string, fileprops: FilePropsEdit) => Promise<any>;
+  connectToSocket: (url: string, api: string) => Promise<any>;
 };
 
 export const useRemoteIpfsClient = create<Store>(
   (set): Store => ({
+    status: undefined,
     servers: [],
     api: null,
+
     init: async (api) => {
-      const { addNewBlobUrl } = useRemoteIpfsClient.getState();
-      const { localAddFile } = useLocalIpfsStore.getState();
+      const { connectToSocket } = useRemoteIpfsClient.getState();
 
       const getServers = await axios
         .get(serverGetHost, {
@@ -102,30 +111,40 @@ export const useRemoteIpfsClient = create<Store>(
         .catch((err) => {
           throw new Error(err);
         });
-
       // TODO: test with user without servers, should return empty array
       if (!getServers) throw new Error('no servers found');
-
       const serversList = [] as serverItem[];
+      const socketPromises = getServers.map(async (server: string) => {
+        const socket = await connectToSocket(server, api);
+        serversList.push({
+          host: server,
+          ws: socket,
+        });
+        return socket;
+      });
+      await Promise.all(socketPromises);
+      // TODO: check if WS connect on new user, new file, etc.
+      // TODO: make a function to check if WS is connected
+      set({ servers: serversList });
+      set({ api });
+    },
+    connectToSocket: (url, api) => {
+      const { addNewBlobUrl } = useRemoteIpfsClient.getState();
+      const { localAddFile } = useLocalIpfsStore.getState();
 
-      getServers.forEach((server: string) => {
-        const socket = io(server, {
+      return new Promise((resolve) => {
+        const socket = io(url, {
           auth: {
             token: api,
           },
         });
 
-        // TODO: check if WS connect on new user, new file, etc.
-        // TODO: make a function to check if WS is connected
-        // TODO: make a function to connect WS
-        // TODO: make a function to add new server to list
-
-        serversList.push({
-          host: server,
-          ws: socket,
+        socket.on('connect', () => {
+          resolve(socket);
         });
 
         const blobList = {} as any;
+
         socket.on(
           'download/socket',
           ({
@@ -137,30 +156,28 @@ export const useRemoteIpfsClient = create<Store>(
             size,
             type,
           }: IDownloadChunk) => {
-            if (status === 'start') {
+            if (status === 1) {
               blobList[cid] = [];
             }
-            if (status === 'downloading') {
+            if (status === 2) {
               const blob = new Blob([chunk]);
               blobList[cid].push(blob);
 
               if (progress && sizeSent && size) {
                 // TODO: send this  progress somehow...
                 console.log(
-                  `fastlog => progress:`,
+                  `Downloading => progress:`,
                   progress,
-                  '%' + ' ' + 'sizeSent: ',
+                  '%' + ' ' + 'send: ',
                   sizeSent,
                   'size: ',
                   size
                 );
               }
             }
-            if (status === 'end') {
-              const temporalBlobFile = type
-                ? new Blob(blobList[cid], { type: type })
-                : new Blob(blobList[cid]);
-
+            if (status === 3) {
+              console.log('fastlog => end');
+              const temporalBlobFile = new Blob(blobList[cid], { type: type });
               const url = fileToBlobUrl(temporalBlobFile);
               addNewBlobUrl({ url: url, cid: cid });
               localAddFile(temporalBlobFile, cid);
@@ -169,11 +186,8 @@ export const useRemoteIpfsClient = create<Store>(
           }
         );
       });
-
-      set({ servers: serversList });
-      set({ api });
     },
-
+    // TODO: move this to ipfslocal or galactfetchClient
     addNewBlobUrl: (blobToAdd: UrlFileList) => {
       const { urlFileList } = ipfsGalactFetchClient.getState();
       if (!isFilePreloaded(urlFileList, blobToAdd.cid)) {
@@ -183,177 +197,176 @@ export const useRemoteIpfsClient = create<Store>(
       }
     },
     remoteCheckIntegrityFile: async (cid: string) => {
-      const { api, remoteGetFileInfo } = useRemoteIpfsClient.getState();
-      if (!api) throw new Error('no api provided');
+      return await wrapperProtect(set, async () => {
+        const { api, remoteGetFileInfo } = useRemoteIpfsClient.getState();
+        const fileInfo = await remoteGetFileInfo(cid);
 
-      const fileInfo = await remoteGetFileInfo(cid);
+        const checkIntegrityFile = (await axios
+          .get(serverCheck + '/' + fileInfo.serverAlias + '/' + cid, {
+            headers: {
+              authorization: `Bearer ${api}`,
+            },
+          })
+          .then((res) => {
+            return res.data;
+          })) as boolean;
 
-      const checkIntegrityFile = (await axios
-        .get(serverCheck + '/' + fileInfo.serverAlias + '/' + cid, {
-          headers: {
-            authorization: `Bearer ${api}`,
-          },
-        })
-        .then((res) => {
-          return res.data;
-        })) as boolean;
-
-      return checkIntegrityFile;
-    },
-
-    remoteGetFileInfo: async (cid: string) => {
-      const { api } = useRemoteIpfsClient.getState();
-      if (!api) throw new Error('no api provided');
-
-      const fileInfo = await axios
-        .get(fileApi + '/' + cid, {
-          headers: {
-            authorization: `Bearer ${api}`,
-          },
-        })
-        .then((res) => {
-          return res.data;
-        })
-        .catch((err) => {
-          console.log(`fastlog => err:`, err);
-        });
-      return fileInfo as remoteFileInfoResponse;
-    },
-    remoteGetFilesInfo: async (isPublic = false, queryParams?: queryParams) => {
-      const { api } = useRemoteIpfsClient.getState();
-      if (!api) throw new Error('no api provided');
-
-      const allFilesInfo = await axios
-        .get(getAllFiles, {
-          headers: {
-            authorization: `Bearer ${api}`,
-          },
-          params: {
-            ...queryParams,
-            isPublic,
-          },
-        })
-        .then((res) => {
-          return res.data;
-        })
-        .catch((err) => {
-          console.log(`fastlog => err:`, err);
-        });
-      return allFilesInfo as remoteFileInfoResponse[];
-    },
-    remoteGetFile: async (cid: string) => {
-      const { api, servers } = useRemoteIpfsClient.getState();
-      if (!api) throw new Error('no api provided');
-
-      servers.forEach((server) => {
-        server.ws.emit('download/socket', { cid: cid });
+        return checkIntegrityFile;
       });
     },
 
-    remoteUploadFile: async (file: File, fileProps) => {
-      const { api } = useRemoteIpfsClient.getState();
-      const { localAddFile } = useLocalIpfsStore.getState();
-
-      if (!api) throw new Error('no api provided');
-
-      const { name, description, extraProperties, isPublic } = fileProps;
-
-      const arrayBuffer = await file.arrayBuffer();
-      const blob = new Blob([arrayBuffer]);
-
-      const formData = new FormData();
-      formData.append('file', file);
-      formData.append('name', name);
-      formData.append('description', description);
-      formData.append('extraProperties', JSON.stringify(extraProperties));
-
-      const response = await axios
-        .post(fileUpload, formData, {
-          headers: {
-            'Content-Type': 'multipart/form-data',
-            authorization: `Bearer ${api}`,
-          },
-          params: {
-            isPublic: isPublic,
-          },
-        })
-        .then((res) => {
-          const {
-            meta: { cid },
-          } = res.data;
-          localAddFile(blob, cid);
-          return res.data;
-        })
-        .catch((err) => {
-          console.error(err);
-        });
-
-      return response;
+    remoteGetFileInfo: async (cid: string) => {
+      return await wrapperProtect(set, async () => {
+        const { api } = useRemoteIpfsClient.getState();
+        const fileInfo = await axios
+          .get(fileApi + '/' + cid, {
+            headers: {
+              authorization: `Bearer ${api}`,
+            },
+          })
+          .then((res) => {
+            return res.data;
+          })
+          .catch((err) => {
+            console.log(`fastlog => err:`, err);
+          });
+        return fileInfo as remoteFileInfoResponse;
+      });
     },
-    remoteRestoreIntegrityFile: async (blob: Blob, cid: string) => {
-      const { api, remoteGetFileInfo } = useRemoteIpfsClient.getState();
-      const { localAddFile } = useLocalIpfsStore.getState();
-      if (!api) throw new Error('no api provided');
+    remoteGetFilesInfo: async (isPublic = false, queryParams?: queryParams) =>
+      await wrapperProtect(set, async () => {
+        const { api } = useRemoteIpfsClient.getState();
+        const allFilesInfo = await axios
+          .get(getAllFiles, {
+            headers: {
+              authorization: `Bearer ${api}`,
+            },
+            params: {
+              ...queryParams,
+              isPublic,
+            },
+          })
+          .then((res) => {
+            return res.data;
+          })
+          .catch((err) => {
+            console.error(err);
+          });
+        return allFilesInfo as remoteFileInfoResponse[];
+      }),
+    remoteGetFile: async (cid: string) =>
+      await wrapperProtect(set, async () => {
+        const { servers } = useRemoteIpfsClient.getState();
 
-      const infoFile = await remoteGetFileInfo(cid);
-      const { serverAlias } = infoFile;
-
-      const file = blobBufferToFile(blob, cid);
-      await localAddFile(blob, cid);
-      const formData = new FormData();
-      formData.append('file', file);
-
-      return await axios
-        .post(restoreIntegrity + '/' + serverAlias.trim(), formData, {
-          headers: {
-            'Content-Type': 'multipart/form-data',
-            authorization: `Bearer ${api}`,
-          },
-        })
-        .then((res) => {
-          return res.data;
-        })
-        .catch((err) => {
-          console.log(`fastlog => err:`, err);
+        servers.forEach((server) => {
+          server.ws.emit('download', cid);
         });
-    },
-    remotegetFileExtraProps: async (cid: string) => {
-      const { api } = useRemoteIpfsClient.getState();
-      if (!api) throw new Error('no api provided');
+      }),
 
-      const extraProps = await axios
-        .get(getExtraPropsFiles + '/' + cid, {
-          headers: {
-            authorization: `Bearer ${api}`,
-          },
-        })
-        .then((res) => {
-          return res.data;
-        })
-        .catch((err) => {
-          console.log(`fastlog => err:`, err);
-        });
+    remoteUploadFile: async (file: File, fileProps) =>
+      await wrapperProtect(set, async () => {
+        const { api } = useRemoteIpfsClient.getState();
+        const { localAddFile } = useLocalIpfsStore.getState();
 
-      return extraProps;
-    },
-    remoteUpdateFile: async (cid: string, fileProps: FilePropsEdit) => {
-      const { api } = useRemoteIpfsClient.getState();
-      if (!api) throw new Error('no api provided');
+        const { name, description, extraProperties, isPublic } = fileProps;
 
-      const response = await axios
-        .put(fileApi + '/' + cid, fileProps, {
-          headers: {
-            authorization: `Bearer ${api}`,
-          },
-        })
-        .then((res) => {
-          return res.data;
-        })
-        .catch((err) => {
-          console.log(`fastlog => err:`, err);
-        });
+        const arrayBuffer = await file.arrayBuffer();
+        const blob = new Blob([arrayBuffer]);
 
-      return response;
-    },
+        const formData = new FormData();
+        formData.append('file', file);
+        formData.append('name', name);
+        formData.append('description', description);
+        formData.append('extraProperties', JSON.stringify(extraProperties));
+
+        const response = await axios
+          .post(fileUpload, formData, {
+            headers: {
+              'Content-Type': 'multipart/form-data',
+              authorization: `Bearer ${api}`,
+            },
+            params: {
+              isPublic: isPublic,
+            },
+          })
+          .then((res) => {
+            const {
+              meta: { cid },
+            } = res.data;
+            localAddFile(blob, cid);
+            return res.data;
+          })
+          .catch((err) => {
+            console.error(err);
+          });
+
+        return response;
+      }),
+
+    remoteRestoreIntegrityFile: async (blob: Blob, cid: string) =>
+      await wrapperProtect(set, async () => {
+        const { api, remoteGetFileInfo } = useRemoteIpfsClient.getState();
+        const { localAddFile } = useLocalIpfsStore.getState();
+
+        const infoFile = await remoteGetFileInfo(cid);
+        const { serverAlias } = infoFile;
+
+        const file = blobBufferToFile(blob, cid);
+        await localAddFile(blob, cid);
+        const formData = new FormData();
+        formData.append('file', file);
+
+        return await axios
+          .post(restoreIntegrity + '/' + serverAlias.trim(), formData, {
+            headers: {
+              'Content-Type': 'multipart/form-data',
+              authorization: `Bearer ${api}`,
+            },
+          })
+          .then((res) => {
+            return res.data;
+          })
+          .catch((err) => {
+            console.log(`fastlog => err:`, err);
+          });
+      }),
+
+    remotegetFileExtraProps: async (cid: string) =>
+      await wrapperProtect(set, async () => {
+        const { api } = useRemoteIpfsClient.getState();
+        const extraProps = await axios
+          .get(getExtraPropsFiles + '/' + cid, {
+            headers: {
+              authorization: `Bearer ${api}`,
+            },
+          })
+          .then((res) => {
+            return res.data;
+          })
+          .catch((err) => {
+            console.log(`fastlog => err:`, err);
+          });
+
+        return extraProps;
+      }),
+
+    remoteUpdateFile: async (cid: string, fileProps: FilePropsEdit) =>
+      await wrapperProtect(set, async () => {
+        const { api } = useRemoteIpfsClient.getState();
+        const response = await axios
+          .put(fileApi + '/' + cid, fileProps, {
+            headers: {
+              authorization: `Bearer ${api}`,
+            },
+          })
+          .then((res) => {
+            return res.data;
+          })
+          .catch((err) => {
+            console.log(`fastlog => err:`, err);
+          });
+
+        return response;
+      }),
   })
 );

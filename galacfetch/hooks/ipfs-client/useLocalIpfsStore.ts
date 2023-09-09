@@ -30,10 +30,10 @@ export const useLocalIpfsStore = create<Store>(
       if (!iDb) throw new Error('Indexed DB not initialized');
       if (isFilePreloaded(urlFileList, cid))
         return urlFileList.find((fileLs) => fileLs.cid === cid)?.url;
+
       const fileBlobList = [] as any;
-      const fileData = (await getData(cid, objectStores.files)) as {
-        buffers: Buffer[];
-      };
+      const fileData = await getData(cid, objectStores.files);
+
       if (!fileData) return undefined;
       let chunkSize = 0;
       fileData.buffers.forEach((chunk) => {
