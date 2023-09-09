@@ -99,15 +99,15 @@ Manage your files on the IPFS network with ease.
 
 ## 📜 Documentation
 
-For detailed documentation, examples, and API references, please visit [our official documentation](#).
+For detailed documentation, examples, and API references, please visit [our official documentation](https://bit.cloud/intershare/galacfetch/hooks/ipfs-client).
 
 ## 🤝 Contributing
 
-Contributions, issues, and feature requests are welcome! Feel free to check [issues page](#).
+Contributions, issues, and feature requests are welcome! Feel free to check [issues page](https://github.com/Interplanetary-Share/ipfs-client-galacfetch/issues).
 
 ## 📝 License
 
-This project is [MIT](#) licensed.
+This project is [MIT](https://github.com/Interplanetary-Share/ipfs-client-galacfetch/blob/main/galacfetch/hooks/ipfs-client/LICENSE.TXT) licensed.
 
 ## TODOS:
 
