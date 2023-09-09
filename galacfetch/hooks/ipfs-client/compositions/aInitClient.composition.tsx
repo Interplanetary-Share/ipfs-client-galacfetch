@@ -4,16 +4,15 @@ import { useEffect } from 'react';
 
 export const InitializeIpfs = () => {
   const { status, init, getFiles } = ipfsGalactFetchClient();
-
   const [api, setApi] = React.useState<string>('ABC123');
   const [initilized, setInitilized] = React.useState<boolean>(false);
-
   const [pageNumber, setPageNumber] = React.useState<number>(1);
   const [listFiles, setListFiles] = React.useState<any[]>([]);
+  const [isPublic, setIsPublic] = React.useState<boolean>(false);
 
   useEffect(() => {
     getFiles(
-      true,
+      isPublic,
       {
         showBlobUrl: true,
         showInfoFile: true,
@@ -22,14 +21,13 @@ export const InitializeIpfs = () => {
       {
         filter: {},
         sort: {},
-        page: 1,
+        page: pageNumber,
         size: 3,
       }
     ).then((res) => {
       setListFiles(res);
     });
-    console.log('udpate');
-  }, [pageNumber]);
+  }, [pageNumber, isPublic]);
 
   return (
     <>
@@ -76,7 +74,41 @@ export const InitializeIpfs = () => {
           flexDirection: 'column',
         }}
       >
-        This is a Hook, that getFiles when API key detected
+        <h3>This is a Hook, that getFiles when API key detected</h3>
+        <div>
+          isPublic?
+          <input
+            type="checkbox"
+            defaultChecked={isPublic}
+            onChange={(e) => {
+              setIsPublic(e.target.checked);
+            }}
+          />
+        </div>
+        {listFiles.map((file, idx) => {
+          return (
+            <div
+              key={idx}
+              style={{
+                display: 'flex',
+                flexDirection: 'column',
+                gap: '.5em',
+                textAlign: 'center',
+                alignItems: 'center',
+                justifyContent: 'center',
+              }}
+            >
+              <img
+                src={file.url}
+                style={{
+                  width: '100px',
+                  height: '100px',
+                }}
+              />
+              <label>{file.name}</label>
+            </div>
+          );
+        })}
         <div
           style={{
             display: 'flex',
@@ -87,47 +119,20 @@ export const InitializeIpfs = () => {
             justifyContent: 'center',
           }}
         >
-
-{listFiles.map((file) => {
-            return (
-              <div
-                style={{
-                  display: 'flex',
-                  flexDirection: 'column',
-                  gap: '.5em',
-                  textAlign: 'center',
-                  alignItems: 'center',
-                  justifyContent: 'center',
-                }}
-              >
-                <img
-                  src={file.blobUrl}
-                  style={{
-                    width: '100px',
-                    height: '100px',
-                  }}
-                />
-                <label>{file.name}</label>
-              </div>
-            );
-          })
-})}
-
-          <label>Page</label>
-
-          <button
-            onClick={() => {
-              setPageNumber(pageNumber + 1);
-            }}
-          >
-            Next Page
-          </button>
           <button
             onClick={() => {
               setPageNumber(pageNumber - 1);
             }}
           >
             Prev Page
+          </button>
+          <label>Page {pageNumber} </label>
+          <button
+            onClick={() => {
+              setPageNumber(pageNumber + 1);
+            }}
+          >
+            Next Page
           </button>
         </div>
       </div>
