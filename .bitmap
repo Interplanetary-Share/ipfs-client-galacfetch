@@ -11,7 +11,7 @@
 {
     "hooks/ipfs-client": {
         "scope": "intershare.galacfetch",
-        "version": "24cea370fec3702ce5eb8a485d71c4f6dbdf3fa5",
+        "version": "53a62f1b8c9c0b3bdcd63a827339b2063c0182c9",
         "mainFile": "index.ts",
         "rootDir": "galacfetch/hooks/ipfs-client"
     },
