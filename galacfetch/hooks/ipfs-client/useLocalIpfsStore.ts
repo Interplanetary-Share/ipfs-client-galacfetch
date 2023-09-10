@@ -12,7 +12,7 @@ import {
 type Store = {
   localGetFile: (cid: string) => Promise<string | undefined>;
   localAddFile: (blob: Blob, cid: string) => Promise<string | undefined>;
-  localRemoveFile: (cid: string) => Promise<void>;
+  localRemoveFile: (cid: string) => Promise<boolean>;
   localGetAllFiles: (cid: string) => Promise<string[] | undefined>;
 };
 

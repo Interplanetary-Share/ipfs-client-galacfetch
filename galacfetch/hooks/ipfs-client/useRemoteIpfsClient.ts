@@ -42,11 +42,14 @@ type Store = {
   remoteUploadFile: (
     file: File,
     fileProps: TFileCreationProps
-  ) => Promise<void>;
+  ) => Promise<IRemoteFileInfo>;
   remoteRestoreIntegrityFile: (blob: Blob, cid: string) => Promise<void>;
   remotegetFileExtraProps: (cid: string) => Promise<any>; //TODO add response promises
-  remoteUpdateFile: (cid: string, fileprops: TFileEditProps) => Promise<any>;
-  connectToSocket: (url: string, api: string) => Promise<any>;
+  remoteUpdateFile: (
+    cid: string,
+    fileprops: TFileEditProps
+  ) => Promise<IRemoteFileInfo>;
+  connectToSocket: (url: string, api: string) => Promise<void>;
 };
 
 export const useRemoteIpfsClient = create<Store>(

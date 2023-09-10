@@ -25,10 +25,16 @@ type Store = {
     config?: IFileRetrievalConfig,
     queryParams?: IPaginationAndSortingParams
   ) => Promise<IFileRetrievalResponse[]>;
-  uploadFile: (file: File, fileProps: TFileCreationProps) => Promise<void>;
+  uploadFile: (
+    file: File,
+    fileProps: TFileCreationProps
+  ) => Promise<IFileRetrievalResponse>;
   urlFileList: IFileUrlInfo[];
   findPreloadFile: (cid: string) => Promise<IFileUrlInfo | undefined>;
-  updateFile: (cid: string, fileprops: TFileEditProps) => Promise<void>;
+  updateFile: (
+    cid: string,
+    fileprops: TFileEditProps
+  ) => Promise<IFileRetrievalResponse>;
 };
 
 export const ipfsGalactFetchClient = create<Store>()(
@@ -145,7 +151,7 @@ export const ipfsGalactFetchClient = create<Store>()(
     updateFile: async (cid: string, fileProps: TFileEditProps) =>
       await wrapperProtect(set, async () => {
         const { remoteUpdateFile } = useRemoteIpfsClient.getState();
-        await remoteUpdateFile(cid, fileProps);
+        return await remoteUpdateFile(cid, fileProps);
       }),
   })
 );
