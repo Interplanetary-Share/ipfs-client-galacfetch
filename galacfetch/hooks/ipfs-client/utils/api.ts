@@ -1,7 +1,6 @@
-import { io } from 'socket.io-client';
 import indexDbStore from '../indexDb';
-import { useRemoteIpfsClient } from '../useRemoteIpfsClient';
 import { ipfsGalactFetchClient } from '../ipfsGalactFetchClient';
+import { useRemoteIpfsClient } from '../useRemoteIpfsClient';
 import { isFilePreloaded } from './file';
 
 export const wrapperProtect = async (set: Function, fn: Function) => {

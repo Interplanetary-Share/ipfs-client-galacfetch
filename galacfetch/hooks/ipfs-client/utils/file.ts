@@ -1,6 +1,6 @@
-import { UrlFileList } from '../types/file';
+import { IFileUrlInfo } from '../types/file';
 
-export const isFilePreloaded = (arr2Check: UrlFileList[], cid: string) => {
+export const isFilePreloaded = (arr2Check: IFileUrlInfo[], cid: string) => {
   if (!arr2Check || !arr2Check.length) return false;
 
   return arr2Check.some(

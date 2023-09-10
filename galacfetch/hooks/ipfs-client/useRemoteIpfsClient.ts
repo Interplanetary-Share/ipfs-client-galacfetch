@@ -1,11 +1,7 @@
 import axios from 'axios';
 import { io } from 'socket.io-client';
 import { create } from 'zustand';
-import {
-  ErrorStatus,
-  ipfsGalactFetchClient,
-  queryParams,
-} from './ipfsGalactFetchClient';
+
 import {
   fileApi,
   fileUpload,
@@ -15,80 +11,41 @@ import {
   serverCheck,
   serverGetHost,
 } from './types/api';
+import {
+  TErrorStatus,
+  TFileCreationProps,
+  TFileEditProps,
+  IDownloadChunkInfo,
+  IFileUrlInfo,
+  IPaginationAndSortingParams,
+  IRemoteFileInfo,
+  TServerItem,
+} from './types/file';
 import { useLocalIpfsStore } from './useLocalIpfsStore';
-import { blobBufferToFile, fileToBlobUrl, isFilePreloaded } from './utils/file';
 import { wrapperProtect } from './utils/api';
-
-interface IDownloadChunk {
-  status: number; // 1: start, 2: downloading, 3: end 4: error 0: unknown 5: canceled 6: paused
-  chunk: any;
-  progress: number;
-  sizeSent: number;
-  // Fileinfo
-  cid: string;
-  name: string;
-  type: string;
-  size: number;
-}
-
-type serverItem = {
-  host: string;
-  ws: any;
-};
-
-export interface UrlFileList {
-  url: string;
-  cid: string;
-}
-// TODO: delete from response _v and _id
-export type remoteFileInfoResponse = {
-  cid: string;
-  name: string;
-  description: string;
-  type: string;
-  size: number;
-  token: string;
-  serverAlias: string;
-  isPublic: boolean;
-  updatedAt: string;
-  createdAt: string;
-};
-
-export type FileProps = {
-  name: string;
-  description: string;
-  isPublic: boolean;
-  extraProperties?: {
-    [key: string]: any;
-  };
-};
-
-export type FilePropsEdit = {
-  name?: string;
-  description?: string;
-  isPublic?: boolean;
-  extraProperties?: {
-    [key: string]: any;
-  };
-};
+import { blobBufferToFile, fileToBlobUrl, isFilePreloaded } from './utils/file';
+import { ipfsGalactFetchClient } from './ipfsGalactFetchClient';
 
 type Store = {
-  status: undefined | 'idle' | 'loading' | ErrorStatus;
-  servers: serverItem[];
+  status: undefined | 'idle' | 'loading' | TErrorStatus;
+  servers: TServerItem[];
   init: (api: string) => Promise<void>;
-  addNewBlobUrl: (urlFile: UrlFileList) => void;
+  addNewBlobUrl: (urlFile: IFileUrlInfo) => void;
   api: string | null;
   remoteCheckIntegrityFile: (cid: string) => Promise<Boolean>;
-  remoteGetFileInfo: (cid: string) => Promise<remoteFileInfoResponse>;
+  remoteGetFileInfo: (cid: string) => Promise<IRemoteFileInfo>;
   remoteGetFilesInfo: (
     isPublic: boolean,
-    queryParams?: queryParams
-  ) => Promise<remoteFileInfoResponse[]>;
+    queryParams?: IPaginationAndSortingParams
+  ) => Promise<IRemoteFileInfo[]>;
   remoteGetFile: (cid: string) => Promise<void>;
-  remoteUploadFile: (file: File, fileProps: FileProps) => Promise<void>;
+  remoteUploadFile: (
+    file: File,
+    fileProps: TFileCreationProps
+  ) => Promise<void>;
   remoteRestoreIntegrityFile: (blob: Blob, cid: string) => Promise<void>;
   remotegetFileExtraProps: (cid: string) => Promise<any>; //TODO add response promises
-  remoteUpdateFile: (cid: string, fileprops: FilePropsEdit) => Promise<any>;
+  remoteUpdateFile: (cid: string, fileprops: TFileEditProps) => Promise<any>;
   connectToSocket: (url: string, api: string) => Promise<any>;
 };
 
@@ -115,7 +72,7 @@ export const useRemoteIpfsClient = create<Store>(
         });
       // TODO: test with user without servers, should return empty array
       if (!getServers) throw new Error('no servers found');
-      const serversList = [] as serverItem[];
+      const serversList = [] as TServerItem[];
       const socketPromises = getServers.map(async (server: string) => {
         const socket = await connectToSocket(server, api);
         serversList.push({
@@ -157,7 +114,7 @@ export const useRemoteIpfsClient = create<Store>(
             cid,
             size,
             type,
-          }: IDownloadChunk) => {
+          }: IDownloadChunkInfo) => {
             if (status === 1) {
               blobList[cid] = [];
             }
@@ -190,7 +147,7 @@ export const useRemoteIpfsClient = create<Store>(
       });
     },
     // TODO: move this to ipfslocal or galactfetchClient
-    addNewBlobUrl: (blobToAdd: UrlFileList) => {
+    addNewBlobUrl: (blobToAdd: IFileUrlInfo) => {
       const { urlFileList } = ipfsGalactFetchClient.getState();
       if (!isFilePreloaded(urlFileList, blobToAdd.cid)) {
         ipfsGalactFetchClient.setState({
@@ -232,10 +189,13 @@ export const useRemoteIpfsClient = create<Store>(
           .catch((err) => {
             console.log(`fastlog => err:`, err);
           });
-        return fileInfo as remoteFileInfoResponse;
+        return fileInfo as IRemoteFileInfo;
       });
     },
-    remoteGetFilesInfo: async (isPublic = false, queryParams?: queryParams) =>
+    remoteGetFilesInfo: async (
+      isPublic = false,
+      queryParams?: IPaginationAndSortingParams
+    ) =>
       await wrapperProtect(set, async () => {
         const { api } = useRemoteIpfsClient.getState();
         const allFilesInfo = await axios
@@ -254,7 +214,7 @@ export const useRemoteIpfsClient = create<Store>(
           .catch((err) => {
             console.error(err);
           });
-        return allFilesInfo as remoteFileInfoResponse[];
+        return allFilesInfo as IRemoteFileInfo[];
       }),
     remoteGetFile: async (cid: string) =>
       await wrapperProtect(set, async () => {
@@ -352,7 +312,7 @@ export const useRemoteIpfsClient = create<Store>(
         return extraProps;
       }),
 
-    remoteUpdateFile: async (cid: string, fileProps: FilePropsEdit) =>
+    remoteUpdateFile: async (cid: string, fileProps: TFileEditProps) =>
       await wrapperProtect(set, async () => {
         const { api } = useRemoteIpfsClient.getState();
         const response = await axios

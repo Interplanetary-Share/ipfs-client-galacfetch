@@ -1,57 +1,34 @@
 import { create } from 'zustand';
 import indexDbStore from './indexDb';
-import { useLocalIpfsStore } from './useLocalIpfsStore';
 import {
-  FileProps,
-  FilePropsEdit,
-  remoteFileInfoResponse,
-  useRemoteIpfsClient,
-} from './useRemoteIpfsClient';
+  TErrorStatus,
+  TFileCreationProps,
+  TFileEditProps,
+  IFileUrlInfo,
+  IFileRetrievalConfig,
+  IFileRetrievalResponse,
+  IPaginationAndSortingParams,
+} from './types/file';
+import { useLocalIpfsStore } from './useLocalIpfsStore';
+import { useRemoteIpfsClient } from './useRemoteIpfsClient';
 import { waitForFileReady, wrapperProtect } from './utils/api';
 
-export interface UrlFileList {
-  url: string;
-  cid: string;
-}
-
-export interface getFileConfig {
-  showBlobUrl?: boolean;
-  showInfoFile?: boolean;
-  showExtraProps?: boolean;
-}
-
-export interface queryParams {
-  page?: number;
-  size?: number;
-  filter?: object | undefined;
-  sort?: object | undefined;
-}
-
-export interface getFileResponse extends remoteFileInfoResponse {
-  url?: string;
-  extraProperties?: {
-    [key: string]: any;
-  };
-}
-
-export type ErrorStatus = {
-  error: string;
-  message: string;
-};
-
 type Store = {
-  status: undefined | 'idle' | 'loading' | ErrorStatus;
+  status: undefined | 'idle' | 'loading' | TErrorStatus;
   init: (api: string, repoName: string) => Promise<void>;
-  getFile: (cid: string, config?: getFileConfig) => Promise<getFileResponse>;
+  getFile: (
+    cid: string,
+    config?: IFileRetrievalConfig
+  ) => Promise<IFileRetrievalResponse>;
   getFiles: (
     isPublic?: boolean,
-    config?: getFileConfig,
-    queryParams?: queryParams
-  ) => Promise<getFileResponse[]>;
-  uploadFile: (file: File, fileProps: FileProps) => Promise<void>;
-  urlFileList: UrlFileList[];
-  findPreloadFile: (cid: string) => Promise<UrlFileList | undefined>;
-  updateFile: (cid: string, fileprops: FilePropsEdit) => Promise<void>;
+    config?: IFileRetrievalConfig,
+    queryParams?: IPaginationAndSortingParams
+  ) => Promise<IFileRetrievalResponse[]>;
+  uploadFile: (file: File, fileProps: TFileCreationProps) => Promise<void>;
+  urlFileList: IFileUrlInfo[];
+  findPreloadFile: (cid: string) => Promise<IFileUrlInfo | undefined>;
+  updateFile: (cid: string, fileprops: TFileEditProps) => Promise<void>;
 };
 
 export const ipfsGalactFetchClient = create<Store>()(
@@ -135,8 +112,8 @@ export const ipfsGalactFetchClient = create<Store>()(
     // TODO: sort by extraparams too.
     getFiles: async (
       isPublic = false,
-      config?: getFileConfig,
-      queryParams?: queryParams
+      config?: IFileRetrievalConfig,
+      queryParams?: IPaginationAndSortingParams
     ) =>
       await wrapperProtect(set, async () => {
         const { remoteGetFilesInfo } = useRemoteIpfsClient.getState();
@@ -160,12 +137,12 @@ export const ipfsGalactFetchClient = create<Store>()(
         const { urlFileList } = ipfsGalactFetchClient.getState();
         return urlFileList.find((file) => file.cid === cid);
       }),
-    uploadFile: async (file: File, fileProps: FileProps) =>
+    uploadFile: async (file: File, fileProps: TFileCreationProps) =>
       await wrapperProtect(set, async () => {
         const { remoteUploadFile } = useRemoteIpfsClient.getState();
         return await remoteUploadFile(file, fileProps);
       }),
-    updateFile: async (cid: string, fileProps: FilePropsEdit) =>
+    updateFile: async (cid: string, fileProps: TFileEditProps) =>
       await wrapperProtect(set, async () => {
         const { remoteUpdateFile } = useRemoteIpfsClient.getState();
         await remoteUpdateFile(cid, fileProps);
