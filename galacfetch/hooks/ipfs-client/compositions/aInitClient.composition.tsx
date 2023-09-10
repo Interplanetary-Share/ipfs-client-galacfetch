@@ -1,6 +1,5 @@
-import React from 'react';
+import React, { useEffect } from 'react';
 import { ipfsGalactFetchClient } from '../ipfsGalactFetchClient';
-import { useEffect } from 'react';
 
 export const InitializeIpfs = () => {
   const { status, init, getFiles } = ipfsGalactFetchClient();

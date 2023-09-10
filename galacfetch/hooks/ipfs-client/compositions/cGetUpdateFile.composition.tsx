@@ -1,15 +1,14 @@
 import React, { useEffect } from 'react';
-import {
-  getFileResponse,
-  ipfsGalactFetchClient,
-} from '../ipfsGalactFetchClient';
+import { ipfsGalactFetchClient } from '../ipfsGalactFetchClient';
+import { IFileRetrievalResponse } from '../types/file';
 
 export const GetAndUpdateFile = () => {
   const { getFile, updateFile } = ipfsGalactFetchClient();
 
   const [currentCid, setCurrentCid] = React.useState<string>('');
-  const [getFileResponse, setGetFileResponse] =
-    React.useState<getFileResponse>();
+  const [getFileResponse, setGetFileResponse] = React.useState<
+    IFileRetrievalResponse | undefined
+  >();
   const [editFile, setEditFile] = React.useState<string>('');
 
   useEffect(() => {
