@@ -58,14 +58,18 @@ export type FileProps = {
   name: string;
   description: string;
   isPublic: boolean;
-  extraProperties?: Object;
+  extraProperties?: {
+    [key: string]: any;
+  };
 };
 
 export type FilePropsEdit = {
   name?: string;
   description?: string;
   isPublic?: boolean;
-  extraProperties?: Object;
+  extraProperties?: {
+    [key: string]: any;
+  };
 };
 
 type Store = {

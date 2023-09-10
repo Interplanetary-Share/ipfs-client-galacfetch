@@ -29,7 +29,9 @@ export interface queryParams {
 
 export interface getFileResponse extends remoteFileInfoResponse {
   url?: string;
-  extraProperties?: object;
+  extraProperties?: {
+    [key: string]: any;
+  };
 }
 
 export type ErrorStatus = {
