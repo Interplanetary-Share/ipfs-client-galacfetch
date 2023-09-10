@@ -49,7 +49,7 @@ type Store = {
     cid: string,
     fileprops: TFileEditProps
   ) => Promise<IRemoteFileInfo>;
-  connectToSocket: (url: string, api: string) => Promise<void>;
+  connectToSocket: (url: string, api: string) => Promise<any>;
 };
 
 export const useRemoteIpfsClient = create<Store>(
