@@ -33,7 +33,7 @@ const {
   findPreloadFile, // find a file in memory and local IPFS node
   uploadFile, // upload a file to the IPFS network
   updateFile, // update a file in the IPFS network
-} = ipfsGalactFetchClient();
+} = ipfsGalactFetchClient()
 ```
 
 You can also interact with the other 2 hooks directly if you want to use them separately.
@@ -78,11 +78,11 @@ You can get a free API here. https://galacfetch.com/
 The indexDbName is the name of the index Database for local caching that you want to use to store your files. You can use the same name for multiple projects or change the repo based in environment.
 
 ```js
-const api = 'ABC123';
-const dbName = 'ExampleDBName';
+const api = 'ABC123'
+const dbName = 'ExampleDBName'
 useEffect(() => {
-  init(api, dbName);
-}, []);
+  init(api, dbName)
+}, [])
 ```
 
 After initialize, the status will be set to iddle. and you can start using the hook.
@@ -93,14 +93,14 @@ the status is an object that contains the status of the hook.
 
 ```js
 {
-  status: undefined | 'idle' | 'loading' | TErrorStatus;
+  status: undefined | 'idle' | 'loading' | TErrorStatus
 }
 
 // Error Status Information
 export type TErrorStatus = {
   error: string,
   message: string,
-};
+}
 ```
 
 ### init
@@ -108,21 +108,21 @@ export type TErrorStatus = {
 After call the init function we initialized properly the hook and we can start using it.
 
 ```js
-const { status, init } = ipfsGalactFetchClient();
-const api = 'ABC123';
-const repoName = 'ExampleRepoName';
+const { status, init } = ipfsGalactFetchClient()
+const api = 'ABC123'
+const repoName = 'ExampleRepoName'
 useEffect(() => {
-  init(api, repoName);
-}, []);
+  init(api, repoName)
+}, [])
 
 useEffect(() => {
   if (status === 'idle') {
-    console.log('Ready to rock!');
+    console.log('Ready to rock!')
   }
   if (status === 'loading') {
-    console.log('loading');
+    console.log('loading')
   }
-}, [status]);
+}, [status])
 ```
 
 ### getFile
@@ -130,7 +130,7 @@ useEffect(() => {
 the getFile function is used to get a file from the IPFS network. expect 2 props to be passed to it. CID, and the config object.
 
 ```js
-const { getFile } = ipfsGalactFetchClient();
+const { getFile } = ipfsGalactFetchClient()
 export interface IFileRetrievalConfig {
   showBlobUrl?: boolean;
   showInfoFile?: boolean;
@@ -140,10 +140,10 @@ const config: IFileRetrievalConfig = {
   showBlobUrl: true,
   showInfoFile: true,
   showExtraProps: true,
-};
+}
 // By default all the props are set to true.
 
-const fileInfo = await getFile(cid, config);
+const fileInfo = await getFile(cid, config)
 ```
 
 ### getFiles
@@ -224,6 +224,8 @@ filter: object - The filter that you want to apply to the files, default undefin
 
 The filter obeys to query selectors https://docs.mongodb.com/manual/reference/operator/query/
 
+You can check the official mongo DB https://www.mongodb.com/docs/compass/current/query/filter/
+
 ```js
 // filter by name
 {
@@ -243,6 +245,41 @@ The filter obeys to query selectors https://docs.mongodb.com/manual/reference/op
     ownerID: {"$regex":"me","$options":"i" }  // search in ownerID using regex
     }
 }
+
+//  using OR operator
+{
+  $or: [
+    { name: "fileName" },
+    { name: { $regex: "fileName", $options: "i" } },
+    {
+      extraProperties: {
+        likes: "test2",
+        ownerID: { $regex: "me", $options: "i" },
+      },
+    },
+  ],
+}
+
+
+// another OR example
+
+{
+  "$or": [
+    {
+      "type": {
+        "$regex": "image/jpeg",
+        "$options": "i"
+      }
+    },
+    {
+      "type": {
+        "$regex": "image/gif",
+        "$options": "i"
+      }
+    }
+  ]
+}
+
 ```
 
 sort: object - The sort that you want to apply to the files. Default undefined
@@ -251,11 +288,11 @@ the sort obeys to cursor sort of mongo https://www.mongodb.com/docs/upcoming/ref
 ```js
 // date descending sort from newest to oldest
 {
-  createdAt: -1;
+  createdAt: -1
 }
 // date ascending sort from oldest to newest
 {
-  createdAt: 1;
+  createdAt: 1
 }
 ```
 
@@ -314,7 +351,7 @@ export type TFileCreationProps = {
   description: string,
   isPublic: boolean,
   extraProperties?: Record<string, unknown>,
-};
+}
 ```
 
 The config object has the name, description and extraProperties props.
@@ -390,10 +427,10 @@ export type TFileCreationProps = {
   description: string,
   isPublic: boolean,
   extraProperties?: Record<string, unknown>,
-};
+}
 
 // Properties for File Editing
-export type TFileEditProps = Partial<TFileCreationProps>;
+export type TFileEditProps = Partial<TFileCreationProps>
 ```
 
 - name: string - The new name of the file

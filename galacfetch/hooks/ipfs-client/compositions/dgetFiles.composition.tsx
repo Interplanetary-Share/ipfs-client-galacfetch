@@ -1,22 +1,25 @@
-import React from 'react';
-import { ipfsGalactFetchClient } from '../ipfsGalactFetchClient';
+import React from 'react'
+import { ipfsGalactFetchClient } from '../ipfsGalactFetchClient'
 
 export const GetFiles = () => {
-  const { getFiles } = ipfsGalactFetchClient();
+  const { getFiles } = ipfsGalactFetchClient()
 
-  const [getFilesResponse, setGetFilesResponse] = React.useState<string>('');
-  const [pageNumber, setPageNumber] = React.useState<number>(1);
-  const [pageSize, setPageSize] = React.useState<number>(10);
+  const [getFilesResponse, setGetFilesResponse] = React.useState<string>('')
+  const [pageNumber, setPageNumber] = React.useState<number>(1)
+  const [pageSize, setPageSize] = React.useState<number>(10)
   const [filter, setFilter] = React.useState({
     extraProperties: {
       likes: 'test2',
       ownerID: { $regex: 'me', $options: 'i' },
     },
-  });
+  })
   const [sort, setSort] = React.useState({
     createdAt: -1,
-  });
-  const [isPublic, setIsPublic] = React.useState<boolean>(false);
+  })
+  const [isPublic, setIsPublic] = React.useState<boolean>(false)
+
+  const [isFilterError, setIsFilterError] = React.useState<boolean>(false)
+  const [isSortError, setIsSortError] = React.useState<boolean>(false)
 
   return (
     <>
@@ -46,47 +49,106 @@ export const GetFiles = () => {
           gap: '.5em',
         }}
       >
-        <label>isPublic</label>
-        <input
-          type="checkbox"
-          checked={isPublic}
-          onChange={(e) => setIsPublic(e.target.checked)}
-        />
-        <hr />
-        <label>Page</label>
-        <input
-          onChange={(e) => {
-            setPageNumber(parseInt(e.target.value));
+        <div
+          style={{
+            display: 'flex',
+            gap: '.5em',
+            flexDirection: 'row',
+            padding: '1em',
           }}
-          type="number"
-          placeholder="page"
-          value={pageNumber}
-        />
-        <hr />
-        <label>Size</label>
-        <input
-          onChange={(e) => {
-            setPageSize(parseInt(e.target.value));
-          }}
-          type="number"
-          placeholder="size"
-          value={pageSize}
-        />
-        <hr />
-        <label>Filter</label>
+        >
+          <label>isPublic</label>
+          <input
+            type="checkbox"
+            checked={isPublic}
+            onChange={(e) => setIsPublic(e.target.checked)}
+          />
+          <label>Page</label>
+          <input
+            style={{ width: '40px' }}
+            onChange={(e) => {
+              setPageNumber(parseInt(e.target.value))
+            }}
+            type="number"
+            placeholder="page"
+            value={pageNumber}
+          />
+          <label>Size</label>
+          <input
+            style={{ width: '40px' }}
+            onChange={(e) => {
+              setPageSize(parseInt(e.target.value))
+            }}
+            type="number"
+            placeholder="size"
+            value={pageSize}
+          />
+        </div>
+
+        <label>Filter (In JSON format)</label>
         <textarea
-          onChange={(e) => {
-            setFilter(JSON.parse(e.target.value));
+          style={{
+            borderColor: isFilterError ? 'red' : 'black',
+            backgroundColor: isFilterError
+              ? 'rgba(255,0,0,0.3)'
+              : 'transparent',
+            minHeight: '150px',
           }}
-          value={JSON.stringify(filter)}
+          onInput={(e: any) => {
+            console.log(e.target.value)
+            const inputValue = e.target.value as string
+            if (!inputValue) return setIsFilterError(true)
+
+            // check if JSON.parse would throw an error
+            try {
+              JSON.parse(inputValue)
+            } catch (err) {
+              setIsFilterError(true)
+              return
+            }
+
+            const value = JSON.parse(inputValue)
+
+            if (!value || typeof value !== 'object') {
+              setIsFilterError(true)
+              return
+            }
+            setIsFilterError(false)
+            setFilter(value)
+          }}
+          defaultValue={JSON.stringify(filter)}
         />
         <hr />
-        <label>Sort</label>
+        <label>Sort (In JSON format)</label>
         <textarea
-          onChange={(e) => {
-            setSort(JSON.parse(e.target.value));
+          style={{
+            borderColor: isSortError ? 'red' : 'black',
+            backgroundColor: isSortError ? 'rgba(255,0,0,0.3)' : 'transparent',
+            minHeight: '100px',
           }}
-          value={JSON.stringify(sort)}
+          onInput={(e: any) => {
+            console.log(e.target.value)
+            const inputValue = e.target.value as string
+            if (!inputValue) return setIsSortError(true)
+
+            // check if JSON.parse would throw an error
+            try {
+              JSON.parse(inputValue)
+            } catch (err) {
+              setIsSortError(true)
+              return
+            }
+
+            const value = JSON.parse(inputValue)
+
+            if (!value || typeof value !== 'object') {
+              setIsSortError(true)
+              return
+            }
+            setIsSortError(false)
+            setSort(value)
+          }}
+          defaultValue={JSON.stringify(sort)}
         />
       </div>
 
@@ -106,8 +168,8 @@ export const GetFiles = () => {
               filter: filter,
             }
           ).then((props) => {
-            setGetFilesResponse(JSON.stringify(props));
-          });
+            setGetFilesResponse(JSON.stringify(props))
+          })
         }}
       >
         Get File Info
@@ -125,5 +187,5 @@ export const GetFiles = () => {
         </div>
       </div>
     </>
-  );
-};
+  )
+}
