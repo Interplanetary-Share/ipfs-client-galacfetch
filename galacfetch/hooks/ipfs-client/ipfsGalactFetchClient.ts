@@ -1,18 +1,19 @@
-import { create } from 'zustand'
-import indexDbStore from './indexDb'
 import {
+  IFileRetrievalConfig,
+  IFileRetrievalResponse,
+  IFileUploadResponse,
+  IFileUrlInfo,
+  IPaginationAndSortingParams,
   TErrorStatus,
   TFileCreationProps,
   TFileEditProps,
-  IFileUrlInfo,
-  IFileRetrievalConfig,
-  IFileRetrievalResponse,
-  IPaginationAndSortingParams,
-  IFileUploadResponse,
 } from './types/file'
+import { waitForFileReady, wrapperProtect } from './utils/api'
+
+import { create } from 'zustand'
+import indexDbStore from './indexDb'
 import { useLocalIpfsStore } from './useLocalIpfsStore'
 import { useRemoteIpfsClient } from './useRemoteIpfsClient'
-import { waitForFileReady, wrapperProtect } from './utils/api'
 
 type Store = {
   status: undefined | 'idle' | 'loading' | TErrorStatus

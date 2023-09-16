@@ -1,13 +1,14 @@
-import React, { useEffect } from 'react';
-import { ipfsGalactFetchClient } from '../ipfsGalactFetchClient';
+import { useEffect, useState } from 'react'
+
+import { ipfsGalactFetchClient } from '../ipfsGalactFetchClient'
 
 export const InitializeIpfs = () => {
-  const { status, init, getFiles } = ipfsGalactFetchClient();
-  const [api, setApi] = React.useState<string>('ABC123');
-  const [initilized, setInitilized] = React.useState<boolean>(false);
-  const [pageNumber, setPageNumber] = React.useState<number>(1);
-  const [listFiles, setListFiles] = React.useState<any[]>([]);
-  const [isPublic, setIsPublic] = React.useState<boolean>(false);
+  const { status, init, getFiles } = ipfsGalactFetchClient()
+  const [api, setApi] = useState<string>('ABC123')
+  const [initilized, setInitilized] = useState<boolean>(false)
+  const [pageNumber, setPageNumber] = useState<number>(1)
+  const [listFiles, setListFiles] = useState<any[]>([])
+  const [isPublic, setIsPublic] = useState<boolean>(false)
 
   useEffect(() => {
     getFiles(
@@ -24,9 +25,9 @@ export const InitializeIpfs = () => {
         size: 3,
       }
     ).then((res) => {
-      setListFiles(res);
-    });
-  }, [pageNumber, isPublic]);
+      setListFiles(res)
+    })
+  }, [pageNumber, isPublic])
 
   return (
     <>
@@ -39,7 +40,7 @@ export const InitializeIpfs = () => {
         type="text"
         value={api}
         onChange={(e) => {
-          setApi(e.target.value);
+          setApi(e.target.value)
         }}
       />
       <div
@@ -54,8 +55,8 @@ export const InitializeIpfs = () => {
         ) : (
           <button
             onClick={() => {
-              setInitilized(true);
-              init(api, 'repoName');
+              setInitilized(true)
+              init(api, 'repoName')
             }}
           >
             Initialize IPFS
@@ -80,7 +81,7 @@ export const InitializeIpfs = () => {
             type="checkbox"
             defaultChecked={isPublic}
             onChange={(e) => {
-              setIsPublic(e.target.checked);
+              setIsPublic(e.target.checked)
             }}
           />
         </div>
@@ -106,7 +107,7 @@ export const InitializeIpfs = () => {
               />
               <label>{file.name}</label>
             </div>
-          );
+          )
         })}
         <div
           style={{
@@ -120,7 +121,7 @@ export const InitializeIpfs = () => {
         >
           <button
             onClick={() => {
-              setPageNumber(pageNumber - 1);
+              setPageNumber(pageNumber - 1)
             }}
           >
             Prev Page
@@ -128,7 +129,7 @@ export const InitializeIpfs = () => {
           <label>Page {pageNumber} </label>
           <button
             onClick={() => {
-              setPageNumber(pageNumber + 1);
+              setPageNumber(pageNumber + 1)
             }}
           >
             Next Page
@@ -137,5 +138,5 @@ export const InitializeIpfs = () => {
       </div>
       <hr />
     </>
-  );
-};
+  )
+}

@@ -2,9 +2,9 @@
   "extends": "./node_modules/@teambit/react/typescript/tsconfig.json",
   // "include": [],
   "compilerOptions": {
-    "noEmit": true
+    "noEmit": true,
+    "jsx": "react-jsx"
   },
-  "exclude": [
-    "dist"
-  ]
+  "exclude": ["dist"],
+  "include": ["**/*.ts", "**/*.tsx", "**/*.js", "**/*.jsx", "**/*.mdx"]
 }
