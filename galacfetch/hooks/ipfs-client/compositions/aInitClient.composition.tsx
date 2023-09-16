@@ -1,14 +1,14 @@
-import { useEffect, useState } from 'react'
+import React, { useEffect } from 'react'
 
 import { ipfsGalactFetchClient } from '../ipfsGalactFetchClient'
 
 export const InitializeIpfs = () => {
   const { status, init, getFiles } = ipfsGalactFetchClient()
-  const [api, setApi] = useState<string>('ABC123')
-  const [initilized, setInitilized] = useState<boolean>(false)
-  const [pageNumber, setPageNumber] = useState<number>(1)
-  const [listFiles, setListFiles] = useState<any[]>([])
-  const [isPublic, setIsPublic] = useState<boolean>(false)
+  const [api, setApi] = React.useState<string>('ABC123')
+  const [initilized, setInitilized] = React.useState<boolean>(false)
+  const [pageNumber, setPageNumber] = React.useState<number>(1)
+  const [listFiles, setListFiles] = React.useState<any[]>([])
+  const [isPublic, setIsPublic] = React.useState<boolean>(false)
 
   useEffect(() => {
     getFiles(
