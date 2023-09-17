@@ -47,5 +47,6 @@ bit use <workspace name>
 bit install
 bit start
 
-// complete flow
+### complete flow
+
 bit compile; bit status; bit snap --message ":start: examplew"; bit login; bit export; bit publish hooks/ipfs-client
