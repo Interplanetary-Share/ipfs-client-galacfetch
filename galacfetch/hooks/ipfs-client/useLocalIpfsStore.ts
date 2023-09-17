@@ -37,7 +37,7 @@ export const useLocalIpfsStore = create<Store>(
       fileData.buffers.forEach((chunk) => {
         chunkSize += chunk.length
         const buffer = Buffer.from(chunk)
-        const blob = new Blob([buffer])
+        const blob = new Blob([buffer], { type: fileData.type })
         fileBlobList.push(blob)
       })
       const blob = new Blob(fileBlobList)

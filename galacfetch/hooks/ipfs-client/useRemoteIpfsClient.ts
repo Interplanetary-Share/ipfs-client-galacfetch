@@ -236,7 +236,7 @@ export const useRemoteIpfsClient = create<Store>(
         const { name, description, extraProperties, isPublic } = fileProps
 
         const arrayBuffer = await file.arrayBuffer()
-        const blob = new Blob([arrayBuffer])
+        const blob = new Blob([arrayBuffer], { type: file.type })
 
         const formData = new FormData()
         formData.append('file', file)
