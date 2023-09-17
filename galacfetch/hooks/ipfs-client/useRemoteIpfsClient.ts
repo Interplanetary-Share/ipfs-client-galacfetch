@@ -291,7 +291,7 @@ export const useRemoteIpfsClient = create<Store>(
             return res.data
           })
           .catch((err) => {
-            console.log(`fastlog => err:`, err)
+            console.error(err)
           })
       }),
 
@@ -308,7 +308,7 @@ export const useRemoteIpfsClient = create<Store>(
             return res.data
           })
           .catch((err) => {
-            console.log(`fastlog => err:`, err)
+            console.error(err)
           })
 
         return extraProps
@@ -327,7 +327,7 @@ export const useRemoteIpfsClient = create<Store>(
             return res.data
           })
           .catch((err) => {
-            console.log(`fastlog => err:`, err)
+            console.error(err)
           })
 
         return response

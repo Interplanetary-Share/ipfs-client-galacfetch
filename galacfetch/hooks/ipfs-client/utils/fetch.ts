@@ -71,7 +71,7 @@ export const getFileInfo = async (
     const data = await response.json()
     return data
   } catch (err) {
-    console.log(`fastlog => err:`, err)
+    console.error(err)
   }
 }
 
@@ -164,7 +164,7 @@ export const restoreFileIntegrity = async (
     const data = await response.json()
     return data
   } catch (err) {
-    console.log(`fastlog => err:`, err)
+    console.error(err)
   }
 }
 
@@ -190,7 +190,7 @@ export const getExtraProps = async (
     const data = await response.json()
     return data
   } catch (err) {
-    console.error(`fastlog => err:`, err)
+    console.error(err)
   }
 }
 
@@ -219,6 +219,6 @@ export const updateFileProps = async (
     const data = await response.json()
     return data
   } catch (err) {
-    console.log(`fastlog => err:`, err)
+    console.error(err)
   }
 }

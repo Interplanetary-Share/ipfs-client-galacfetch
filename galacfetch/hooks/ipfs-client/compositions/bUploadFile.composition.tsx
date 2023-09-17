@@ -1,8 +1,8 @@
-import React from 'react';
-import { ipfsGalactFetchClient } from '../ipfsGalactFetchClient';
+import React from 'react'
+import { ipfsGalactFetchClient } from '../ipfsGalactFetchClient'
 
 export const UploadFile = () => {
-  const { uploadFile, urlFileList } = ipfsGalactFetchClient();
+  const { uploadFile, urlFileList } = ipfsGalactFetchClient()
 
   const [uploadConfig, setUploadConfig] = React.useState<string>(
     JSON.stringify({
@@ -11,7 +11,7 @@ export const UploadFile = () => {
       extraProperties: { likes: ['test2', 'another'], ownerID: 'me' },
       isPublic: false,
     })
-  );
+  )
 
   return (
     <>
@@ -42,10 +42,10 @@ export const UploadFile = () => {
         <input
           type="file"
           onChange={(e) => {
-            if (!e.target.files) return console.log('error no file selected');
-            const file = e.target.files[0];
-            uploadFile(file, JSON.parse(uploadConfig));
-            e.target.value = '';
+            if (!e.target.files) return alert('No file selected')
+            const file = e.target.files[0]
+            uploadFile(file, JSON.parse(uploadConfig))
+            e.target.value = ''
           }}
         />
       </div>
@@ -72,10 +72,10 @@ export const UploadFile = () => {
               <hr />
               <div>cid: {urlFile.cid}</div>
             </div>
-          );
+          )
         })}
       </div>
       <hr />
     </>
-  );
-};
+  )
+}

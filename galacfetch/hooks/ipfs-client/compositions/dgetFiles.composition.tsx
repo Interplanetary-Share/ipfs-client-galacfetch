@@ -95,7 +95,6 @@ export const GetFiles = () => {
             minHeight: '150px',
           }}
           onInput={(e: any) => {
-            console.log(e.target.value)
             const inputValue = e.target.value as string
             if (!inputValue) return setIsFilterError(true)
 
@@ -127,7 +126,6 @@ export const GetFiles = () => {
             minHeight: '100px',
           }}
           onInput={(e: any) => {
-            console.log(e.target.value)
             const inputValue = e.target.value as string
             if (!inputValue) return setIsSortError(true)
 
