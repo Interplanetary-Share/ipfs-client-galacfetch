@@ -7,9 +7,6 @@
    * main configuration of the Bit workspace.
    **/
   "teambit.workspace/workspace": {
-    /**
-     * the name of the component workspace. used for development purposes.
-     **/
     "name": "intershare",
     /**
      * set the icon to be shown on the Bit server.
@@ -33,9 +30,6 @@
    * main configuration for component dependency resolution.
    **/
   "teambit.dependencies/dependency-resolver": {
-    /**
-     * choose the package manager for Bit to use. you can choose between 'yarn', 'pnpm'
-     */
     "packageManager": "teambit.dependencies/pnpm",
     "policy": {
       "dependencies": {
