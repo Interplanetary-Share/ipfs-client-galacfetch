@@ -1,4 +1,9 @@
-import { chunkBlobToBuffer, fileToBlobUrl, isFilePreloaded } from './utils/file'
+import {
+  chunkBlobAsync,
+  fileToBlobUrl,
+  isFilePreloaded,
+  reassembleBlob,
+} from './utils/file'
 
 // TODO implement webrtc to share data between peers to avoid the use of a centralized database.
 import { create } from 'zustand'
@@ -28,40 +33,35 @@ export const useLocalIpfsStore = create<Store>(
       if (!iDb) throw new Error('Indexed DB not initialized')
       if (isFilePreloaded(urlFileList, cid))
         return urlFileList.find((fileLs) => fileLs.cid === cid)?.url
-
-      const fileBlobList = [] as any
       const fileData = await getData(cid, objectStores.files)
-
       if (!fileData) return undefined
-      let chunkSize = 0
-      fileData.buffers.forEach((chunk) => {
-        chunkSize += chunk.length
-        const buffer = Buffer.from(chunk)
-        const blob = new Blob([buffer])
-        fileBlobList.push(blob)
-      })
-      const blob = new Blob(fileBlobList, { type: fileData.type })
+      const blob = reassembleBlob(fileData.buffers, fileData.type)
       const url = fileToBlobUrl(blob)
       addNewBlobUrl({
         cid,
         url,
       })
-      const isFileGoodIntegrity = await remoteCheckIntegrityFile(cid)
-      if (!isFileGoodIntegrity) {
-        remoteRestoreIntegrityFile(blob, cid)
-      }
-
+      remoteCheckIntegrityFile(cid).then((isFileGoodIntegrity) => {
+        if (!isFileGoodIntegrity) {
+          remoteRestoreIntegrityFile(blob, cid)
+        }
+      })
       return url
     },
     localAddFile: async (blob: Blob, cid: string) => {
+      // This receives a working blob
       if (!blob) throw new Error('no blob provided')
       if (!cid) throw new Error('no cid provided')
       const { iDb, saveData } = indexDbStore.getState()
       const { addNewBlobUrl } = useRemoteIpfsClient.getState()
       if (!iDb) throw new Error('Indexed DB not initialized')
-      const buffersChunked = await chunkBlobToBuffer(blob)
-      saveData(cid, { buffers: buffersChunked }, objectStores.files)
-      const url = fileToBlobUrl(new Blob([blob], { type: blob.type }))
+      const buffersChunked = await chunkBlobAsync(blob)
+      saveData(
+        cid,
+        { buffers: buffersChunked, type: blob.type },
+        objectStores.files
+      )
+      const url = fileToBlobUrl(blob)
       addNewBlobUrl({
         cid,
         url,

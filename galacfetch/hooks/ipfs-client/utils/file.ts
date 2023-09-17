@@ -18,21 +18,23 @@ export const blobBufferToFile = (blob: Blob, cid: string) => {
 
 const defaultChunkSize = 1024 * 1024 * 6 // 6MB
 
-export const chunkBlobToBuffer = async (
+export const chunkBlobAsync = async (
   blob: Blob,
-  chunkSize = defaultChunkSize
-) => {
-  const chunks: ArrayBuffer[] = []
-  const totalChunks = Math.ceil(blob.size / chunkSize)
-  let currentChunk = 0
+  chunkSize: number = defaultChunkSize
+): Promise<Blob[]> => {
+  const chunks: Blob[] = []
+  let start = 0
 
-  while (currentChunk < totalChunks) {
-    const start = currentChunk * chunkSize
-    const end = start + chunkSize >= blob.size ? blob.size : start + chunkSize
-    const chunk = await blob.slice(start, end).arrayBuffer()
+  while (start < blob.size) {
+    const end = Math.min(start + chunkSize, blob.size)
+    const chunk = blob.slice(start, end)
     chunks.push(chunk)
-    currentChunk++
+    start = end
   }
 
   return chunks
+}
+
+export const reassembleBlob = (chunks: Blob[], mimeType: string): Blob => {
+  return new Blob(chunks, { type: mimeType })
 }
