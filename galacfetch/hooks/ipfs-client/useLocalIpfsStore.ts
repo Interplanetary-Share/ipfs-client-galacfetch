@@ -37,10 +37,10 @@ export const useLocalIpfsStore = create<Store>(
       fileData.buffers.forEach((chunk) => {
         chunkSize += chunk.length
         const buffer = Buffer.from(chunk)
-        const blob = new Blob([buffer], { type: fileData.type })
+        const blob = new Blob([buffer])
         fileBlobList.push(blob)
       })
-      const blob = new Blob(fileBlobList)
+      const blob = new Blob(fileBlobList, { type: fileData.type })
       const url = fileToBlobUrl(blob)
       addNewBlobUrl({
         cid,
@@ -61,7 +61,7 @@ export const useLocalIpfsStore = create<Store>(
       if (!iDb) throw new Error('Indexed DB not initialized')
       const buffersChunked = await chunkBlobToBuffer(blob)
       saveData(cid, { buffers: buffersChunked }, objectStores.files)
-      const url = fileToBlobUrl(new Blob([blob]))
+      const url = fileToBlobUrl(new Blob([blob], { type: blob.type }))
       addNewBlobUrl({
         cid,
         url,
