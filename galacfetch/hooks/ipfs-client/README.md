@@ -54,11 +54,11 @@ In this example, we use `ipfsGalactFetchClient` hook that interacts with `useLoc
 ```javascript
 // Main hook usage
 const { status, init, getFile, getFiles, uploadFile, urlFileList } =
-  ipfsGalactFetchClient();
+  ipfsGalactFetchClient()
 
 // Interact with other hooks directly
 const { localGetFile, localAddFile, localRemoveFile, localGetAllFiles } =
-  useLocalIpfsStore();
+  useLocalIpfsStore()
 const {
   servers,
   init,
@@ -71,7 +71,7 @@ const {
   remoteUploadFile,
   remoteRestoreIntegrityFile,
   remotegetFileExtraProps,
-} = useRemoteIpfsStore();
+} = useRemoteIpfsStore()
 ```
 
 ### Initialization
@@ -79,12 +79,12 @@ const {
 Initialize the hook by calling the `init` function. This will connect to the IPFS galacfetch nodes.
 
 ```javascript
-const api = 'ABC123';
-const repoName = 'ExampleRepoName';
+const api = 'ABC123'
+const indexDbName = 'ExampleindexDbName'
 
 useEffect(() => {
-  init(api, repoName);
-}, []);
+  init(api, indexDbName)
+}, [])
 ```
 
 ### File Management
