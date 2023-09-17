@@ -37,7 +37,7 @@ jobs:
       - name: Export components
         run: bit export
       - name: Publish on npm
-        run: bit publish **
+        run: bit publish hooks/**
       - name: Commit changes made to .bitmap
         run: |
           git config --global user.name '${{ github.actor }}'
