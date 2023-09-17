@@ -138,7 +138,6 @@ export const useRemoteIpfsClient = create<Store>(
               }
             }
             if (status === 3) {
-              console.log('fastlog => end')
               const temporalBlobFile = new Blob(blobList[cid], { type: type })
               const url = fileToBlobUrl(temporalBlobFile)
               addNewBlobUrl({ url: url, cid: cid })
