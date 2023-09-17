@@ -25,7 +25,7 @@ jobs:
         run: |
           bit config set analytics_reporting false
           bit config set anonymous_reporting false
-          bit config set user.token $BIT_TOKEN
+          bit config set user.token ${{ secrets.BIT_TOKEN }}
       - name: Install packages using bit
         run: bit install
       - name: compile components
