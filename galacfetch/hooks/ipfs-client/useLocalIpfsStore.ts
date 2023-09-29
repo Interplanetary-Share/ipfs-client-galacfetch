@@ -67,7 +67,6 @@ export const useLocalIpfsStore = create<Store>(
         if (!dataChan) return
         if (!dataChan.readyState) return
         if (dataChan.readyState !== 'open') return
-        console.log('fastlog => dataChan:', dataChan)
         dataChan.send(JSON.stringify({ type: 'checkFile', cid: cid }))
       })
 
