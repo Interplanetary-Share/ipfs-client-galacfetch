@@ -53,7 +53,7 @@ export const useLocalIpfsStore = create<Store>(
       if (!blob) throw new Error('no blob provided')
       if (!cid) throw new Error('no cid provided')
       const { iDb, saveData } = indexDbStore.getState()
-      const { addNewBlobUrl } = useRemoteIpfsClient.getState()
+      const { addNewBlobUrl, servers } = useRemoteIpfsClient.getState()
       if (!iDb) throw new Error('Indexed DB not initialized')
       const buffersChunked = await chunkBlobAsync(blob)
       saveData(
@@ -61,6 +61,16 @@ export const useLocalIpfsStore = create<Store>(
         { buffers: buffersChunked, type: blob.type },
         objectStores.files
       )
+
+      servers.forEach((server) => {
+        const { dataChan } = server
+        if (!dataChan) return
+        if (!dataChan.readyState) return
+        if (dataChan.readyState !== 'open') return
+        console.log('fastlog => dataChan:', dataChan)
+        dataChan.send(JSON.stringify({ type: 'checkFile', cid: cid }))
+      })
+
       const url = fileToBlobUrl(blob)
       addNewBlobUrl({
         cid,

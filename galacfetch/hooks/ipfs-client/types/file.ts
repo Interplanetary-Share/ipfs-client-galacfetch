@@ -84,4 +84,6 @@ export interface IDownloadChunkInfo {
 export type TServerItem = {
   host: string
   ws: any
+  peerCon: any
+  dataChan: any
 }

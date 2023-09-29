@@ -8,7 +8,12 @@ import {
   TFileEditProps,
   TServerItem,
 } from './types/file'
-import { blobBufferToFile, fileToBlobUrl, isFilePreloaded } from './utils/file'
+import {
+  blobBufferToFile,
+  fileToBlobUrl,
+  isFilePreloaded,
+  reassembleBlob,
+} from './utils/file'
 import {
   fileApi,
   fileUpload,
@@ -25,6 +30,8 @@ import { io } from 'socket.io-client'
 import { ipfsGalactFetchClient } from './ipfsGalactFetchClient'
 import { useLocalIpfsStore } from './useLocalIpfsStore'
 import { wrapperProtect } from './utils/api'
+import indexDbStore from './indexDb'
+import { objectStores } from './types/idb'
 
 type Store = {
   status: undefined | 'idle' | 'loading' | TErrorStatus
@@ -77,10 +84,15 @@ export const useRemoteIpfsClient = create<Store>(
       if (!getServers) throw new Error('no servers found')
       const serversList = [] as TServerItem[]
       const socketPromises = getServers.map(async (server: string) => {
-        const socket = await connectToSocket(server, api)
+        const { socket, peerConnection, dataChannel } = await connectToSocket(
+          server,
+          api
+        )
         serversList.push({
           host: server,
           ws: socket,
+          peerCon: peerConnection,
+          dataChan: dataChannel,
         })
         return socket
       })
@@ -92,7 +104,8 @@ export const useRemoteIpfsClient = create<Store>(
     },
     connectToSocket: (url, api) => {
       const { addNewBlobUrl } = useRemoteIpfsClient.getState()
-      const { localAddFile } = useLocalIpfsStore.getState()
+      const { localAddFile, localGetFile } = useLocalIpfsStore.getState()
+      const { getData } = indexDbStore.getState()
 
       return new Promise((resolve) => {
         const socket = io(url, {
@@ -101,9 +114,148 @@ export const useRemoteIpfsClient = create<Store>(
           },
         })
 
-        socket.on('connect', () => {
-          resolve(socket)
+        // Inicializar WebRTC
+        const peerConnection = new RTCPeerConnection()
+        const dataChannel = peerConnection.createDataChannel('fileTransfer')
+
+        peerConnection.createOffer().then((offer) => {
+          peerConnection.setLocalDescription(offer)
+          socket.emit('offer', offer)
         })
+
+        // Manejar ICE Candidates
+        peerConnection.onicecandidate = (event) => {
+          if (event.candidate) {
+            socket.emit('ice-candidate', event.candidate)
+          }
+        }
+
+        // Escuchar candidatos ICE desde el servidor
+        socket.on('ice-candidate', (iceCandidate) => {
+          const candidate = new RTCIceCandidate(iceCandidate)
+          peerConnection.addIceCandidate(candidate)
+        })
+
+        // Escuchar ofertas SDP desde el servidor
+        socket.on('offer', async (offer, senderSocketId) => {
+          await peerConnection.setRemoteDescription(
+            new RTCSessionDescription(offer)
+          )
+          const answer = await peerConnection.createAnswer()
+          await peerConnection.setLocalDescription(answer)
+          socket.emit('answer', answer, senderSocketId)
+        })
+
+        // Escuchar respuestas SDP desde el servidor
+        socket.on('answer', (answer) => {
+          const remoteAnswer = new RTCSessionDescription(answer)
+          peerConnection.setRemoteDescription(remoteAnswer)
+        })
+
+        socket.on('connect', () => {
+          resolve({
+            socket,
+            peerConnection,
+            dataChannel,
+          })
+        })
+
+        const bufferList = {} as any
+
+        // Responder si tiene el archivo o no en caso de que alguien conectado se lo pregunte.
+        dataChannel.onmessage = async (event) => {
+          const message = JSON.parse(event.data)
+
+          if (message.type === 'checkFile') {
+            const isFile = await localGetFile(message.cid)
+            if (!isFile) {
+              dataChannel.send(
+                JSON.stringify({
+                  type: 'fileStatus',
+                  hasFile: false,
+                  cid: message.cid,
+                })
+              )
+            }
+          }
+
+          if (message.type === 'fileStatus' && !message.hasFile) {
+            const isFile = await localGetFile(message.cid)
+            if (isFile) {
+              // alguien esta pidiendo el archivo. enviarlo. si lo tengo en  local.
+
+              const fileData = await getData(message.cid, objectStores.files)
+              if (!fileData) return undefined
+
+              const buffers = fileData.buffers as ArrayBuffer[]
+
+              buffers.forEach((buffer, idx) => {
+                if (idx === 0)
+                  dataChannel.send(
+                    JSON.stringify({
+                      type: 'sendChunk',
+                      chunk: buffer,
+                      cid: message.cid,
+                      status: 1,
+                      dataType: fileData.type,
+                    })
+                  )
+
+                if (idx === buffers.length - 1)
+                  dataChannel.send(
+                    JSON.stringify({
+                      type: 'sendChunk',
+                      chunk: buffer,
+                      cid: message.cid,
+                      status: 3,
+                      dataType: fileData.type,
+                    })
+                  )
+
+                if (idx !== 0 && idx !== buffers.length - 1)
+                  dataChannel.send(
+                    JSON.stringify({
+                      type: 'sendChunk',
+                      chunk: buffer,
+                      cid: message.cid,
+                      status: 2,
+                      dataType: fileData.type,
+                    })
+                  )
+              })
+            }
+          }
+
+          if (message.type === 'sendChunk') {
+            // alguien ha enviado el archivo. recibirlo. si no lo tengo en local.
+            const isFile = await localGetFile(message.cid)
+            if (!isFile) {
+              if (message.status === 1) {
+                bufferList[message.cid] = []
+                bufferList[message.cid].push(message.chunk)
+              }
+              if (message.status === 2) {
+                bufferList[message.cid].push(message.chunk)
+              }
+              if (message.status === 3) {
+                bufferList[message.cid].push(message.chunk)
+
+                const blob = reassembleBlob(
+                  bufferList[message.cid],
+                  message.dataType
+                )
+                const url = fileToBlobUrl(blob)
+                addNewBlobUrl({
+                  cid: message.cid,
+                  url,
+                })
+                localAddFile(blob, message.cid)
+
+                bufferList[message.cid] = []
+              }
+            }
+          }
+        }
 
         const blobList = {} as any
 
@@ -223,7 +375,8 @@ export const useRemoteIpfsClient = create<Store>(
         const { servers } = useRemoteIpfsClient.getState()
 
         servers.forEach((server) => {
-          server.ws.emit('download', cid)
+          const { ws } = server
+          ws.emit('download', cid)
         })
       }),
 
