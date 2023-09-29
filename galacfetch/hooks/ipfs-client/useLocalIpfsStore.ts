@@ -1,4 +1,5 @@
 import {
+  bytesToGB,
   chunkBlobAsync,
   fileToBlobUrl,
   isFilePreloaded,
@@ -16,7 +17,9 @@ type Store = {
   localGetFile: (cid: string) => Promise<string | undefined>
   localAddFile: (blob: Blob, cid: string) => Promise<string | undefined>
   localRemoveFile: (cid: string) => Promise<boolean>
-  localGetAllFiles: (cid: string) => Promise<string[] | undefined>
+  localGetAllFiles: () => Promise<string[] | undefined>
+  localGetTotalSizeAllFiles: () => Promise<number | undefined>
+  garbageCollect: () => Promise<void>
 }
 
 export const useLocalIpfsStore = create<Store>(
@@ -27,6 +30,7 @@ export const useLocalIpfsStore = create<Store>(
         remoteCheckIntegrityFile,
         remoteRestoreIntegrityFile,
       } = useRemoteIpfsClient.getState()
+      const { garbageCollect } = useLocalIpfsStore.getState()
       const { urlFileList } = ipfsGalactFetchClient.getState()
       const { iDb, getData } = indexDbStore.getState()
       if (!cid) throw new Error('no cid provided')
@@ -46,6 +50,9 @@ export const useLocalIpfsStore = create<Store>(
           remoteRestoreIntegrityFile(blob, cid)
         }
       })
+
+      garbageCollect()
+
       return url
     },
     localAddFile: async (blob: Blob, cid: string) => {
@@ -54,6 +61,8 @@ export const useLocalIpfsStore = create<Store>(
       if (!cid) throw new Error('no cid provided')
       const { iDb, saveData } = indexDbStore.getState()
       const { addNewBlobUrl, servers } = useRemoteIpfsClient.getState()
+      const { garbageCollect } = useLocalIpfsStore.getState()
+
       if (!iDb) throw new Error('Indexed DB not initialized')
       const buffersChunked = await chunkBlobAsync(blob)
       saveData(
@@ -76,6 +85,8 @@ export const useLocalIpfsStore = create<Store>(
         url,
       })
 
+      garbageCollect()
+
       return cid
     },
     localRemoveFile: async (cid: string) => {
@@ -94,6 +105,50 @@ export const useLocalIpfsStore = create<Store>(
         localPinnedFiles.push(key as string)
       })
       return localPinnedFiles
+    },
+    localGetTotalSizeAllFiles: async () => {
+      const { iDb, getAllKeys, getData } = indexDbStore.getState()
+      if (!iDb) throw new Error('Indexed DB not initialized')
+      const allKeys = await getAllKeys(objectStores.files)
+      if (!allKeys) return undefined
+      let totalSize = 0
+      allKeys.forEach(async (key) => {
+        const fileData = await getData(key as string, objectStores.files)
+        if (!fileData) return
+        totalSize += fileData.buffers.reduce((acc, curr) => {
+          acc += curr.byteLength
+          return acc
+        }, 0)
+      })
+      return totalSize
+    },
+    garbageCollect: async () => {
+      const { localGetAllFiles, localRemoveFile } = useLocalIpfsStore.getState()
+      // Check if the total size of the files is bigger than the max size allowed by the user.
+      // Get available space in the browser storage. indexedDB
+
+      if (navigator.storage && navigator.storage.estimate) {
+        navigator.storage.estimate().then(({ usage, quota }) => {
+          console.info(
+            `Using ${bytesToGB(usage).toFixed(2)}GB out of ${bytesToGB(
+              quota * 0.5
+            ).toFixed(2)} GB.`
+          )
+          // if usage is bigger than quota, remove files until usage is less than quota.
+          // 50% of quota
+          if (usage > quota * 0.5) {
+            console.warn('usage is bigger than quota')
+            localGetAllFiles().then((files) => {
+              if (!files) return
+              localRemoveFile(files[0])
+            })
+          }
+        })
+      } else {
+        console.warn(
+          'Navegador no soporta la API de almacenamiento. ¡Actualízate, causa!'
+        )
+      }
     },
   })
 )

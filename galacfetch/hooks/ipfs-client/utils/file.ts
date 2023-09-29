@@ -38,3 +38,7 @@ export const chunkBlobAsync = async (
 export const reassembleBlob = (chunks: Blob[], mimeType: string): Blob => {
   return new Blob(chunks, { type: mimeType })
 }
+
+export const bytesToGB = (bytes: number) => {
+  return bytes / 1024 / 1024 / 1024
+}
