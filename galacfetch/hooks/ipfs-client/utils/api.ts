@@ -80,18 +80,3 @@ export const waitForFileReady = (cid: string, maxRetries = 15) => {
     checkFileStatus()
   })
 }
-
-//       if (api && iDb) {
-//         resolve(true);
-//       } else if (retries < maxRetries) {
-
-//         retries++;
-//         delay += 1000; // Incrementa el tiempo de espera en 1 segundo
-//         setTimeout(checkApiStatus, delay);
-//       } else {
-//         reject(new Error('Max retries reached. API token is not ready.'));
-//       }
-//     };
-//
-//   });
-// };
