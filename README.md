@@ -43,6 +43,8 @@ bit publish hooks/ipfs-client (Lo publica en npm)
 
 ## to work again in the workspace
 
+<!-- intershare workspace name -->
+
 bit use <workspace name>
 bit install
 bit start
