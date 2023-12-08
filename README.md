@@ -36,10 +36,12 @@ bit compile (Compila los componentes)
 bit status (tiene que estar todo OK)
 
 bit snap --message ":start: examplew" (Crea un snapshot) => crea un tag
+bit tag --message ":start: examplew" (Crea un tag)
 
 bit login (Inicia sesion en la nube)
 bit export (Lo envia a la nube)
 bit publish hooks/ipfs-client (Lo publica en npm)
+bit publish hooks/indexdb (Lo publica en npm)
 
 ## to work again in the workspace
 
