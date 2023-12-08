@@ -38,6 +38,10 @@ bit status (tiene que estar todo OK)
 bit snap --message ":start: examplew" (Crea un snapshot) => crea un tag
 bit tag --message ":start: examplew" (Crea un tag)
 
+<!-- FORCE MODE -->
+
+bit tag --skip-tests --unmodified --message "fix build issues"
+
 bit login (Inicia sesion en la nube)
 bit export (Lo envia a la nube)
 bit publish hooks/ipfs-client (Lo publica en npm)
