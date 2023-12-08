@@ -1,0 +1,67 @@
+---
+description: 'IndexedDB Store to interact with IndexedDB for ipfsClientGalacFetch'
+labels: ['indexeddb', 'react', 'data storage', 'ipfs', 'ipfsclientgalacfetch']
+---
+
+Functions to interact with IndexedDB for ipfsClientGalacFetch in React.
+
+### Use of the library
+
+Import the store and use it in your component.
+
+Current Object Stores
+
+```
+export enum objectStoresEnum {
+  files = 'files',
+}
+
+export const objectStores = {
+  files: objectStoresEnum.files,
+}
+```
+
+#### Initialize IndexedDB
+
+Inicializa la base de datos IndexedDB.
+
+```javascript
+const { initIndexedDb } = indexDbStore()
+await initIndexedDb('myDatabaseName')
+```
+
+### Save Data
+
+Save data in a specific objectStore.
+
+```javascript
+const { saveData } = indexDbStore()
+await saveData('miId', { key: 'value' }, ObjectStoresEnum.files)
+```
+
+### Retrieve Data
+
+Retrieve data from a specific objectStore.
+
+```javascript
+const { getData } = indexDbStore()
+const data = await getData('miId', ObjectStoresEnum.files)
+```
+
+### Delete Data
+
+Delete data from a specific objectStore.
+
+```javascript
+const { deleteData } = indexDbStore()
+await deleteData('miId', ObjectStoresEnum.files)
+```
+
+### Get all keys from an objectStore
+
+Get all keys from an objectStore.
+
+```javascript
+const { getAllKeys } = indexDbStore()
+const keys = await getAllKeys(ObjectStoresEnum.files)
+```

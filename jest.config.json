@@ -1,0 +1,10 @@
+{
+  "testRegex": ".*\\.spec\\.ts",
+  "transform": {
+    "^.+\\.(ts|tsx)$": "ts-jest"
+  },
+  "modulePathIgnorePatterns": ["node_modules", "dist", ".cache"],
+  "rootDir": ".",
+  "testEnvironment": "jsdom",
+  "setupFilesAfterEnv": ["<rootDir>/setup-jest.ts"]
+}

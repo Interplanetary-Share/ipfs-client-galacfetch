@@ -3,17 +3,32 @@
 /**
  * The Bitmap file is an auto generated file used by Bit to track all your Bit components. It maps the component to a folder in your file system.
  * This file should be committed to VCS(version control).
- * Components are listed using their component ID (https://bit.dev/docs/components/component-id).
+ * Components are listed using their component ID (https://bit.dev/reference/components/component-id).
  * If you want to delete components you can use the "bit remove <component-id>" command.
- * See the docs (https://bit.dev/docs/components/removing-components) for more information, or use "bit remove --help".
+ * See the docs (https://bit.dev/reference/components/removing-components) for more information, or use "bit remove --help".
  */
 
 {
+    "hooks/indexdb": {
+        "name": "hooks/indexdb",
+        "scope": "",
+        "version": "",
+        "defaultScope": "intershare.galacfetch",
+        "mainFile": "index.ts",
+        "rootDir": "galacfetch/hooks/indexdb",
+        "config": {
+            "bitdev.react/react-env@1.1.8": {},
+            "teambit.envs/envs": {
+                "env": "bitdev.react/react-env"
+            }
+        }
+    },
     "hooks/ipfs-client": {
+        "name": "hooks/ipfs-client",
         "scope": "intershare.galacfetch",
         "version": "0.0.6",
         "mainFile": "index.ts",
         "rootDir": "galacfetch/hooks/ipfs-client"
     },
-    "$schema-version": "16.0.0"
+    "$schema-version": "17.0.0"
 }
