@@ -22,7 +22,7 @@ If you have any questions or comments, feel free to [send us a message](mailto:k
 
 # 🌌 ipfsGalactFetchClient - A React Hook for IPFS
 
-A React Hook that connects to galacfetch IPFS nodes to manage files on the IPFS network.
+A React Hook that connects to galacfetch IPFS nodes to manage files on the IPFS network
 
 ![npm](https://img.shields.io/npm/v/@interplanetary-share/hooks.ipfs-client)
 ![downloads](https://img.shields.io/npm/dm/@interplanetary-share/hooks.ipfs-client)
