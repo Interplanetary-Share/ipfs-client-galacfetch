@@ -1,9 +1,9 @@
-export enum objectStoresEnum {
+export enum ObjectStoresEnum {
   files = 'files',
 }
 
 export const objectStores = {
-  files: objectStoresEnum.files,
+  files: ObjectStoresEnum.files,
 }
 
 export type TindexDbStore = {
@@ -13,9 +13,9 @@ export type TindexDbStore = {
   saveData: (
     id: string,
     dataToAppend: object,
-    tableName: objectStoresEnum
+    tableName: ObjectStoresEnum
   ) => Promise<void>
-  getData: (id: string, tableName: objectStoresEnum) => Promise<any>
-  removeData: (id: string, tableName: objectStoresEnum) => Promise<void>
+  getData: (id: string, tableName: ObjectStoresEnum) => Promise<any>
+  removeData: (id: string, tableName: ObjectStoresEnum) => Promise<void>
   getAllKeys: (tableName: string) => Promise<IDBValidKey[] | undefined>
 }

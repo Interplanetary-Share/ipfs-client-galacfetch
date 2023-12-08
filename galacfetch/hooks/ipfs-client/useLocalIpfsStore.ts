@@ -1,3 +1,4 @@
+import { create } from 'zustand'
 import {
   bytesToGB,
   chunkBlobAsync,
@@ -7,7 +8,6 @@ import {
 } from './utils/file'
 
 // TODO implement webrtc to share data between peers to avoid the use of a centralized database.
-import { create } from 'zustand'
 import indexDbStore from './indexDb'
 import { ipfsGalactFetchClient } from './ipfsGalactFetchClient'
 import { objectStores } from './types/idb'
@@ -76,7 +76,7 @@ export const useLocalIpfsStore = create<Store>(
         if (!dataChan) return
         if (!dataChan.readyState) return
         if (dataChan.readyState !== 'open') return
-        dataChan.send(JSON.stringify({ type: 'checkFile', cid: cid }))
+        dataChan.send(JSON.stringify({ type: 'checkFile', cid }))
       })
 
       const url = fileToBlobUrl(blob)

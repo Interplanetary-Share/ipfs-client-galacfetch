@@ -5,6 +5,12 @@
     "noEmit": true,
     "jsx": "react-jsx"
   },
-  "exclude": ["dist"],
+  "exclude": [
+    "dist",
+    "**/*.spec.ts",
+    "**/*.spec.tsx",
+    "**/*.test.ts",
+    "**/*.test.tsx"
+  ],
   "include": ["**/*.ts", "**/*.tsx", "**/*.js", "**/*.jsx", "**/*.mdx"]
 }

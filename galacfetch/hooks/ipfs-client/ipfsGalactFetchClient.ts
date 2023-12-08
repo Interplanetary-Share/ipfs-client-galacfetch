@@ -1,3 +1,4 @@
+import { create } from 'zustand'
 import {
   IFileRetrievalConfig,
   IFileRetrievalResponse,
@@ -10,7 +11,6 @@ import {
 } from './types/file'
 import { waitForFileReady, wrapperProtect } from './utils/api'
 
-import { create } from 'zustand'
 import indexDbStore from './indexDb'
 import { useLocalIpfsStore } from './useLocalIpfsStore'
 import { useRemoteIpfsClient } from './useRemoteIpfsClient'

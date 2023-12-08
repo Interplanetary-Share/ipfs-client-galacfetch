@@ -1,7 +1,7 @@
 import indexDbStore from '../indexDb'
 import { ipfsGalactFetchClient } from '../ipfsGalactFetchClient'
-import { isFilePreloaded } from './file'
 import { useRemoteIpfsClient } from '../useRemoteIpfsClient'
+import { isFilePreloaded } from './file'
 
 export const wrapperProtect = async (set: Function, fn: Function) => {
   set({ status: 'loading' })

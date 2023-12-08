@@ -162,8 +162,8 @@ export const GetFiles = () => {
             {
               page: pageNumber,
               size: pageSize,
-              sort: sort,
-              filter: filter,
+              sort,
+              filter,
             }
           ).then((props) => {
             setGetFilesResponse(JSON.stringify(props))

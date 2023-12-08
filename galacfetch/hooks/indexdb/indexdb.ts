@@ -1,5 +1,5 @@
 import { create } from 'zustand'
-import { TindexDbStore, objectStores, objectStoresEnum } from './types/common'
+import { TindexDbStore, objectStores, ObjectStoresEnum } from './types/common'
 
 const indexDbStore = create<TindexDbStore>()(
   (set): TindexDbStore => ({
@@ -29,7 +29,7 @@ const indexDbStore = create<TindexDbStore>()(
     saveData: async (
       id: string,
       dataToAppend: object,
-      tableName: objectStoresEnum
+      tableName: ObjectStoresEnum
     ): Promise<void> => {
       const { iDb } = indexDbStore.getState()
       if (!iDb) {
@@ -59,7 +59,7 @@ const indexDbStore = create<TindexDbStore>()(
         console.error('Error durante la transacción de IndexedDB', error)
       }
     },
-    getData: async (id: string, tableName: objectStoresEnum) => {
+    getData: async (id: string, tableName: ObjectStoresEnum) => {
       const { iDb } = indexDbStore.getState()
       if (!iDb) {
         console.error('iDb not initialized')

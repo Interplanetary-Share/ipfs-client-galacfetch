@@ -1,6 +1,6 @@
-import indexDbStore from '../indexdb'
-import { TindexDbStore, objectStoresEnum } from '../types/common'
 import { renderHook, act } from '@testing-library/react-hooks'
+import indexDbStore from '../indexdb'
+import { TindexDbStore, ObjectStoresEnum } from '../types/common'
 import 'fake-indexeddb/auto'
 
 describe('indexDbStore', () => {
@@ -30,7 +30,7 @@ describe('indexDbStore', () => {
 
     await act(async () => {
       await expect(
-        dbStore.saveData(id, dataToAppend, objectStoresEnum.files)
+        dbStore.saveData(id, dataToAppend, ObjectStoresEnum.files)
       ).resolves.not.toThrow()
     })
   })
@@ -40,19 +40,19 @@ describe('indexDbStore', () => {
 
     await act(async () => {
       await expect(
-        dbStore.saveData(id, dataToAppend, objectStoresEnum.files)
+        dbStore.saveData(id, dataToAppend, ObjectStoresEnum.files)
       ).resolves.not.toThrow()
     })
 
     let retrievedData
     await act(async () => {
-      retrievedData = await dbStore.getData(id, objectStoresEnum.files)
+      retrievedData = await dbStore.getData(id, ObjectStoresEnum.files)
     })
     expect(retrievedData).toEqual(dataToAppend)
   })
 
   it('remove data from the store', async () => {
-    const tableName = objectStoresEnum.files
+    const tableName = ObjectStoresEnum.files
     const id = 'someId'
     const dataToAppend = { key: 'value' }
 
@@ -75,7 +75,7 @@ describe('indexDbStore', () => {
   })
 
   it('retrieve all keys from the store', async () => {
-    const tableName = objectStoresEnum.files
+    const tableName = ObjectStoresEnum.files
     const id = 'someId'
     const dataToAppend = { key: 'value' }
 
