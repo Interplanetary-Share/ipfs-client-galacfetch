@@ -11,22 +11,15 @@
 {
     "hooks/indexdb": {
         "name": "hooks/indexdb",
-        "scope": "",
-        "version": "",
-        "defaultScope": "intershare.galacfetch",
+        "scope": "intershare.galacfetch",
+        "version": "0.0.1",
         "mainFile": "index.ts",
-        "rootDir": "galacfetch/hooks/indexdb",
-        "config": {
-            "bitdev.react/react-env@1.1.8": {},
-            "teambit.envs/envs": {
-                "env": "bitdev.react/react-env"
-            }
-        }
+        "rootDir": "galacfetch/hooks/indexdb"
     },
     "hooks/ipfs-client": {
         "name": "hooks/ipfs-client",
         "scope": "intershare.galacfetch",
-        "version": "0.0.6",
+        "version": "0.0.7",
         "mainFile": "index.ts",
         "rootDir": "galacfetch/hooks/ipfs-client"
     },
