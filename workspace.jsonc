@@ -63,9 +63,11 @@
         "ts-jest": "^29.1.1"
       }
     },
+
     "linkCoreAspects": true,
     "rootComponents": true
   },
+
   /**
    * workspace variants allow to set different subsets of configuration for components in your
    * workspace. this is extremely useful for upgrading, aligning and building components with a new
@@ -79,8 +81,20 @@
         "packageManagerPublishArgs": ["--access public"],
         "packageJson": {
           "private": false,
-          "name": "@interplanetary-share/{name}"
+          "name": "@intershare/{name}",
+          "files": ["dist", "README.md"]
         }
+      },
+      "teambit.component/dev-files": {
+        "devFilePatterns": [
+          "*.spec.ts",
+          "*.spec.tsx",
+          "*.test.js",
+          "*.test.jsx",
+          "*.composition.tsx",
+          "*.mdx",
+          "*.md"
+        ]
       }
     }
   }

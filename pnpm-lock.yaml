@@ -31,6 +31,9 @@ importers:
       '@testing-library/react':
         specifier: ^14.0.0
         version: 14.1.2(react-dom@17.0.2)(react@17.0.2)
+      '@testing-library/react-hooks':
+        specifier: ^8.0.1
+        version: 8.0.1(@types/react@17.0.71)(react-dom@17.0.2)(react@17.0.2)
       '@types/jest':
         specifier: '>=26.0.0 <27.0.0'
         version: 26.0.24
@@ -122,9 +125,6 @@ importers:
       '@bitdev/react.react-env':
         specifier: 1.1.8
         version: 1.1.8(@teambit/legacy@node_modules+@teambit+legacy)(@testing-library/react@14.1.2)(@types/node@12.20.4)
-      '@testing-library/react-hooks':
-        specifier: ^8.0.1
-        version: 8.0.1(@types/react@17.0.71)(react-dom@17.0.2)(react@17.0.2)
       '@types/node':
         specifier: 12.20.4
         version: 12.20.4
@@ -176,9 +176,6 @@ importers:
       eslint-plugin-react-hooks:
         specifier: 4.2.0
         version: 4.2.0(eslint@7.32.0)
-      fake-indexeddb:
-        specifier: ^5.0.1
-        version: 5.0.1
       graphql:
         specifier: 15.8.0
         version: 15.8.0
@@ -213,9 +210,6 @@ importers:
       '@bitdev/react.react-env':
         specifier: 1.1.8
         version: 1.1.8(@teambit/legacy@node_modules+@teambit+legacy)(@testing-library/react@14.1.2)(@types/node@12.20.4)
-      '@testing-library/react-hooks':
-        specifier: ^8.0.1
-        version: 8.0.1(@types/react@18.2.23)(react-dom@18.2.0)(react@18.2.0)
       '@types/testing-library__jest-dom':
         specifier: ^5.9.5
         version: 5.9.5
@@ -270,7 +264,7 @@ importers:
         version: 1.1.8(@teambit/legacy@node_modules+@teambit+legacy)(@testing-library/react@14.1.2)(@types/node@12.20.4)
       '@interplanetary-share/hooks.indexdb':
         specifier: workspace:*
-        version: file:galacfetch/hooks/indexdb(@types/node@12.20.4)(fake-indexeddb@5.0.1)
+        version: file:galacfetch/hooks/indexdb(@types/node@12.20.4)
       '@interplanetary-share/hooks.ipfs-client':
         specifier: workspace:*
         version: file:galacfetch/hooks/ipfs-client(@types/react@18.2.23)(react-dom@18.2.0)(react@18.2.0)
@@ -350,7 +344,7 @@ importers:
     dependencies:
       '@interplanetary-share/hooks.indexdb':
         specifier: workspace:*
-        version: file:galacfetch/hooks/indexdb(@types/node@12.20.4)(fake-indexeddb@5.0.1)
+        version: file:galacfetch/hooks/indexdb(@types/node@12.20.4)
       '@interplanetary-share/hooks.ipfs-client':
         specifier: workspace:*
         version: file:galacfetch/hooks/ipfs-client(@types/react@17.0.71)(react-dom@17.0.2)(react@17.0.2)
@@ -7689,32 +7683,7 @@ packages:
       react: 17.0.2
       react-dom: 17.0.2(react@17.0.2)
       react-error-boundary: 3.1.4(react@17.0.2)
-    dev: true
-
-  /@testing-library/react-hooks@8.0.1(@types/react@18.2.23)(react-dom@18.2.0)(react@18.2.0):
-    resolution: {integrity: sha512-Aqhl2IVmLt8IovEVarNDFuJDVWVvhnr9/GCU6UUnrYXwgDFF9h2L2o2P9KBni1AST5sT6riAyoukFLyjQUgD/g==}
-    engines: {node: '>=12'}
-    peerDependencies:
-      '@types/react': '*'
-      react: '*'
-      react-dom: '*'
-      react-test-renderer: '*'
-    peerDependenciesMeta:
-      '@types/react':
-        optional: true
-      react:
-        optional: true
-      react-dom:
-        optional: true
-      react-test-renderer:
-        optional: true
-    dependencies:
-      '@babel/runtime': 7.20.0
-      '@types/react': 18.2.23
-      react: 18.2.0
-      react-dom: 18.2.0(react@18.2.0)
-      react-error-boundary: 3.1.4(react@18.2.0)
-    dev: true
+    dev: false
 
   /@testing-library/react@14.1.2(react-dom@17.0.2)(react@17.0.2):
     resolution: {integrity: sha512-z4p7DVBTPjKM5qDZ0t5ZjzkpSNb+fZy1u6bzO7kk8oeGagpPCAtgh4cx1syrfp7a+QWkM021jGqjJaxJJnXAZg==}
@@ -16075,7 +16044,7 @@ packages:
     dependencies:
       '@babel/runtime': 7.20.0
       react: 17.0.2
-    dev: true
+    dev: false
 
   /react-error-boundary@3.1.4(react@18.2.0):
     resolution: {integrity: sha512-uM9uPzZJTF6wRQORmSrvOIgt4lJ9MC1sNgEOj2XGsDTRE4kmpWxg7ENK9EWNKJRMAOY9z0MuF4yIfl6gp4sotA==}
@@ -18720,15 +18689,10 @@ packages:
   /zwitch@2.0.4:
     resolution: {integrity: sha512-bXE4cR/kVZhKZX/RjPEflHaKVhUVl85noU3v6b8apfQEc1x4A+zBxjZ4lN8LqGd6WZ3dl98pY4o717VFmoPp+A==}
 
-  file:galacfetch/hooks/indexdb(@types/node@12.20.4)(fake-indexeddb@5.0.1):
+  file:galacfetch/hooks/indexdb(@types/node@12.20.4):
     resolution: {directory: galacfetch/hooks/indexdb, type: directory}
     id: file:galacfetch/hooks/indexdb
     name: '@interplanetary-share/hooks.indexdb'
-    peerDependencies:
-      fake-indexeddb: '*'
-    peerDependenciesMeta:
-      fake-indexeddb:
-        optional: true
     dependencies:
       '@apollo/client': 3.8.8(graphql@15.8.0)(react-dom@18.2.0)(react@18.2.0)
       '@mdx-js/mdx': 1.6.22
@@ -18744,7 +18708,6 @@ packages:
       eslint-plugin-mdx: 1.13.0(eslint@7.32.0)
       eslint-plugin-react: 7.22.0(eslint@7.32.0)
       eslint-plugin-react-hooks: 4.2.0(eslint@7.32.0)
-      fake-indexeddb: 5.0.1
       graphql: 15.8.0
       jsdom: 23.0.1
       pino-pretty: 4.5.0
