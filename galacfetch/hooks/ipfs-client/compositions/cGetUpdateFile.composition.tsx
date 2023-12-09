@@ -1,6 +1,6 @@
 import React, { useEffect } from 'react'
 import { ipfsGalactFetchClient } from '../src/ipfsGalactFetchClient'
-import { IFileRetrievalResponse } from '../types/file'
+import { IFileRetrievalResponse } from '../src/types/file'
 
 export const GetAndUpdateFile = () => {
   const { getFile, updateFile } = ipfsGalactFetchClient()

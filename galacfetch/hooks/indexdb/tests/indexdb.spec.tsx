@@ -1,7 +1,8 @@
 import { renderHook, act } from '@testing-library/react-hooks'
 import indexDbStore from '../src/indexdb'
-import { TindexDbStore, ObjectStoresEnum } from '../types/common'
 import 'fake-indexeddb/auto'
+import { TindexDbStore } from '../src/types/common1'
+import { ObjectStoresEnum } from '../src/types/enum'
 
 describe('indexDbStore', () => {
   const id = 'someId'

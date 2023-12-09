@@ -1,5 +1,6 @@
 import { create } from 'zustand'
-import { TindexDbStore, ObjectStoresEnum } from '../types/common'
+import { TindexDbStore } from './types/common1'
+import { ObjectStoresEnum } from './types/enum'
 
 const indexDbStore = create<TindexDbStore>()(
   (set): TindexDbStore => ({

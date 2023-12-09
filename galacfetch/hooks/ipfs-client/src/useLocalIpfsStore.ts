@@ -1,3 +1,4 @@
+import { ObjectStoresEnum, indexDbStore } from '@intershare/hooks.indexdb'
 import { create } from 'zustand'
 import {
   bytesToGB,
@@ -5,18 +6,15 @@ import {
   fileToBlobUrl,
   isFilePreloaded,
   reassembleBlob,
-} from '../utils/file'
-
-// TODO implement webrtc to share data between peers to avoid the use of a centralized database.
-import indexDbStore from './indexDb'
+} from './utils/file'
 import { ipfsGalactFetchClient } from './ipfsGalactFetchClient'
-import { objectStores } from '../types/idb'
 import { useRemoteIpfsClient } from './useRemoteIpfsClient'
 
+// TODO implement webrtc to share data between peers to avoid the use of a centralized database.
 type Store = {
   localGetFile: (cid: string) => Promise<string | undefined>
   localAddFile: (blob: Blob, cid: string) => Promise<string | undefined>
-  localRemoveFile: (cid: string) => Promise<boolean>
+  localRemoveFile: (cid: string) => Promise<void>
   localGetAllFiles: () => Promise<string[] | undefined>
   localGetTotalSizeAllFiles: () => Promise<number | undefined>
   garbageCollect: () => Promise<void>
@@ -37,7 +35,7 @@ export const useLocalIpfsStore = create<Store>(
       if (!iDb) throw new Error('Indexed DB not initialized')
       if (isFilePreloaded(urlFileList, cid))
         return urlFileList.find((fileLs) => fileLs.cid === cid)?.url
-      const fileData = await getData(cid, objectStores.files)
+      const fileData = await getData(cid, ObjectStoresEnum.files)
       if (!fileData) return undefined
       const blob = reassembleBlob(fileData.buffers, fileData.type)
       const url = fileToBlobUrl(blob)
@@ -65,10 +63,10 @@ export const useLocalIpfsStore = create<Store>(
 
       if (!iDb) throw new Error('Indexed DB not initialized')
       const buffersChunked = await chunkBlobAsync(blob)
-      saveData(
+      await saveData(
         cid,
         { buffers: buffersChunked, type: blob.type },
-        objectStores.files
+        ObjectStoresEnum.files
       )
 
       servers.forEach((server) => {
@@ -93,13 +91,13 @@ export const useLocalIpfsStore = create<Store>(
       if (!cid) throw new Error('no cid provided')
       const { iDb, removeData } = indexDbStore.getState()
       if (!iDb) throw new Error('Indexed DB not initialized')
-      return await removeData(cid, objectStores.files)
+      return await removeData(cid, ObjectStoresEnum.files)
     },
     localGetAllFiles: async () => {
       const { iDb, getAllKeys } = indexDbStore.getState()
       if (!iDb) throw new Error('Indexed DB not initialized')
       const localPinnedFiles = [] as string[]
-      const allKeys = await getAllKeys(objectStores.files)
+      const allKeys = await getAllKeys(ObjectStoresEnum.files)
       if (!allKeys) return undefined
       allKeys.forEach((key) => {
         localPinnedFiles.push(key as string)
@@ -109,11 +107,11 @@ export const useLocalIpfsStore = create<Store>(
     localGetTotalSizeAllFiles: async () => {
       const { iDb, getAllKeys, getData } = indexDbStore.getState()
       if (!iDb) throw new Error('Indexed DB not initialized')
-      const allKeys = await getAllKeys(objectStores.files)
+      const allKeys = await getAllKeys(ObjectStoresEnum.files)
       if (!allKeys) return undefined
       let totalSize = 0
       allKeys.forEach(async (key) => {
-        const fileData = await getData(key as string, objectStores.files)
+        const fileData = await getData(key as string, ObjectStoresEnum.files)
         if (!fileData) return
         totalSize += fileData.buffers.reduce((acc, curr) => {
           acc += curr.byteLength

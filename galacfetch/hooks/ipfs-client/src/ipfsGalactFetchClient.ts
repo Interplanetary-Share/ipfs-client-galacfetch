@@ -1,3 +1,4 @@
+import { indexDbStore } from '@intershare/hooks.indexdb'
 import { create } from 'zustand'
 import {
   IFileRetrievalConfig,
@@ -8,12 +9,10 @@ import {
   TErrorStatus,
   TFileCreationProps,
   TFileEditProps,
-} from '../types/file'
-import { waitForFileReady, wrapperProtect } from '../utils/api'
-
-import indexDbStore from './indexDb'
+} from './types/file'
 import { useLocalIpfsStore } from './useLocalIpfsStore'
 import { useRemoteIpfsClient } from './useRemoteIpfsClient'
+import { waitForFileReady, wrapperProtect } from './utils/api'
 
 type Store = {
   status: undefined | 'idle' | 'loading' | TErrorStatus
@@ -66,7 +65,7 @@ export const ipfsGalactFetchClient = create<Store>()(
         return response
       }
 
-      initIndexedDb(dbName) // Loads in bg, TODO: add loading state and monitor progress.
+      await initIndexedDb(dbName) // Loads in bg, TODO: add loading state and monitor progress.
       set({ status: 'idle' })
       return response
     },

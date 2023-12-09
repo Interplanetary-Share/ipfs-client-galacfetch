@@ -1,6 +1,16 @@
+import { ObjectStoresEnum, indexDbStore } from '@intershare/hooks.indexdb'
 import axios from 'axios'
-import { create } from 'zustand'
 import { io } from 'socket.io-client'
+import { create } from 'zustand'
+import {
+  fileApi,
+  fileUpload,
+  getAllFiles,
+  getExtraPropsFiles,
+  restoreIntegrity,
+  serverCheck,
+  serverGetHost,
+} from './types/api'
 import {
   IDownloadChunkInfo,
   IFileUrlInfo,
@@ -10,28 +20,16 @@ import {
   TFileCreationProps,
   TFileEditProps,
   TServerItem,
-} from '../types/file'
+} from './types/file'
+import { wrapperProtect } from './utils/api'
 import {
   blobBufferToFile,
   fileToBlobUrl,
   isFilePreloaded,
   reassembleBlob,
-} from '../utils/file'
-import {
-  fileApi,
-  fileUpload,
-  getAllFiles,
-  getExtraPropsFiles,
-  restoreIntegrity,
-  serverCheck,
-  serverGetHost,
-} from '../types/api'
-
+} from './utils/file'
 import { ipfsGalactFetchClient } from './ipfsGalactFetchClient'
 import { useLocalIpfsStore } from './useLocalIpfsStore'
-import { wrapperProtect } from '../utils/api'
-import indexDbStore from './indexDb'
-import { objectStores } from '../types/idb'
 
 type Store = {
   status: undefined | 'idle' | 'loading' | TErrorStatus
@@ -184,7 +182,10 @@ export const useRemoteIpfsClient = create<Store>(
             if (isFile) {
               // alguien esta pidiendo el archivo. enviarlo. si lo tengo en  local.
 
-              const fileData = await getData(message.cid, objectStores.files)
+              const fileData = await getData(
+                message.cid,
+                ObjectStoresEnum.files
+              )
               if (!fileData) return undefined
 
               const buffers = fileData.buffers as ArrayBuffer[]

@@ -1,6 +1,6 @@
-import indexDbStore from '../src/indexDb'
-import { ipfsGalactFetchClient } from '../src/ipfsGalactFetchClient'
-import { useRemoteIpfsClient } from '../src/useRemoteIpfsClient'
+import { indexDbStore } from '@intershare/hooks.indexdb'
+import { ipfsGalactFetchClient } from '../ipfsGalactFetchClient'
+import { useRemoteIpfsClient } from '../useRemoteIpfsClient'
 import { isFilePreloaded } from './file'
 
 export const wrapperProtect = async (set: Function, fn: Function) => {

@@ -1,8 +1,6 @@
-export enum ObjectStoresEnum {
-  files = 'files',
-}
+import { ObjectStoresEnum } from './enum'
 
-export type TindexDbStore = {
+export interface TindexDbStore {
   status: 'iddle' | 'loading' | 'error' | null
   iDb: IDBDatabase | null
   initIndexedDb: (dbName: string) => Promise<IDBDatabase>
