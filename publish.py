@@ -36,3 +36,4 @@ ejecutar_comando("bit export")
 
 ejecutar_comando("git add .")
 ejecutar_comando("git commit -m ':package: update .bitmap'")
+ejecutar_comando("git push")
