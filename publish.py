@@ -57,9 +57,11 @@ ejecutar_comando("git status")
 
 ejecutar_comando("git add .")
 time.sleep(1)
+ejecutar_comando("git status")
 
 ejecutar_comando("git commit -m \':package: update .bitmap\'")
 time.sleep(1)
+ejecutar_comando("git status")
 
 ejecutar_comando("git push")
 time.sleep(1)
