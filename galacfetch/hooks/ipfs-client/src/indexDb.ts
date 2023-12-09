@@ -1,5 +1,5 @@
 import { create } from 'zustand'
-import { objectStores } from './types/idb'
+import { objectStores } from '../types/idb'
 
 type Store = {
   status: 'iddle' | 'loading' | 'error' | null

@@ -1,24 +1,24 @@
-import React, { useEffect } from 'react';
-import { ipfsGalactFetchClient } from '../ipfsGalactFetchClient';
-import { IFileRetrievalResponse } from '../types/file';
+import React, { useEffect } from 'react'
+import { ipfsGalactFetchClient } from '../src/ipfsGalactFetchClient'
+import { IFileRetrievalResponse } from '../types/file'
 
 export const GetAndUpdateFile = () => {
-  const { getFile, updateFile } = ipfsGalactFetchClient();
+  const { getFile, updateFile } = ipfsGalactFetchClient()
 
-  const [currentCid, setCurrentCid] = React.useState<string>('');
+  const [currentCid, setCurrentCid] = React.useState<string>('')
   const [getFileResponse, setGetFileResponse] = React.useState<
     IFileRetrievalResponse | undefined
-  >();
-  const [editFile, setEditFile] = React.useState<string>('');
+  >()
+  const [editFile, setEditFile] = React.useState<string>('')
 
   useEffect(() => {
     const { name, description, isPublic, extraProperties } =
-      getFileResponse || {};
+      getFileResponse || {}
 
     setEditFile(
       JSON.stringify({ name, description, isPublic, extraProperties })
-    );
-  }, [getFileResponse]);
+    )
+  }, [getFileResponse])
 
   return (
     <>
@@ -46,15 +46,15 @@ export const GetAndUpdateFile = () => {
       <input
         type="text"
         onChange={(e) => {
-          setCurrentCid(e.target.value);
+          setCurrentCid(e.target.value)
         }}
       />
 
       <button
         onClick={async () => {
           getFile(currentCid).then((props) => {
-            setGetFileResponse(props);
-          });
+            setGetFileResponse(props)
+          })
         }}
       >
         Get File Info
@@ -86,19 +86,19 @@ export const GetAndUpdateFile = () => {
         <textarea
           value={editFile}
           onChange={(e) => {
-            setEditFile(e.target.value);
+            setEditFile(e.target.value)
           }}
         />
 
         <button
           onClick={() => {
-            const editFileJson = JSON.parse(editFile);
-            updateFile(currentCid, editFileJson);
+            const editFileJson = JSON.parse(editFile)
+            updateFile(currentCid, editFileJson)
           }}
         >
           Edit File
         </button>
       </div>
     </>
-  );
-};
+  )
+}

@@ -1,1 +1,1 @@
-export { ipfsGalactFetchClient } from './ipfsGalactFetchClient'
+export { ipfsGalactFetchClient } from './src/ipfsGalactFetchClient'

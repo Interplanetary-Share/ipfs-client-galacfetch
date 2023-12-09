@@ -10,13 +10,13 @@ import {
   TFileCreationProps,
   TFileEditProps,
   TServerItem,
-} from './types/file'
+} from '../types/file'
 import {
   blobBufferToFile,
   fileToBlobUrl,
   isFilePreloaded,
   reassembleBlob,
-} from './utils/file'
+} from '../utils/file'
 import {
   fileApi,
   fileUpload,
@@ -25,13 +25,13 @@ import {
   restoreIntegrity,
   serverCheck,
   serverGetHost,
-} from './types/api'
+} from '../types/api'
 
 import { ipfsGalactFetchClient } from './ipfsGalactFetchClient'
 import { useLocalIpfsStore } from './useLocalIpfsStore'
-import { wrapperProtect } from './utils/api'
+import { wrapperProtect } from '../utils/api'
 import indexDbStore from './indexDb'
-import { objectStores } from './types/idb'
+import { objectStores } from '../types/idb'
 
 type Store = {
   status: undefined | 'idle' | 'loading' | TErrorStatus
@@ -315,7 +315,7 @@ export const useRemoteIpfsClient = create<Store>(
         const fileInfo = await remoteGetFileInfo(cid)
 
         const checkIntegrityFile = (await axios
-          .get(`${serverCheck  }/${  fileInfo.serverAlias  }/${  cid}`, {
+          .get(`${serverCheck}/${fileInfo.serverAlias}/${cid}`, {
             headers: {
               authorization: `Bearer ${api}`,
             },
@@ -332,7 +332,7 @@ export const useRemoteIpfsClient = create<Store>(
       return await wrapperProtect(set, async () => {
         const { api } = useRemoteIpfsClient.getState()
         const fileInfo = await axios
-          .get(`${fileApi  }/${  cid}`, {
+          .get(`${fileApi}/${cid}`, {
             headers: {
               authorization: `Bearer ${api}`,
             },
@@ -434,7 +434,7 @@ export const useRemoteIpfsClient = create<Store>(
         formData.append('file', file)
 
         return await axios
-          .post(`${restoreIntegrity  }/${  serverAlias.trim()}`, formData, {
+          .post(`${restoreIntegrity}/${serverAlias.trim()}`, formData, {
             headers: {
               'Content-Type': 'multipart/form-data',
               authorization: `Bearer ${api}`,
@@ -452,7 +452,7 @@ export const useRemoteIpfsClient = create<Store>(
       await wrapperProtect(set, async () => {
         const { api } = useRemoteIpfsClient.getState()
         const extraProps = await axios
-          .get(`${getExtraPropsFiles  }/${  cid}`, {
+          .get(`${getExtraPropsFiles}/${cid}`, {
             headers: {
               authorization: `Bearer ${api}`,
             },
@@ -471,7 +471,7 @@ export const useRemoteIpfsClient = create<Store>(
       await wrapperProtect(set, async () => {
         const { api } = useRemoteIpfsClient.getState()
         const response = await axios
-          .put(`${fileApi  }/${  cid}`, fileProps, {
+          .put(`${fileApi}/${cid}`, fileProps, {
             headers: {
               authorization: `Bearer ${api}`,
             },

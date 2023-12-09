@@ -1,5 +1,5 @@
 import React from 'react'
-import { ipfsGalactFetchClient } from '../ipfsGalactFetchClient'
+import { ipfsGalactFetchClient } from '../src/ipfsGalactFetchClient'
 
 export const GetFiles = () => {
   const { getFiles } = ipfsGalactFetchClient()

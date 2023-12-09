@@ -2,10 +2,6 @@ export enum ObjectStoresEnum {
   files = 'files',
 }
 
-export const objectStores = {
-  files: ObjectStoresEnum.files,
-}
-
 export type TindexDbStore = {
   status: 'iddle' | 'loading' | 'error' | null
   iDb: IDBDatabase | null

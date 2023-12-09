@@ -1,5 +1,5 @@
 import { IFileUploadResponse } from '../types'
-import { useRemoteIpfsClient } from '../useRemoteIpfsClient'
+import { useRemoteIpfsClient } from '../src/useRemoteIpfsClient'
 
 export const getServers = async (serverGetHost: string): Promise<any> => {
   const { api } = useRemoteIpfsClient.getState()

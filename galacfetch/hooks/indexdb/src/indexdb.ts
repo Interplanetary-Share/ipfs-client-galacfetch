@@ -1,5 +1,5 @@
 import { create } from 'zustand'
-import { TindexDbStore, objectStores, ObjectStoresEnum } from './types/common'
+import { TindexDbStore, ObjectStoresEnum } from '../types/common'
 
 const indexDbStore = create<TindexDbStore>()(
   (set): TindexDbStore => ({
@@ -21,7 +21,7 @@ const indexDbStore = create<TindexDbStore>()(
 
         request.onupgradeneeded = (event) => {
           const db = (event.target as IDBOpenDBRequest).result
-          db.createObjectStore(objectStores.files)
+          db.createObjectStore(ObjectStoresEnum.files)
         }
       })
     },

@@ -5,12 +5,12 @@ import {
   fileToBlobUrl,
   isFilePreloaded,
   reassembleBlob,
-} from './utils/file'
+} from '../utils/file'
 
 // TODO implement webrtc to share data between peers to avoid the use of a centralized database.
 import indexDbStore from './indexDb'
 import { ipfsGalactFetchClient } from './ipfsGalactFetchClient'
-import { objectStores } from './types/idb'
+import { objectStores } from '../types/idb'
 import { useRemoteIpfsClient } from './useRemoteIpfsClient'
 
 type Store = {

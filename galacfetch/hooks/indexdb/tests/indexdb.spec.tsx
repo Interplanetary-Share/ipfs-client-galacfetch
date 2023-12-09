@@ -1,9 +1,12 @@
 import { renderHook, act } from '@testing-library/react-hooks'
-import indexDbStore from '../indexdb'
+import indexDbStore from '../src/indexdb'
 import { TindexDbStore, ObjectStoresEnum } from '../types/common'
 import 'fake-indexeddb/auto'
 
 describe('indexDbStore', () => {
+  const id = 'someId'
+  const dataToAppend = { key: 'value' }
+
   let dbStore: TindexDbStore
 
   beforeAll(async () => {
@@ -25,9 +28,6 @@ describe('indexDbStore', () => {
     })
   })
   it('save data to the store', async () => {
-    const id = 'someId'
-    const dataToAppend = { key: 'value' }
-
     await act(async () => {
       await expect(
         dbStore.saveData(id, dataToAppend, ObjectStoresEnum.files)
@@ -35,9 +35,6 @@ describe('indexDbStore', () => {
     })
   })
   it('retrieve data from the store', async () => {
-    const id = 'someId'
-    const dataToAppend = { key: 'value' }
-
     await act(async () => {
       await expect(
         dbStore.saveData(id, dataToAppend, ObjectStoresEnum.files)
@@ -52,42 +49,36 @@ describe('indexDbStore', () => {
   })
 
   it('remove data from the store', async () => {
-    const tableName = ObjectStoresEnum.files
-    const id = 'someId'
-    const dataToAppend = { key: 'value' }
-
     await act(async () => {
       await expect(
-        dbStore.saveData(id, dataToAppend, tableName)
+        dbStore.saveData(id, dataToAppend, ObjectStoresEnum.files)
       ).resolves.not.toThrow()
     })
 
     await act(async () => {
-      await expect(dbStore.removeData(id, tableName)).resolves.not.toThrow()
+      await expect(
+        dbStore.removeData(id, ObjectStoresEnum.files)
+      ).resolves.not.toThrow()
     })
 
     let retrievedData
     await act(async () => {
-      retrievedData = await dbStore.getData(id, tableName)
+      retrievedData = await dbStore.getData(id, ObjectStoresEnum.files)
     })
 
     expect(retrievedData).toBeUndefined() // o null, dependiendo de cómo tu método getData maneje los elementos no encontrados
   })
 
   it('retrieve all keys from the store', async () => {
-    const tableName = ObjectStoresEnum.files
-    const id = 'someId'
-    const dataToAppend = { key: 'value' }
-
     await act(async () => {
       await expect(
-        dbStore.saveData(id, dataToAppend, tableName)
+        dbStore.saveData(id, dataToAppend, ObjectStoresEnum.files)
       ).resolves.not.toThrow()
     })
 
     let allKeys
     await act(async () => {
-      allKeys = await dbStore.getAllKeys(tableName)
+      allKeys = await dbStore.getAllKeys(ObjectStoresEnum.files)
     })
 
     expect(allKeys).toContain(id)

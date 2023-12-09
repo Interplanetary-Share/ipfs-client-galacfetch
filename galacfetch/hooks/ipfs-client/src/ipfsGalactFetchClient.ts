@@ -8,8 +8,8 @@ import {
   TErrorStatus,
   TFileCreationProps,
   TFileEditProps,
-} from './types/file'
-import { waitForFileReady, wrapperProtect } from './utils/api'
+} from '../types/file'
+import { waitForFileReady, wrapperProtect } from '../utils/api'
 
 import indexDbStore from './indexDb'
 import { useLocalIpfsStore } from './useLocalIpfsStore'
