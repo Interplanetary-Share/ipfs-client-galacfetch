@@ -1,4 +1,5 @@
 import subprocess
+import time
 
 
 def ejecutar_comando(comando):
@@ -20,9 +21,8 @@ ejecutar_comando('bit status')
 # Solicitar el mensaje del usuario para el tag
 mensaje_tag = input("Introduce el mensaje para el tag: ")
 
-# Preguntar al usuario si desea publicar todo (incluyendo los archivos no modificados)
 publicar_todo = input(
-    "¿Deseas publicar todos los archivos (incluyendo los no modificados)? (y/n): ").lower() == 'y'
+    "¿Publicar todos los archivos (unmodified)? (y/n): ").lower() == 'y'
 
 # Paso 3: Crear un tag con bit usando el mensaje proporcionado
 # y decidir si publicar todo o no
@@ -34,6 +34,28 @@ ejecutar_comando(comando_tag)
 ejecutar_comando("bit login")
 ejecutar_comando("bit export")
 
+# wait 3 seconds
+time.sleep(1)
+
+# Paso 4: Actualizar el repositorio local
+ejecutar_comando("git pull")
+# fetch
+time.sleep(1)
+
+ejecutar_comando("git fetch")
+time.sleep(1)
+
+# Paso 5: Actualizar el repositorio local
+
+ejecutar_comando("git pull")
+time.sleep(1)
+
+
 ejecutar_comando("git add .")
+time.sleep(1)
+
 ejecutar_comando("git commit -m ':package: update .bitmap'")
+time.sleep(1)
+
 ejecutar_comando("git push")
+time.sleep(1)
