@@ -38,6 +38,9 @@ ejecutar_comando("bit export")
 time.sleep(1)
 
 # Paso 4: Actualizar el repositorio local
+
+
+ejecutar_comando("git status")
 ejecutar_comando("git pull")
 # fetch
 time.sleep(1)
@@ -49,13 +52,15 @@ time.sleep(1)
 
 ejecutar_comando("git pull")
 time.sleep(1)
+ejecutar_comando("git status")
 
 
 ejecutar_comando("git add .")
 time.sleep(1)
 
-ejecutar_comando("git commit -m ':package: update .bitmap'")
+ejecutar_comando("git commit -m \':package: update .bitmap\'")
 time.sleep(1)
 
 ejecutar_comando("git push")
 time.sleep(1)
+ejecutar_comando("git status")
