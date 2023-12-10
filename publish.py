@@ -28,7 +28,7 @@ publicar_todo = input(
 # y decidir si publicar todo o no
 comando_tag = f'bit tag --skip-tests  --message "{mensaje_tag}"'
 if publicar_todo:
-    comando_tag += " --unmodified"
+    comando_tag += " --unmodified --ignore-issues "
 ejecutar_comando(comando_tag)
 
 ejecutar_comando("bit login")
@@ -41,18 +41,11 @@ time.sleep(1)
 
 
 ejecutar_comando("git status")
-ejecutar_comando("git pull")
 # fetch
 time.sleep(1)
 
 ejecutar_comando("git fetch")
 time.sleep(1)
-
-# Paso 5: Actualizar el repositorio local
-
-ejecutar_comando("git pull")
-time.sleep(1)
-ejecutar_comando("git status")
 
 
 ejecutar_comando("git add .")
@@ -61,7 +54,6 @@ ejecutar_comando("git status")
 
 ejecutar_comando("git commit -m \':package: update .bitmap\'")
 time.sleep(1)
-ejecutar_comando("git status")
 
 ejecutar_comando("git push")
 time.sleep(1)
