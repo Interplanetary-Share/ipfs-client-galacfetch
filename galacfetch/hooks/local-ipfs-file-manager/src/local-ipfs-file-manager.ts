@@ -1,19 +1,18 @@
 import { ObjectStoresEnum, indexDbStore } from '@intershare/hooks.indexdb'
+import { useRemoteIpfsClient } from '@intershare/hooks.ipfs-client' //TODO: change this for an splited library
 import { create } from 'zustand'
-import {
-  blobBufferToFile,
-  chunkBlobAsync,
-  fileToBlobUrl, // isFilePreloaded,
-  reassembleBlob,
-} from './utils/file'
-
 import {
   IFileUrlInfo,
   TConfig,
   TLocalIpfsFileManagerStore,
 } from './types/common'
-// TODO: change this  for an splited library
-import { useRemoteIpfsClient } from '../../ipfs-client/src/useRemoteIpfsClient'
+import {
+  blobBufferToFile,
+  chunkBlobAsync,
+  fileToBlobUrl,
+  reassembleBlob,
+} from './utils/file'
+
 import axios from 'axios'
 import { restoreIntegrity } from './types/api'
 
@@ -174,7 +173,6 @@ const localIpfsFileManager = create<TLocalIpfsFileManagerStore>(
           throw new Error('Indexed DB not initialized')
         }
 
-        // Recuperar el blob del archivo desde IndexedDB
         const fileData = await getData(cid, ObjectStoresEnum.files)
         if (!fileData) {
           throw new Error(`Archivo no encontrado en IndexedDB para CID: ${cid}`)
@@ -185,7 +183,6 @@ const localIpfsFileManager = create<TLocalIpfsFileManagerStore>(
         const formData = new FormData()
         formData.append('file', file)
 
-        // Sincronizar el archivo con el servidor remoto
         const response = await axios.post(
           `${restoreIntegrity}/${serverAlias.trim()}`,
           formData,
@@ -200,7 +197,7 @@ const localIpfsFileManager = create<TLocalIpfsFileManagerStore>(
         return response.data
       } catch (err) {
         console.error(`Error en syncFileWithRemote para CID: ${cid}`, err)
-        throw err // O manejar el error de forma más específica si es necesario
+        throw err
       }
     },
   })

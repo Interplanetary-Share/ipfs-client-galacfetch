@@ -1,4 +1,9 @@
 import { ObjectStoresEnum, indexDbStore } from '@intershare/hooks.indexdb'
+import {
+  fileToBlobUrl,
+  localIpfsFileManager,
+  reassembleBlob,
+} from '@intershare/hooks.local-ipfs-file-manager'
 import axios from 'axios'
 import { io } from 'socket.io-client'
 import { create } from 'zustand'
@@ -20,12 +25,6 @@ import {
   TServerItem,
 } from './types/file'
 import { wrapperProtect } from './utils/api'
-// TODO: update fileToBlobUrl, reassembleBlob and useLocalIpfsStore from local-ipfs-file-manager library
-import {
-  fileToBlobUrl,
-  localIpfsFileManager,
-  reassembleBlob,
-} from '../../local-ipfs-file-manager'
 
 type Store = {
   status: undefined | 'idle' | 'loading' | TErrorStatus

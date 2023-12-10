@@ -1,4 +1,5 @@
 import { indexDbStore } from '@intershare/hooks.indexdb'
+import localIpfsFileManager from '@intershare/hooks.local-ipfs-file-manager'
 import { create } from 'zustand'
 import {
   IFileRetrievalConfig,
@@ -9,9 +10,8 @@ import {
   TFileCreationProps,
   TFileEditProps,
 } from './types/file'
-import { useRemoteIpfsClient } from './useRemoteIpfsClient'
+import { useRemoteIpfsClient } from './useRemoteIpfsClient' //TODO: change this for an splited library
 import { waitForFileReady, wrapperProtect } from './utils/api'
-import localIpfsFileManager from '../../local-ipfs-file-manager'
 
 type Store = {
   status: undefined | 'idle' | 'loading' | TErrorStatus

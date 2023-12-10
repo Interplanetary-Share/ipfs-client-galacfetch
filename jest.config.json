@@ -8,6 +8,8 @@
   "testEnvironment": "jsdom",
   "setupFilesAfterEnv": ["<rootDir>/setup-jest.ts"],
   "moduleNameMapper": {
-    "^@intershare/hooks.indexdb$": "<rootDir>/galacfetch/hooks/indexdb"
+    "^@intershare/hooks.indexdb$": "<rootDir>/galacfetch/hooks/indexdb",
+    "^@intershare/hooks.local-ipfs-file-manager$": "<rootDir>/galacfetch/hooks/local-ipfs-file-manager",
+    "^@intershare/hooks.ipfs-client$": "<rootDir>/galacfetch/hooks/ipfs-client"
   }
 }

@@ -1,6 +1,6 @@
 import { indexDbStore } from '@intershare/hooks.indexdb'
+import { localIpfsFileManager } from '@intershare/hooks.local-ipfs-file-manager'
 import { useRemoteIpfsClient } from '../useRemoteIpfsClient'
-import localIpfsFileManager from '../../../local-ipfs-file-manager'
 
 export const wrapperProtect = async (set: Function, fn: Function) => {
   set({ status: 'loading' })
