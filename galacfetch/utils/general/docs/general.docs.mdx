@@ -1,0 +1,15 @@
+---
+description: 'A React Hook.'
+labels: ['hook', 'react']
+---
+
+Increments the state of count by 1 each time increment() is invoked.
+
+### Component usage
+
+```tsx
+export function MyComponent() {
+  const response = useCounter();
+  return <div onClick={response.increment}>The count is {response.count}</div>;
+}
+```

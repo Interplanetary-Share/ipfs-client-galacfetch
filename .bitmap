@@ -37,5 +37,47 @@
             }
         }
     },
+    "hooks/remote-ipfs-file-integrity": {
+        "name": "hooks/remote-ipfs-file-integrity",
+        "scope": "",
+        "version": "",
+        "defaultScope": "intershare.galacfetch",
+        "mainFile": "index.ts",
+        "rootDir": "galacfetch/hooks/remote-ipfs-file-integrity",
+        "config": {
+            "bitdev.react/react-env@1.1.8": {},
+            "teambit.envs/envs": {
+                "env": "bitdev.react/react-env"
+            }
+        }
+    },
+    "hooks/remote-ipfs-file-manager": {
+        "name": "hooks/remote-ipfs-file-manager",
+        "scope": "",
+        "version": "",
+        "defaultScope": "intershare.galacfetch",
+        "mainFile": "index.ts",
+        "rootDir": "galacfetch/hooks/remote-ipfs-file-manager",
+        "config": {
+            "bitdev.react/react-env@1.1.8": {},
+            "teambit.envs/envs": {
+                "env": "bitdev.react/react-env"
+            }
+        }
+    },
+    "utils/general": {
+        "name": "utils/general",
+        "scope": "",
+        "version": "",
+        "defaultScope": "intershare.galacfetch",
+        "mainFile": "index.ts",
+        "rootDir": "galacfetch/utils/general",
+        "config": {
+            "bitdev.react/react-env@1.1.8": {},
+            "teambit.envs/envs": {
+                "env": "bitdev.react/react-env"
+            }
+        }
+    },
     "$schema-version": "17.0.0"
 }
