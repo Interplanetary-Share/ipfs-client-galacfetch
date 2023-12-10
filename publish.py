@@ -28,7 +28,7 @@ publicar_todo = input(
 # y decidir si publicar todo o no
 comando_tag = f'bit tag --skip-tests  --message "{mensaje_tag}"'
 if publicar_todo:
-    comando_tag += " --unmodified --ignore-issues "
+    comando_tag += " --unmodified --ignore-issues \"circular\" "
 ejecutar_comando(comando_tag)
 
 ejecutar_comando("bit login")
