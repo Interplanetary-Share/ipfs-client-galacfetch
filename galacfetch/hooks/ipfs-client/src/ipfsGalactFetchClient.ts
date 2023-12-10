@@ -1,5 +1,5 @@
 import { indexDbStore } from '@intershare/hooks.indexdb'
-import localIpfsFileManager from '@intershare/hooks.local-ipfs-file-manager'
+import { localIpfsFileManager } from '@intershare/hooks.local-ipfs-file-manager'
 import { create } from 'zustand'
 import {
   IFileRetrievalConfig,
@@ -29,8 +29,6 @@ type Store = {
     file: File,
     fileProps: TFileCreationProps
   ) => Promise<IFileUploadResponse>
-  // urlFileList: IFileUrlInfo[]   Moved to localIPFSStore
-  // findPreloadFile: (cid: string) => Promise<IFileUrlInfo | undefined>
   updateFile: (
     cid: string,
     fileprops: TFileEditProps
@@ -68,7 +66,6 @@ export const ipfsGalactFetchClient = create<Store>()(
       set({ status: 'idle' })
       return response
     },
-    // urlFileList: [],   Moved to localIPFSStore
     // TODO: eliminar el token de todas las respuestas posibles de archivos.
     getFile: async (
       cid,
@@ -136,11 +133,7 @@ export const ipfsGalactFetchClient = create<Store>()(
         )
         return response
       }),
-    // findPreloadFile: async (cid: string) =>
-    //   await wrapperProtect(set, async () => {
-    //     const { urlFileList } = ipfsGalactFetchClient.getState()
-    //     return urlFileList.find((file) => file.cid === cid)
-    //   }),
+
     uploadFile: async (file: File, fileProps: TFileCreationProps) =>
       await wrapperProtect(set, async () => {
         const { remoteUploadFile } = useRemoteIpfsClient.getState()

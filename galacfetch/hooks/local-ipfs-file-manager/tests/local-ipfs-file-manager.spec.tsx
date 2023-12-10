@@ -1,7 +1,7 @@
 import { TindexDbStore, indexDbStore } from '@intershare/hooks.indexdb'
+import { localIpfsFileManager } from '@intershare/hooks.local-ipfs-file-manager'
 import { act, renderHook } from '@testing-library/react-hooks'
 import 'fake-indexeddb/auto'
-import localIpfsFileManager from '../src/local-ipfs-file-manager'
 import { TLocalIpfsFileManagerStore } from '../src/types/common'
 
 describe('localIpfsFileManager', () => {
