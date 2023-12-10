@@ -1,7 +1,6 @@
 import { indexDbStore } from '@intershare/hooks.indexdb'
-import { ipfsGalactFetchClient } from '../ipfsGalactFetchClient'
 import { useRemoteIpfsClient } from '../useRemoteIpfsClient'
-import { isFilePreloaded } from './file'
+import localIpfsFileManager from '../../../local-ipfs-file-manager'
 
 export const wrapperProtect = async (set: Function, fn: Function) => {
   set({ status: 'loading' })
@@ -62,9 +61,8 @@ export const waitForFileReady = (cid: string, maxRetries = 15) => {
 
   return new Promise((resolve, reject) => {
     const checkFileStatus = () => {
-      const { urlFileList } = ipfsGalactFetchClient.getState()
-
-      if (isFilePreloaded(urlFileList, cid)) {
+      const { findPreloadFile } = localIpfsFileManager.getState()
+      if (findPreloadFile(cid)) {
         resolve(true)
       } else if (retries < maxRetries) {
         // TODO: add somithing like progress or something like that...

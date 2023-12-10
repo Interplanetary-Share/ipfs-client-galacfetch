@@ -4,15 +4,14 @@ import {
   IFileRetrievalConfig,
   IFileRetrievalResponse,
   IFileUploadResponse,
-  IFileUrlInfo,
   IPaginationAndSortingParams,
   TErrorStatus,
   TFileCreationProps,
   TFileEditProps,
 } from './types/file'
-import { useLocalIpfsStore } from './useLocalIpfsStore'
 import { useRemoteIpfsClient } from './useRemoteIpfsClient'
 import { waitForFileReady, wrapperProtect } from './utils/api'
+import localIpfsFileManager from '../../local-ipfs-file-manager'
 
 type Store = {
   status: undefined | 'idle' | 'loading' | TErrorStatus
@@ -30,8 +29,8 @@ type Store = {
     file: File,
     fileProps: TFileCreationProps
   ) => Promise<IFileUploadResponse>
-  urlFileList: IFileUrlInfo[]
-  findPreloadFile: (cid: string) => Promise<IFileUrlInfo | undefined>
+  // urlFileList: IFileUrlInfo[]   Moved to localIPFSStore
+  // findPreloadFile: (cid: string) => Promise<IFileUrlInfo | undefined>
   updateFile: (
     cid: string,
     fileprops: TFileEditProps
@@ -69,7 +68,7 @@ export const ipfsGalactFetchClient = create<Store>()(
       set({ status: 'idle' })
       return response
     },
-    urlFileList: [],
+    // urlFileList: [],   Moved to localIPFSStore
     // TODO: eliminar el token de todas las respuestas posibles de archivos.
     getFile: async (
       cid,
@@ -81,12 +80,12 @@ export const ipfsGalactFetchClient = create<Store>()(
       }
     ) =>
       await wrapperProtect(set, async () => {
-        const { localGetFile } = useLocalIpfsStore.getState()
+        const { getLocalFileUrl, findPreloadFile } =
+          localIpfsFileManager.getState()
         const { remoteGetFile, remotegetFileExtraProps, remoteGetFileInfo } =
           useRemoteIpfsClient.getState()
-        const { findPreloadFile } = ipfsGalactFetchClient.getState()
 
-        const isFile = await localGetFile(cid)
+        const isFile = await getLocalFileUrl(cid)
 
         if (!isFile) await remoteGetFile(cid)
 
@@ -94,9 +93,7 @@ export const ipfsGalactFetchClient = create<Store>()(
           await waitForFileReady(cid)
         }
 
-        const url = config.showBlobUrl
-          ? (await findPreloadFile(cid))?.url
-          : undefined
+        const url = config.showBlobUrl ? findPreloadFile(cid)?.url : undefined
 
         const info = config.showInfoFile
           ? await remoteGetFileInfo(cid)
@@ -139,11 +136,11 @@ export const ipfsGalactFetchClient = create<Store>()(
         )
         return response
       }),
-    findPreloadFile: async (cid: string) =>
-      await wrapperProtect(set, async () => {
-        const { urlFileList } = ipfsGalactFetchClient.getState()
-        return urlFileList.find((file) => file.cid === cid)
-      }),
+    // findPreloadFile: async (cid: string) =>
+    //   await wrapperProtect(set, async () => {
+    //     const { urlFileList } = ipfsGalactFetchClient.getState()
+    //     return urlFileList.find((file) => file.cid === cid)
+    //   }),
     uploadFile: async (file: File, fileProps: TFileCreationProps) =>
       await wrapperProtect(set, async () => {
         const { remoteUploadFile } = useRemoteIpfsClient.getState()

@@ -7,13 +7,11 @@ import {
   fileUpload,
   getAllFiles,
   getExtraPropsFiles,
-  restoreIntegrity,
   serverCheck,
   serverGetHost,
 } from './types/api'
 import {
   IDownloadChunkInfo,
-  IFileUrlInfo,
   IPaginationAndSortingParams,
   IRemoteFileInfo,
   TErrorStatus,
@@ -22,20 +20,18 @@ import {
   TServerItem,
 } from './types/file'
 import { wrapperProtect } from './utils/api'
+// TODO: update fileToBlobUrl, reassembleBlob and useLocalIpfsStore from local-ipfs-file-manager library
 import {
-  blobBufferToFile,
   fileToBlobUrl,
-  isFilePreloaded,
+  localIpfsFileManager,
   reassembleBlob,
-} from './utils/file'
-import { ipfsGalactFetchClient } from './ipfsGalactFetchClient'
-import { useLocalIpfsStore } from './useLocalIpfsStore'
+} from '../../local-ipfs-file-manager'
 
 type Store = {
   status: undefined | 'idle' | 'loading' | TErrorStatus
   servers: TServerItem[]
   init: (api: string) => Promise<void>
-  addNewBlobUrl: (urlFile: IFileUrlInfo) => void
+  // addNewBlobUrl: (urlFile: IFileUrlInfo) => void // MOVED TO LOCALIPFSSTORE
   api: string | null
   remoteCheckIntegrityFile: (cid: string) => Promise<Boolean>
   remoteGetFileInfo: (cid: string) => Promise<IRemoteFileInfo>
@@ -48,7 +44,7 @@ type Store = {
     file: File,
     fileProps: TFileCreationProps
   ) => Promise<IRemoteFileInfo>
-  remoteRestoreIntegrityFile: (blob: Blob, cid: string) => Promise<void>
+
   remotegetFileExtraProps: (cid: string) => Promise<any> // TODO add response promises
   remoteUpdateFile: (
     cid: string,
@@ -101,8 +97,8 @@ export const useRemoteIpfsClient = create<Store>(
       set({ api })
     },
     connectToSocket: (url, api) => {
-      const { addNewBlobUrl } = useRemoteIpfsClient.getState()
-      const { localAddFile, localGetFile } = useLocalIpfsStore.getState()
+      const { uploadBlobAndCreateUrl, getLocalFileUrl, addNewBlobUrl } =
+        localIpfsFileManager.getState()
       const { getData } = indexDbStore.getState()
 
       return new Promise((resolve) => {
@@ -165,7 +161,7 @@ export const useRemoteIpfsClient = create<Store>(
           const message = JSON.parse(event.data)
 
           if (message.type === 'checkFile') {
-            const isFile = await localGetFile(message.cid)
+            const isFile = await getLocalFileUrl(message.cid)
             if (!isFile) {
               dataChannel.send(
                 JSON.stringify({
@@ -178,7 +174,7 @@ export const useRemoteIpfsClient = create<Store>(
           }
 
           if (message.type === 'fileStatus' && !message.hasFile) {
-            const isFile = await localGetFile(message.cid)
+            const isFile = await getLocalFileUrl(message.cid)
             if (isFile) {
               // alguien esta pidiendo el archivo. enviarlo. si lo tengo en  local.
 
@@ -229,7 +225,7 @@ export const useRemoteIpfsClient = create<Store>(
 
           if (message.type === 'sendChunk') {
             // alguien ha enviado el archivo. recibirlo. si no lo tengo en local.
-            const isFile = await localGetFile(message.cid)
+            const isFile = await getLocalFileUrl(message.cid)
             if (!isFile) {
               if (message.status === 1) {
                 bufferList[message.cid] = []
@@ -250,7 +246,7 @@ export const useRemoteIpfsClient = create<Store>(
                   cid: message.cid,
                   url,
                 })
-                localAddFile(blob, message.cid)
+                uploadBlobAndCreateUrl(message.cid, blob)
 
                 bufferList[message.cid] = []
               }
@@ -294,22 +290,14 @@ export const useRemoteIpfsClient = create<Store>(
               const temporalBlobFile = new Blob(blobList[cid], { type })
               const url = fileToBlobUrl(temporalBlobFile)
               addNewBlobUrl({ url, cid })
-              localAddFile(temporalBlobFile, cid)
+              uploadBlobAndCreateUrl(cid, temporalBlobFile)
               blobList[cid] = []
             }
           }
         )
       })
     },
-    // TODO: move this to ipfslocal or galactfetchClient
-    addNewBlobUrl: (blobToAdd: IFileUrlInfo) => {
-      const { urlFileList } = ipfsGalactFetchClient.getState()
-      if (!isFilePreloaded(urlFileList, blobToAdd.cid)) {
-        ipfsGalactFetchClient.setState({
-          urlFileList: [...urlFileList, blobToAdd],
-        })
-      }
-    },
+
     remoteCheckIntegrityFile: async (cid: string) => {
       return await wrapperProtect(set, async () => {
         const { api, remoteGetFileInfo } = useRemoteIpfsClient.getState()
@@ -384,7 +372,7 @@ export const useRemoteIpfsClient = create<Store>(
     remoteUploadFile: async (file: File, fileProps) =>
       await wrapperProtect(set, async () => {
         const { api } = useRemoteIpfsClient.getState()
-        const { localAddFile } = useLocalIpfsStore.getState()
+        const { uploadBlobAndCreateUrl } = localIpfsFileManager.getState()
 
         const { name, description, extraProperties, isPublic } = fileProps
 
@@ -411,7 +399,7 @@ export const useRemoteIpfsClient = create<Store>(
             const {
               meta: { cid },
             } = res.data
-            localAddFile(blob, cid)
+            uploadBlobAndCreateUrl(cid, blob)
             return res.data
           })
           .catch((err) => {
@@ -419,34 +407,6 @@ export const useRemoteIpfsClient = create<Store>(
           })
 
         return response
-      }),
-
-    remoteRestoreIntegrityFile: async (blob: Blob, cid: string) =>
-      await wrapperProtect(set, async () => {
-        const { api, remoteGetFileInfo } = useRemoteIpfsClient.getState()
-        const { localAddFile } = useLocalIpfsStore.getState()
-
-        const infoFile = await remoteGetFileInfo(cid)
-        const { serverAlias } = infoFile
-
-        const file = blobBufferToFile(blob, cid)
-        await localAddFile(blob, cid)
-        const formData = new FormData()
-        formData.append('file', file)
-
-        return await axios
-          .post(`${restoreIntegrity}/${serverAlias.trim()}`, formData, {
-            headers: {
-              'Content-Type': 'multipart/form-data',
-              authorization: `Bearer ${api}`,
-            },
-          })
-          .then((res) => {
-            return res.data
-          })
-          .catch((err) => {
-            console.error(err)
-          })
       }),
 
     remotegetFileExtraProps: async (cid: string) =>

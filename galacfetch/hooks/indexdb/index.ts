@@ -1,5 +1,5 @@
 import indexDbStore from './src/indexdb'
-import { TindexDbStore } from './src/types/common1'
+import { TindexDbStore } from './src/types/common'
 import { ObjectStoresEnum } from './src/types/enum'
 
 export { indexDbStore }

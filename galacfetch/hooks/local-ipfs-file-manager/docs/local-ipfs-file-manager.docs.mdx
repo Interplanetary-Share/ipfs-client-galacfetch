@@ -1,0 +1,95 @@
+---
+description: 'Local IPFS File Manager for managing files with IndexedDB integration'
+labels:
+  [
+    'local file management',
+    'IPFS',
+    'IndexedDB',
+    'file synchronization',
+    'react',
+  ]
+---
+
+## Local IPFS File Manager
+
+This store provides a comprehensive solution for managing files locally while ensuring synchronization with remote IPFS servers. It integrates with IndexedDB for local storage and interacts with remote IPFS servers for file integrity checks and synchronization.
+
+### How to Use
+
+To utilize this store, import and initialize it in your React component.
+
+```javascript
+import localIpfsFileManager from 'path/to/localIpfsFileManager'
+```
+
+### Configuration
+
+Set or update the store configuration as needed.
+
+```javascript
+localIpfsFileManager.getState().setConfig({
+  remote: {
+    enabled: true,
+    integrity: {
+      check: true,
+      sync: true,
+    },
+  },
+})
+```
+
+### Get Local File URL
+
+Retrieve the URL of a local file by its CID.
+
+```javascript
+const url = await localIpfsFileManager.getState().getLocalFileUrl('yourCID')
+```
+
+### Upload Blob and Create URL
+
+Upload a Blob object and create a URL for it.
+
+```javascript
+const cid = await localIpfsFileManager
+  .getState()
+  .uploadBlobAndCreateUrl('yourCID', blob)
+```
+
+### Remove File by CID
+
+Remove a file from local storage by its CID.
+
+```javascript
+await localIpfsFileManager.getState().removeFileByCid('yourCID')
+```
+
+### Utility Functions
+
+#### Find Preloaded File
+
+Find a preloaded file in the local store.
+
+```javascript
+const file = localIpfsFileManager.getState().findPreloadFile('yourCID')
+```
+
+#### Add New Blob URL
+
+Add a new Blob URL to the store.
+
+```javascript
+localIpfsFileManager
+  .getState()
+  .addNewBlobUrl({ cid: 'yourCID', url: 'blobURL' })
+```
+
+#### Sync File with Remote
+
+Synchronize a local file with its remote version on the IPFS server.
+
+```javascript
+await localIpfsFileManager.getState().syncFileWithRemote('yourCID')
+```
+
+The store ensures efficient management of local files with capabilities like adding, retrieving, and removing files, along with synchronization with remote servers for data integrity and consistency.

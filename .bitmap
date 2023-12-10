@@ -23,5 +23,19 @@
         "mainFile": "index.ts",
         "rootDir": "galacfetch/hooks/ipfs-client"
     },
+    "hooks/local-ipfs-file-manager": {
+        "name": "hooks/local-ipfs-file-manager",
+        "scope": "",
+        "version": "",
+        "defaultScope": "intershare.galacfetch",
+        "mainFile": "index.ts",
+        "rootDir": "galacfetch/hooks/local-ipfs-file-manager",
+        "config": {
+            "bitdev.react/react-env@1.1.8": {},
+            "teambit.envs/envs": {
+                "env": "bitdev.react/react-env"
+            }
+        }
+    },
     "$schema-version": "17.0.0"
 }

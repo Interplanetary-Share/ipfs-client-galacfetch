@@ -7,8 +7,8 @@ export const serverGetHost = `${serverApi}/get/host`
 export const serverCheck = `${serverApi}/check`
 
 // File
-export const fileApi = `${baseApi}/file`
+export const fileApi = `${baseApi}/file` // TODO: this is in local-ipfs-file-manager
 export const fileUpload = `${fileApi}/upload`
 export const getAllFiles = `${fileApi}/files`
 export const getExtraPropsFiles = `${fileApi}/extra`
-export const restoreIntegrity = `${fileApi}/restore/integrity`
+export const restoreIntegrity = `${fileApi}/restore/integrity` // TODO: this is in local-ipfs-file-manager

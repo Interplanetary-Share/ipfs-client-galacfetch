@@ -1,9 +1,3 @@
-// URL and File Information
-export interface IFileUrlInfo {
-  url: string
-  cid: string
-}
-
 // Configuration for File Retrieval
 export interface IFileRetrievalConfig {
   showBlobUrl?: boolean

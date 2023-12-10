@@ -1,7 +1,7 @@
 import { renderHook, act } from '@testing-library/react-hooks'
 import indexDbStore from '../src/indexdb'
 import 'fake-indexeddb/auto'
-import { TindexDbStore } from '../src/types/common1'
+import { TStats, TindexDbStore } from '../src/types/common'
 import { ObjectStoresEnum } from '../src/types/enum'
 
 describe('indexDbStore', () => {
@@ -83,5 +83,49 @@ describe('indexDbStore', () => {
     })
 
     expect(allKeys).toContain(id)
+  })
+
+  it('get the table stats in bytes', async () => {
+    await act(async () => {
+      await expect(
+        dbStore.saveData(id, dataToAppend, ObjectStoresEnum.files)
+      ).resolves.not.toThrow()
+    })
+
+    let tableStats: TStats
+    await act(async () => {
+      tableStats = await dbStore.getTableStats(ObjectStoresEnum.files)
+      expect(tableStats.size).toBeGreaterThanOrEqual(15)
+    })
+  })
+
+  it('check garbage collection', async () => {
+    await act(async () => {
+      await expect(
+        dbStore.saveData(id, dataToAppend, ObjectStoresEnum.files)
+      ).resolves.not.toThrow()
+    })
+
+    await act(async () => {
+      dbStore.setConfig({
+        maxSizeByTable: 1,
+      })
+    })
+
+    let retrievedData
+    await act(async () => {
+      retrievedData = await dbStore.getData(id, ObjectStoresEnum.files)
+      expect(retrievedData).toEqual(dataToAppend)
+    })
+
+    // Check that the data is removed after garbage collection
+    await act(async () => {
+      await expect(dbStore.checkGarbageCollector()).resolves.not.toThrow()
+    })
+
+    await act(async () => {
+      retrievedData = await dbStore.getData(id, ObjectStoresEnum.files)
+      expect(retrievedData).toBeUndefined()
+    })
   })
 })

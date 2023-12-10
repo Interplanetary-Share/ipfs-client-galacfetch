@@ -1,7 +1,7 @@
 /**
  * this is the main configuration file of your bit workspace.
  * for full documentation, please see: https://bit.dev/docs/workspace/workspace-configuration
- **/ {
+ **/{
   "$schema": "https://static.bit.dev/teambit/schemas/schema.json",
   /**
    * main configuration of the Bit workspace.
@@ -53,6 +53,7 @@
         "zustand": "^4.4.1"
       },
       "peerDependencies": {
+        "@faker-js/faker": "^8.3.1",
         "@testing-library/jest-dom": "^6.1.5",
         "@testing-library/react": "^14.0.0",
         "@testing-library/react-hooks": "^8.0.1",
@@ -63,11 +64,9 @@
         "ts-jest": "^29.1.1"
       }
     },
-
     "linkCoreAspects": true,
     "rootComponents": true
   },
-
   /**
    * workspace variants allow to set different subsets of configuration for components in your
    * workspace. this is extremely useful for upgrading, aligning and building components with a new
@@ -78,7 +77,9 @@
   "teambit.workspace/variants": {
     "*": {
       "teambit.pkg/pkg": {
-        "packageManagerPublishArgs": ["--access public"],
+        "packageManagerPublishArgs": [
+          "--access public"
+        ],
         "packageJson": {
           "private": false,
           "name": "@intershare/{name}",

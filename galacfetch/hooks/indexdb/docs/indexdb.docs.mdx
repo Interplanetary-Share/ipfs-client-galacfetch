@@ -9,19 +9,64 @@ Functions to interact with IndexedDB for ipfsClientGalacFetch in React.
 
 Import the store and use it in your component.
 
-Current Object Stores
+Current Types and Enums:
 
 ```
 export enum ObjectStoresEnum {
   files = 'files',
+  stats = 'stats',
+}
+
+export type TStats = {
+  size: number
+}
+
+export type TConfig = {
+  maxSizeByTable: number | undefined
+  garbageCollector: {
+    enabled: boolean
+    interval: number
+    strategy: 'lru'
+  }
+}
+
+export interface TindexDbStore {
+  config: TConfig
+  setConfig: (newConfig: Partial<TConfig>) => void
+
+  status: 'iddle' | 'loading' | 'error' | null
+  iDb: IDBDatabase | null
+  initIndexedDb: (dbName: string) => Promise<IDBDatabase>
+  saveData: (
+    id: string,
+    dataToAppend: object,
+    tableName: ObjectStoresEnum
+  ) => Promise<void>
+  getData: (id: string, tableName: ObjectStoresEnum) => Promise<any>
+  removeData: (id: string, tableName: ObjectStoresEnum) => Promise<void>
+  getAllKeys: (tableName: string) => Promise<IDBValidKey[] | undefined>
+  getTableStats: (tableName: string) => Promise<TStats>
+  checkGarbageCollector: () => Promise<void>
 }
 
 
 ```
 
-#### Initialize IndexedDB
+### Configuration
 
-Inicializa la base de datos IndexedDB.
+Set the configuration of the indexDbStore. The configuration is optional. If you don't set the configuration, the default values will be used.
+
+```javascript
+const { setConfig } = indexDbStore()
+setConfig({
+  maxSizeByTable: 1000000,
+  garbageCollector: { enabled: true, interval: 60000 },
+})
+```
+
+### Initialize IndexedDB
+
+Initialize the IndexedDB with the name of the database.
 
 ```javascript
 const { initIndexedDb } = indexDbStore()
@@ -62,4 +107,26 @@ Get all keys from an objectStore
 ```javascript
 const { getAllKeys } = indexDbStore()
 const keys = await getAllKeys(ObjectStoresEnum.files)
+```
+
+### GarbageCollector
+
+The garbage collector is a function that deletes the oldest data from the database. It is optional and can be configured. If you don't set the configuration, the default values will be used.
+
+it is automatically executed with the interval that you set in the configuration with lru configuration.
+
+You can also execute it manually.
+
+```javascript
+const { checkGarbageCollector } = indexDbStore()
+await checkGarbageCollector()
+```
+
+### Statistics of a table
+
+Get the statistics of a table like the size in bytes.
+
+```javascript
+const { getTableStats } = indexDbStore()
+const stats = await getTableStats(ObjectStoresEnum.files)
 ```
