@@ -11,7 +11,7 @@ describe('indexDbStore', () => {
   let dbStore: TindexDbStore
 
   beforeAll(async () => {
-    global.structuredClone = (val) => JSON.parse(JSON.stringify(val))
+    globalThis.structuredClone = (val) => JSON.parse(JSON.stringify(val))
 
     const { result, waitForNextUpdate } = renderHook(() => indexDbStore())
     dbStore = result.current
