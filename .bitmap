@@ -68,16 +68,10 @@
     "utils/general": {
         "name": "utils/general",
         "scope": "",
-        "version": "",
+        "version": "0.0.1",
         "defaultScope": "intershare.galacfetch",
         "mainFile": "index.ts",
-        "rootDir": "galacfetch/utils/general",
-        "config": {
-            "bitdev.react/react-env@1.1.8": {},
-            "teambit.envs/envs": {
-                "env": "bitdev.react/react-env"
-            }
-        }
+        "rootDir": "galacfetch/utils/general"
     },
     "$schema-version": "17.0.0"
 }
