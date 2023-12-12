@@ -6,7 +6,7 @@ import {
 } from './../src/files'
 import { faker } from '@faker-js/faker'
 describe('utils file', () => {
-  global.URL.createObjectURL = jest.fn(
+  globalThis.URL.createObjectURL = jest.fn(
     (blob: any) => `blob:${blob.size}#t=${Date.now()}`
   )
 
