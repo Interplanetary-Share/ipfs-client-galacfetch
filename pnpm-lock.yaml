@@ -240,9 +240,6 @@ importers:
       react-dom:
         specifier: ^16.8.0 || ^17.0.0
         version: 17.0.2(react@17.0.2)
-      zustand:
-        specifier: ^4.4.7
-        version: 4.4.7(@types/react@17.0.71)(react@17.0.2)
     devDependencies:
       '@babel/runtime':
         specifier: 7.20.0
@@ -530,6 +527,88 @@ importers:
         specifier: ^5.9.5
         version: 5.9.5
 
+  galacfetch/ipfsgalactfetchclient:
+    dependencies:
+      '@apollo/client':
+        specifier: ^3.8.8
+        version: 3.8.8(graphql@15.8.0)(react-dom@18.2.0)(react@18.2.0)
+      '@mdx-js/mdx':
+        specifier: ^1.6.22
+        version: 1.6.22
+      '@mdx-js/react':
+        specifier: 1.6.22
+        version: 1.6.22(react@18.2.0)
+      '@teambit/mdx.ui.mdx-scope-context':
+        specifier: 1.0.0
+        version: 1.0.0(react-dom@18.2.0)(react@18.2.0)
+      '@types/jest':
+        specifier: ^29.2.2
+        version: 29.5.11
+      '@types/react':
+        specifier: 18.2.23
+        version: 18.2.23
+      '@types/react-dom':
+        specifier: ^18.2.5
+        version: 18.2.17
+      browserslist:
+        specifier: 4.21.4
+        version: 4.21.4
+      eslint-plugin-import:
+        specifier: 2.22.1
+        version: 2.22.1(eslint@8.55.0)
+      eslint-plugin-jest:
+        specifier: 24.1.5
+        version: 24.1.5(eslint@8.55.0)
+      eslint-plugin-jsx-a11y:
+        specifier: 6.4.1
+        version: 6.4.1(eslint@8.55.0)
+      eslint-plugin-mdx:
+        specifier: 1.13.0
+        version: 1.13.0(eslint@8.55.0)
+      eslint-plugin-react:
+        specifier: 7.22.0
+        version: 7.22.0(eslint@8.55.0)
+      eslint-plugin-react-hooks:
+        specifier: 4.2.0
+        version: 4.2.0(eslint@8.55.0)
+      graphql:
+        specifier: 15.8.0
+        version: 15.8.0
+      jsdom:
+        specifier: ^23.0.1
+        version: 23.0.1
+      pino-pretty:
+        specifier: 4.5.0
+        version: 4.5.0
+      react:
+        specifier: ^18.0.0
+        version: 18.2.0
+      react-dom:
+        specifier: ^18.0.0
+        version: 18.2.0(react@18.2.0)
+      react-router-dom:
+        specifier: ^6.16.0
+        version: 6.20.1(react-dom@18.2.0)(react@18.2.0)
+      sass:
+        specifier: ^1.69.5
+        version: 1.69.5
+      vitest:
+        specifier: ^1.0.0
+        version: 1.0.2(@types/node@12.20.4)(jsdom@23.0.1)(sass@1.69.5)
+      webpack:
+        specifier: ^5.88.2
+        version: 5.89.0
+      zustand:
+        specifier: ^4.4.7
+        version: 4.4.7(@types/react@18.2.23)(react@18.2.0)
+    devDependencies:
+      '@bitdev/react.react-env':
+        specifier: 1.1.8
+        version: 1.1.8(@teambit/legacy@node_modules+@teambit+legacy)(@testing-library/react@14.1.2)(@types/node@12.20.4)
+      '@types/testing-library__jest-dom':
+        specifier: ^5.9.5
+        version: 5.9.5
+
   galacfetch/utils/general:
     dependencies:
       '@apollo/client':
@@ -625,7 +704,7 @@ importers:
         version: file:galacfetch/hooks/indexdb(@faker-js/faker@8.3.1)(@types/node@12.20.4)(eslint@8.55.0)(fake-indexeddb@5.0.1)
       '@intershare/hooks.ipfs-client':
         specifier: workspace:*
-        version: file:galacfetch/hooks/ipfs-client(@faker-js/faker@8.3.1)(@types/node@12.20.4)(@types/react@18.2.23)(eslint@8.55.0)(fake-indexeddb@5.0.1)(react-dom@18.2.0)(react@18.2.0)
+        version: file:galacfetch/hooks/ipfs-client(react-dom@18.2.0)(react@18.2.0)
       '@intershare/hooks.local-ipfs-file-manager':
         specifier: workspace:*
         version: file:galacfetch/hooks/local-ipfs-file-manager(@faker-js/faker@8.3.1)(@types/node@12.20.4)(eslint@8.55.0)(fake-indexeddb@5.0.1)
@@ -635,6 +714,9 @@ importers:
       '@intershare/hooks.remote-ipfs-file-manager':
         specifier: workspace:*
         version: file:galacfetch/hooks/remote-ipfs-file-manager(@faker-js/faker@8.3.1)(@types/node@12.20.4)(eslint@8.55.0)(fake-indexeddb@5.0.1)
+      '@intershare/ipfsgalactfetchclient':
+        specifier: workspace:*
+        version: file:galacfetch/ipfsgalactfetchclient(@faker-js/faker@8.3.1)(@types/node@12.20.4)(eslint@8.55.0)(fake-indexeddb@5.0.1)
       '@intershare/utils.general':
         specifier: workspace:*
         version: file:galacfetch/utils/general(@faker-js/faker@8.3.1)(@types/node@12.20.4)(eslint@8.55.0)
@@ -715,6 +797,8 @@ importers:
         injected: true
       '@intershare/hooks.remote-ipfs-file-manager':
         injected: true
+      '@intershare/ipfsgalactfetchclient':
+        injected: true
       '@intershare/utils.general':
         injected: true
 
@@ -725,7 +809,7 @@ importers:
         version: file:galacfetch/hooks/indexdb(@faker-js/faker@8.3.1)(@types/node@12.20.4)(eslint@8.55.0)(fake-indexeddb@5.0.1)
       '@intershare/hooks.ipfs-client':
         specifier: workspace:*
-        version: file:galacfetch/hooks/ipfs-client(@faker-js/faker@8.3.1)(@types/node@12.20.4)(@types/react@18.2.23)(eslint@8.55.0)(fake-indexeddb@5.0.1)(react-dom@17.0.2)(react@17.0.2)
+        version: file:galacfetch/hooks/ipfs-client(react-dom@17.0.2)(react@17.0.2)
       '@intershare/hooks.local-ipfs-file-manager':
         specifier: workspace:*
         version: file:galacfetch/hooks/local-ipfs-file-manager(@faker-js/faker@8.3.1)(@types/node@12.20.4)(eslint@8.55.0)(fake-indexeddb@5.0.1)
@@ -735,6 +819,9 @@ importers:
       '@intershare/hooks.remote-ipfs-file-manager':
         specifier: workspace:*
         version: file:galacfetch/hooks/remote-ipfs-file-manager(@faker-js/faker@8.3.1)(@types/node@12.20.4)(eslint@8.55.0)(fake-indexeddb@5.0.1)
+      '@intershare/ipfsgalactfetchclient':
+        specifier: workspace:*
+        version: file:galacfetch/ipfsgalactfetchclient(@faker-js/faker@8.3.1)(@types/node@12.20.4)(eslint@8.55.0)(fake-indexeddb@5.0.1)
       '@intershare/utils.general':
         specifier: workspace:*
         version: file:galacfetch/utils/general(@faker-js/faker@8.3.1)(@types/node@12.20.4)(eslint@8.55.0)
@@ -754,6 +841,8 @@ importers:
       '@intershare/hooks.remote-ipfs-file-integrity':
         injected: true
       '@intershare/hooks.remote-ipfs-file-manager':
+        injected: true
+      '@intershare/ipfsgalactfetchclient':
         injected: true
       '@intershare/utils.general':
         injected: true
@@ -20872,17 +20961,6 @@ packages:
     dependencies:
       react: 18.2.0
 
-  /use-sync-external-store@1.2.0(react@17.0.2):
-    resolution: {integrity: sha512-eEgnFxGQ1Ife9bzYs6VLi8/4X6CObHMw9Qr9tPY43iKwsPw8xE8+EFsf/2cFZ5S3esXgpWgtSCtLNS41F+sKPA==}
-    peerDependencies:
-      react: '*'
-    peerDependenciesMeta:
-      react:
-        optional: true
-    dependencies:
-      react: 17.0.2
-    dev: false
-
   /use-sync-external-store@1.2.0(react@18.2.0):
     resolution: {integrity: sha512-eEgnFxGQ1Ife9bzYs6VLi8/4X6CObHMw9Qr9tPY43iKwsPw8xE8+EFsf/2cFZ5S3esXgpWgtSCtLNS41F+sKPA==}
     peerDependencies:
@@ -21554,46 +21632,6 @@ packages:
   /zen-observable@0.8.15:
     resolution: {integrity: sha512-PQ2PC7R9rslx84ndNBZB/Dkv8V8fZEpk83RLgXtYd0fwUgEjseMn1Dgajh2x6S8QbZAFa9p2qVCEuYZNgve0dQ==}
 
-  /zustand@4.4.7(@types/react@17.0.71)(react@17.0.2):
-    resolution: {integrity: sha512-QFJWJMdlETcI69paJwhSMJz7PPWjVP8Sjhclxmxmxv/RYI7ZOvR5BHX+ktH0we9gTWQMxcne8q1OY8xxz604gw==}
-    engines: {node: '>=12.7.0'}
-    peerDependencies:
-      '@types/react': '*'
-      immer: '*'
-      react: '*'
-    peerDependenciesMeta:
-      '@types/react':
-        optional: true
-      immer:
-        optional: true
-      react:
-        optional: true
-    dependencies:
-      '@types/react': 17.0.71
-      react: 17.0.2
-      use-sync-external-store: 1.2.0(react@17.0.2)
-    dev: false
-
-  /zustand@4.4.7(@types/react@18.2.23)(react@17.0.2):
-    resolution: {integrity: sha512-QFJWJMdlETcI69paJwhSMJz7PPWjVP8Sjhclxmxmxv/RYI7ZOvR5BHX+ktH0we9gTWQMxcne8q1OY8xxz604gw==}
-    engines: {node: '>=12.7.0'}
-    peerDependencies:
-      '@types/react': '*'
-      immer: '*'
-      react: '*'
-    peerDependenciesMeta:
-      '@types/react':
-        optional: true
-      immer:
-        optional: true
-      react:
-        optional: true
-    dependencies:
-      '@types/react': 18.2.23
-      react: 17.0.2
-      use-sync-external-store: 1.2.0(react@17.0.2)
-    dev: false
-
   /zustand@4.4.7(@types/react@18.2.23)(react@18.2.0):
     resolution: {integrity: sha512-QFJWJMdlETcI69paJwhSMJz7PPWjVP8Sjhclxmxmxv/RYI7ZOvR5BHX+ktH0we9gTWQMxcne8q1OY8xxz604gw==}
     engines: {node: '>=12.7.0'}
@@ -21686,59 +21724,6 @@ packages:
       - webpack-cli
     dev: false
 
-  file:galacfetch/hooks/ipfs-client(@faker-js/faker@8.3.1)(@types/node@12.20.4)(@types/react@18.2.23)(eslint@8.55.0)(fake-indexeddb@5.0.1)(react-dom@17.0.2)(react@17.0.2):
-    resolution: {directory: galacfetch/hooks/ipfs-client, type: directory}
-    id: file:galacfetch/hooks/ipfs-client
-    name: '@intershare/hooks.ipfs-client'
-    peerDependencies:
-      react: '*'
-      react-dom: '*'
-    peerDependenciesMeta:
-      react:
-        optional: true
-      react-dom:
-        optional: true
-    dependencies:
-      '@intershare/hooks.indexdb': file:galacfetch/hooks/indexdb(@faker-js/faker@8.3.1)(@types/node@12.20.4)(eslint@8.55.0)(fake-indexeddb@5.0.1)
-      '@intershare/hooks.local-ipfs-file-manager': file:galacfetch/hooks/local-ipfs-file-manager(@faker-js/faker@8.3.1)(@types/node@12.20.4)(eslint@8.55.0)(fake-indexeddb@5.0.1)
-      axios: 1.6.2
-      core-js: 3.34.0
-      react: 17.0.2
-      react-dom: 17.0.2(react@17.0.2)
-      socket.io-client: 4.7.2
-      zustand: 4.4.7(@types/react@18.2.23)(react@17.0.2)
-    transitivePeerDependencies:
-      - '@edge-runtime/vm'
-      - '@faker-js/faker'
-      - '@swc/core'
-      - '@types/node'
-      - '@types/react'
-      - '@typescript-eslint/parser'
-      - '@vitest/browser'
-      - '@vitest/ui'
-      - bufferutil
-      - canvas
-      - esbuild
-      - eslint
-      - eslint-import-resolver-typescript
-      - eslint-import-resolver-webpack
-      - fake-indexeddb
-      - graphql-ws
-      - happy-dom
-      - immer
-      - less
-      - lightningcss
-      - stylus
-      - subscriptions-transport-ws
-      - sugarss
-      - supports-color
-      - terser
-      - typescript
-      - uglify-js
-      - utf-8-validate
-      - webpack-cli
-    dev: false
-
   file:galacfetch/hooks/ipfs-client(@faker-js/faker@8.3.1)(@types/node@12.20.4)(@types/react@18.2.23)(eslint@8.55.0)(fake-indexeddb@5.0.1)(react-dom@18.2.0)(react@18.2.0):
     resolution: {directory: galacfetch/hooks/ipfs-client, type: directory}
     id: file:galacfetch/hooks/ipfs-client
@@ -21790,6 +21775,42 @@ packages:
       - uglify-js
       - utf-8-validate
       - webpack-cli
+    dev: false
+
+  file:galacfetch/hooks/ipfs-client(react-dom@17.0.2)(react@17.0.2):
+    resolution: {directory: galacfetch/hooks/ipfs-client, type: directory}
+    id: file:galacfetch/hooks/ipfs-client
+    name: '@intershare/hooks.ipfs-client'
+    peerDependencies:
+      react: '*'
+      react-dom: '*'
+    peerDependenciesMeta:
+      react:
+        optional: true
+      react-dom:
+        optional: true
+    dependencies:
+      core-js: 3.34.0
+      react: 17.0.2
+      react-dom: 17.0.2(react@17.0.2)
+    dev: false
+
+  file:galacfetch/hooks/ipfs-client(react-dom@18.2.0)(react@18.2.0):
+    resolution: {directory: galacfetch/hooks/ipfs-client, type: directory}
+    id: file:galacfetch/hooks/ipfs-client
+    name: '@intershare/hooks.ipfs-client'
+    peerDependencies:
+      react: '*'
+      react-dom: '*'
+    peerDependenciesMeta:
+      react:
+        optional: true
+      react-dom:
+        optional: true
+    dependencies:
+      core-js: 3.34.0
+      react: 18.2.0
+      react-dom: 18.2.0(react@18.2.0)
     dev: false
 
   file:galacfetch/hooks/local-ipfs-file-manager(@faker-js/faker@8.3.1)(@types/node@12.20.4)(eslint@8.55.0)(fake-indexeddb@5.0.1):
@@ -21968,6 +21989,69 @@ packages:
       react-router-dom: 6.20.1(react-dom@18.2.0)(react@18.2.0)
       sass: 1.69.5
       socket.io-client: 4.7.2
+      vitest: 1.0.2(@types/node@12.20.4)(jsdom@23.0.1)(sass@1.69.5)
+      webpack: 5.89.0
+      zustand: 4.4.7(@types/react@18.2.23)(react@18.2.0)
+    transitivePeerDependencies:
+      - '@edge-runtime/vm'
+      - '@faker-js/faker'
+      - '@swc/core'
+      - '@types/node'
+      - '@typescript-eslint/parser'
+      - '@vitest/browser'
+      - '@vitest/ui'
+      - bufferutil
+      - canvas
+      - esbuild
+      - eslint
+      - eslint-import-resolver-typescript
+      - eslint-import-resolver-webpack
+      - fake-indexeddb
+      - graphql-ws
+      - happy-dom
+      - immer
+      - less
+      - lightningcss
+      - stylus
+      - subscriptions-transport-ws
+      - sugarss
+      - supports-color
+      - terser
+      - typescript
+      - uglify-js
+      - utf-8-validate
+      - webpack-cli
+    dev: false
+
+  file:galacfetch/ipfsgalactfetchclient(@faker-js/faker@8.3.1)(@types/node@12.20.4)(eslint@8.55.0)(fake-indexeddb@5.0.1):
+    resolution: {directory: galacfetch/ipfsgalactfetchclient, type: directory}
+    id: file:galacfetch/ipfsgalactfetchclient
+    name: '@intershare/ipfsgalactfetchclient'
+    dependencies:
+      '@apollo/client': 3.8.8(graphql@15.8.0)(react-dom@18.2.0)(react@18.2.0)
+      '@intershare/hooks.indexdb': file:galacfetch/hooks/indexdb(@faker-js/faker@8.3.1)(@types/node@12.20.4)(eslint@8.55.0)(fake-indexeddb@5.0.1)
+      '@intershare/hooks.local-ipfs-file-manager': file:galacfetch/hooks/local-ipfs-file-manager(@faker-js/faker@8.3.1)(@types/node@12.20.4)(eslint@8.55.0)(fake-indexeddb@5.0.1)
+      '@intershare/hooks.remote-ipfs-file-manager': file:galacfetch/hooks/remote-ipfs-file-manager(@faker-js/faker@8.3.1)(@types/node@12.20.4)(eslint@8.55.0)(fake-indexeddb@5.0.1)
+      '@mdx-js/mdx': 1.6.22
+      '@mdx-js/react': 1.6.22(react@18.2.0)
+      '@teambit/mdx.ui.mdx-scope-context': 1.0.0(react-dom@18.2.0)(react@18.2.0)
+      '@types/jest': 29.5.11
+      '@types/react': 18.2.23
+      '@types/react-dom': 18.2.17
+      browserslist: 4.21.4
+      eslint-plugin-import: 2.22.1(eslint@8.55.0)
+      eslint-plugin-jest: 24.1.5(eslint@8.55.0)
+      eslint-plugin-jsx-a11y: 6.4.1(eslint@8.55.0)
+      eslint-plugin-mdx: 1.13.0(eslint@8.55.0)
+      eslint-plugin-react: 7.22.0(eslint@8.55.0)
+      eslint-plugin-react-hooks: 4.2.0(eslint@8.55.0)
+      graphql: 15.8.0
+      jsdom: 23.0.1
+      pino-pretty: 4.5.0
+      react: 18.2.0
+      react-dom: 18.2.0(react@18.2.0)
+      react-router-dom: 6.20.1(react-dom@18.2.0)(react@18.2.0)
+      sass: 1.69.5
       vitest: 1.0.2(@types/node@12.20.4)(jsdom@23.0.1)(sass@1.69.5)
       webpack: 5.89.0
       zustand: 4.4.7(@types/react@18.2.23)(react@18.2.0)

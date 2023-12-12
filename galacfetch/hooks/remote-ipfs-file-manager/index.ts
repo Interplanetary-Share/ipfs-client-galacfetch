@@ -7,6 +7,7 @@ import {
   TFileCreationProps,
   TFileEditProps,
 } from './src/types/file'
+
 export { remoteIpfsFileManager }
 
 export type {

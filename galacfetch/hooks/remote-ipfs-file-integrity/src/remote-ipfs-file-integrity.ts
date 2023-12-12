@@ -1,5 +1,5 @@
 import indexDbStore, { ObjectStoresEnum } from '@intershare/hooks.indexdb'
-import { remoteIpfsFileManager } from '@intershare/hooks.remote-ipfs-file-manager' //TODO: change this for an splited library
+import { remoteIpfsFileManager } from '@intershare/hooks.remote-ipfs-file-manager'
 import localIpfsFileManager from '@intershare/hooks.local-ipfs-file-manager'
 import {
   apiConstants,

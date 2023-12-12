@@ -10,7 +10,7 @@ import { IFileUrlInfo, TLocalIpfsFileManagerStore } from './types/common'
 // TODO implement webrtc to share data between peers to avoid the use of a centralized database.
 
 const localIpfsFileManager = create<TLocalIpfsFileManagerStore>(
-  (set): TLocalIpfsFileManagerStore => ({
+  (): TLocalIpfsFileManagerStore => ({
     urlFileList: [],
 
     getLocalFileUrl: async (cid: string) => {

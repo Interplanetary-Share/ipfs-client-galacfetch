@@ -26,7 +26,7 @@ describe('localIpfsFileManager', () => {
     })
   })
 
-  it('should save data to the store ', async () => {
+  it('should save data to the store', async () => {
     const cid = 'QmVhZGZpbGU='
     const blob = new Blob(['hello world'], { type: 'text/plain' })
     await act(async () => {

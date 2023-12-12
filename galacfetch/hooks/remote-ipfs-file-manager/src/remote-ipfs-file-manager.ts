@@ -2,8 +2,8 @@ import { localIpfsFileManager } from '@intershare/hooks.local-ipfs-file-manager'
 import { apiConstants } from '@intershare/utils.general'
 import { io } from 'socket.io-client'
 import { create } from 'zustand'
-import { IRemoteFileInfo, TServerItem } from './types/file'
 import { TRemoteIpfsFileManager } from './types/common'
+import { IRemoteFileInfo, TServerItem } from './types/file'
 
 export const remoteIpfsFileManager = create<TRemoteIpfsFileManager>(
   (set, get): TRemoteIpfsFileManager => ({
@@ -86,8 +86,9 @@ export const remoteIpfsFileManager = create<TRemoteIpfsFileManager>(
                 try {
                   const url = await uploadBlobAndCreateUrl(cid, finalBlobFile)
 
-                  if (!url)
+                  if (!url) {
                     throw new Error('Error al crear la URL del archivo.')
+                  }
 
                   fileDownloadPromises[cid].resolve(url)
                 } catch (error) {
@@ -123,7 +124,7 @@ export const remoteIpfsFileManager = create<TRemoteIpfsFileManager>(
           throw new Error(`HTTP error! status: ${response.status}`)
         }
 
-        const fileInfo = (await response.json()) || undefined
+        const fileInfo = await response.json()
         return fileInfo as IRemoteFileInfo | undefined
       } catch (err) {
         console.error(`Error fetching file info: ${err}`)
@@ -210,7 +211,7 @@ export const remoteIpfsFileManager = create<TRemoteIpfsFileManager>(
             fileDownloadPromises: updatedPromises,
           })
 
-          reject(`Error al emitir la solicitud de descarga: ${cid}`)
+          reject(`Error al emitir la solicitud de descarga: ${error}`)
         }
       })
     },
@@ -228,6 +229,7 @@ export const remoteIpfsFileManager = create<TRemoteIpfsFileManager>(
       formData.append('file', file)
       formData.append('name', name)
       formData.append('description', description)
+      formData.append('isPublic', isPublic.toString())
       formData.append('extraProperties', JSON.stringify(extraProperties))
 
       try {

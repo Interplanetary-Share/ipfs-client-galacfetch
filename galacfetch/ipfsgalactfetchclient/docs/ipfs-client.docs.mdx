@@ -1,0 +1,439 @@
+---
+description: 'A React Hook that connect to galacfetch IPFS nodes to manage files on the IPFS network.'
+labels:
+  [
+    'hook',
+    'ipfs',
+    'galacfetch',
+    'react',
+    'interplanetary',
+    'file',
+    'storage',
+    'decentralized',
+  ]
+---
+
+## An IPFS Client Hook to connect to galacfetch IPFS nodes
+
+This hook is used to manage files on the IPFS network using the galacfetch IPFS nodes and as a Gateway.
+
+### Component usage
+
+In this example, we use ipfsGalactFetchClient hook that interact with useLocalIpfsStore and useRemoteIpfsStore hooks to manage files on the IPFS network.
+
+This is the Main hook
+
+```js
+const {
+  status, // status of the hook
+  init, // initialize the hook
+  urlFileList, // list of files in memory and local IPFS node
+  getFile, // get a file from the IPFS network
+  getFiles, // get a list of files from the IPFS network
+  findPreloadFile, // find a file in memory and local IPFS node
+  uploadFile, // upload a file to the IPFS network
+  updateFile, // update a file in the IPFS network
+} = ipfsGalactFetchClient()
+```
+
+You can also interact with the other 2 hooks directly if you want to use them separately.
+
+```js
+const {
+        localGetFile
+        localAddFile
+        localRemoveFile
+        localGetAllFiles
+         } = useLocalIpfsStore(); // Used as a local cache to save bandwidth and improve performance
+
+const {
+        status
+        servers
+        api
+        init
+        connectToSocket
+        addNewBlobUrl
+        remoteCheckIntegrityFile
+        remoteGetFileInfo
+        remoteGetFilesInfo
+        remoteGetFile
+        remoteUploadFile
+        remoteRestoreIntegrityFile
+        remotegetFileExtraProps
+        remoteUpdateFile
+         } = useRemoteIpfsStore(); // Used to interact with the galacfetch IPFS nodes
+
+```
+
+## ipfsGalactFetchClient hook
+
+First we initialize the hook by calling the init function.
+This will connect to the IPFS galacfetch nodes and you will get access to your files through your api.
+
+The init function expect 2 props to be passed to it. api and indexDbName.
+
+The api is the token that you get from galacfetch.
+You can get a free API here. https://galacfetch.com/
+
+The indexDbName is the name of the index Database for local caching that you want to use to store your files. You can use the same name for multiple projects or change the repo based in environment.
+
+```js
+const api = 'ABC123'
+const dbName = 'ExampleDBName'
+useEffect(() => {
+  init(api, dbName)
+}, [])
+```
+
+After initialize, the status will be set to iddle. and you can start using the hook.
+
+### status
+
+the status is an object that contains the status of the hook.
+
+```js
+{
+  status: undefined | 'idle' | 'loading' | TErrorStatus
+}
+
+// Error Status Information
+export type TErrorStatus = {
+  error: string,
+  message: string,
+}
+```
+
+### init
+
+After call the init function we initialized properly the hook and we can start using it.
+
+```js
+const { status, init } = ipfsGalactFetchClient()
+const api = 'ABC123'
+const repoName = 'ExampleRepoName'
+useEffect(() => {
+  init(api, repoName)
+}, [])
+
+useEffect(() => {
+  if (status === 'idle') {
+    console.log('Ready to rock!')
+  }
+  if (status === 'loading') {
+    console.log('loading')
+  }
+}, [status])
+```
+
+### getFile
+
+the getFile function is used to get a file from the IPFS network. expect 2 props to be passed to it. CID, and the config object.
+
+```js
+const { getFile } = ipfsGalactFetchClient()
+export interface IFileRetrievalConfig {
+  showBlobUrl?: boolean;
+  showInfoFile?: boolean;
+  showExtraProps?: boolean;
+}
+const config: IFileRetrievalConfig = {
+  showBlobUrl: true,
+  showInfoFile: true,
+  showExtraProps: true,
+}
+// By default all the props are set to true.
+
+const fileInfo = await getFile(cid, config)
+```
+
+### getFiles
+
+the getFiles function is used to get a list of files from the IPFS network.
+
+Expect 3 props to be passed to it. the `isPublic` scope, the configProps, and the filter/sort/page params, all optionals.
+
+Basic example of use:
+
+```js
+const { getFiles } = ipfsGalactFetchClient();
+const isPublic = false;
+const config = {
+  showBlobUrl: true,
+  showInfoFile: true,
+  showExtraProps: true,
+};
+copnst IPaginationAndSortingParams = {
+  page:1,
+  size:10,
+  sort: { createdAt: -1 },
+}
+
+await getFiles(isPublic, config, IPaginationAndSortingParams);
+```
+
+There are 2 scopes
+
+#### isPublic true vs isPublic false
+
+the `isPublic` props of the files, by default is false, meaning you will get your files from your api token.
+
+if you want to get the public files from the galacfetch network you need to set public to true,
+meaning you will get the files that the `isPublic` is set to true.
+
+```js
+public?: boolean; // default false
+```
+
+#### configProps
+
+same as getFile method above. optional, and all props are set to true by default.
+
+```js
+export interface IFileRetrievalConfig {
+  showBlobUrl?: boolean;
+  showInfoFile?: boolean;
+  showExtraProps?: boolean;
+}
+```
+
+#### IPaginationAndSortingParams (Optional)
+
+page, size, filter, sort.
+
+```js
+// Pagination and Sorting Query Parameters
+export interface IPaginationAndSortingParams {
+  page?: number;
+  size?: number;
+  filter?: Record<string, unknown>;
+  sort?: Record<string, unknown>;
+}
+```
+
+##### page
+
+page: number - The page number that you want to get. Default 1
+
+##### size
+
+size: number - The number of files per page. Default 10
+
+##### filter
+
+filter: object - The filter that you want to apply to the files, default undefined.
+
+The filter obeys to query selectors https://docs.mongodb.com/manual/reference/operator/query/
+
+You can check the official mongo DB https://www.mongodb.com/docs/compass/current/query/filter/
+
+```js
+// filter by name
+{
+  name: "fileName";
+}
+
+// search by name
+{
+  name: { $regex: "fileName", $options: "i" };
+}
+
+
+// filter by extra properties, example searching in  array of string "test2" and using regex to search in ownerID
+{
+  extraProperties: {
+    likes:"test2", // search in array of string "test2"
+    ownerID: {"$regex":"me","$options":"i" }  // search in ownerID using regex
+    }
+}
+
+//  using OR operator
+{
+  $or: [
+    { name: "fileName" },
+    { name: { $regex: "fileName", $options: "i" } },
+    {
+      extraProperties: {
+        likes: "test2",
+        ownerID: { $regex: "me", $options: "i" },
+      },
+    },
+  ],
+}
+
+
+// another OR example
+
+{
+  "$or": [
+    {
+      "type": {
+        "$regex": "image/jpeg",
+        "$options": "i"
+      }
+    },
+    {
+      "type": {
+        "$regex": "image/gif",
+        "$options": "i"
+      }
+    }
+  ]
+}
+
+```
+
+sort: object - The sort that you want to apply to the files. Default undefined
+the sort obeys to cursor sort of mongo https://www.mongodb.com/docs/upcoming/reference/method/cursor.sort/#mongodb-method-cursor.sort
+
+```js
+// date descending sort from newest to oldest
+{
+  createdAt: -1
+}
+// date ascending sort from oldest to newest
+{
+  createdAt: 1
+}
+```
+
+To sort by extraProperties you need to use the dot notation
+
+```js
+// sort by likes descending
+{
+  "extraProperties.likes": -1;
+}
+// sort by likes ascending
+{
+  "extraProperties.likes": 1;
+}
+```
+
+If the extraProperties key is an array, will be created a new key with the Length of the array to sort by it. For example if you have an array of likes, will be created a new key likesLength with the length of the array to sort by it.
+
+````js
+// sort by likes descending by array  ["test2","another", "another2"]
+{
+  "extraProperties.likesLength": -1;
+}
+```js
+
+
+### uploadFile
+
+the uploadFile function is used to upload a file to the IPFS network. expect 3 props to be passed to it. file, TFileCreationProps, and an optional serverAlias
+
+```js
+const { uploadFile } = ipfsGalactFetchClient();
+
+await uploadFile(file, TFileCreationProps, serverAlias);
+````
+
+Basic Example of upload file
+
+```js
+const uploadConfig = {name:"fileNameTest",description:"DescriptionTest",extraProperties:{"likes":["test2","another"],"ownerID":"me"}}
+<input
+  type="file"
+  onChange={(e) => {
+    if (!e.target.files) return console.log('error no file selected');
+    const file = e.target.files[0];
+    uploadFile(file, uploadConfig);
+  }}
+/>
+```
+
+#### TFileCreationProps (UploadConfig)
+
+```js
+export type TFileCreationProps = {
+  name: string,
+  description: string,
+  isPublic: boolean,
+  extraProperties?: Record<string, unknown>,
+}
+```
+
+The config object has the name, description and extraProperties props.
+
+the extraProperties is an object that can contain any extra properties you want to add to the file, for example tags, likes, ownerID, attachments, etc. You can add anything while it is in JSON format.
+
+the isPublic is a boolean that by default is set to false. If you set it to true, the file will be uploaded and be visible in public scope to anyone, for example when we getfiles with public scope.
+
+The serverAlias is optional. If you don't pass it, the file will be uploaded to the best server available.
+In case you want to upload the file to a specific server, you can pass the serverAlias to the function.
+
+#### serverAlias
+
+The serverAlias that you have access can be found in your dashboard. https://galacfetch.com/ and is determined by the token you are using.
+
+### urlFileList
+
+the hook preload the files in memory and in a local IPFS node to save bandwidth and improve performance. The urlFileList function is used to get the list of files that are in memory and in the local IPFS node.
+the urlFileList is an array of UrlFileList interface
+
+This hook is mainly used internally to avoid downloading the same file multiple times.
+
+```js
+IFileUrlInfo {
+  url: string;
+  cid: string;
+}
+```
+
+Example
+
+```js
+const { urlFileList } = ipfsGalactFetchClient();
+
+return (
+     <h4>Preloaded Files</h4>
+        {urlFileList.map((urlFile,idx) => {
+          return (
+              <div key={idx}>
+              blobUrl: {urlFile.url} <br>
+              cid: {urlFile.cid}
+            </div>
+          );
+        })}
+)
+```
+
+### updateFile
+
+the updateFile function is used to update the information or extraprops from a file.
+
+basic example of use
+
+```js
+const { updateFile } = ipfsGalactFetchClient();
+
+const editTFileCreationProps ={
+  name: "newName",
+  description: "newDescription",
+  isPublic: true,
+  extraProperties: { likes: ["newlikes"] },
+}
+
+ updateFile(cid:string, editTFileCreationProps:TFileEditProps);
+```
+
+#### TFileEditProps
+
+```js
+// Properties for File Creation
+export type TFileCreationProps = {
+  name: string,
+  description: string,
+  isPublic: boolean,
+  extraProperties?: Record<string, unknown>,
+}
+
+// Properties for File Editing
+export type TFileEditProps = Partial<TFileCreationProps>
+```
+
+- name: string - The new name of the file
+- description: string - The new description of the file
+- isPublic: boolean - in case change of scope is needed
+- extraProperties: Object - The new extraProperties of the file, (`this will update or create new keys` in extraproperties, if `null will delete the key`)

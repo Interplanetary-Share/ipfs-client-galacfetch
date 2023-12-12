@@ -65,6 +65,20 @@
             }
         }
     },
+    "ipfsgalactfetchclient": {
+        "name": "ipfsgalactfetchclient",
+        "scope": "",
+        "version": "",
+        "defaultScope": "intershare.galacfetch",
+        "mainFile": "index.ts",
+        "rootDir": "galacfetch/ipfsgalactfetchclient",
+        "config": {
+            "bitdev.react/react-env@1.1.8": {},
+            "teambit.envs/envs": {
+                "env": "bitdev.react/react-env"
+            }
+        }
+    },
     "utils/general": {
         "name": "utils/general",
         "scope": "intershare.galacfetch",
