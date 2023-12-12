@@ -4,7 +4,7 @@ import { ObjectStoresEnum } from './src/types/enum'
 
 export { indexDbStore }
 
-export type { TindexDbStore }
 export { ObjectStoresEnum }
+export type { TindexDbStore }
 
 export default indexDbStore

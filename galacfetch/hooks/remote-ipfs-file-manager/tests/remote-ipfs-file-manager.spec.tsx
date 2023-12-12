@@ -1,10 +1,7 @@
-import { renderHook, act } from '@testing-library/react-hooks'
 import { remoteIpfsFileManager } from '../src/remote-ipfs-file-manager'
 
-it('increment counter', () => {
-  const { result } = renderHook(() => remoteIpfsFileManager())
-  act(() => {
-    result.current.increment()
+describe('remoteIpfsFileManager', () => {
+  it('should be defined', () => {
+    expect(remoteIpfsFileManager).toBeDefined()
   })
-  expect(result.current.count).toBe(1)
 })

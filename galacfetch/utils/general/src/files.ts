@@ -1,3 +1,7 @@
+export const calculateSizeFromObject = (obj: Object) => {
+  return new Blob([JSON.stringify(obj)]).size
+}
+
 export const bytesToGB = (bytes: number) => {
   return bytes / 1024 / 1024 / 1024
 }

@@ -12,7 +12,7 @@ importers:
     dependencies:
       '@apollo/client':
         specifier: ^3.8.8
-        version: 3.8.8(graphql@15.8.0)(react-dom@17.0.2)(react@17.0.2)
+        version: 3.8.8(graphql@15.8.0)(react-dom@18.2.0)(react@18.2.0)
       '@faker-js/faker':
         specifier: ^8.3.1
         version: 8.3.1
@@ -21,16 +21,16 @@ importers:
         version: 1.6.22
       '@mdx-js/react':
         specifier: 1.6.22
-        version: 1.6.22(react@17.0.2)
+        version: 1.6.22(react@18.2.0)
       '@teambit/defender.eslint-linter':
         specifier: ^1.0.15
         version: 1.0.15(@teambit/legacy@node_modules+@teambit+legacy)
       '@teambit/eslint-config-bit-react':
         specifier: ^0.0.367
-        version: 0.0.367(@teambit/legacy@node_modules+@teambit+legacy)(eslint-plugin-import@2.22.1)(eslint-plugin-jsx-a11y@6.4.1)(eslint-plugin-react-hooks@4.2.0)(eslint-plugin-react@7.22.0)(eslint@8.55.0)(react-dom@17.0.2)(react@17.0.2)
+        version: 0.0.367(@teambit/legacy@node_modules+@teambit+legacy)(eslint-plugin-import@2.22.1)(eslint-plugin-jsx-a11y@6.4.1)(eslint-plugin-react-hooks@4.2.0)(eslint-plugin-react@7.22.0)(eslint@8.55.0)(react-dom@18.2.0)(react@18.2.0)
       '@teambit/mdx.ui.mdx-scope-context':
         specifier: 1.0.0
-        version: 1.0.0(react-dom@17.0.2)(react@17.0.2)
+        version: 1.0.0(react-dom@18.2.0)(react@18.2.0)
       '@teambit/react.react-env':
         specifier: ^1.0.32
         version: 1.0.32(@teambit/legacy@node_modules+@teambit+legacy)(@testing-library/react@14.1.2)(@types/node@12.20.4)
@@ -39,7 +39,7 @@ importers:
         version: 6.1.5(@types/jest@29.5.11)(jest@29.7.0)(vitest@1.0.2)
       '@testing-library/react':
         specifier: ^14.1.2
-        version: 14.1.2(react-dom@17.0.2)(react@17.0.2)
+        version: 14.1.2(react-dom@18.2.0)(react@18.2.0)
       '@types/jest':
         specifier: '>=29.2.2 <30.0.0'
         version: 29.5.11
@@ -49,9 +49,6 @@ importers:
       '@types/react-dom':
         specifier: '>=18.2.5 <19.0.0'
         version: 18.2.17
-      axios:
-        specifier: ^1.6.2
-        version: 1.6.2
       browserslist:
         specifier: 4.21.4
         version: 4.21.4
@@ -88,21 +85,27 @@ importers:
       jest:
         specifier: ^29.7.0
         version: 29.7.0(@types/node@12.20.4)
+      jest-fetch-mock:
+        specifier: ^3.0.3
+        version: 3.0.3
       jsdom:
         specifier: ^23.0.1
         version: 23.0.1
+      mock-socket:
+        specifier: ^9.3.1
+        version: 9.3.1
       pino-pretty:
         specifier: 4.5.0
         version: 4.5.0
       react:
-        specifier: '>=16.8.0 <17.0.0 || >=17.0.0 <18.0.0'
-        version: 17.0.2
+        specifier: '>=18.0.0 <19.0.0'
+        version: 18.2.0
       react-dom:
-        specifier: '>=16.8.0 <17.0.0 || >=17.0.0 <18.0.0'
-        version: 17.0.2(react@17.0.2)
+        specifier: '>=18.0.0 <19.0.0'
+        version: 18.2.0(react@18.2.0)
       react-router-dom:
         specifier: ^6.16.0
-        version: 6.20.1(react-dom@17.0.2)(react@17.0.2)
+        version: 6.20.1(react-dom@18.2.0)(react@18.2.0)
       sass:
         specifier: ^1.69.5
         version: 1.69.5
@@ -120,7 +123,7 @@ importers:
         version: 5.89.0
       zustand:
         specifier: ^4.4.7
-        version: 4.4.7(@types/react@18.2.23)(react@17.0.2)
+        version: 4.4.7(@types/react@18.2.23)(react@18.2.0)
     devDependencies:
       '@babel/runtime':
         specifier: 7.20.0
@@ -130,7 +133,7 @@ importers:
         version: 1.1.8(@teambit/legacy@node_modules+@teambit+legacy)(@testing-library/react@14.1.2)(@types/node@12.20.4)
       '@testing-library/react-hooks':
         specifier: ^8.0.1
-        version: 8.0.1(@types/react@18.2.23)(react-dom@17.0.2)(react@17.0.2)
+        version: 8.0.1(@types/react@18.2.23)(react-dom@18.2.0)(react@18.2.0)
       '@types/node':
         specifier: 12.20.4
         version: 12.20.4
@@ -228,9 +231,6 @@ importers:
 
   galacfetch/hooks/ipfs-client:
     dependencies:
-      axios:
-        specifier: ^1.6.2
-        version: 1.6.2
       core-js:
         specifier: ^3.0.0
         version: 3.34.0
@@ -240,9 +240,6 @@ importers:
       react-dom:
         specifier: ^16.8.0 || ^17.0.0
         version: 17.0.2(react@17.0.2)
-      socket.io-client:
-        specifier: ^4.7.2
-        version: 4.7.2
       zustand:
         specifier: ^4.4.7
         version: 4.4.7(@types/react@17.0.71)(react@17.0.2)
@@ -271,9 +268,6 @@ importers:
       '@apollo/client':
         specifier: ^3.8.8
         version: 3.8.8(graphql@15.8.0)(react-dom@18.2.0)(react@18.2.0)
-      '@faker-js/faker':
-        specifier: ^8.3.1
-        version: 8.3.1
       '@mdx-js/mdx':
         specifier: ^1.6.22
         version: 1.6.22
@@ -292,9 +286,6 @@ importers:
       '@types/react-dom':
         specifier: ^18.2.5
         version: 18.2.17
-      axios:
-        specifier: ^1.6.2
-        version: 1.6.2
       browserslist:
         specifier: 4.21.4
         version: 4.21.4
@@ -360,6 +351,267 @@ importers:
         specifier: ^5.9.5
         version: 5.9.5
 
+  galacfetch/hooks/remote-ipfs-file-integrity:
+    dependencies:
+      '@apollo/client':
+        specifier: ^3.8.8
+        version: 3.8.8(graphql@15.8.0)(react-dom@18.2.0)(react@18.2.0)
+      '@faker-js/faker':
+        specifier: ^8.3.1
+        version: 8.3.1
+      '@mdx-js/mdx':
+        specifier: ^1.6.22
+        version: 1.6.22
+      '@mdx-js/react':
+        specifier: 1.6.22
+        version: 1.6.22(react@18.2.0)
+      '@teambit/mdx.ui.mdx-scope-context':
+        specifier: 1.0.0
+        version: 1.0.0(react-dom@18.2.0)(react@18.2.0)
+      '@types/jest':
+        specifier: ^29.2.2
+        version: 29.5.11
+      '@types/react':
+        specifier: 18.2.23
+        version: 18.2.23
+      '@types/react-dom':
+        specifier: ^18.2.5
+        version: 18.2.17
+      browserslist:
+        specifier: 4.21.4
+        version: 4.21.4
+      eslint-plugin-import:
+        specifier: 2.22.1
+        version: 2.22.1(eslint@8.55.0)
+      eslint-plugin-jest:
+        specifier: 24.1.5
+        version: 24.1.5(eslint@8.55.0)
+      eslint-plugin-jsx-a11y:
+        specifier: 6.4.1
+        version: 6.4.1(eslint@8.55.0)
+      eslint-plugin-mdx:
+        specifier: 1.13.0
+        version: 1.13.0(eslint@8.55.0)
+      eslint-plugin-react:
+        specifier: 7.22.0
+        version: 7.22.0(eslint@8.55.0)
+      eslint-plugin-react-hooks:
+        specifier: 4.2.0
+        version: 4.2.0(eslint@8.55.0)
+      fake-indexeddb:
+        specifier: ^5.0.1
+        version: 5.0.1
+      graphql:
+        specifier: 15.8.0
+        version: 15.8.0
+      jest-fetch-mock:
+        specifier: ^3.0.3
+        version: 3.0.3
+      jsdom:
+        specifier: ^23.0.1
+        version: 23.0.1
+      pino-pretty:
+        specifier: 4.5.0
+        version: 4.5.0
+      react:
+        specifier: ^18.0.0
+        version: 18.2.0
+      react-dom:
+        specifier: ^18.0.0
+        version: 18.2.0(react@18.2.0)
+      react-router-dom:
+        specifier: ^6.16.0
+        version: 6.20.1(react-dom@18.2.0)(react@18.2.0)
+      sass:
+        specifier: ^1.69.5
+        version: 1.69.5
+      vitest:
+        specifier: ^1.0.0
+        version: 1.0.2(@types/node@12.20.4)(jsdom@23.0.1)(sass@1.69.5)
+      webpack:
+        specifier: ^5.88.2
+        version: 5.89.0
+      zustand:
+        specifier: ^4.4.7
+        version: 4.4.7(@types/react@18.2.23)(react@18.2.0)
+    devDependencies:
+      '@bitdev/react.react-env':
+        specifier: 1.1.8
+        version: 1.1.8(@teambit/legacy@node_modules+@teambit+legacy)(@testing-library/react@14.1.2)(@types/node@12.20.4)
+      '@testing-library/react-hooks':
+        specifier: ^8.0.1
+        version: 8.0.1(@types/react@18.2.23)(react-dom@18.2.0)(react@18.2.0)
+      '@types/testing-library__jest-dom':
+        specifier: ^5.9.5
+        version: 5.9.5
+
+  galacfetch/hooks/remote-ipfs-file-manager:
+    dependencies:
+      '@apollo/client':
+        specifier: ^3.8.8
+        version: 3.8.8(graphql@15.8.0)(react-dom@18.2.0)(react@18.2.0)
+      '@mdx-js/mdx':
+        specifier: ^1.6.22
+        version: 1.6.22
+      '@mdx-js/react':
+        specifier: 1.6.22
+        version: 1.6.22(react@18.2.0)
+      '@teambit/mdx.ui.mdx-scope-context':
+        specifier: 1.0.0
+        version: 1.0.0(react-dom@18.2.0)(react@18.2.0)
+      '@types/jest':
+        specifier: ^29.2.2
+        version: 29.5.11
+      '@types/react':
+        specifier: 18.2.23
+        version: 18.2.23
+      '@types/react-dom':
+        specifier: ^18.2.5
+        version: 18.2.17
+      browserslist:
+        specifier: 4.21.4
+        version: 4.21.4
+      eslint-plugin-import:
+        specifier: 2.22.1
+        version: 2.22.1(eslint@8.55.0)
+      eslint-plugin-jest:
+        specifier: 24.1.5
+        version: 24.1.5(eslint@8.55.0)
+      eslint-plugin-jsx-a11y:
+        specifier: 6.4.1
+        version: 6.4.1(eslint@8.55.0)
+      eslint-plugin-mdx:
+        specifier: 1.13.0
+        version: 1.13.0(eslint@8.55.0)
+      eslint-plugin-react:
+        specifier: 7.22.0
+        version: 7.22.0(eslint@8.55.0)
+      eslint-plugin-react-hooks:
+        specifier: 4.2.0
+        version: 4.2.0(eslint@8.55.0)
+      graphql:
+        specifier: 15.8.0
+        version: 15.8.0
+      jsdom:
+        specifier: ^23.0.1
+        version: 23.0.1
+      pino-pretty:
+        specifier: 4.5.0
+        version: 4.5.0
+      react:
+        specifier: ^18.0.0
+        version: 18.2.0
+      react-dom:
+        specifier: ^18.0.0
+        version: 18.2.0(react@18.2.0)
+      react-router-dom:
+        specifier: ^6.16.0
+        version: 6.20.1(react-dom@18.2.0)(react@18.2.0)
+      sass:
+        specifier: ^1.69.5
+        version: 1.69.5
+      socket.io-client:
+        specifier: ^4.7.2
+        version: 4.7.2
+      vitest:
+        specifier: ^1.0.0
+        version: 1.0.2(@types/node@12.20.4)(jsdom@23.0.1)(sass@1.69.5)
+      webpack:
+        specifier: ^5.88.2
+        version: 5.89.0
+      zustand:
+        specifier: ^4.4.7
+        version: 4.4.7(@types/react@18.2.23)(react@18.2.0)
+    devDependencies:
+      '@bitdev/react.react-env':
+        specifier: 1.1.8
+        version: 1.1.8(@teambit/legacy@node_modules+@teambit+legacy)(@testing-library/react@14.1.2)(@types/node@12.20.4)
+      '@types/testing-library__jest-dom':
+        specifier: ^5.9.5
+        version: 5.9.5
+
+  galacfetch/utils/general:
+    dependencies:
+      '@apollo/client':
+        specifier: ^3.8.8
+        version: 3.8.8(graphql@15.8.0)(react-dom@18.2.0)(react@18.2.0)
+      '@faker-js/faker':
+        specifier: ^8.3.1
+        version: 8.3.1
+      '@mdx-js/mdx':
+        specifier: ^1.6.22
+        version: 1.6.22
+      '@mdx-js/react':
+        specifier: 1.6.22
+        version: 1.6.22(react@18.2.0)
+      '@teambit/mdx.ui.mdx-scope-context':
+        specifier: 1.0.0
+        version: 1.0.0(react-dom@18.2.0)(react@18.2.0)
+      '@types/jest':
+        specifier: ^29.2.2
+        version: 29.5.11
+      '@types/react':
+        specifier: 18.2.23
+        version: 18.2.23
+      '@types/react-dom':
+        specifier: ^18.2.5
+        version: 18.2.17
+      browserslist:
+        specifier: 4.21.4
+        version: 4.21.4
+      eslint-plugin-import:
+        specifier: 2.22.1
+        version: 2.22.1(eslint@8.55.0)
+      eslint-plugin-jest:
+        specifier: 24.1.5
+        version: 24.1.5(eslint@8.55.0)
+      eslint-plugin-jsx-a11y:
+        specifier: 6.4.1
+        version: 6.4.1(eslint@8.55.0)
+      eslint-plugin-mdx:
+        specifier: 1.13.0
+        version: 1.13.0(eslint@8.55.0)
+      eslint-plugin-react:
+        specifier: 7.22.0
+        version: 7.22.0(eslint@8.55.0)
+      eslint-plugin-react-hooks:
+        specifier: 4.2.0
+        version: 4.2.0(eslint@8.55.0)
+      graphql:
+        specifier: 15.8.0
+        version: 15.8.0
+      jsdom:
+        specifier: ^23.0.1
+        version: 23.0.1
+      pino-pretty:
+        specifier: 4.5.0
+        version: 4.5.0
+      react:
+        specifier: ^18.0.0
+        version: 18.2.0
+      react-dom:
+        specifier: ^18.0.0
+        version: 18.2.0(react@18.2.0)
+      react-router-dom:
+        specifier: ^6.16.0
+        version: 6.20.1(react-dom@18.2.0)(react@18.2.0)
+      sass:
+        specifier: ^1.69.5
+        version: 1.69.5
+      vitest:
+        specifier: ^1.0.0
+        version: 1.0.2(@types/node@12.20.4)(jsdom@23.0.1)(sass@1.69.5)
+      webpack:
+        specifier: ^5.88.2
+        version: 5.89.0
+    devDependencies:
+      '@bitdev/react.react-env':
+        specifier: 1.1.8
+        version: 1.1.8(@teambit/legacy@node_modules+@teambit+legacy)(@testing-library/react@14.1.2)(@types/node@12.20.4)
+      '@types/testing-library__jest-dom':
+        specifier: ^5.9.5
+        version: 5.9.5
+
   node_modules/.bit_roots/bitdev.react_react-env@1.1.8:
     dependencies:
       '@apollo/client':
@@ -370,13 +622,22 @@ importers:
         version: 1.1.8(@teambit/legacy@node_modules+@teambit+legacy)(@testing-library/react@14.1.2)(@types/node@12.20.4)
       '@intershare/hooks.indexdb':
         specifier: workspace:*
-        version: file:galacfetch/hooks/indexdb(@types/node@12.20.4)(eslint@8.55.0)(fake-indexeddb@5.0.1)
+        version: file:galacfetch/hooks/indexdb(@faker-js/faker@8.3.1)(@types/node@12.20.4)(eslint@8.55.0)(fake-indexeddb@5.0.1)
       '@intershare/hooks.ipfs-client':
         specifier: workspace:*
         version: file:galacfetch/hooks/ipfs-client(@faker-js/faker@8.3.1)(@types/node@12.20.4)(@types/react@18.2.23)(eslint@8.55.0)(fake-indexeddb@5.0.1)(react-dom@18.2.0)(react@18.2.0)
       '@intershare/hooks.local-ipfs-file-manager':
         specifier: workspace:*
         version: file:galacfetch/hooks/local-ipfs-file-manager(@faker-js/faker@8.3.1)(@types/node@12.20.4)(eslint@8.55.0)(fake-indexeddb@5.0.1)
+      '@intershare/hooks.remote-ipfs-file-integrity':
+        specifier: workspace:*
+        version: file:galacfetch/hooks/remote-ipfs-file-integrity(@faker-js/faker@8.3.1)(@types/node@12.20.4)(eslint@8.55.0)(fake-indexeddb@5.0.1)(jest-fetch-mock@3.0.3)
+      '@intershare/hooks.remote-ipfs-file-manager':
+        specifier: workspace:*
+        version: file:galacfetch/hooks/remote-ipfs-file-manager(@faker-js/faker@8.3.1)(@types/node@12.20.4)(eslint@8.55.0)(fake-indexeddb@5.0.1)
+      '@intershare/utils.general':
+        specifier: workspace:*
+        version: file:galacfetch/utils/general(@faker-js/faker@8.3.1)(@types/node@12.20.4)(eslint@8.55.0)
       '@mdx-js/mdx':
         specifier: ^1.6.22
         version: 1.6.22
@@ -450,18 +711,33 @@ importers:
         injected: true
       '@intershare/hooks.local-ipfs-file-manager':
         injected: true
+      '@intershare/hooks.remote-ipfs-file-integrity':
+        injected: true
+      '@intershare/hooks.remote-ipfs-file-manager':
+        injected: true
+      '@intershare/utils.general':
+        injected: true
 
   node_modules/.bit_roots/teambit.react_react:
     dependencies:
       '@intershare/hooks.indexdb':
         specifier: workspace:*
-        version: file:galacfetch/hooks/indexdb(@types/node@12.20.4)(eslint@8.55.0)(fake-indexeddb@5.0.1)
+        version: file:galacfetch/hooks/indexdb(@faker-js/faker@8.3.1)(@types/node@12.20.4)(eslint@8.55.0)(fake-indexeddb@5.0.1)
       '@intershare/hooks.ipfs-client':
         specifier: workspace:*
         version: file:galacfetch/hooks/ipfs-client(@faker-js/faker@8.3.1)(@types/node@12.20.4)(@types/react@18.2.23)(eslint@8.55.0)(fake-indexeddb@5.0.1)(react-dom@17.0.2)(react@17.0.2)
       '@intershare/hooks.local-ipfs-file-manager':
         specifier: workspace:*
         version: file:galacfetch/hooks/local-ipfs-file-manager(@faker-js/faker@8.3.1)(@types/node@12.20.4)(eslint@8.55.0)(fake-indexeddb@5.0.1)
+      '@intershare/hooks.remote-ipfs-file-integrity':
+        specifier: workspace:*
+        version: file:galacfetch/hooks/remote-ipfs-file-integrity(@faker-js/faker@8.3.1)(@types/node@12.20.4)(eslint@8.55.0)(fake-indexeddb@5.0.1)(jest-fetch-mock@3.0.3)
+      '@intershare/hooks.remote-ipfs-file-manager':
+        specifier: workspace:*
+        version: file:galacfetch/hooks/remote-ipfs-file-manager(@faker-js/faker@8.3.1)(@types/node@12.20.4)(eslint@8.55.0)(fake-indexeddb@5.0.1)
+      '@intershare/utils.general':
+        specifier: workspace:*
+        version: file:galacfetch/utils/general(@faker-js/faker@8.3.1)(@types/node@12.20.4)(eslint@8.55.0)
       react:
         specifier: ^16.8.0 || ^17.0.0
         version: 17.0.2
@@ -474,6 +750,12 @@ importers:
       '@intershare/hooks.ipfs-client':
         injected: true
       '@intershare/hooks.local-ipfs-file-manager':
+        injected: true
+      '@intershare/hooks.remote-ipfs-file-integrity':
+        injected: true
+      '@intershare/hooks.remote-ipfs-file-manager':
+        injected: true
+      '@intershare/utils.general':
         injected: true
 
 packages:
@@ -491,43 +773,6 @@ packages:
     dependencies:
       '@jridgewell/gen-mapping': 0.3.3
       '@jridgewell/trace-mapping': 0.3.20
-
-  /@apollo/client@3.8.8(graphql@15.8.0)(react-dom@17.0.2)(react@17.0.2):
-    resolution: {integrity: sha512-omjd9ryGDkadZrKW6l5ktUAdS4SNaFOccYQ4ZST0HLW83y8kQaSZOCTNlpkoBUK8cv6qP8+AxOKwLm2ho8qQ+Q==}
-    peerDependencies:
-      graphql: '*'
-      graphql-ws: '*'
-      react: '*'
-      react-dom: '*'
-      subscriptions-transport-ws: '*'
-    peerDependenciesMeta:
-      graphql:
-        optional: true
-      graphql-ws:
-        optional: true
-      react:
-        optional: true
-      react-dom:
-        optional: true
-      subscriptions-transport-ws:
-        optional: true
-    dependencies:
-      '@graphql-typed-document-node/core': 3.2.0(graphql@15.8.0)
-      '@wry/equality': 0.5.7
-      '@wry/trie': 0.5.0
-      graphql: 15.8.0
-      graphql-tag: 2.12.6(graphql@15.8.0)
-      hoist-non-react-statics: 3.3.2
-      optimism: 0.18.0
-      prop-types: 15.8.1
-      react: 17.0.2
-      react-dom: 17.0.2(react@17.0.2)
-      response-iterator: 0.2.6
-      symbol-observable: 4.0.0
-      ts-invariant: 0.10.3
-      tslib: 2.6.2
-      zen-observable-ts: 1.2.5
-    dev: false
 
   /@apollo/client@3.8.8(graphql@15.8.0)(react-dom@18.2.0)(react@18.2.0):
     resolution: {integrity: sha512-omjd9ryGDkadZrKW6l5ktUAdS4SNaFOccYQ4ZST0HLW83y8kQaSZOCTNlpkoBUK8cv6qP8+AxOKwLm2ho8qQ+Q==}
@@ -1279,7 +1524,7 @@ packages:
         optional: true
     dependencies:
       '@babel/core': 7.12.9
-      '@babel/helper-plugin-utils': 7.10.4
+      '@babel/helper-plugin-utils': 7.22.5
       '@babel/plugin-syntax-object-rest-spread': 7.8.3(@babel/core@7.12.9)
       '@babel/plugin-transform-parameters': 7.23.3(@babel/core@7.12.9)
 
@@ -5211,17 +5456,6 @@ packages:
     transitivePeerDependencies:
       - supports-color
 
-  /@mdx-js/react@1.6.22(react@17.0.2):
-    resolution: {integrity: sha512-TDoPum4SHdfPiGSAaRBw7ECyI8VaHpK8GJugbJIJuqyh6kzw9ZLJZW3HGL3NNrJGxcAixUvqROm+YuQOo5eXtg==}
-    peerDependencies:
-      react: '*'
-    peerDependenciesMeta:
-      react:
-        optional: true
-    dependencies:
-      react: 17.0.2
-    dev: false
-
   /@mdx-js/react@1.6.22(react@18.2.0):
     resolution: {integrity: sha512-TDoPum4SHdfPiGSAaRBw7ECyI8VaHpK8GJugbJIJuqyh6kzw9ZLJZW3HGL3NNrJGxcAixUvqROm+YuQOo5eXtg==}
     peerDependencies:
@@ -5754,7 +5988,7 @@ packages:
         optional: true
     dependencies:
       '@teambit/base-ui.routing.compare-url': 1.0.0(react-dom@18.2.0)(react@18.2.0)
-      '@testing-library/react': 14.1.2(react-dom@17.0.2)(react@17.0.2)
+      '@testing-library/react': 14.1.2(react-dom@18.2.0)(react@18.2.0)
       '@types/react': 18.2.23
       classnames: 2.3.1
       core-js: 3.34.0
@@ -6669,7 +6903,7 @@ packages:
     dependencies:
       '@teambit/base-react.theme.theme-provider': 1.95.3(react-dom@18.2.0)(react@18.2.0)
       '@teambit/design.theme.icons-font': 1.0.8(react-dom@18.2.0)(react@18.2.0)
-      '@testing-library/react': 14.1.2(react-dom@17.0.2)(react@17.0.2)
+      '@testing-library/react': 14.1.2(react-dom@18.2.0)(react@18.2.0)
       classnames: 2.3.1
       core-js: 3.34.0
       react: 18.2.0
@@ -6690,7 +6924,7 @@ packages:
         optional: true
     dependencies:
       '@teambit/design.themes.base-theme': 0.1.0(@testing-library/react@14.1.2)(react-dom@18.2.0)(react@18.2.0)
-      '@testing-library/react': 14.1.2(react-dom@17.0.2)(react@17.0.2)
+      '@testing-library/react': 14.1.2(react-dom@18.2.0)(react@18.2.0)
       core-js: 3.34.0
       react: 18.2.0
       react-dom: 18.2.0(react@18.2.0)
@@ -6710,7 +6944,7 @@ packages:
         optional: true
     dependencies:
       '@teambit/design.themes.base-theme': 0.1.0(@testing-library/react@14.1.2)(react-dom@18.2.0)(react@18.2.0)
-      '@testing-library/react': 14.1.2(react-dom@17.0.2)(react@17.0.2)
+      '@testing-library/react': 14.1.2(react-dom@18.2.0)(react@18.2.0)
       core-js: 3.34.0
       react: 18.2.0
       react-dom: 18.2.0(react@18.2.0)
@@ -7553,7 +7787,7 @@ packages:
       react: 18.2.0
       react-dom: 18.2.0(react@18.2.0)
 
-  /@teambit/eslint-config-bit-react@0.0.367(@teambit/legacy@node_modules+@teambit+legacy)(eslint-plugin-import@2.22.1)(eslint-plugin-jsx-a11y@6.4.1)(eslint-plugin-react-hooks@4.2.0)(eslint-plugin-react@7.22.0)(eslint@8.55.0)(react-dom@17.0.2)(react@17.0.2):
+  /@teambit/eslint-config-bit-react@0.0.367(@teambit/legacy@node_modules+@teambit+legacy)(eslint-plugin-import@2.22.1)(eslint-plugin-jsx-a11y@6.4.1)(eslint-plugin-react-hooks@4.2.0)(eslint-plugin-react@7.22.0)(eslint@8.55.0)(react-dom@18.2.0)(react@18.2.0):
     resolution: {integrity: sha512-d8N9+n/OSxaVpeFBkRhYm6QvqKbzaMf4bN8NJrLmPBuJh4on74U3z4xsqu8sLIphEO0fA2G8ISB9Mo+TINqbMw==}
     peerDependencies:
       '@teambit/legacy': '*'
@@ -7576,8 +7810,8 @@ packages:
       core-js: 3.34.0
       eslint: 8.55.0
       eslint-config-airbnb-typescript: 12.0.0(@typescript-eslint/eslint-plugin@4.13.0)(eslint-plugin-import@2.22.1)(eslint-plugin-jsx-a11y@6.4.1)(eslint-plugin-react-hooks@4.2.0)(eslint-plugin-react@7.22.0)(eslint@8.55.0)
-      react: 17.0.2
-      react-dom: 17.0.2(react@17.0.2)
+      react: 18.2.0
+      react-dom: 18.2.0(react@18.2.0)
     transitivePeerDependencies:
       - eslint-plugin-import
       - eslint-plugin-jsx-a11y
@@ -7718,7 +7952,7 @@ packages:
         optional: true
     dependencies:
       '@teambit/base-react.navigation.link': 2.0.27(@testing-library/react@14.1.2)(@types/react@18.2.23)(react-dom@18.2.0)(react@18.2.0)
-      '@testing-library/react': 14.1.2(react-dom@17.0.2)(react@17.0.2)
+      '@testing-library/react': 14.1.2(react-dom@18.2.0)(react@18.2.0)
       core-js: 3.34.0
       react: 18.2.0
       react-dom: 18.2.0(react@18.2.0)
@@ -7858,23 +8092,6 @@ packages:
       - '@testing-library/react'
       - '@types/react'
       - typescript
-    dev: false
-
-  /@teambit/mdx.ui.mdx-scope-context@1.0.0(react-dom@17.0.2)(react@17.0.2):
-    resolution: {integrity: sha512-0iaAXiMh0kzHEi6ufS6qman7QrB+J+6PwpCibAtzbjXaH8FHUX7v6r+eV7BFt8zrtTEiUOFz7g1hax5ZOmUKRw==}
-    engines: {node: '>=12.22.0'}
-    peerDependencies:
-      react: '*'
-      react-dom: '*'
-    peerDependenciesMeta:
-      react:
-        optional: true
-      react-dom:
-        optional: true
-    dependencies:
-      core-js: 3.34.0
-      react: 17.0.2
-      react-dom: 17.0.2(react@17.0.2)
     dev: false
 
   /@teambit/mdx.ui.mdx-scope-context@1.0.0(react-dom@18.2.0)(react@18.2.0):
@@ -9456,31 +9673,6 @@ packages:
       vitest: 1.0.2(@types/node@12.20.4)(jsdom@23.0.1)(sass@1.69.5)
     dev: false
 
-  /@testing-library/react-hooks@8.0.1(@types/react@18.2.23)(react-dom@17.0.2)(react@17.0.2):
-    resolution: {integrity: sha512-Aqhl2IVmLt8IovEVarNDFuJDVWVvhnr9/GCU6UUnrYXwgDFF9h2L2o2P9KBni1AST5sT6riAyoukFLyjQUgD/g==}
-    engines: {node: '>=12'}
-    peerDependencies:
-      '@types/react': '*'
-      react: '*'
-      react-dom: '*'
-      react-test-renderer: '*'
-    peerDependenciesMeta:
-      '@types/react':
-        optional: true
-      react:
-        optional: true
-      react-dom:
-        optional: true
-      react-test-renderer:
-        optional: true
-    dependencies:
-      '@babel/runtime': 7.20.0
-      '@types/react': 18.2.23
-      react: 17.0.2
-      react-dom: 17.0.2(react@17.0.2)
-      react-error-boundary: 3.1.4(react@17.0.2)
-    dev: true
-
   /@testing-library/react-hooks@8.0.1(@types/react@18.2.23)(react-dom@18.2.0)(react@18.2.0):
     resolution: {integrity: sha512-Aqhl2IVmLt8IovEVarNDFuJDVWVvhnr9/GCU6UUnrYXwgDFF9h2L2o2P9KBni1AST5sT6riAyoukFLyjQUgD/g==}
     engines: {node: '>=12'}
@@ -9506,7 +9698,7 @@ packages:
       react-error-boundary: 3.1.4(react@18.2.0)
     dev: true
 
-  /@testing-library/react@14.1.2(react-dom@17.0.2)(react@17.0.2):
+  /@testing-library/react@14.1.2(react-dom@18.2.0)(react@18.2.0):
     resolution: {integrity: sha512-z4p7DVBTPjKM5qDZ0t5ZjzkpSNb+fZy1u6bzO7kk8oeGagpPCAtgh4cx1syrfp7a+QWkM021jGqjJaxJJnXAZg==}
     engines: {node: '>=14'}
     peerDependencies:
@@ -9521,8 +9713,8 @@ packages:
       '@babel/runtime': 7.20.0
       '@testing-library/dom': 9.3.3
       '@types/react-dom': 18.2.17
-      react: 17.0.2
-      react-dom: 17.0.2(react@17.0.2)
+      react: 18.2.0
+      react-dom: 18.2.0(react@18.2.0)
 
   /@tootallnate/once@2.0.0:
     resolution: {integrity: sha512-XCuKFP5PS55gnMVu3dty8KPatLqUoy/ZYzDzAGCQ8JNFCkLXzmI7vNHCR+XpbZaMWQK/vQubr7PkYq8g470J/A==}
@@ -15693,6 +15885,15 @@ packages:
       jest-mock: 29.7.0
       jest-util: 29.7.0
 
+  /jest-fetch-mock@3.0.3:
+    resolution: {integrity: sha512-Ux1nWprtLrdrH4XwE7O7InRY6psIi3GOsqNESJgMJ+M5cv4A8Lh7SN9d2V2kKRZ8ebAfcd1LNyZguAOb6JiDqw==}
+    dependencies:
+      cross-fetch: 3.1.8
+      promise-polyfill: 8.3.0
+    transitivePeerDependencies:
+      - encoding
+    dev: false
+
   /jest-get-type@26.3.0:
     resolution: {integrity: sha512-TpfaviN1R2pQWkIihlfEanwOXK0zcxrKEE4MlU6Tn7keoXdN6/3gK/xl0yEh8DOunn5pOVGKf8hB4R9gVh04ig==}
     engines: {node: '>= 10.14.2'}
@@ -16958,6 +17159,11 @@ packages:
       pathe: 1.1.1
       pkg-types: 1.0.3
       ufo: 1.3.2
+
+  /mock-socket@9.3.1:
+    resolution: {integrity: sha512-qxBgB7Qa2sEQgHFjj0dSigq7fX4k6Saisd5Nelwp2q8mlbAFh5dHV9JTTlF8viYJLSSWgMCZFUom8PJcMNBoJw==}
+    engines: {node: '>= 8'}
+    dev: false
 
   /mri@1.1.4:
     resolution: {integrity: sha512-6y7IjGPm8AzlvoUrwAaw1tLnUBudaS3752vcd8JtrpGGQn+rXIe63LFVHm/YMwtqAuh+LJPCFdlLYPWM1nYn6w==}
@@ -18419,6 +18625,10 @@ packages:
     resolution: {integrity: sha512-7nJ6v5lnJsXwGprnGXga4wx6d1POjvi5Qmf1ivTRxTjH4Z/9Czja/UCMLVmB9N93GeWOU93XaFaEt6jbuoagNw==}
     dev: false
 
+  /promise-polyfill@8.3.0:
+    resolution: {integrity: sha512-H5oELycFml5yto/atYqmjyigJoAo3+OXwolYiH7OfQuYlAqhxNvTfiNMbV9hsC6Yp83yE5r2KTVmtrG6R9i6Pg==}
+    dev: false
+
   /promise@7.3.1:
     resolution: {integrity: sha512-nolQXZ/4L+bP/UGlkfaIujX9BKxGwmQ9OT4mOt5yvy8iK1h3wqTEJCijzGANTCCl9nWjY41juyAn2K3Q1hLLTg==}
     dependencies:
@@ -18670,6 +18880,7 @@ packages:
       object-assign: 4.1.1
       react: 17.0.2
       scheduler: 0.20.2
+    dev: false
 
   /react-dom@18.2.0(react@18.2.0):
     resolution: {integrity: sha512-6IMTriUmvsjHUjNtEDudZfuDQUoWXVxKHhlEGSk81n4YFS+r/Kl99wXiwlVXtPBtJenozv2P+hxDsw9eA7Xo6g==}
@@ -18682,19 +18893,6 @@ packages:
       loose-envify: 1.4.0
       react: 18.2.0
       scheduler: 0.23.0
-
-  /react-error-boundary@3.1.4(react@17.0.2):
-    resolution: {integrity: sha512-uM9uPzZJTF6wRQORmSrvOIgt4lJ9MC1sNgEOj2XGsDTRE4kmpWxg7ENK9EWNKJRMAOY9z0MuF4yIfl6gp4sotA==}
-    engines: {node: '>=10', npm: '>=6'}
-    peerDependencies:
-      react: '*'
-    peerDependenciesMeta:
-      react:
-        optional: true
-    dependencies:
-      '@babel/runtime': 7.20.0
-      react: 17.0.2
-    dev: true
 
   /react-error-boundary@3.1.4(react@18.2.0):
     resolution: {integrity: sha512-uM9uPzZJTF6wRQORmSrvOIgt4lJ9MC1sNgEOj2XGsDTRE4kmpWxg7ENK9EWNKJRMAOY9z0MuF4yIfl6gp4sotA==}
@@ -18745,24 +18943,6 @@ packages:
     resolution: {integrity: sha512-wViHqhAd8OHeLS/IRMJjTSDHF3U9eWi62F/MledQGPdJGDhodXJ9PBLNGr6WWL7qlH12Mt3TyTpbS+hGXMjCzQ==}
     engines: {node: '>=0.10.0'}
 
-  /react-router-dom@6.20.1(react-dom@17.0.2)(react@17.0.2):
-    resolution: {integrity: sha512-npzfPWcxfQN35psS7rJgi/EW0Gx6EsNjfdJSAk73U/HqMEJZ2k/8puxfwHFgDQhBGmS3+sjnGbMdMSV45axPQw==}
-    engines: {node: '>=14.0.0'}
-    peerDependencies:
-      react: '*'
-      react-dom: '*'
-    peerDependenciesMeta:
-      react:
-        optional: true
-      react-dom:
-        optional: true
-    dependencies:
-      '@remix-run/router': 1.13.1
-      react: 17.0.2
-      react-dom: 17.0.2(react@17.0.2)
-      react-router: 6.20.1(react@17.0.2)
-    dev: false
-
   /react-router-dom@6.20.1(react-dom@18.2.0)(react@18.2.0):
     resolution: {integrity: sha512-npzfPWcxfQN35psS7rJgi/EW0Gx6EsNjfdJSAk73U/HqMEJZ2k/8puxfwHFgDQhBGmS3+sjnGbMdMSV45axPQw==}
     engines: {node: '>=14.0.0'}
@@ -18779,19 +18959,6 @@ packages:
       react: 18.2.0
       react-dom: 18.2.0(react@18.2.0)
       react-router: 6.20.1(react@18.2.0)
-
-  /react-router@6.20.1(react@17.0.2):
-    resolution: {integrity: sha512-ccvLrB4QeT5DlaxSFFYi/KR8UMQ4fcD8zBcR71Zp1kaYTC5oJKYAp1cbavzGrogwxca+ubjkd7XjFZKBW8CxPA==}
-    engines: {node: '>=14.0.0'}
-    peerDependencies:
-      react: '*'
-    peerDependenciesMeta:
-      react:
-        optional: true
-    dependencies:
-      '@remix-run/router': 1.13.1
-      react: 17.0.2
-    dev: false
 
   /react-router@6.20.1(react@18.2.0):
     resolution: {integrity: sha512-ccvLrB4QeT5DlaxSFFYi/KR8UMQ4fcD8zBcR71Zp1kaYTC5oJKYAp1cbavzGrogwxca+ubjkd7XjFZKBW8CxPA==}
@@ -18885,6 +19052,7 @@ packages:
     dependencies:
       loose-envify: 1.4.0
       object-assign: 4.1.1
+    dev: false
 
   /react@18.2.0:
     resolution: {integrity: sha512-/3IjMdb2L9QbBdWiW5e3P2/npwMBaU9mHCSCUzNln0ZCYbcfTsGbTJrU/kGemdH2IWmB2ioZ+zkxtmq6g09fGQ==}
@@ -19348,6 +19516,7 @@ packages:
     dependencies:
       loose-envify: 1.4.0
       object-assign: 4.1.1
+    dev: false
 
   /scheduler@0.23.0:
     resolution: {integrity: sha512-CtuThmgHNg7zIZWAXi3AsyIzA3n4xx7aNyjwC2VJldO2LMVDhFK+63xGqq6CsJH4rTAt6/M+N4GhZiDYPx9eUw==}
@@ -21451,7 +21620,7 @@ packages:
   /zwitch@2.0.4:
     resolution: {integrity: sha512-bXE4cR/kVZhKZX/RjPEflHaKVhUVl85noU3v6b8apfQEc1x4A+zBxjZ4lN8LqGd6WZ3dl98pY4o717VFmoPp+A==}
 
-  file:galacfetch/hooks/indexdb(@types/node@12.20.4)(eslint@8.55.0)(fake-indexeddb@5.0.1):
+  file:galacfetch/hooks/indexdb(@faker-js/faker@8.3.1)(@types/node@12.20.4)(eslint@8.55.0)(fake-indexeddb@5.0.1):
     resolution: {directory: galacfetch/hooks/indexdb, type: directory}
     id: file:galacfetch/hooks/indexdb
     name: '@intershare/hooks.indexdb'
@@ -21462,6 +21631,7 @@ packages:
         optional: true
     dependencies:
       '@apollo/client': 3.8.8(graphql@15.8.0)(react-dom@18.2.0)(react@18.2.0)
+      '@intershare/utils.general': file:galacfetch/utils/general(@faker-js/faker@8.3.1)(@types/node@12.20.4)(eslint@8.55.0)
       '@mdx-js/mdx': 1.6.22
       '@mdx-js/react': 1.6.22(react@18.2.0)
       '@teambit/mdx.ui.mdx-scope-context': 1.0.0(react-dom@18.2.0)(react@18.2.0)
@@ -21488,6 +21658,7 @@ packages:
       zustand: 4.4.7(@types/react@18.2.23)(react@18.2.0)
     transitivePeerDependencies:
       - '@edge-runtime/vm'
+      - '@faker-js/faker'
       - '@swc/core'
       - '@types/node'
       - '@typescript-eslint/parser'
@@ -21528,7 +21699,7 @@ packages:
       react-dom:
         optional: true
     dependencies:
-      '@intershare/hooks.indexdb': file:galacfetch/hooks/indexdb(@types/node@12.20.4)(eslint@8.55.0)(fake-indexeddb@5.0.1)
+      '@intershare/hooks.indexdb': file:galacfetch/hooks/indexdb(@faker-js/faker@8.3.1)(@types/node@12.20.4)(eslint@8.55.0)(fake-indexeddb@5.0.1)
       '@intershare/hooks.local-ipfs-file-manager': file:galacfetch/hooks/local-ipfs-file-manager(@faker-js/faker@8.3.1)(@types/node@12.20.4)(eslint@8.55.0)(fake-indexeddb@5.0.1)
       axios: 1.6.2
       core-js: 3.34.0
@@ -21547,7 +21718,6 @@ packages:
       - '@vitest/ui'
       - bufferutil
       - canvas
-      - debug
       - esbuild
       - eslint
       - eslint-import-resolver-typescript
@@ -21582,7 +21752,7 @@ packages:
       react-dom:
         optional: true
     dependencies:
-      '@intershare/hooks.indexdb': file:galacfetch/hooks/indexdb(@types/node@12.20.4)(eslint@8.55.0)(fake-indexeddb@5.0.1)
+      '@intershare/hooks.indexdb': file:galacfetch/hooks/indexdb(@faker-js/faker@8.3.1)(@types/node@12.20.4)(eslint@8.55.0)(fake-indexeddb@5.0.1)
       '@intershare/hooks.local-ipfs-file-manager': file:galacfetch/hooks/local-ipfs-file-manager(@faker-js/faker@8.3.1)(@types/node@12.20.4)(eslint@8.55.0)(fake-indexeddb@5.0.1)
       axios: 1.6.2
       core-js: 3.34.0
@@ -21601,7 +21771,6 @@ packages:
       - '@vitest/ui'
       - bufferutil
       - canvas
-      - debug
       - esbuild
       - eslint
       - eslint-import-resolver-typescript
@@ -21628,18 +21797,16 @@ packages:
     id: file:galacfetch/hooks/local-ipfs-file-manager
     name: '@intershare/hooks.local-ipfs-file-manager'
     peerDependencies:
-      '@faker-js/faker': '*'
       fake-indexeddb: '*'
     peerDependenciesMeta:
-      '@faker-js/faker':
-        optional: true
       fake-indexeddb:
         optional: true
     dependencies:
       '@apollo/client': 3.8.8(graphql@15.8.0)(react-dom@18.2.0)(react@18.2.0)
       '@faker-js/faker': 8.3.1
-      '@intershare/hooks.indexdb': file:galacfetch/hooks/indexdb(@types/node@12.20.4)(eslint@8.55.0)(fake-indexeddb@5.0.1)
+      '@intershare/hooks.indexdb': file:galacfetch/hooks/indexdb(@faker-js/faker@8.3.1)(@types/node@12.20.4)(eslint@8.55.0)(fake-indexeddb@5.0.1)
       '@intershare/hooks.ipfs-client': file:galacfetch/hooks/ipfs-client(@faker-js/faker@8.3.1)(@types/node@12.20.4)(@types/react@18.2.23)(eslint@8.55.0)(fake-indexeddb@5.0.1)(react-dom@18.2.0)(react@18.2.0)
+      '@intershare/utils.general': file:galacfetch/utils/general(@faker-js/faker@8.3.1)(@types/node@12.20.4)(eslint@8.55.0)
       '@mdx-js/mdx': 1.6.22
       '@mdx-js/react': 1.6.22(react@18.2.0)
       '@teambit/mdx.ui.mdx-scope-context': 1.0.0(react-dom@18.2.0)(react@18.2.0)
@@ -21667,6 +21834,7 @@ packages:
       zustand: 4.4.7(@types/react@18.2.23)(react@18.2.0)
     transitivePeerDependencies:
       - '@edge-runtime/vm'
+      - '@faker-js/faker'
       - '@swc/core'
       - '@types/node'
       - '@typescript-eslint/parser'
@@ -21674,7 +21842,6 @@ packages:
       - '@vitest/ui'
       - bufferutil
       - canvas
-      - debug
       - esbuild
       - eslint
       - eslint-import-resolver-typescript
@@ -21682,6 +21849,208 @@ packages:
       - graphql-ws
       - happy-dom
       - immer
+      - less
+      - lightningcss
+      - stylus
+      - subscriptions-transport-ws
+      - sugarss
+      - supports-color
+      - terser
+      - typescript
+      - uglify-js
+      - utf-8-validate
+      - webpack-cli
+    dev: false
+
+  file:galacfetch/hooks/remote-ipfs-file-integrity(@faker-js/faker@8.3.1)(@types/node@12.20.4)(eslint@8.55.0)(fake-indexeddb@5.0.1)(jest-fetch-mock@3.0.3):
+    resolution: {directory: galacfetch/hooks/remote-ipfs-file-integrity, type: directory}
+    id: file:galacfetch/hooks/remote-ipfs-file-integrity
+    name: '@intershare/hooks.remote-ipfs-file-integrity'
+    peerDependencies:
+      '@faker-js/faker': '*'
+      fake-indexeddb: '*'
+      jest-fetch-mock: '*'
+    peerDependenciesMeta:
+      '@faker-js/faker':
+        optional: true
+      fake-indexeddb:
+        optional: true
+      jest-fetch-mock:
+        optional: true
+    dependencies:
+      '@apollo/client': 3.8.8(graphql@15.8.0)(react-dom@18.2.0)(react@18.2.0)
+      '@faker-js/faker': 8.3.1
+      '@intershare/hooks.indexdb': file:galacfetch/hooks/indexdb(@faker-js/faker@8.3.1)(@types/node@12.20.4)(eslint@8.55.0)(fake-indexeddb@5.0.1)
+      '@intershare/hooks.local-ipfs-file-manager': file:galacfetch/hooks/local-ipfs-file-manager(@faker-js/faker@8.3.1)(@types/node@12.20.4)(eslint@8.55.0)(fake-indexeddb@5.0.1)
+      '@intershare/hooks.remote-ipfs-file-manager': file:galacfetch/hooks/remote-ipfs-file-manager(@faker-js/faker@8.3.1)(@types/node@12.20.4)(eslint@8.55.0)(fake-indexeddb@5.0.1)
+      '@intershare/utils.general': file:galacfetch/utils/general(@faker-js/faker@8.3.1)(@types/node@12.20.4)(eslint@8.55.0)
+      '@mdx-js/mdx': 1.6.22
+      '@mdx-js/react': 1.6.22(react@18.2.0)
+      '@teambit/mdx.ui.mdx-scope-context': 1.0.0(react-dom@18.2.0)(react@18.2.0)
+      '@types/jest': 29.5.11
+      '@types/react': 18.2.23
+      '@types/react-dom': 18.2.17
+      browserslist: 4.21.4
+      eslint-plugin-import: 2.22.1(eslint@8.55.0)
+      eslint-plugin-jest: 24.1.5(eslint@8.55.0)
+      eslint-plugin-jsx-a11y: 6.4.1(eslint@8.55.0)
+      eslint-plugin-mdx: 1.13.0(eslint@8.55.0)
+      eslint-plugin-react: 7.22.0(eslint@8.55.0)
+      eslint-plugin-react-hooks: 4.2.0(eslint@8.55.0)
+      fake-indexeddb: 5.0.1
+      graphql: 15.8.0
+      jest-fetch-mock: 3.0.3
+      jsdom: 23.0.1
+      pino-pretty: 4.5.0
+      react: 18.2.0
+      react-dom: 18.2.0(react@18.2.0)
+      react-router-dom: 6.20.1(react-dom@18.2.0)(react@18.2.0)
+      sass: 1.69.5
+      vitest: 1.0.2(@types/node@12.20.4)(jsdom@23.0.1)(sass@1.69.5)
+      webpack: 5.89.0
+      zustand: 4.4.7(@types/react@18.2.23)(react@18.2.0)
+    transitivePeerDependencies:
+      - '@edge-runtime/vm'
+      - '@swc/core'
+      - '@types/node'
+      - '@typescript-eslint/parser'
+      - '@vitest/browser'
+      - '@vitest/ui'
+      - bufferutil
+      - canvas
+      - esbuild
+      - eslint
+      - eslint-import-resolver-typescript
+      - eslint-import-resolver-webpack
+      - graphql-ws
+      - happy-dom
+      - immer
+      - less
+      - lightningcss
+      - stylus
+      - subscriptions-transport-ws
+      - sugarss
+      - supports-color
+      - terser
+      - typescript
+      - uglify-js
+      - utf-8-validate
+      - webpack-cli
+    dev: false
+
+  file:galacfetch/hooks/remote-ipfs-file-manager(@faker-js/faker@8.3.1)(@types/node@12.20.4)(eslint@8.55.0)(fake-indexeddb@5.0.1):
+    resolution: {directory: galacfetch/hooks/remote-ipfs-file-manager, type: directory}
+    id: file:galacfetch/hooks/remote-ipfs-file-manager
+    name: '@intershare/hooks.remote-ipfs-file-manager'
+    dependencies:
+      '@apollo/client': 3.8.8(graphql@15.8.0)(react-dom@18.2.0)(react@18.2.0)
+      '@intershare/hooks.local-ipfs-file-manager': file:galacfetch/hooks/local-ipfs-file-manager(@faker-js/faker@8.3.1)(@types/node@12.20.4)(eslint@8.55.0)(fake-indexeddb@5.0.1)
+      '@intershare/utils.general': file:galacfetch/utils/general(@faker-js/faker@8.3.1)(@types/node@12.20.4)(eslint@8.55.0)
+      '@mdx-js/mdx': 1.6.22
+      '@mdx-js/react': 1.6.22(react@18.2.0)
+      '@teambit/mdx.ui.mdx-scope-context': 1.0.0(react-dom@18.2.0)(react@18.2.0)
+      '@types/jest': 29.5.11
+      '@types/react': 18.2.23
+      '@types/react-dom': 18.2.17
+      axios: 1.6.2
+      browserslist: 4.21.4
+      eslint-plugin-import: 2.22.1(eslint@8.55.0)
+      eslint-plugin-jest: 24.1.5(eslint@8.55.0)
+      eslint-plugin-jsx-a11y: 6.4.1(eslint@8.55.0)
+      eslint-plugin-mdx: 1.13.0(eslint@8.55.0)
+      eslint-plugin-react: 7.22.0(eslint@8.55.0)
+      eslint-plugin-react-hooks: 4.2.0(eslint@8.55.0)
+      graphql: 15.8.0
+      jsdom: 23.0.1
+      pino-pretty: 4.5.0
+      react: 18.2.0
+      react-dom: 18.2.0(react@18.2.0)
+      react-router-dom: 6.20.1(react-dom@18.2.0)(react@18.2.0)
+      sass: 1.69.5
+      socket.io-client: 4.7.2
+      vitest: 1.0.2(@types/node@12.20.4)(jsdom@23.0.1)(sass@1.69.5)
+      webpack: 5.89.0
+      zustand: 4.4.7(@types/react@18.2.23)(react@18.2.0)
+    transitivePeerDependencies:
+      - '@edge-runtime/vm'
+      - '@faker-js/faker'
+      - '@swc/core'
+      - '@types/node'
+      - '@typescript-eslint/parser'
+      - '@vitest/browser'
+      - '@vitest/ui'
+      - bufferutil
+      - canvas
+      - esbuild
+      - eslint
+      - eslint-import-resolver-typescript
+      - eslint-import-resolver-webpack
+      - fake-indexeddb
+      - graphql-ws
+      - happy-dom
+      - immer
+      - less
+      - lightningcss
+      - stylus
+      - subscriptions-transport-ws
+      - sugarss
+      - supports-color
+      - terser
+      - typescript
+      - uglify-js
+      - utf-8-validate
+      - webpack-cli
+    dev: false
+
+  file:galacfetch/utils/general(@faker-js/faker@8.3.1)(@types/node@12.20.4)(eslint@8.55.0):
+    resolution: {directory: galacfetch/utils/general, type: directory}
+    id: file:galacfetch/utils/general
+    name: '@intershare/utils.general'
+    peerDependencies:
+      '@faker-js/faker': '*'
+    peerDependenciesMeta:
+      '@faker-js/faker':
+        optional: true
+    dependencies:
+      '@apollo/client': 3.8.8(graphql@15.8.0)(react-dom@18.2.0)(react@18.2.0)
+      '@faker-js/faker': 8.3.1
+      '@mdx-js/mdx': 1.6.22
+      '@mdx-js/react': 1.6.22(react@18.2.0)
+      '@teambit/mdx.ui.mdx-scope-context': 1.0.0(react-dom@18.2.0)(react@18.2.0)
+      '@types/jest': 29.5.11
+      '@types/react': 18.2.23
+      '@types/react-dom': 18.2.17
+      browserslist: 4.21.4
+      eslint-plugin-import: 2.22.1(eslint@8.55.0)
+      eslint-plugin-jest: 24.1.5(eslint@8.55.0)
+      eslint-plugin-jsx-a11y: 6.4.1(eslint@8.55.0)
+      eslint-plugin-mdx: 1.13.0(eslint@8.55.0)
+      eslint-plugin-react: 7.22.0(eslint@8.55.0)
+      eslint-plugin-react-hooks: 4.2.0(eslint@8.55.0)
+      graphql: 15.8.0
+      jsdom: 23.0.1
+      pino-pretty: 4.5.0
+      react: 18.2.0
+      react-dom: 18.2.0(react@18.2.0)
+      react-router-dom: 6.20.1(react-dom@18.2.0)(react@18.2.0)
+      sass: 1.69.5
+      vitest: 1.0.2(@types/node@12.20.4)(jsdom@23.0.1)(sass@1.69.5)
+      webpack: 5.89.0
+    transitivePeerDependencies:
+      - '@edge-runtime/vm'
+      - '@swc/core'
+      - '@types/node'
+      - '@typescript-eslint/parser'
+      - '@vitest/browser'
+      - '@vitest/ui'
+      - bufferutil
+      - canvas
+      - esbuild
+      - eslint
+      - eslint-import-resolver-typescript
+      - eslint-import-resolver-webpack
+      - graphql-ws
+      - happy-dom
       - less
       - lightningcss
       - stylus

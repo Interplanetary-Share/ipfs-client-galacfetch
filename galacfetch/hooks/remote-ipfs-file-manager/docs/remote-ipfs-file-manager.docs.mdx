@@ -1,15 +1,60 @@
----
-description: 'A React Hook.'
-labels: ['hook', 'react']
----
+### Description
 
-Increments the state of count by 1 each time increment() is invoked.
+`remoteIpfsFileManager` is a React Hook, implemented using Zustand, designed for managing file operations in a remote IPFS (InterPlanetary File System) environment. This state management hook facilitates various functionalities essential for interfacing with IPFS servers, such as establishing socket connections, uploading and downloading files, and retrieving file information.
 
-### Component usage
+### Tags
+
+`['hook', 'react', 'ipfs', 'file management', 'zustand', 'socket.io', 'websockets', 'file upload', 'file download']`
+
+### Component Usage
 
 ```tsx
+import { remoteIpfsFileManager } from '@intershare/hooks.remote-ipfs-file-manager'
+
 export function MyComponent() {
-  const response = useCounter();
-  return <div onClick={response.increment}>The count is {response.count}</div>;
+  const { init, remoteGetFile, remoteUploadFile, remoteGetFileInfo } =
+    remoteIpfsFileManager()
+
+  // Initialize the IPFS file manager with an API key
+  useEffect(() => {
+    init('your-api-key')
+  }, [])
+
+  // Example on how to use remoteGetFile, remoteUploadFile, and remoteGetFileInfo
+  const handleFileOperations = async (cid) => {
+    try {
+      // Retrieve file information from remote IPFS server
+      const fileInfo = await remoteGetFileInfo(cid)
+      console.log('File Info:', fileInfo)
+
+      // Download file and get the blob URL
+      const fileUrl = await remoteGetFile(cid)
+      console.log('File Blob URL:', fileUrl)
+
+      // Assuming you have a File object and file properties for uploading
+      const uploadResponse = await remoteUploadFile(file, fileProps)
+      console.log('Upload Response:', uploadResponse)
+    } catch (error) {
+      console.error('Error in file operations:', error)
+    }
+  }
+
+  return (
+    <div>
+      <button onClick={() => handleFileOperations('example-cid')}>
+        Perform File Operations
+      </button>
+    </div>
+  )
 }
 ```
+
+### Hook Functions
+
+- `init(api: string)`: Initializes the IPFS file manager with the provided API. This function is crucial for setting up the initial connection with the IPFS servers.
+- `remoteGetFile(cid: string)`: Downloads a file from a remote IPFS server using its CID (Content Identifier) and returns a URL of the downloaded blob, making it easier to access or display the file in a web environment.
+- `remoteUploadFile(file, fileProps)`: Uploads a file to the remote IPFS server. This function is key for sending files to the IPFS network, with additional file properties enhancing the metadata.
+- `remoteGetFileInfo(cid: string)`: Retrieves detailed information about a specific file from the IPFS server using its CID. This information typically includes file metadata, such as size, type, and other relevant data.
+- `remoteGetFilesInfo(isPublic, queryParams)`: Gathers information about multiple files based on specified search parameters. This function is useful for querying a collection of files, especially when filtering or sorting is required.
+- `remotegetFileExtraProps(cid: string)`: Fetches additional properties of a specific file by its CID. This function extends the capability to get more detailed attributes of a file which might not be covered in the standard file info.
+- `remoteUpdateFile(cid, fileProps)`: Updates the file information on the remote IPFS server. It allows modification of file metadata post-upload, providing flexibility in managing file data.

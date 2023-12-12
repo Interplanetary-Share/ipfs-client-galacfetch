@@ -3,7 +3,7 @@ import {
   chunkBlobAsync,
   fileToBlobUrl,
   bytesToGB,
-} from '../src/utils/file'
+} from './../src/files'
 import { faker } from '@faker-js/faker'
 describe('utils file', () => {
   global.URL.createObjectURL = jest.fn(

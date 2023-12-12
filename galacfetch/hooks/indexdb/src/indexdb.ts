@@ -1,7 +1,7 @@
+import { calculateSizeFromObject } from '@intershare/utils.general'
 import { create } from 'zustand'
 import { TConfig, TindexDbStore } from './types/common'
 import { ObjectStoresEnum } from './types/enum'
-import { calculateSizeFromObject } from './utils/files'
 
 const indexDbStore = create<TindexDbStore>()(
   (set): TindexDbStore => ({

@@ -1,17 +1,18 @@
 import { indexDbStore } from '@intershare/hooks.indexdb'
 import { localIpfsFileManager } from '@intershare/hooks.local-ipfs-file-manager'
+import {
+  IPaginationAndSortingParams,
+  TErrorStatus,
+  remoteIpfsFileManager,
+  TFileCreationProps,
+  TFileEditProps,
+} from '@intershare/hooks.remote-ipfs-file-manager'
 import { create } from 'zustand'
 import {
   IFileRetrievalConfig,
   IFileRetrievalResponse,
   IFileUploadResponse,
-  IPaginationAndSortingParams,
-  TErrorStatus,
-  TFileCreationProps,
-  TFileEditProps,
 } from './types/file'
-import { useRemoteIpfsClient } from './useRemoteIpfsClient' //TODO: change this for an splited library
-import { waitForFileReady, wrapperProtect } from './utils/api'
 
 type Store = {
   status: undefined | 'idle' | 'loading' | TErrorStatus
@@ -35,11 +36,11 @@ type Store = {
   ) => Promise<IFileRetrievalResponse>
 }
 
-export const ipfsGalactFetchClient = create<Store>()(
+export const ipfsGalactFetchClient = create<Store>(
   (set): Store => ({
     status: undefined,
     init: async (api: string, dbName = 'galactfetch') => {
-      const { init } = useRemoteIpfsClient.getState()
+      const { init } = remoteIpfsFileManager.getState()
       const { initIndexedDb } = indexDbStore.getState()
       set({ status: 'loading' })
       const response = await init(api).catch((error) => {
@@ -75,74 +76,74 @@ export const ipfsGalactFetchClient = create<Store>()(
         showExtraProps: true,
         // TODO add isPublic Scope
       }
-    ) =>
-      await wrapperProtect(set, async () => {
-        const { getLocalFileUrl, findPreloadFile } =
-          localIpfsFileManager.getState()
-        const { remoteGetFile, remotegetFileExtraProps, remoteGetFileInfo } =
-          useRemoteIpfsClient.getState()
+    ) => {
+      const { getLocalFileUrl } = localIpfsFileManager.getState()
+      const { remoteGetFile, remotegetFileExtraProps, remoteGetFileInfo } =
+        remoteIpfsFileManager.getState()
 
-        const isFile = await getLocalFileUrl(cid)
+      let url = undefined
 
-        if (!isFile) await remoteGetFile(cid)
+      if (config.showBlobUrl) {
+        const preloadUrl = await getLocalFileUrl(cid)
 
-        if (config.showBlobUrl) {
-          await waitForFileReady(cid)
+        if (!preloadUrl) {
+          url = await remoteGetFile(cid)
+        } else {
+          url = preloadUrl
         }
+      } else {
+        remoteGetFile(cid)
+      }
 
-        const url = config.showBlobUrl ? findPreloadFile(cid)?.url : undefined
+      const info = config.showInfoFile
+        ? await remoteGetFileInfo(cid)
+        : undefined
+      const extraProps = config.showExtraProps
+        ? await remotegetFileExtraProps(cid)
+        : undefined
 
-        const info = config.showInfoFile
-          ? await remoteGetFileInfo(cid)
-          : undefined
-        const extraProps = config.showExtraProps
-          ? await remotegetFileExtraProps(cid)
-          : undefined
+      const response = {
+        url,
+        ...info,
+        ...extraProps,
+      }
 
-        const response = {
-          url,
-          ...info,
-          ...extraProps,
-        }
+      const { _id, __v, ...rest } = response
 
-        const { _id, __v, ...rest } = response
-
-        return rest
-      }),
+      return rest
+    },
     // TODO: change order queryParams, config to easy the use.
     // TODO: sort by extraparams too.
     getFiles: async (
       isPublic = false,
       config?: IFileRetrievalConfig,
       queryParams?: IPaginationAndSortingParams
-    ) =>
-      await wrapperProtect(set, async () => {
-        const { remoteGetFilesInfo } = useRemoteIpfsClient.getState()
-        const { getFile } = ipfsGalactFetchClient.getState()
-        const files = await remoteGetFilesInfo(isPublic, queryParams)
-        if (!files) {
-          console.warn('no files found')
-          return []
-        }
+    ) => {
+      const { remoteGetFilesInfo } = remoteIpfsFileManager.getState()
+      const { getFile } = ipfsGalactFetchClient.getState()
+      const files = await remoteGetFilesInfo(isPublic, queryParams)
+      if (!files) {
+        console.warn('no files found')
+        return []
+      }
 
-        const response = await Promise.all(
-          files.map(async (file) => {
-            const response = await getFile(file.cid, config)
-            return response
-          })
-        )
-        return response
-      }),
+      const response = await Promise.all(
+        files.map(async (file) => {
+          const response = await getFile(file.cid, config)
+          return response
+        })
+      )
+      return response
+    },
 
-    uploadFile: async (file: File, fileProps: TFileCreationProps) =>
-      await wrapperProtect(set, async () => {
-        const { remoteUploadFile } = useRemoteIpfsClient.getState()
-        return await remoteUploadFile(file, fileProps)
-      }),
-    updateFile: async (cid: string, fileProps: TFileEditProps) =>
-      await wrapperProtect(set, async () => {
-        const { remoteUpdateFile } = useRemoteIpfsClient.getState()
-        return await remoteUpdateFile(cid, fileProps)
-      }),
+    uploadFile: async (file, fileProps) => {
+      const { remoteUploadFile } = remoteIpfsFileManager.getState()
+      return await remoteUploadFile(file, fileProps)
+    },
+
+    updateFile: async (cid: string, fileProps: TFileEditProps) => {
+      const { remoteUpdateFile } = remoteIpfsFileManager.getState()
+      return await remoteUpdateFile(cid, fileProps)
+    },
   })
 )

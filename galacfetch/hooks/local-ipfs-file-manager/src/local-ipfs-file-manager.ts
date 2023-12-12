@@ -1,50 +1,20 @@
 import { ObjectStoresEnum, indexDbStore } from '@intershare/hooks.indexdb'
-import { useRemoteIpfsClient } from '@intershare/hooks.ipfs-client' //TODO: change this for an splited library
-import { create } from 'zustand'
 import {
-  IFileUrlInfo,
-  TConfig,
-  TLocalIpfsFileManagerStore,
-} from './types/common'
-import {
-  blobBufferToFile,
   chunkBlobAsync,
   fileToBlobUrl,
   reassembleBlob,
-} from './utils/file'
-
-import axios from 'axios'
-import { restoreIntegrity } from './types/api'
+} from '@intershare/utils.general'
+import { create } from 'zustand'
+import { IFileUrlInfo, TLocalIpfsFileManagerStore } from './types/common'
 
 // TODO implement webrtc to share data between peers to avoid the use of a centralized database.
 
 const localIpfsFileManager = create<TLocalIpfsFileManagerStore>(
   (set): TLocalIpfsFileManagerStore => ({
     urlFileList: [],
-    config: {
-      remote: {
-        enabled: false,
-        integrity: {
-          check: false,
-          sync: false,
-        },
-      },
-    },
-    setConfig: (newConfig: Partial<TConfig>) => {
-      set((prevState) => ({
-        config: {
-          ...prevState.config,
-          ...newConfig,
-          remote: {
-            ...prevState.config.remote,
-            ...newConfig.remote,
-          },
-        },
-      }))
-    },
+
     getLocalFileUrl: async (cid: string) => {
-      const { addNewBlobUrl, findPreloadFile, config } =
-        localIpfsFileManager.getState()
+      const { addNewBlobUrl, findPreloadFile } = localIpfsFileManager.getState()
       const { iDb, getData } = indexDbStore.getState()
 
       if (!cid) {
@@ -67,17 +37,6 @@ const localIpfsFileManager = create<TLocalIpfsFileManagerStore>(
       const url = fileToBlobUrl(blob)
       addNewBlobUrl({ cid, url })
 
-      if (config.remote.enabled && config.remote.integrity.check) {
-        const { remoteCheckIntegrityFile } = useRemoteIpfsClient.getState()
-
-        const { syncFileWithRemote } = localIpfsFileManager.getState()
-
-        const isFileGoodIntegrity = await remoteCheckIntegrityFile(cid)
-        if (!isFileGoodIntegrity && config.remote.integrity.sync) {
-          await syncFileWithRemote(cid, blob)
-        }
-      }
-
       return url
     },
 
@@ -91,7 +50,7 @@ const localIpfsFileManager = create<TLocalIpfsFileManagerStore>(
       }
 
       const { iDb, saveData } = indexDbStore.getState()
-      const { addNewBlobUrl, config } = localIpfsFileManager.getState()
+      const { addNewBlobUrl } = localIpfsFileManager.getState()
 
       if (!iDb) {
         throw new Error('Indexed DB not initialized')
@@ -106,15 +65,6 @@ const localIpfsFileManager = create<TLocalIpfsFileManagerStore>(
 
       const url = fileToBlobUrl(blob)
       addNewBlobUrl({ cid, url })
-
-      if (config.remote.enabled && config.remote.integrity.check) {
-        const { servers } = useRemoteIpfsClient.getState()
-        servers.forEach((server) => {
-          if (server.dataChan?.readyState === 'open') {
-            server.dataChan.send(JSON.stringify({ type: 'checkFile', cid }))
-          }
-        })
-      }
 
       return cid
     },
@@ -153,52 +103,6 @@ const localIpfsFileManager = create<TLocalIpfsFileManagerStore>(
       localIpfsFileManager.setState({
         urlFileList: [...urlFileList, blobToAdd],
       })
-    },
-
-    // TODO: add testing for  this method
-    syncFileWithRemote: async (cid: string) => {
-      const { api, remoteGetFileInfo } = useRemoteIpfsClient.getState()
-      const { iDb, getData } = indexDbStore.getState()
-
-      try {
-        const infoFile = await remoteGetFileInfo(cid)
-        if (!infoFile) {
-          throw new Error(
-            `No se pudo obtener información del archivo para CID: ${cid}`
-          )
-        }
-        const { serverAlias } = infoFile
-
-        if (!iDb) {
-          throw new Error('Indexed DB not initialized')
-        }
-
-        const fileData = await getData(cid, ObjectStoresEnum.files)
-        if (!fileData) {
-          throw new Error(`Archivo no encontrado en IndexedDB para CID: ${cid}`)
-        }
-
-        const blob = reassembleBlob(fileData.buffers, fileData.type)
-        const file = blobBufferToFile(cid, blob)
-        const formData = new FormData()
-        formData.append('file', file)
-
-        const response = await axios.post(
-          `${restoreIntegrity}/${serverAlias.trim()}`,
-          formData,
-          {
-            headers: {
-              'Content-Type': 'multipart/form-data',
-              authorization: `Bearer ${api}`,
-            },
-          }
-        )
-
-        return response.data
-      } catch (err) {
-        console.error(`Error en syncFileWithRemote para CID: ${cid}`, err)
-        throw err
-      }
     },
   })
 )
