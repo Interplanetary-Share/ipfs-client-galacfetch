@@ -67,9 +67,8 @@
     },
     "utils/general": {
         "name": "utils/general",
-        "scope": "",
+        "scope": "intershare.galacfetch",
         "version": "0.0.1",
-        "defaultScope": "intershare.galacfetch",
         "mainFile": "index.ts",
         "rootDir": "galacfetch/utils/general"
     },
