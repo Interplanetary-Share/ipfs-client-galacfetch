@@ -1,10 +1,12 @@
+import { faker } from '@faker-js/faker'
+
 import {
-  reassembleBlob,
+  bytesToGB,
   chunkBlobAsync,
   fileToBlobUrl,
-  bytesToGB,
-} from './../src/files'
-import { faker } from '@faker-js/faker'
+  reassembleBlob,
+} from '../src/files'
+
 describe('utils file', () => {
   globalThis.URL.createObjectURL = jest.fn(
     (blob: any) => `blob:${blob.size}#t=${Date.now()}`
