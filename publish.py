@@ -1,5 +1,4 @@
 import subprocess
-import time
 
 
 def ejecutar_comando(comando):
