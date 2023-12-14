@@ -469,9 +469,6 @@ importers:
       '@intershare/hooks.remote-ipfs-file-manager':
         specifier: workspace:*
         version: file:galacfetch/hooks/remote-ipfs-file-manager(@faker-js/faker@8.3.1)(@types/node@12.20.4)(fake-indexeddb@5.0.1)
-      '@intershare/ipfsgalacfetchclient':
-        specifier: workspace:*
-        version: file:galacfetch/ipfsgalacfetchclient(@faker-js/faker@8.3.1)(@types/node@12.20.4)(fake-indexeddb@5.0.1)
       '@intershare/utils.general':
         specifier: workspace:*
         version: file:galacfetch/utils/general(@faker-js/faker@8.3.1)(@types/node@12.20.4)
@@ -490,6 +487,9 @@ importers:
       graphql:
         specifier: 14.7.0
         version: 14.7.0
+      ipfsgalacfetchclient:
+        specifier: workspace:*
+        version: file:galacfetch/ipfsgalacfetchclient(@faker-js/faker@8.3.1)(@types/node@12.20.4)(fake-indexeddb@5.0.1)
       jest:
         specifier: 29.3.1
         version: 29.3.1(@types/node@12.20.4)
@@ -513,9 +513,9 @@ importers:
         injected: true
       '@intershare/hooks.remote-ipfs-file-manager':
         injected: true
-      '@intershare/ipfsgalacfetchclient':
-        injected: true
       '@intershare/utils.general':
+        injected: true
+      ipfsgalacfetchclient:
         injected: true
 
   node_modules/.bit_roots/teambit.envs_env:
@@ -535,12 +535,12 @@ importers:
       '@intershare/hooks.remote-ipfs-file-manager':
         specifier: workspace:*
         version: file:galacfetch/hooks/remote-ipfs-file-manager(@faker-js/faker@8.3.1)(@types/node@12.20.4)(fake-indexeddb@5.0.1)
-      '@intershare/ipfsgalacfetchclient':
-        specifier: workspace:*
-        version: file:galacfetch/ipfsgalacfetchclient(@faker-js/faker@8.3.1)(@types/node@12.20.4)(fake-indexeddb@5.0.1)
       '@intershare/utils.general':
         specifier: workspace:*
         version: file:galacfetch/utils/general(@faker-js/faker@8.3.1)(@types/node@12.20.4)
+      ipfsgalacfetchclient:
+        specifier: workspace:*
+        version: file:galacfetch/ipfsgalacfetchclient(@faker-js/faker@8.3.1)(@types/node@12.20.4)(fake-indexeddb@5.0.1)
       react:
         specifier: ^16.8.0 || ^17.0.0
         version: 17.0.2
@@ -558,9 +558,9 @@ importers:
         injected: true
       '@intershare/hooks.remote-ipfs-file-manager':
         injected: true
-      '@intershare/ipfsgalacfetchclient':
-        injected: true
       '@intershare/utils.general':
+        injected: true
+      ipfsgalacfetchclient:
         injected: true
 
 packages:
@@ -19874,7 +19874,7 @@ packages:
   file:galacfetch/ipfsgalacfetchclient(@faker-js/faker@8.3.1)(@types/node@12.20.4)(fake-indexeddb@5.0.1):
     resolution: {directory: galacfetch/ipfsgalacfetchclient, type: directory}
     id: file:galacfetch/ipfsgalacfetchclient
-    name: '@intershare/ipfsgalacfetchclient'
+    name: ipfsgalacfetchclient
     dependencies:
       '@intershare/hooks.indexdb': file:galacfetch/hooks/indexdb(@faker-js/faker@8.3.1)(@types/node@12.20.4)(fake-indexeddb@5.0.1)
       '@intershare/hooks.local-ipfs-file-manager': file:galacfetch/hooks/local-ipfs-file-manager(@faker-js/faker@8.3.1)(@types/node@12.20.4)(fake-indexeddb@5.0.1)
