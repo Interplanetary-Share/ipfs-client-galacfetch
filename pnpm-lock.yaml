@@ -21,7 +21,7 @@ importers:
         specifier: 1.0.15
         version: 1.0.15(@teambit/legacy@node_modules+@teambit+legacy)
       '@teambit/defender.jest-tester':
-        specifier: 1.0.13
+        specifier: ^1.0.13
         version: 1.0.13(@teambit/legacy@node_modules+@teambit+legacy)(@types/node@12.20.4)
       '@teambit/eslint-config-bit-react':
         specifier: ^0.0.367
@@ -30,17 +30,17 @@ importers:
         specifier: 1.0.0
         version: 1.0.0(react-dom@18.2.0)(react@18.2.0)
       '@teambit/preview.react-preview':
-        specifier: 1.0.23
-        version: 1.0.23(@teambit/legacy@node_modules+@teambit+legacy)(@testing-library/react@14.1.2)(@types/react@18.2.23)(eslint@8.55.0)(graphql@14.7.0)(react-dom@18.2.0)(react@18.2.0)
+        specifier: ^1.0.23
+        version: 1.0.23(@teambit/legacy@node_modules+@teambit+legacy)(@testing-library/react@14.1.2)(@types/react@18.2.45)(eslint@8.55.0)(graphql@14.7.0)(react-dom@18.2.0)(react@18.2.0)
       '@teambit/react.mounter':
-        specifier: 1.0.3
+        specifier: ^1.0.3
         version: 1.0.3
       '@teambit/react.react-env':
         specifier: 1.0.32
         version: 1.0.32(@teambit/legacy@node_modules+@teambit+legacy)(@testing-library/react@14.1.2)(@types/node@12.20.4)(@typescript-eslint/parser@6.14.0)
       '@teambit/typescript.typescript-compiler':
-        specifier: 2.0.14
-        version: 2.0.14(@teambit/legacy@node_modules+@teambit+legacy)
+        specifier: ^2.0.15
+        version: 2.0.15(@teambit/legacy@node_modules+@teambit+legacy)
       '@testing-library/jest-dom':
         specifier: ^6.1.5
         version: 6.1.5(@types/jest@29.5.11)(jest@29.3.1)
@@ -49,7 +49,7 @@ importers:
         version: 14.1.2(react-dom@18.2.0)(react@18.2.0)
       '@types/react':
         specifier: ^18.2.12
-        version: 18.2.23
+        version: 18.2.45
       '@types/react-dom':
         specifier: ^18.2.5
         version: 18.2.17
@@ -94,11 +94,11 @@ importers:
         version: 29.1.1(jest@29.3.1)
       zustand:
         specifier: ^4.4.7
-        version: 4.4.7(@types/react@18.2.23)(react@18.2.0)
+        version: 4.4.7(@types/react@18.2.45)(react@18.2.0)
     devDependencies:
       '@testing-library/react-hooks':
         specifier: ^8.0.1
-        version: 8.0.1(@types/react@18.2.23)(react-dom@18.2.0)(react@18.2.0)
+        version: 8.0.1(@types/react@18.2.45)(react-dom@18.2.0)(react@18.2.0)
       '@types/jest':
         specifier: '>=29.2.2 <30.0.0'
         version: 29.5.11
@@ -121,29 +121,29 @@ importers:
         specifier: 1.0.15
         version: 1.0.15(@teambit/legacy@node_modules+@teambit+legacy)
       '@teambit/defender.jest-tester':
-        specifier: 1.0.13
+        specifier: ^1.0.13
         version: 1.0.13(@teambit/legacy@node_modules+@teambit+legacy)(@types/node@12.20.4)
       '@teambit/mdx.ui.mdx-scope-context':
         specifier: 1.0.0
         version: 1.0.0(react-dom@18.2.0)(react@18.2.0)
       '@teambit/preview.react-preview':
-        specifier: 1.0.23
-        version: 1.0.23(@teambit/legacy@node_modules+@teambit+legacy)(@testing-library/react@14.1.2)(@types/react@18.2.23)(eslint@8.55.0)(graphql@14.7.0)(react-dom@18.2.0)(react@18.2.0)
+        specifier: ^1.0.23
+        version: 1.0.23(@teambit/legacy@node_modules+@teambit+legacy)(@testing-library/react@14.1.2)(@types/react@18.2.45)(eslint@8.55.0)(graphql@14.7.0)(react-dom@18.2.0)(react@18.2.0)
       '@teambit/react.mounter':
-        specifier: 1.0.3
+        specifier: ^1.0.3
         version: 1.0.3
       '@teambit/react.react-env':
         specifier: 1.0.32
         version: 1.0.32(@teambit/legacy@node_modules+@teambit+legacy)(@testing-library/react@14.1.2)(@types/node@12.20.4)(@typescript-eslint/parser@6.14.0)
       '@teambit/typescript.typescript-compiler':
-        specifier: 2.0.14
-        version: 2.0.14(@teambit/legacy@node_modules+@teambit+legacy)
+        specifier: ^2.0.15
+        version: 2.0.15(@teambit/legacy@node_modules+@teambit+legacy)
       '@testing-library/jest-dom':
         specifier: ^6.1.5
         version: 6.1.5(@types/jest@26.0.24)(jest@29.3.1)
       '@types/react':
         specifier: ^18.2.12
-        version: 18.2.23
+        version: 18.2.45
       '@types/react-dom':
         specifier: ^18.2.5
         version: 18.2.17
@@ -186,7 +186,7 @@ importers:
         version: 1.0.0(react-dom@18.2.0)(react@18.2.0)
       '@types/react':
         specifier: ^18.2.12
-        version: 18.2.23
+        version: 18.2.45
       '@types/react-dom':
         specifier: ^18.2.5
         version: 18.2.17
@@ -210,17 +210,17 @@ importers:
         version: 6.8.1(react-dom@18.2.0)(react@18.2.0)
       zustand:
         specifier: ^4.4.7
-        version: 4.4.7(@types/react@18.2.23)(react@18.2.0)
+        version: 4.4.7(@types/react@18.2.45)(react@18.2.0)
     devDependencies:
       '@testing-library/react-hooks':
         specifier: ^8.0.1
-        version: 8.0.1(@types/react@18.2.23)(react-dom@18.2.0)(react@18.2.0)
+        version: 8.0.1(@types/react@18.2.45)(react-dom@18.2.0)(react@18.2.0)
       '@types/jest':
         specifier: ^29.2.2
         version: 29.5.11
       '@types/testing-library__jest-dom':
         specifier: ^5.9.5
-        version: 5.14.9
+        version: 5.9.5
 
   galacfetch/hooks/local-ipfs-file-manager:
     dependencies:
@@ -232,7 +232,7 @@ importers:
         version: 1.0.0(react-dom@18.2.0)(react@18.2.0)
       '@types/react':
         specifier: ^18.2.12
-        version: 18.2.23
+        version: 18.2.45
       '@types/react-dom':
         specifier: ^18.2.5
         version: 18.2.17
@@ -256,17 +256,17 @@ importers:
         version: 6.8.1(react-dom@18.2.0)(react@18.2.0)
       zustand:
         specifier: ^4.4.7
-        version: 4.4.7(@types/react@18.2.23)(react@18.2.0)
+        version: 4.4.7(@types/react@18.2.45)(react@18.2.0)
     devDependencies:
       '@testing-library/react-hooks':
         specifier: ^8.0.1
-        version: 8.0.1(@types/react@18.2.23)(react-dom@18.2.0)(react@18.2.0)
+        version: 8.0.1(@types/react@18.2.45)(react-dom@18.2.0)(react@18.2.0)
       '@types/jest':
         specifier: ^29.2.2
         version: 29.5.11
       '@types/testing-library__jest-dom':
         specifier: ^5.9.5
-        version: 5.14.9
+        version: 5.9.5
 
   galacfetch/hooks/remote-ipfs-file-integrity:
     dependencies:
@@ -281,7 +281,7 @@ importers:
         version: 1.0.0(react-dom@18.2.0)(react@18.2.0)
       '@types/react':
         specifier: ^18.2.12
-        version: 18.2.23
+        version: 18.2.45
       '@types/react-dom':
         specifier: ^18.2.5
         version: 18.2.17
@@ -308,17 +308,17 @@ importers:
         version: 6.8.1(react-dom@18.2.0)(react@18.2.0)
       zustand:
         specifier: ^4.4.7
-        version: 4.4.7(@types/react@18.2.23)(react@18.2.0)
+        version: 4.4.7(@types/react@18.2.45)(react@18.2.0)
     devDependencies:
       '@testing-library/react-hooks':
         specifier: ^8.0.1
-        version: 8.0.1(@types/react@18.2.23)(react-dom@18.2.0)(react@18.2.0)
+        version: 8.0.1(@types/react@18.2.45)(react-dom@18.2.0)(react@18.2.0)
       '@types/jest':
         specifier: ^29.2.2
         version: 29.5.11
       '@types/testing-library__jest-dom':
         specifier: ^5.9.5
-        version: 5.14.9
+        version: 5.9.5
 
   galacfetch/hooks/remote-ipfs-file-manager:
     dependencies:
@@ -330,7 +330,7 @@ importers:
         version: 1.0.0(react-dom@18.2.0)(react@18.2.0)
       '@types/react':
         specifier: ^18.2.12
-        version: 18.2.23
+        version: 18.2.45
       '@types/react-dom':
         specifier: ^18.2.5
         version: 18.2.17
@@ -354,14 +354,14 @@ importers:
         version: 4.7.2
       zustand:
         specifier: ^4.4.7
-        version: 4.4.7(@types/react@18.2.23)(react@18.2.0)
+        version: 4.4.7(@types/react@18.2.45)(react@18.2.0)
     devDependencies:
       '@types/jest':
         specifier: ^29.2.2
         version: 29.5.11
       '@types/testing-library__jest-dom':
         specifier: ^5.9.5
-        version: 5.14.9
+        version: 5.9.5
 
   galacfetch/ipfsgalacfetchclient:
     dependencies:
@@ -373,7 +373,7 @@ importers:
         version: 1.0.0(react-dom@18.2.0)(react@18.2.0)
       '@types/react':
         specifier: ^18.2.12
-        version: 18.2.23
+        version: 18.2.45
       '@types/react-dom':
         specifier: ^18.2.5
         version: 18.2.17
@@ -394,7 +394,7 @@ importers:
         version: 6.8.1(react-dom@18.2.0)(react@18.2.0)
       zustand:
         specifier: ^4.4.7
-        version: 4.4.7(@types/react@18.2.23)(react@18.2.0)
+        version: 4.4.7(@types/react@18.2.45)(react@18.2.0)
     devDependencies:
       '@types/jest':
         specifier: ^29.2.2
@@ -416,7 +416,7 @@ importers:
         version: 1.0.0(react-dom@18.2.0)(react@18.2.0)
       '@types/react':
         specifier: ^18.2.12
-        version: 18.2.23
+        version: 18.2.45
       '@types/react-dom':
         specifier: ^18.2.5
         version: 18.2.17
@@ -441,7 +441,7 @@ importers:
         version: 29.5.11
       '@types/testing-library__jest-dom':
         specifier: ^5.9.5
-        version: 5.14.9
+        version: 5.9.5
 
   node_modules/.bit_roots/intershare.galacfetch_envs_react-env:
     dependencies:
@@ -474,7 +474,7 @@ importers:
         version: 1.0.0(react-dom@18.2.0)(react@18.2.0)
       '@types/react':
         specifier: ^18.2.12
-        version: 18.2.23
+        version: 18.2.45
       '@types/react-dom':
         specifier: ^18.2.5
         version: 18.2.17
@@ -1293,7 +1293,7 @@ packages:
         optional: true
     dependencies:
       '@babel/core': 7.12.9
-      '@babel/helper-plugin-utils': 7.10.4
+      '@babel/helper-plugin-utils': 7.22.5
       '@babel/plugin-syntax-object-rest-spread': 7.8.3(@babel/core@7.12.9)
       '@babel/plugin-transform-parameters': 7.23.3(@babel/core@7.12.9)
     dev: false
@@ -2003,21 +2003,6 @@ packages:
     dependencies:
       '@babel/core': 7.23.6
       '@babel/helper-plugin-utils': 7.22.5
-    dev: false
-
-  /@babel/plugin-transform-async-generator-functions@7.23.4:
-    resolution: {integrity: sha512-efdkfPhHYTtn0G6n2ddrESE91fgXxjlqLsnUtPWnJs4a4mZIbUaK7ffqKIIUKXSHwcDvaCVX6GXkaJJFqtX7jw==}
-    engines: {node: '>=6.9.0'}
-    peerDependencies:
-      '@babel/core': '*'
-    peerDependenciesMeta:
-      '@babel/core':
-        optional: true
-    dependencies:
-      '@babel/helper-environment-visitor': 7.22.20
-      '@babel/helper-plugin-utils': 7.22.5
-      '@babel/helper-remap-async-to-generator': 7.22.20(@babel/core@7.23.6)
-      '@babel/plugin-syntax-async-generators': 7.8.4(@babel/core@7.20.2)
     dev: false
 
   /@babel/plugin-transform-async-generator-functions@7.23.4(@babel/core@7.20.2):
@@ -3668,16 +3653,16 @@ packages:
       '@babel/helper-compilation-targets': 7.23.6
       '@babel/helper-plugin-utils': 7.22.5
       '@babel/helper-validator-option': 7.23.5
-      '@babel/plugin-bugfix-safari-id-destructuring-collision-in-function-expression': 7.23.3(@babel/core@7.23.6)
+      '@babel/plugin-bugfix-safari-id-destructuring-collision-in-function-expression': 7.23.3(@babel/core@7.20.2)
       '@babel/plugin-bugfix-v8-spread-parameters-in-optional-chaining': 7.23.3(@babel/core@7.20.2)
-      '@babel/plugin-proposal-private-property-in-object': 7.21.0-placeholder-for-preset-env.2(@babel/core@7.23.6)
+      '@babel/plugin-proposal-private-property-in-object': 7.21.0-placeholder-for-preset-env.2(@babel/core@7.20.2)
       '@babel/plugin-syntax-async-generators': 7.8.4(@babel/core@7.20.2)
       '@babel/plugin-syntax-class-properties': 7.12.13(@babel/core@7.20.2)
-      '@babel/plugin-syntax-class-static-block': 7.14.5(@babel/core@7.23.6)
-      '@babel/plugin-syntax-dynamic-import': 7.8.3(@babel/core@7.23.6)
-      '@babel/plugin-syntax-export-namespace-from': 7.8.3(@babel/core@7.23.6)
-      '@babel/plugin-syntax-import-assertions': 7.23.3(@babel/core@7.23.6)
-      '@babel/plugin-syntax-import-attributes': 7.23.3(@babel/core@7.23.6)
+      '@babel/plugin-syntax-class-static-block': 7.14.5(@babel/core@7.20.2)
+      '@babel/plugin-syntax-dynamic-import': 7.8.3(@babel/core@7.20.2)
+      '@babel/plugin-syntax-export-namespace-from': 7.8.3(@babel/core@7.20.2)
+      '@babel/plugin-syntax-import-assertions': 7.23.3(@babel/core@7.20.2)
+      '@babel/plugin-syntax-import-attributes': 7.23.3(@babel/core@7.20.2)
       '@babel/plugin-syntax-import-meta': 7.10.4(@babel/core@7.20.2)
       '@babel/plugin-syntax-json-strings': 7.8.3(@babel/core@7.20.2)
       '@babel/plugin-syntax-logical-assignment-operators': 7.10.4(@babel/core@7.20.2)
@@ -3686,62 +3671,62 @@ packages:
       '@babel/plugin-syntax-object-rest-spread': 7.8.3(@babel/core@7.12.9)
       '@babel/plugin-syntax-optional-catch-binding': 7.8.3(@babel/core@7.20.2)
       '@babel/plugin-syntax-optional-chaining': 7.8.3(@babel/core@7.20.2)
-      '@babel/plugin-syntax-private-property-in-object': 7.14.5(@babel/core@7.23.6)
+      '@babel/plugin-syntax-private-property-in-object': 7.14.5(@babel/core@7.20.2)
       '@babel/plugin-syntax-top-level-await': 7.14.5(@babel/core@7.20.2)
-      '@babel/plugin-syntax-unicode-sets-regex': 7.18.6(@babel/core@7.23.6)
-      '@babel/plugin-transform-arrow-functions': 7.23.3(@babel/core@7.23.6)
-      '@babel/plugin-transform-async-generator-functions': 7.23.4
-      '@babel/plugin-transform-async-to-generator': 7.23.3(@babel/core@7.23.6)
-      '@babel/plugin-transform-block-scoped-functions': 7.23.3(@babel/core@7.23.6)
-      '@babel/plugin-transform-block-scoping': 7.23.4(@babel/core@7.23.6)
-      '@babel/plugin-transform-class-properties': 7.23.3(@babel/core@7.23.6)
-      '@babel/plugin-transform-class-static-block': 7.23.4(@babel/core@7.23.6)
-      '@babel/plugin-transform-classes': 7.23.5(@babel/core@7.23.6)
-      '@babel/plugin-transform-computed-properties': 7.23.3(@babel/core@7.23.6)
-      '@babel/plugin-transform-destructuring': 7.23.3(@babel/core@7.23.6)
-      '@babel/plugin-transform-dotall-regex': 7.23.3(@babel/core@7.23.6)
-      '@babel/plugin-transform-duplicate-keys': 7.23.3(@babel/core@7.23.6)
-      '@babel/plugin-transform-dynamic-import': 7.23.4(@babel/core@7.23.6)
-      '@babel/plugin-transform-exponentiation-operator': 7.23.3(@babel/core@7.23.6)
-      '@babel/plugin-transform-export-namespace-from': 7.23.4(@babel/core@7.23.6)
-      '@babel/plugin-transform-for-of': 7.23.6(@babel/core@7.23.6)
-      '@babel/plugin-transform-function-name': 7.23.3(@babel/core@7.23.6)
+      '@babel/plugin-syntax-unicode-sets-regex': 7.18.6(@babel/core@7.20.2)
+      '@babel/plugin-transform-arrow-functions': 7.23.3(@babel/core@7.20.2)
+      '@babel/plugin-transform-async-generator-functions': 7.23.4(@babel/core@7.20.2)
+      '@babel/plugin-transform-async-to-generator': 7.23.3(@babel/core@7.20.2)
+      '@babel/plugin-transform-block-scoped-functions': 7.23.3(@babel/core@7.20.2)
+      '@babel/plugin-transform-block-scoping': 7.23.4(@babel/core@7.20.2)
+      '@babel/plugin-transform-class-properties': 7.23.3(@babel/core@7.20.2)
+      '@babel/plugin-transform-class-static-block': 7.23.4(@babel/core@7.20.2)
+      '@babel/plugin-transform-classes': 7.23.5(@babel/core@7.20.2)
+      '@babel/plugin-transform-computed-properties': 7.23.3(@babel/core@7.20.2)
+      '@babel/plugin-transform-destructuring': 7.23.3(@babel/core@7.20.2)
+      '@babel/plugin-transform-dotall-regex': 7.23.3(@babel/core@7.20.2)
+      '@babel/plugin-transform-duplicate-keys': 7.23.3(@babel/core@7.20.2)
+      '@babel/plugin-transform-dynamic-import': 7.23.4(@babel/core@7.20.2)
+      '@babel/plugin-transform-exponentiation-operator': 7.23.3(@babel/core@7.20.2)
+      '@babel/plugin-transform-export-namespace-from': 7.23.4(@babel/core@7.20.2)
+      '@babel/plugin-transform-for-of': 7.23.6(@babel/core@7.20.2)
+      '@babel/plugin-transform-function-name': 7.23.3(@babel/core@7.20.2)
       '@babel/plugin-transform-json-strings': 7.23.4(@babel/core@7.20.2)
-      '@babel/plugin-transform-literals': 7.23.3(@babel/core@7.23.6)
+      '@babel/plugin-transform-literals': 7.23.3(@babel/core@7.20.2)
       '@babel/plugin-transform-logical-assignment-operators': 7.23.4(@babel/core@7.20.2)
-      '@babel/plugin-transform-member-expression-literals': 7.23.3(@babel/core@7.23.6)
+      '@babel/plugin-transform-member-expression-literals': 7.23.3(@babel/core@7.20.2)
       '@babel/plugin-transform-modules-amd': 7.23.3
       '@babel/plugin-transform-modules-commonjs': 7.23.3
       '@babel/plugin-transform-modules-systemjs': 7.23.3
       '@babel/plugin-transform-modules-umd': 7.23.3
-      '@babel/plugin-transform-named-capturing-groups-regex': 7.22.5(@babel/core@7.23.6)
-      '@babel/plugin-transform-new-target': 7.23.3(@babel/core@7.23.6)
+      '@babel/plugin-transform-named-capturing-groups-regex': 7.22.5(@babel/core@7.20.2)
+      '@babel/plugin-transform-new-target': 7.23.3(@babel/core@7.20.2)
       '@babel/plugin-transform-nullish-coalescing-operator': 7.23.4(@babel/core@7.20.2)
       '@babel/plugin-transform-numeric-separator': 7.23.4(@babel/core@7.20.2)
       '@babel/plugin-transform-object-rest-spread': 7.23.4
-      '@babel/plugin-transform-object-super': 7.23.3(@babel/core@7.23.6)
+      '@babel/plugin-transform-object-super': 7.23.3(@babel/core@7.20.2)
       '@babel/plugin-transform-optional-catch-binding': 7.23.4(@babel/core@7.20.2)
       '@babel/plugin-transform-optional-chaining': 7.23.4(@babel/core@7.20.2)
       '@babel/plugin-transform-parameters': 7.23.3(@babel/core@7.12.9)
-      '@babel/plugin-transform-private-methods': 7.23.3(@babel/core@7.23.6)
-      '@babel/plugin-transform-private-property-in-object': 7.23.4(@babel/core@7.23.6)
-      '@babel/plugin-transform-property-literals': 7.23.3(@babel/core@7.23.6)
-      '@babel/plugin-transform-regenerator': 7.23.3(@babel/core@7.23.6)
-      '@babel/plugin-transform-reserved-words': 7.23.3(@babel/core@7.23.6)
-      '@babel/plugin-transform-shorthand-properties': 7.23.3(@babel/core@7.23.6)
-      '@babel/plugin-transform-spread': 7.23.3(@babel/core@7.23.6)
-      '@babel/plugin-transform-sticky-regex': 7.23.3(@babel/core@7.23.6)
-      '@babel/plugin-transform-template-literals': 7.23.3(@babel/core@7.23.6)
-      '@babel/plugin-transform-typeof-symbol': 7.23.3(@babel/core@7.23.6)
-      '@babel/plugin-transform-unicode-escapes': 7.23.3(@babel/core@7.23.6)
-      '@babel/plugin-transform-unicode-property-regex': 7.23.3(@babel/core@7.23.6)
-      '@babel/plugin-transform-unicode-regex': 7.23.3(@babel/core@7.23.6)
-      '@babel/plugin-transform-unicode-sets-regex': 7.23.3(@babel/core@7.23.6)
-      '@babel/preset-modules': 0.1.6-no-external-plugins(@babel/core@7.23.6)
+      '@babel/plugin-transform-private-methods': 7.23.3(@babel/core@7.20.2)
+      '@babel/plugin-transform-private-property-in-object': 7.23.4(@babel/core@7.20.2)
+      '@babel/plugin-transform-property-literals': 7.23.3(@babel/core@7.20.2)
+      '@babel/plugin-transform-regenerator': 7.23.3(@babel/core@7.20.2)
+      '@babel/plugin-transform-reserved-words': 7.23.3(@babel/core@7.20.2)
+      '@babel/plugin-transform-shorthand-properties': 7.23.3(@babel/core@7.20.2)
+      '@babel/plugin-transform-spread': 7.23.3(@babel/core@7.20.2)
+      '@babel/plugin-transform-sticky-regex': 7.23.3(@babel/core@7.20.2)
+      '@babel/plugin-transform-template-literals': 7.23.3(@babel/core@7.20.2)
+      '@babel/plugin-transform-typeof-symbol': 7.23.3(@babel/core@7.20.2)
+      '@babel/plugin-transform-unicode-escapes': 7.23.3(@babel/core@7.20.2)
+      '@babel/plugin-transform-unicode-property-regex': 7.23.3(@babel/core@7.20.2)
+      '@babel/plugin-transform-unicode-regex': 7.23.3(@babel/core@7.20.2)
+      '@babel/plugin-transform-unicode-sets-regex': 7.23.3(@babel/core@7.20.2)
+      '@babel/preset-modules': 0.1.6-no-external-plugins(@babel/core@7.20.2)
       '@babel/types': 7.23.6
-      babel-plugin-polyfill-corejs2: 0.4.7(@babel/core@7.23.6)
-      babel-plugin-polyfill-corejs3: 0.8.7(@babel/core@7.23.6)
-      babel-plugin-polyfill-regenerator: 0.5.4(@babel/core@7.23.6)
+      babel-plugin-polyfill-corejs2: 0.4.7(@babel/core@7.20.2)
+      babel-plugin-polyfill-corejs3: 0.8.7(@babel/core@7.20.2)
+      babel-plugin-polyfill-regenerator: 0.5.4(@babel/core@7.20.2)
       core-js-compat: 3.34.0
       semver: 6.3.1
     transitivePeerDependencies:
@@ -3855,17 +3840,17 @@ packages:
       '@babel/helper-compilation-targets': 7.23.6
       '@babel/helper-plugin-utils': 7.22.5
       '@babel/helper-validator-option': 7.23.5
-      '@babel/plugin-bugfix-safari-id-destructuring-collision-in-function-expression': 7.23.3(@babel/core@7.23.6)
+      '@babel/plugin-bugfix-safari-id-destructuring-collision-in-function-expression': 7.23.3(@babel/core@7.20.2)
       '@babel/plugin-bugfix-v8-spread-parameters-in-optional-chaining': 7.23.3(@babel/core@7.20.2)
       '@babel/plugin-bugfix-v8-static-class-fields-redefine-readonly': 7.23.3(@babel/core@7.23.6)
-      '@babel/plugin-proposal-private-property-in-object': 7.21.0-placeholder-for-preset-env.2(@babel/core@7.23.6)
+      '@babel/plugin-proposal-private-property-in-object': 7.21.0-placeholder-for-preset-env.2(@babel/core@7.20.2)
       '@babel/plugin-syntax-async-generators': 7.8.4(@babel/core@7.20.2)
       '@babel/plugin-syntax-class-properties': 7.12.13(@babel/core@7.20.2)
-      '@babel/plugin-syntax-class-static-block': 7.14.5(@babel/core@7.23.6)
-      '@babel/plugin-syntax-dynamic-import': 7.8.3(@babel/core@7.23.6)
-      '@babel/plugin-syntax-export-namespace-from': 7.8.3(@babel/core@7.23.6)
-      '@babel/plugin-syntax-import-assertions': 7.23.3(@babel/core@7.23.6)
-      '@babel/plugin-syntax-import-attributes': 7.23.3(@babel/core@7.23.6)
+      '@babel/plugin-syntax-class-static-block': 7.14.5(@babel/core@7.20.2)
+      '@babel/plugin-syntax-dynamic-import': 7.8.3(@babel/core@7.20.2)
+      '@babel/plugin-syntax-export-namespace-from': 7.8.3(@babel/core@7.20.2)
+      '@babel/plugin-syntax-import-assertions': 7.23.3(@babel/core@7.20.2)
+      '@babel/plugin-syntax-import-attributes': 7.23.3(@babel/core@7.20.2)
       '@babel/plugin-syntax-import-meta': 7.10.4(@babel/core@7.20.2)
       '@babel/plugin-syntax-json-strings': 7.8.3(@babel/core@7.20.2)
       '@babel/plugin-syntax-logical-assignment-operators': 7.10.4(@babel/core@7.20.2)
@@ -3874,61 +3859,61 @@ packages:
       '@babel/plugin-syntax-object-rest-spread': 7.8.3(@babel/core@7.12.9)
       '@babel/plugin-syntax-optional-catch-binding': 7.8.3(@babel/core@7.20.2)
       '@babel/plugin-syntax-optional-chaining': 7.8.3(@babel/core@7.20.2)
-      '@babel/plugin-syntax-private-property-in-object': 7.14.5(@babel/core@7.23.6)
+      '@babel/plugin-syntax-private-property-in-object': 7.14.5(@babel/core@7.20.2)
       '@babel/plugin-syntax-top-level-await': 7.14.5(@babel/core@7.20.2)
-      '@babel/plugin-syntax-unicode-sets-regex': 7.18.6(@babel/core@7.23.6)
-      '@babel/plugin-transform-arrow-functions': 7.23.3(@babel/core@7.23.6)
-      '@babel/plugin-transform-async-generator-functions': 7.23.4
-      '@babel/plugin-transform-async-to-generator': 7.23.3(@babel/core@7.23.6)
-      '@babel/plugin-transform-block-scoped-functions': 7.23.3(@babel/core@7.23.6)
-      '@babel/plugin-transform-block-scoping': 7.23.4(@babel/core@7.23.6)
-      '@babel/plugin-transform-class-properties': 7.23.3(@babel/core@7.23.6)
-      '@babel/plugin-transform-class-static-block': 7.23.4(@babel/core@7.23.6)
-      '@babel/plugin-transform-classes': 7.23.5(@babel/core@7.23.6)
-      '@babel/plugin-transform-computed-properties': 7.23.3(@babel/core@7.23.6)
-      '@babel/plugin-transform-destructuring': 7.23.3(@babel/core@7.23.6)
-      '@babel/plugin-transform-dotall-regex': 7.23.3(@babel/core@7.23.6)
-      '@babel/plugin-transform-duplicate-keys': 7.23.3(@babel/core@7.23.6)
-      '@babel/plugin-transform-dynamic-import': 7.23.4(@babel/core@7.23.6)
-      '@babel/plugin-transform-exponentiation-operator': 7.23.3(@babel/core@7.23.6)
-      '@babel/plugin-transform-export-namespace-from': 7.23.4(@babel/core@7.23.6)
-      '@babel/plugin-transform-for-of': 7.23.6(@babel/core@7.23.6)
-      '@babel/plugin-transform-function-name': 7.23.3(@babel/core@7.23.6)
+      '@babel/plugin-syntax-unicode-sets-regex': 7.18.6(@babel/core@7.20.2)
+      '@babel/plugin-transform-arrow-functions': 7.23.3(@babel/core@7.20.2)
+      '@babel/plugin-transform-async-generator-functions': 7.23.4(@babel/core@7.20.2)
+      '@babel/plugin-transform-async-to-generator': 7.23.3(@babel/core@7.20.2)
+      '@babel/plugin-transform-block-scoped-functions': 7.23.3(@babel/core@7.20.2)
+      '@babel/plugin-transform-block-scoping': 7.23.4(@babel/core@7.20.2)
+      '@babel/plugin-transform-class-properties': 7.23.3(@babel/core@7.20.2)
+      '@babel/plugin-transform-class-static-block': 7.23.4(@babel/core@7.20.2)
+      '@babel/plugin-transform-classes': 7.23.5(@babel/core@7.20.2)
+      '@babel/plugin-transform-computed-properties': 7.23.3(@babel/core@7.20.2)
+      '@babel/plugin-transform-destructuring': 7.23.3(@babel/core@7.20.2)
+      '@babel/plugin-transform-dotall-regex': 7.23.3(@babel/core@7.20.2)
+      '@babel/plugin-transform-duplicate-keys': 7.23.3(@babel/core@7.20.2)
+      '@babel/plugin-transform-dynamic-import': 7.23.4(@babel/core@7.20.2)
+      '@babel/plugin-transform-exponentiation-operator': 7.23.3(@babel/core@7.20.2)
+      '@babel/plugin-transform-export-namespace-from': 7.23.4(@babel/core@7.20.2)
+      '@babel/plugin-transform-for-of': 7.23.6(@babel/core@7.20.2)
+      '@babel/plugin-transform-function-name': 7.23.3(@babel/core@7.20.2)
       '@babel/plugin-transform-json-strings': 7.23.4(@babel/core@7.20.2)
-      '@babel/plugin-transform-literals': 7.23.3(@babel/core@7.23.6)
+      '@babel/plugin-transform-literals': 7.23.3(@babel/core@7.20.2)
       '@babel/plugin-transform-logical-assignment-operators': 7.23.4(@babel/core@7.20.2)
-      '@babel/plugin-transform-member-expression-literals': 7.23.3(@babel/core@7.23.6)
+      '@babel/plugin-transform-member-expression-literals': 7.23.3(@babel/core@7.20.2)
       '@babel/plugin-transform-modules-amd': 7.23.3
       '@babel/plugin-transform-modules-commonjs': 7.23.3
       '@babel/plugin-transform-modules-systemjs': 7.23.3
       '@babel/plugin-transform-modules-umd': 7.23.3
-      '@babel/plugin-transform-named-capturing-groups-regex': 7.22.5(@babel/core@7.23.6)
-      '@babel/plugin-transform-new-target': 7.23.3(@babel/core@7.23.6)
+      '@babel/plugin-transform-named-capturing-groups-regex': 7.22.5(@babel/core@7.20.2)
+      '@babel/plugin-transform-new-target': 7.23.3(@babel/core@7.20.2)
       '@babel/plugin-transform-nullish-coalescing-operator': 7.23.4(@babel/core@7.20.2)
       '@babel/plugin-transform-numeric-separator': 7.23.4(@babel/core@7.20.2)
       '@babel/plugin-transform-object-rest-spread': 7.23.4
-      '@babel/plugin-transform-object-super': 7.23.3(@babel/core@7.23.6)
+      '@babel/plugin-transform-object-super': 7.23.3(@babel/core@7.20.2)
       '@babel/plugin-transform-optional-catch-binding': 7.23.4(@babel/core@7.20.2)
       '@babel/plugin-transform-optional-chaining': 7.23.4(@babel/core@7.20.2)
       '@babel/plugin-transform-parameters': 7.23.3(@babel/core@7.12.9)
-      '@babel/plugin-transform-private-methods': 7.23.3(@babel/core@7.23.6)
-      '@babel/plugin-transform-private-property-in-object': 7.23.4(@babel/core@7.23.6)
-      '@babel/plugin-transform-property-literals': 7.23.3(@babel/core@7.23.6)
-      '@babel/plugin-transform-regenerator': 7.23.3(@babel/core@7.23.6)
-      '@babel/plugin-transform-reserved-words': 7.23.3(@babel/core@7.23.6)
-      '@babel/plugin-transform-shorthand-properties': 7.23.3(@babel/core@7.23.6)
-      '@babel/plugin-transform-spread': 7.23.3(@babel/core@7.23.6)
-      '@babel/plugin-transform-sticky-regex': 7.23.3(@babel/core@7.23.6)
-      '@babel/plugin-transform-template-literals': 7.23.3(@babel/core@7.23.6)
-      '@babel/plugin-transform-typeof-symbol': 7.23.3(@babel/core@7.23.6)
-      '@babel/plugin-transform-unicode-escapes': 7.23.3(@babel/core@7.23.6)
-      '@babel/plugin-transform-unicode-property-regex': 7.23.3(@babel/core@7.23.6)
-      '@babel/plugin-transform-unicode-regex': 7.23.3(@babel/core@7.23.6)
-      '@babel/plugin-transform-unicode-sets-regex': 7.23.3(@babel/core@7.23.6)
-      '@babel/preset-modules': 0.1.6-no-external-plugins(@babel/core@7.23.6)
-      babel-plugin-polyfill-corejs2: 0.4.7(@babel/core@7.23.6)
-      babel-plugin-polyfill-corejs3: 0.8.7(@babel/core@7.23.6)
-      babel-plugin-polyfill-regenerator: 0.5.4(@babel/core@7.23.6)
+      '@babel/plugin-transform-private-methods': 7.23.3(@babel/core@7.20.2)
+      '@babel/plugin-transform-private-property-in-object': 7.23.4(@babel/core@7.20.2)
+      '@babel/plugin-transform-property-literals': 7.23.3(@babel/core@7.20.2)
+      '@babel/plugin-transform-regenerator': 7.23.3(@babel/core@7.20.2)
+      '@babel/plugin-transform-reserved-words': 7.23.3(@babel/core@7.20.2)
+      '@babel/plugin-transform-shorthand-properties': 7.23.3(@babel/core@7.20.2)
+      '@babel/plugin-transform-spread': 7.23.3(@babel/core@7.20.2)
+      '@babel/plugin-transform-sticky-regex': 7.23.3(@babel/core@7.20.2)
+      '@babel/plugin-transform-template-literals': 7.23.3(@babel/core@7.20.2)
+      '@babel/plugin-transform-typeof-symbol': 7.23.3(@babel/core@7.20.2)
+      '@babel/plugin-transform-unicode-escapes': 7.23.3(@babel/core@7.20.2)
+      '@babel/plugin-transform-unicode-property-regex': 7.23.3(@babel/core@7.20.2)
+      '@babel/plugin-transform-unicode-regex': 7.23.3(@babel/core@7.20.2)
+      '@babel/plugin-transform-unicode-sets-regex': 7.23.3(@babel/core@7.20.2)
+      '@babel/preset-modules': 0.1.6-no-external-plugins(@babel/core@7.20.2)
+      babel-plugin-polyfill-corejs2: 0.4.7(@babel/core@7.20.2)
+      babel-plugin-polyfill-corejs3: 0.8.7(@babel/core@7.20.2)
+      babel-plugin-polyfill-regenerator: 0.5.4(@babel/core@7.20.2)
       core-js-compat: 3.34.0
       semver: 6.3.1
     transitivePeerDependencies:
@@ -4939,7 +4924,7 @@ packages:
       jsdom: 23.0.1
       promise-limit: 2.7.0
       schema-utils: 4.0.0
-      whatwg-fetch: 3.6.19
+      whatwg-fetch: 3.6.20
     transitivePeerDependencies:
       - bufferutil
       - canvas
@@ -5201,7 +5186,7 @@ packages:
       - typescript
     dev: false
 
-  /@teambit/base-react.navigation.link@2.0.27(@testing-library/react@14.1.2)(@types/react@18.2.23)(react-dom@18.2.0)(react@18.2.0):
+  /@teambit/base-react.navigation.link@2.0.27(@testing-library/react@14.1.2)(@types/react@18.2.45)(react-dom@18.2.0)(react@18.2.0):
     resolution: {integrity: sha1-ZCQxvK+jLOilJMnAnOZAAf9ya+w=}
     peerDependencies:
       '@testing-library/react': '*'
@@ -5220,7 +5205,7 @@ packages:
     dependencies:
       '@teambit/base-ui.routing.compare-url': 1.0.0(react-dom@18.2.0)(react@18.2.0)
       '@testing-library/react': 14.1.2(react-dom@18.2.0)(react@18.2.0)
-      '@types/react': 18.2.23
+      '@types/react': 18.2.45
       classnames: 2.3.1
       core-js: 3.34.0
       react: 18.2.0
@@ -6122,7 +6107,7 @@ packages:
       - '@testing-library/react'
     dev: false
 
-  /@teambit/design.ui.error-page@0.0.364(@testing-library/react@14.1.2)(@types/react@18.2.23)(react-dom@18.2.0)(react@18.2.0):
+  /@teambit/design.ui.error-page@0.0.364(@testing-library/react@14.1.2)(@types/react@18.2.45)(react-dom@18.2.0)(react@18.2.0):
     resolution: {integrity: sha1-vQV7Te5JyvHLSgtDRcCjbwF7v6E=}
     engines: {node: '>=12.22.0'}
     peerDependencies:
@@ -6134,7 +6119,7 @@ packages:
       react-dom:
         optional: true
     dependencies:
-      '@teambit/base-react.navigation.link': 2.0.27(@testing-library/react@14.1.2)(@types/react@18.2.23)(react-dom@18.2.0)(react@18.2.0)
+      '@teambit/base-react.navigation.link': 2.0.27(@testing-library/react@14.1.2)(@types/react@18.2.45)(react-dom@18.2.0)(react@18.2.0)
       '@teambit/community.constants.links': 0.0.2
       core-js: 3.34.0
       react: 18.2.0
@@ -6163,7 +6148,7 @@ packages:
       react-dom: 18.2.0(react@18.2.0)
     dev: false
 
-  /@teambit/design.ui.pages.not-found@0.0.366(@testing-library/react@14.1.2)(@types/react@18.2.23)(react-dom@18.2.0)(react@18.2.0):
+  /@teambit/design.ui.pages.not-found@0.0.366(@testing-library/react@14.1.2)(@types/react@18.2.45)(react-dom@18.2.0)(react@18.2.0):
     resolution: {integrity: sha1-k9HJT7pUUTGpFWQC2Ofnv4D+Mec=}
     engines: {node: '>=12.22.0'}
     peerDependencies:
@@ -6175,7 +6160,7 @@ packages:
       react-dom:
         optional: true
     dependencies:
-      '@teambit/design.ui.error-page': 0.0.364(@testing-library/react@14.1.2)(@types/react@18.2.23)(react-dom@18.2.0)(react@18.2.0)
+      '@teambit/design.ui.error-page': 0.0.364(@testing-library/react@14.1.2)(@types/react@18.2.45)(react-dom@18.2.0)(react@18.2.0)
       core-js: 3.34.0
       react: 18.2.0
       react-dom: 18.2.0(react@18.2.0)
@@ -6184,7 +6169,7 @@ packages:
       - '@types/react'
     dev: false
 
-  /@teambit/design.ui.pages.server-error@0.0.366(@testing-library/react@14.1.2)(@types/react@18.2.23)(react-dom@18.2.0)(react@18.2.0):
+  /@teambit/design.ui.pages.server-error@0.0.366(@testing-library/react@14.1.2)(@types/react@18.2.45)(react-dom@18.2.0)(react@18.2.0):
     resolution: {integrity: sha1-23wJXHdEaXKFQtZr+SLOU9bbRng=}
     engines: {node: '>=12.22.0'}
     peerDependencies:
@@ -6196,7 +6181,7 @@ packages:
       react-dom:
         optional: true
     dependencies:
-      '@teambit/design.ui.error-page': 0.0.364(@testing-library/react@14.1.2)(@types/react@18.2.23)(react-dom@18.2.0)(react@18.2.0)
+      '@teambit/design.ui.error-page': 0.0.364(@testing-library/react@14.1.2)(@types/react@18.2.45)(react-dom@18.2.0)(react@18.2.0)
       core-js: 3.34.0
       react: 18.2.0
       react-dom: 18.2.0(react@18.2.0)
@@ -6205,7 +6190,7 @@ packages:
       - '@types/react'
     dev: false
 
-  /@teambit/docs.docs-template@1.0.4(@testing-library/react@14.1.2)(@types/react@18.2.23)(graphql@14.7.0)(react-dom@18.2.0)(react@18.2.0):
+  /@teambit/docs.docs-template@1.0.4(@testing-library/react@14.1.2)(@types/react@18.2.45)(graphql@14.7.0)(react-dom@18.2.0)(react@18.2.0):
     resolution: {integrity: sha512-vUXWRra91LCSgxortUKByNHAdxb0UI7tO+oYK7l5nvGsfr+OkgL8Os7zc/y4F3htlMBLvBuF3GezHhSVNf+5sw==}
     peerDependencies:
       react: '*'
@@ -6216,7 +6201,7 @@ packages:
       react-dom:
         optional: true
     dependencies:
-      '@teambit/react.ui.docs-app': 1.0.11(@testing-library/react@14.1.2)(@types/react@18.2.23)(graphql@14.7.0)(react-dom@18.2.0)(react@18.2.0)
+      '@teambit/react.ui.docs-app': 1.0.11(@testing-library/react@14.1.2)(@types/react@18.2.45)(graphql@14.7.0)(react-dom@18.2.0)(react@18.2.0)
       react: 18.2.0
       react-dom: 18.2.0(react@18.2.0)
     transitivePeerDependencies:
@@ -6227,7 +6212,7 @@ packages:
       - typescript
     dev: false
 
-  /@teambit/docs.docs-template@1.0.4(@testing-library/react@14.1.2)(@types/react@18.2.23)(graphql@15.8.0)(react-dom@18.2.0)(react@18.2.0)(typescript@5.3.3):
+  /@teambit/docs.docs-template@1.0.4(@testing-library/react@14.1.2)(@types/react@18.2.45)(graphql@15.8.0)(react-dom@18.2.0)(react@18.2.0)(typescript@5.3.3):
     resolution: {integrity: sha512-vUXWRra91LCSgxortUKByNHAdxb0UI7tO+oYK7l5nvGsfr+OkgL8Os7zc/y4F3htlMBLvBuF3GezHhSVNf+5sw==}
     peerDependencies:
       react: '*'
@@ -6238,7 +6223,7 @@ packages:
       react-dom:
         optional: true
     dependencies:
-      '@teambit/react.ui.docs-app': 1.0.11(@testing-library/react@14.1.2)(@types/react@18.2.23)(graphql@15.8.0)(react-dom@18.2.0)(react@18.2.0)(typescript@5.3.3)
+      '@teambit/react.ui.docs-app': 1.0.11(@testing-library/react@14.1.2)(@types/react@18.2.45)(graphql@15.8.0)(react-dom@18.2.0)(react@18.2.0)(typescript@5.3.3)
       react: 18.2.0
       react-dom: 18.2.0(react@18.2.0)
     transitivePeerDependencies:
@@ -6249,7 +6234,7 @@ packages:
       - typescript
     dev: false
 
-  /@teambit/documenter.code.react-playground@4.1.9(@types/react@18.2.23)(react-dom@18.2.0)(react@18.2.0)(typescript@5.3.3):
+  /@teambit/documenter.code.react-playground@4.1.9(@types/react@18.2.45)(react-dom@18.2.0)(react@18.2.0)(typescript@5.3.3):
     resolution: {integrity: sha1-ueDTBxYfB7E+D/E0mmLm31aSjh8=}
     peerDependencies:
       react: '*'
@@ -6269,7 +6254,7 @@ packages:
       react: 18.2.0
       react-dom: 18.2.0(react@18.2.0)
       react-live: 3.2.0(react-dom@18.2.0)(react@18.2.0)
-      react-use-dimensions: 1.2.1(@types/react@18.2.23)(react@18.2.0)(typescript@5.3.3)
+      react-use-dimensions: 1.2.1(@types/react@18.2.45)(react@18.2.0)(typescript@5.3.3)
       use-debounce: 9.0.4(react@18.2.0)
     transitivePeerDependencies:
       - '@types/react'
@@ -6294,7 +6279,7 @@ packages:
       react-dom: 18.2.0(react@18.2.0)
     dev: false
 
-  /@teambit/documenter.markdown.hybrid-live-code-snippet@0.1.12(@types/react@18.2.23)(react-dom@18.2.0)(react@18.2.0)(typescript@5.3.3):
+  /@teambit/documenter.markdown.hybrid-live-code-snippet@0.1.12(@types/react@18.2.45)(react-dom@18.2.0)(react@18.2.0)(typescript@5.3.3):
     resolution: {integrity: sha1-zmQgh2QvXfcHXFpnL6t0u4Ur2OQ=}
     peerDependencies:
       react: '*'
@@ -6305,7 +6290,7 @@ packages:
       react-dom:
         optional: true
     dependencies:
-      '@teambit/documenter.code.react-playground': 4.1.9(@types/react@18.2.23)(react-dom@18.2.0)(react@18.2.0)(typescript@5.3.3)
+      '@teambit/documenter.code.react-playground': 4.1.9(@types/react@18.2.45)(react-dom@18.2.0)(react@18.2.0)(typescript@5.3.3)
       '@teambit/documenter.ui.code-snippet': 4.2.2(react-dom@18.2.0)(react@18.2.0)
       core-js: 3.34.0
       react: 18.2.0
@@ -6315,7 +6300,7 @@ packages:
       - typescript
     dev: false
 
-  /@teambit/documenter.markdown.mdx@0.1.13(@types/react@18.2.23)(react-dom@18.2.0)(react@18.2.0)(typescript@5.3.3):
+  /@teambit/documenter.markdown.mdx@0.1.13(@types/react@18.2.45)(react-dom@18.2.0)(react@18.2.0)(typescript@5.3.3):
     resolution: {integrity: sha1-TdvNoPVAs7pDrsmto8DiGKjvVdI=}
     peerDependencies:
       react: '*'
@@ -6328,7 +6313,7 @@ packages:
     dependencies:
       '@mdx-js/react': 1.6.22(react@18.2.0)
       '@teambit/documenter.markdown.heading': 0.1.8(react-dom@18.2.0)(react@18.2.0)
-      '@teambit/documenter.markdown.hybrid-live-code-snippet': 0.1.12(@types/react@18.2.23)(react-dom@18.2.0)(react@18.2.0)(typescript@5.3.3)
+      '@teambit/documenter.markdown.hybrid-live-code-snippet': 0.1.12(@types/react@18.2.45)(react-dom@18.2.0)(react@18.2.0)(typescript@5.3.3)
       '@teambit/documenter.routing.external-link': 4.1.2(react-dom@18.2.0)(react@18.2.0)
       '@teambit/documenter.ui.block-quote': 4.0.7(react-dom@18.2.0)(react@18.2.0)
       '@teambit/documenter.ui.bold': 4.0.7(react-dom@18.2.0)(react@18.2.0)
@@ -6576,7 +6561,7 @@ packages:
     dependencies:
       '@teambit/documenter.ui.anchor': 4.0.6(react-dom@18.2.0)(react@18.2.0)
       '@teambit/documenter.ui.heading': 4.1.4(react-dom@18.2.0)(react@18.2.0)
-      classnames: 2.2.6
+      classnames: 2.3.1
       core-js: 3.34.0
       react: 18.2.0
       react-dom: 18.2.0(react@18.2.0)
@@ -6637,7 +6622,7 @@ packages:
       react-dom: 18.2.0(react@18.2.0)
     dev: false
 
-  /@teambit/documenter.ui.property-table@4.1.10(@types/react@18.2.23)(react-dom@18.2.0)(react@18.2.0)(typescript@5.3.3):
+  /@teambit/documenter.ui.property-table@4.1.10(@types/react@18.2.45)(react-dom@18.2.0)(react@18.2.0)(typescript@5.3.3):
     resolution: {integrity: sha512-kvQjO0SWvLC1TQNgkfjFOCcvPBi2KWZT25XfrQHpt43Q3pKvcwH9x557207LM2OCFa9pzSB8WKHXaWR8jC9fdg==}
     peerDependencies:
       react: '*'
@@ -6648,7 +6633,7 @@ packages:
       '@teambit/documenter.ui.table': 4.1.9(react-dom@18.2.0)(react@18.2.0)
       '@teambit/documenter.ui.table-row': 4.1.13(react-dom@18.2.0)(react@18.2.0)
       react: 18.2.0
-      react-use-dimensions: 1.2.1(@types/react@18.2.23)(react@18.2.0)(typescript@5.3.3)
+      react-use-dimensions: 1.2.1(@types/react@18.2.45)(react@18.2.0)(typescript@5.3.3)
       use-debounce: 3.4.3(react@18.2.0)
     transitivePeerDependencies:
       - '@types/react'
@@ -6667,7 +6652,7 @@ packages:
       react-dom:
         optional: true
     dependencies:
-      classnames: 2.2.6
+      classnames: 2.3.1
       core-js: 3.34.0
       react: 18.2.0
       react-dom: 18.2.0(react@18.2.0)
@@ -7026,7 +7011,7 @@ packages:
       - webpack-cli
     dev: false
 
-  /@teambit/mdx.ui.docs.link@0.0.500(@testing-library/react@14.1.2)(@types/react@18.2.23)(react-dom@18.2.0)(react@18.2.0):
+  /@teambit/mdx.ui.docs.link@0.0.500(@testing-library/react@14.1.2)(@types/react@18.2.45)(react-dom@18.2.0)(react@18.2.0):
     resolution: {integrity: sha1-9wYyLJ4RST9XSG52npQ+3BJDgJ0=}
     engines: {node: '>=12.22.0'}
     peerDependencies:
@@ -7041,7 +7026,7 @@ packages:
       react-dom:
         optional: true
     dependencies:
-      '@teambit/base-react.navigation.link': 2.0.27(@testing-library/react@14.1.2)(@types/react@18.2.23)(react-dom@18.2.0)(react@18.2.0)
+      '@teambit/base-react.navigation.link': 2.0.27(@testing-library/react@14.1.2)(@types/react@18.2.45)(react-dom@18.2.0)(react@18.2.0)
       '@testing-library/react': 14.1.2(react-dom@18.2.0)(react@18.2.0)
       core-js: 3.34.0
       react: 18.2.0
@@ -7050,7 +7035,7 @@ packages:
       - '@types/react'
     dev: false
 
-  /@teambit/mdx.ui.docs.snippet@0.0.509(@types/react@18.2.23)(react-dom@18.2.0)(react@18.2.0)(typescript@5.3.3):
+  /@teambit/mdx.ui.docs.snippet@0.0.509(@types/react@18.2.45)(react-dom@18.2.0)(react@18.2.0)(typescript@5.3.3):
     resolution: {integrity: sha512-ZS3V4tlZ8AwCyukZhaXrexakgVPJvLO+ZOBRv3ufHeJtq+RQq+yGe/OmOV6T033c85EbsH+mGOiUFtF84pgjwA==}
     engines: {node: '>=12.22.0'}
     peerDependencies:
@@ -7063,7 +7048,7 @@ packages:
         optional: true
     dependencies:
       '@mdx-js/react': 1.6.22(react@18.2.0)
-      '@teambit/documenter.markdown.hybrid-live-code-snippet': 0.1.12(@types/react@18.2.23)(react-dom@18.2.0)(react@18.2.0)(typescript@5.3.3)
+      '@teambit/documenter.markdown.hybrid-live-code-snippet': 0.1.12(@types/react@18.2.45)(react-dom@18.2.0)(react@18.2.0)(typescript@5.3.3)
       '@teambit/mdx.ui.mdx-scope-context': 1.0.5(react-dom@18.2.0)(react@18.2.0)
       core-js: 3.34.0
       react: 18.2.0
@@ -7073,7 +7058,7 @@ packages:
       - typescript
     dev: false
 
-  /@teambit/mdx.ui.mdx-layout@1.0.6(@testing-library/react@14.1.2)(@types/react@18.2.23)(react-dom@18.2.0)(react@18.2.0)(typescript@5.3.3):
+  /@teambit/mdx.ui.mdx-layout@1.0.6(@testing-library/react@14.1.2)(@types/react@18.2.45)(react-dom@18.2.0)(react@18.2.0)(typescript@5.3.3):
     resolution: {integrity: sha512-HsXRvy1jJGy8E9Mj2XUaXM+ZJLGC6n9lAhqsyfQTxSncDuJ2xLKqWIVg3HOGBzeMYmz1o/v7clCVRiSWuxyvxg==}
     engines: {node: '>=12.22.0'}
     peerDependencies:
@@ -7085,9 +7070,9 @@ packages:
       react-dom:
         optional: true
     dependencies:
-      '@teambit/documenter.markdown.mdx': 0.1.13(@types/react@18.2.23)(react-dom@18.2.0)(react@18.2.0)(typescript@5.3.3)
-      '@teambit/mdx.ui.docs.link': 0.0.500(@testing-library/react@14.1.2)(@types/react@18.2.23)(react-dom@18.2.0)(react@18.2.0)
-      '@teambit/mdx.ui.docs.snippet': 0.0.509(@types/react@18.2.23)(react-dom@18.2.0)(react@18.2.0)(typescript@5.3.3)
+      '@teambit/documenter.markdown.mdx': 0.1.13(@types/react@18.2.45)(react-dom@18.2.0)(react@18.2.0)(typescript@5.3.3)
+      '@teambit/mdx.ui.docs.link': 0.0.500(@testing-library/react@14.1.2)(@types/react@18.2.45)(react-dom@18.2.0)(react@18.2.0)
+      '@teambit/mdx.ui.docs.snippet': 0.0.509(@types/react@18.2.45)(react-dom@18.2.0)(react@18.2.0)(typescript@5.3.3)
       core-js: 3.34.0
       react: 18.2.0
       react-dom: 18.2.0(react@18.2.0)
@@ -7142,7 +7127,7 @@ packages:
     resolution: {integrity: sha512-vJrbAt/ci/vPU42f7HsNzYaeub0Okp99oJtAXiA58MwxmeG8oroqP4Z4kxVmAAbbpbI8d3Z4Q6rGBvpfh459CQ==}
     dev: false
 
-  /@teambit/preview.react-preview@1.0.23(@teambit/legacy@node_modules+@teambit+legacy)(@testing-library/react@14.1.2)(@types/react@18.2.23)(eslint@7.32.0)(graphql@15.8.0)(react-dom@18.2.0)(react@18.2.0)(typescript@5.3.3):
+  /@teambit/preview.react-preview@1.0.23(@teambit/legacy@node_modules+@teambit+legacy)(@testing-library/react@14.1.2)(@types/react@18.2.45)(eslint@7.32.0)(graphql@15.8.0)(react-dom@18.2.0)(react@18.2.0)(typescript@5.3.3):
     resolution: {integrity: sha512-ocnC2ZHhzZT3+mFeZm5zH+kwVklZI0npmAgM3brqPM51NcOWGLT2hGUhpH1hclV2d+0qoariWDwKWR9oPemIcA==}
     peerDependencies:
       react: '*'
@@ -7150,7 +7135,7 @@ packages:
       react:
         optional: true
     dependencies:
-      '@teambit/docs.docs-template': 1.0.4(@testing-library/react@14.1.2)(@types/react@18.2.23)(graphql@15.8.0)(react-dom@18.2.0)(react@18.2.0)(typescript@5.3.3)
+      '@teambit/docs.docs-template': 1.0.4(@testing-library/react@14.1.2)(@types/react@18.2.45)(graphql@15.8.0)(react-dom@18.2.0)(react@18.2.0)(typescript@5.3.3)
       '@teambit/react.mounter': 1.0.3
       '@teambit/react.webpack.react-webpack': 1.0.23(@teambit/legacy@node_modules+@teambit+legacy)(eslint@7.32.0)(react@18.2.0)(typescript@5.3.3)(webpack-dev-server@4.15.0)
       '@teambit/webpack.webpack-bundler': 1.0.7
@@ -7194,7 +7179,7 @@ packages:
       - webpack-plugin-serve
     dev: false
 
-  /@teambit/preview.react-preview@1.0.23(@teambit/legacy@node_modules+@teambit+legacy)(@testing-library/react@14.1.2)(@types/react@18.2.23)(eslint@8.55.0)(graphql@14.7.0)(react-dom@18.2.0)(react@18.2.0):
+  /@teambit/preview.react-preview@1.0.23(@teambit/legacy@node_modules+@teambit+legacy)(@testing-library/react@14.1.2)(@types/react@18.2.45)(eslint@8.55.0)(graphql@14.7.0)(react-dom@18.2.0)(react@18.2.0):
     resolution: {integrity: sha512-ocnC2ZHhzZT3+mFeZm5zH+kwVklZI0npmAgM3brqPM51NcOWGLT2hGUhpH1hclV2d+0qoariWDwKWR9oPemIcA==}
     peerDependencies:
       react: '*'
@@ -7202,7 +7187,7 @@ packages:
       react:
         optional: true
     dependencies:
-      '@teambit/docs.docs-template': 1.0.4(@testing-library/react@14.1.2)(@types/react@18.2.23)(graphql@14.7.0)(react-dom@18.2.0)(react@18.2.0)
+      '@teambit/docs.docs-template': 1.0.4(@testing-library/react@14.1.2)(@types/react@18.2.45)(graphql@14.7.0)(react-dom@18.2.0)(react@18.2.0)
       '@teambit/react.mounter': 1.0.3
       '@teambit/react.webpack.react-webpack': 1.0.23(@teambit/legacy@node_modules+@teambit+legacy)(eslint@8.55.0)(react@18.2.0)(webpack-dev-server@4.15.0)
       '@teambit/webpack.webpack-bundler': 1.0.7
@@ -7246,7 +7231,7 @@ packages:
       - webpack-plugin-serve
     dev: false
 
-  /@teambit/react.apps.react-app-types@1.0.19(@teambit/legacy@node_modules+@teambit+legacy)(@testing-library/react@14.1.2)(@types/react@18.2.23)(eslint@7.32.0)(react-dom@18.2.0)(react@18.2.0)(typescript@5.3.3):
+  /@teambit/react.apps.react-app-types@1.0.19(@teambit/legacy@node_modules+@teambit+legacy)(@testing-library/react@14.1.2)(@types/react@18.2.45)(eslint@7.32.0)(react-dom@18.2.0)(react@18.2.0)(typescript@5.3.3):
     resolution: {integrity: sha512-ztDCYXO6nZweZ3F4I0Y8Qv/SmwKzEhrIb3v8ijKsJJzeGj3U6kejQ+SJo3K4WVUQcHlrgRncczdejRHh8bK2wg==}
     dependencies:
       '@prerenderer/prerenderer': 1.2.3
@@ -7256,7 +7241,7 @@ packages:
       '@teambit/react.rendering.ssr': 1.0.1(react-dom@18.2.0)(react@18.2.0)
       '@teambit/react.webpack.react-webpack': 1.0.23(@teambit/legacy@node_modules+@teambit+legacy)(eslint@7.32.0)(react@18.2.0)(typescript@5.3.3)(webpack-dev-server@4.15.0)
       '@teambit/toolbox.network.get-port': 1.0.0
-      '@teambit/ui-foundation.ui.pages.static-error': 0.0.88(@testing-library/react@14.1.2)(@types/react@18.2.23)(react-dom@18.2.0)(react@18.2.0)
+      '@teambit/ui-foundation.ui.pages.static-error': 0.0.88(@testing-library/react@14.1.2)(@types/react@18.2.45)(react-dom@18.2.0)(react@18.2.0)
       '@teambit/webpack.transformers.favicon-reload': 1.0.0
       '@teambit/webpack.webpack-bundler': 1.0.7
       '@teambit/webpack.webpack-dev-server': 1.0.7(@teambit/legacy@node_modules+@teambit+legacy)(eslint@7.32.0)(typescript@5.3.3)(webpack@5.89.0)
@@ -7402,10 +7387,10 @@ packages:
       '@teambit/defender.jest-tester': 1.0.12(@teambit/legacy@node_modules+@teambit+legacy)(@types/node@12.20.4)
       '@teambit/defender.prettier-formatter': 1.0.7(@teambit/legacy@node_modules+@teambit+legacy)
       '@teambit/dependencies.modules.packages-excluder': 1.0.8(react@18.2.0)
-      '@teambit/docs.docs-template': 1.0.4(@testing-library/react@14.1.2)(@types/react@18.2.23)(graphql@15.8.0)(react-dom@18.2.0)(react@18.2.0)(typescript@5.3.3)
+      '@teambit/docs.docs-template': 1.0.4(@testing-library/react@14.1.2)(@types/react@18.2.45)(graphql@15.8.0)(react-dom@18.2.0)(react@18.2.0)(typescript@5.3.3)
       '@teambit/mdx.ui.mdx-scope-context': 1.0.0(react-dom@18.2.0)(react@18.2.0)
-      '@teambit/preview.react-preview': 1.0.23(@teambit/legacy@node_modules+@teambit+legacy)(@testing-library/react@14.1.2)(@types/react@18.2.23)(eslint@7.32.0)(graphql@15.8.0)(react-dom@18.2.0)(react@18.2.0)(typescript@5.3.3)
-      '@teambit/react.apps.react-app-types': 1.0.19(@teambit/legacy@node_modules+@teambit+legacy)(@testing-library/react@14.1.2)(@types/react@18.2.23)(eslint@7.32.0)(react-dom@18.2.0)(react@18.2.0)(typescript@5.3.3)
+      '@teambit/preview.react-preview': 1.0.23(@teambit/legacy@node_modules+@teambit+legacy)(@testing-library/react@14.1.2)(@types/react@18.2.45)(eslint@7.32.0)(graphql@15.8.0)(react-dom@18.2.0)(react@18.2.0)(typescript@5.3.3)
+      '@teambit/react.apps.react-app-types': 1.0.19(@teambit/legacy@node_modules+@teambit+legacy)(@testing-library/react@14.1.2)(@types/react@18.2.45)(eslint@7.32.0)(react-dom@18.2.0)(react@18.2.0)(typescript@5.3.3)
       '@teambit/react.eslint-config-bit-react': 1.0.46(@teambit/legacy@node_modules+@teambit+legacy)(eslint-plugin-import@2.22.1)(eslint-plugin-jsx-a11y@6.4.1)(eslint-plugin-react-hooks@4.2.0)(eslint-plugin-react@7.22.0)(eslint@7.32.0)(typescript@5.3.3)
       '@teambit/react.generator.react-starters': 1.0.8
       '@teambit/react.generator.react-templates': 1.0.10
@@ -7413,7 +7398,7 @@ packages:
       '@teambit/react.mounter': 1.0.3
       '@teambit/typescript.typescript-compiler': 2.0.13(@teambit/legacy@node_modules+@teambit+legacy)
       '@testing-library/jest-dom': 5.16.5
-      '@types/react': 18.2.23
+      '@types/react': 18.2.45
       '@types/react-dom': 18.2.17
       browserslist: 4.21.4
       core-js: 3.34.0
@@ -7496,7 +7481,7 @@ packages:
       - supports-color
     dev: false
 
-  /@teambit/react.ui.docs-app@1.0.11(@testing-library/react@14.1.2)(@types/react@18.2.23)(graphql@14.7.0)(react-dom@18.2.0)(react@18.2.0):
+  /@teambit/react.ui.docs-app@1.0.11(@testing-library/react@14.1.2)(@types/react@18.2.45)(graphql@14.7.0)(react-dom@18.2.0)(react@18.2.0):
     resolution: {integrity: sha512-qmKpzdTF0dTdzJ1k+Puv/gtvejD2/NRZBQJMyDBuPhc+/Oyf66yF++B/MReQVr1on6rkix3oO8K+4HJpHk67JQ==}
     engines: {node: '>=12.22.0'}
     peerDependencies:
@@ -7511,8 +7496,8 @@ packages:
       '@teambit/design.theme.icons-font': 2.0.26(react-dom@18.2.0)(react@18.2.0)
       '@teambit/design.themes.theme-toggler': 0.1.3(@testing-library/react@14.1.2)(react-dom@18.2.0)(react@18.2.0)
       '@teambit/react.ui.docs.compositions-carousel': 0.0.24(react-dom@18.2.0)(react@18.2.0)
-      '@teambit/react.ui.docs.docs-content': 0.0.25(@testing-library/react@14.1.2)(@types/react@18.2.23)(react-dom@18.2.0)(react@18.2.0)(typescript@5.3.3)
-      '@teambit/react.ui.docs.properties-table': 0.0.21(@types/react@18.2.23)(graphql@14.7.0)(react-dom@18.2.0)(react@18.2.0)
+      '@teambit/react.ui.docs.docs-content': 0.0.25(@testing-library/react@14.1.2)(@types/react@18.2.45)(react-dom@18.2.0)(react@18.2.0)(typescript@5.3.3)
+      '@teambit/react.ui.docs.properties-table': 0.0.21(@types/react@18.2.45)(graphql@14.7.0)(react-dom@18.2.0)(react@18.2.0)
       classnames: 2.2.6
       core-js: 3.34.0
       react: 18.2.0
@@ -7525,7 +7510,7 @@ packages:
       - typescript
     dev: false
 
-  /@teambit/react.ui.docs-app@1.0.11(@testing-library/react@14.1.2)(@types/react@18.2.23)(graphql@15.8.0)(react-dom@18.2.0)(react@18.2.0)(typescript@5.3.3):
+  /@teambit/react.ui.docs-app@1.0.11(@testing-library/react@14.1.2)(@types/react@18.2.45)(graphql@15.8.0)(react-dom@18.2.0)(react@18.2.0)(typescript@5.3.3):
     resolution: {integrity: sha512-qmKpzdTF0dTdzJ1k+Puv/gtvejD2/NRZBQJMyDBuPhc+/Oyf66yF++B/MReQVr1on6rkix3oO8K+4HJpHk67JQ==}
     engines: {node: '>=12.22.0'}
     peerDependencies:
@@ -7540,8 +7525,8 @@ packages:
       '@teambit/design.theme.icons-font': 2.0.26(react-dom@18.2.0)(react@18.2.0)
       '@teambit/design.themes.theme-toggler': 0.1.3(@testing-library/react@14.1.2)(react-dom@18.2.0)(react@18.2.0)
       '@teambit/react.ui.docs.compositions-carousel': 0.0.24(react-dom@18.2.0)(react@18.2.0)
-      '@teambit/react.ui.docs.docs-content': 0.0.25(@testing-library/react@14.1.2)(@types/react@18.2.23)(react-dom@18.2.0)(react@18.2.0)(typescript@5.3.3)
-      '@teambit/react.ui.docs.properties-table': 0.0.21(@types/react@18.2.23)(graphql@15.8.0)(react-dom@18.2.0)(react@18.2.0)(typescript@5.3.3)
+      '@teambit/react.ui.docs.docs-content': 0.0.25(@testing-library/react@14.1.2)(@types/react@18.2.45)(react-dom@18.2.0)(react@18.2.0)(typescript@5.3.3)
+      '@teambit/react.ui.docs.properties-table': 0.0.21(@types/react@18.2.45)(graphql@15.8.0)(react-dom@18.2.0)(react@18.2.0)(typescript@5.3.3)
       classnames: 2.2.6
       core-js: 3.34.0
       react: 18.2.0
@@ -7595,7 +7580,7 @@ packages:
       react-dom: 18.2.0(react@18.2.0)
     dev: false
 
-  /@teambit/react.ui.docs.docs-content@0.0.25(@testing-library/react@14.1.2)(@types/react@18.2.23)(react-dom@18.2.0)(react@18.2.0)(typescript@5.3.3):
+  /@teambit/react.ui.docs.docs-content@0.0.25(@testing-library/react@14.1.2)(@types/react@18.2.45)(react-dom@18.2.0)(react@18.2.0)(typescript@5.3.3):
     resolution: {integrity: sha512-1yzoGC8x8kav77wNvUomtiICLcI5D+3u2x5B3g3dGRThMivPtQzEegaDQA0wIkJQBlEALXKRcfjatg0qL8IYeA==}
     engines: {node: '>=12.22.0'}
     peerDependencies:
@@ -7608,7 +7593,7 @@ packages:
         optional: true
     dependencies:
       '@teambit/documenter.ui.section': 4.1.1(react-dom@18.2.0)(react@18.2.0)
-      '@teambit/mdx.ui.mdx-layout': 1.0.6(@testing-library/react@14.1.2)(@types/react@18.2.23)(react-dom@18.2.0)(react@18.2.0)(typescript@5.3.3)
+      '@teambit/mdx.ui.mdx-layout': 1.0.6(@testing-library/react@14.1.2)(@types/react@18.2.45)(react-dom@18.2.0)(react@18.2.0)(typescript@5.3.3)
       '@teambit/react.ui.error-fallback': 0.0.128(react-dom@18.2.0)(react@18.2.0)
       core-js: 3.34.0
       lodash: 4.17.21
@@ -7621,7 +7606,7 @@ packages:
       - typescript
     dev: false
 
-  /@teambit/react.ui.docs.properties-table@0.0.21(@types/react@18.2.23)(graphql@14.7.0)(react-dom@18.2.0)(react@18.2.0):
+  /@teambit/react.ui.docs.properties-table@0.0.21(@types/react@18.2.45)(graphql@14.7.0)(react-dom@18.2.0)(react@18.2.0):
     resolution: {integrity: sha512-gKbMlpQSmHvLovHvcDqShWs3mHEoEtLZM6pxoO7tQ6Yjc4A+6iQkejEc72Z3CcpJ1Ynbk7jQb2j15K1GsnvHFw==}
     engines: {node: '>=12.22.0'}
     peerDependencies:
@@ -7635,7 +7620,7 @@ packages:
     dependencies:
       '@teambit/component.ui.hooks.use-fetch-docs': 0.0.21(graphql@14.7.0)(react-dom@18.2.0)(react@18.2.0)
       '@teambit/documenter.ui.linked-heading': 4.1.6(react-dom@18.2.0)(react@18.2.0)
-      '@teambit/documenter.ui.property-table': 4.1.10(@types/react@18.2.23)(react-dom@18.2.0)(react@18.2.0)(typescript@5.3.3)
+      '@teambit/documenter.ui.property-table': 4.1.10(@types/react@18.2.45)(react-dom@18.2.0)(react@18.2.0)(typescript@5.3.3)
       '@teambit/documenter.ui.section': 4.1.1(react-dom@18.2.0)(react@18.2.0)
       core-js: 3.34.0
       react: 18.2.0
@@ -7647,7 +7632,7 @@ packages:
       - typescript
     dev: false
 
-  /@teambit/react.ui.docs.properties-table@0.0.21(@types/react@18.2.23)(graphql@15.8.0)(react-dom@18.2.0)(react@18.2.0)(typescript@5.3.3):
+  /@teambit/react.ui.docs.properties-table@0.0.21(@types/react@18.2.45)(graphql@15.8.0)(react-dom@18.2.0)(react@18.2.0)(typescript@5.3.3):
     resolution: {integrity: sha512-gKbMlpQSmHvLovHvcDqShWs3mHEoEtLZM6pxoO7tQ6Yjc4A+6iQkejEc72Z3CcpJ1Ynbk7jQb2j15K1GsnvHFw==}
     engines: {node: '>=12.22.0'}
     peerDependencies:
@@ -7661,7 +7646,7 @@ packages:
     dependencies:
       '@teambit/component.ui.hooks.use-fetch-docs': 0.0.21(graphql@15.8.0)(react-dom@18.2.0)(react@18.2.0)
       '@teambit/documenter.ui.linked-heading': 4.1.6(react-dom@18.2.0)(react@18.2.0)
-      '@teambit/documenter.ui.property-table': 4.1.10(@types/react@18.2.23)(react-dom@18.2.0)(react@18.2.0)(typescript@5.3.3)
+      '@teambit/documenter.ui.property-table': 4.1.10(@types/react@18.2.45)(react-dom@18.2.0)(react@18.2.0)(typescript@5.3.3)
       '@teambit/documenter.ui.section': 4.1.1(react-dom@18.2.0)(react@18.2.0)
       core-js: 3.34.0
       react: 18.2.0
@@ -7911,8 +7896,8 @@ packages:
       typescript: 5.3.3
     dev: false
 
-  /@teambit/typescript.typescript-compiler@2.0.14(@teambit/legacy@node_modules+@teambit+legacy):
-    resolution: {integrity: sha512-SndNDrQO0VIP0jgdyCrS1+m7XjRjYX6cLtOlQAgAmOGQ/D2wPxpHpW6zuNqb2vFGinsrz8+5tSgrds/lGV1Ccg==}
+  /@teambit/typescript.typescript-compiler@2.0.15(@teambit/legacy@node_modules+@teambit+legacy):
+    resolution: {integrity: sha512-WG0tHHB8QuACI/EdlntGiRJWUne8yS9RCwHLS5R8FOzxkTNa2dc1x2CGaGRZrxzPf+DKxD/SZFWXLmzEp7zV8Q==}
     peerDependencies:
       '@teambit/legacy': '*'
     peerDependenciesMeta:
@@ -7948,7 +7933,7 @@ packages:
       react-dom: 18.2.0(react@18.2.0)
     dev: false
 
-  /@teambit/ui-foundation.ui.pages.static-error@0.0.88(@testing-library/react@14.1.2)(@types/react@18.2.23)(react-dom@18.2.0)(react@18.2.0):
+  /@teambit/ui-foundation.ui.pages.static-error@0.0.88(@testing-library/react@14.1.2)(@types/react@18.2.45)(react-dom@18.2.0)(react@18.2.0):
     resolution: {integrity: sha512-6baC6ppU668YxrkWf0bs+Rd/v8F+kP3Y69/yjGchsXbRPEAWMZbuuIJ2PZKmsnu/gkOiCeCWNdWvzxFmcpXZaw==}
     engines: {node: '>=12.22.0'}
     peerDependencies:
@@ -7961,8 +7946,8 @@ packages:
         optional: true
     dependencies:
       '@teambit/base-ui.theme.fonts.book': 1.0.2(react-dom@18.2.0)(react@18.2.0)
-      '@teambit/design.ui.pages.not-found': 0.0.366(@testing-library/react@14.1.2)(@types/react@18.2.23)(react-dom@18.2.0)(react@18.2.0)
-      '@teambit/design.ui.pages.server-error': 0.0.366(@testing-library/react@14.1.2)(@types/react@18.2.23)(react-dom@18.2.0)(react@18.2.0)
+      '@teambit/design.ui.pages.not-found': 0.0.366(@testing-library/react@14.1.2)(@types/react@18.2.45)(react-dom@18.2.0)(react@18.2.0)
+      '@teambit/design.ui.pages.server-error': 0.0.366(@testing-library/react@14.1.2)(@types/react@18.2.45)(react-dom@18.2.0)(react@18.2.0)
       '@teambit/ui-foundation.ui.pages.preview-not-found': 0.0.80(react-dom@18.2.0)(react@18.2.0)
       '@teambit/ui-foundation.ui.rendering.html': 0.0.81(react-dom@18.2.0)(react@18.2.0)
       react: 18.2.0
@@ -8346,7 +8331,7 @@ packages:
       redent: 3.0.0
     dev: false
 
-  /@testing-library/react-hooks@8.0.1(@types/react@18.2.23)(react-dom@18.2.0)(react@18.2.0):
+  /@testing-library/react-hooks@8.0.1(@types/react@18.2.45)(react-dom@18.2.0)(react@18.2.0):
     resolution: {integrity: sha512-Aqhl2IVmLt8IovEVarNDFuJDVWVvhnr9/GCU6UUnrYXwgDFF9h2L2o2P9KBni1AST5sT6riAyoukFLyjQUgD/g==}
     engines: {node: '>=12'}
     peerDependencies:
@@ -8365,7 +8350,7 @@ packages:
         optional: true
     dependencies:
       '@babel/runtime': 7.20.0
-      '@types/react': 18.2.23
+      '@types/react': 18.2.45
       react: 18.2.0
       react-dom: 18.2.0(react@18.2.0)
       react-error-boundary: 3.1.4(react@18.2.0)
@@ -8462,12 +8447,12 @@ packages:
   /@types/eslint-scope@3.7.7:
     resolution: {integrity: sha512-MzMFlSLBqNF2gcHWO0G1vP/YQyfvrxZ0bF+u7mzUdZ1/xK4A4sru+nraZz5i3iEIk1l1uyicaDVTB4QbbEkAYg==}
     dependencies:
-      '@types/eslint': 8.44.8
+      '@types/eslint': 8.44.9
       '@types/estree': 1.0.5
     dev: false
 
-  /@types/eslint@8.44.8:
-    resolution: {integrity: sha512-4K8GavROwhrYl2QXDXm0Rv9epkA8GBFu0EI+XrrnnuCl7u8CWBRusX7fXJfanhZTDWSAL24gDI/UqXyUM0Injw==}
+  /@types/eslint@8.44.9:
+    resolution: {integrity: sha512-6yBxcvwnnYoYT1Uk2d+jvIfsuP4mb2EdIxFnrPABj5a/838qe5bGkNLFOiipX4ULQ7XVQvTxOh7jO+BTAiqsEw==}
     dependencies:
       '@types/estree': 1.0.5
       '@types/json-schema': 7.0.15
@@ -8517,7 +8502,6 @@ packages:
 
   /@types/http-proxy@1.17.14:
     resolution: {integrity: sha512-SSrD0c1OQzlFX7pGu1eXxSEjemej64aaNPRhhVYUGqXh0BtldAAx37MG8btcumvpgKyZp1F5Gn3JkktdxiFv6w==}
-    requiresBuild: true
     dependencies:
       '@types/node': 12.20.4
     dev: false
@@ -8608,11 +8592,11 @@ packages:
   /@types/react-dom@18.2.17:
     resolution: {integrity: sha512-rvrT/M7Df5eykWFxn6MYt5Pem/Dbyc1N8Y0S9Mrkw2WFCRiqUgw9P7ul2NpwsXCSM1DVdENzdG9J5SreqfAIWg==}
     dependencies:
-      '@types/react': 18.2.23
+      '@types/react': 18.2.45
     dev: false
 
-  /@types/react@18.2.23:
-    resolution: {integrity: sha512-qHLW6n1q2+7KyBEYnrZpcsAmU/iiCh9WGCKgXvMxx89+TYdJWRjZohVIo9XTcoLhfX3+/hP0Pbulu3bCZQ9PSA==}
+  /@types/react@18.2.45:
+    resolution: {integrity: sha512-TtAxCNrlrBp8GoeEp1npd5g+d/OejJHFxS3OWmrPBMFaVQMSN0OFySozJio5BHxTuTeug00AVXVAjfDSfk+lUg==}
     dependencies:
       '@types/prop-types': 15.7.11
       '@types/scheduler': 0.16.8
@@ -8658,12 +8642,6 @@ packages:
 
   /@types/stack-utils@2.0.3:
     resolution: {integrity: sha512-9aEbYZ3TbYMznPdcdr3SmIrLXwC/AKZXQeCf9Pgao5CKb8CyHuEX5jzWPTkvregvhRJHcpRO6BFoGW9ycaOkYw==}
-
-  /@types/testing-library__jest-dom@5.14.9:
-    resolution: {integrity: sha512-FSYhIjFlfOpGSRyVoMBMuS3ws5ehFQODymf3vlI7U1K8c7PHwWwFY7VREfmsuzHSOnoKs/9/Y983ayOs7eRzqw==}
-    dependencies:
-      '@types/jest': 29.5.11
-    dev: true
 
   /@types/testing-library__jest-dom@5.9.5:
     resolution: {integrity: sha512-ggn3ws+yRbOHog9GxnXiEZ/35Mow6YtPZpd7Z5mKDeZS/o7zx3yAle0ov/wjhVB5QT4N2Dt+GNoGCdqkBGCajQ==}
@@ -9654,7 +9632,7 @@ packages:
         optional: true
     dependencies:
       browserslist: 4.22.2
-      caniuse-lite: 1.0.30001568
+      caniuse-lite: 1.0.30001570
       fraction.js: 4.3.7
       normalize-range: 0.1.2
       picocolors: 1.0.0
@@ -10166,8 +10144,8 @@ packages:
     engines: {node: ^6 || ^7 || ^8 || ^9 || ^10 || ^11 || ^12 || >=13.7}
     hasBin: true
     dependencies:
-      caniuse-lite: 1.0.30001568
-      electron-to-chromium: 1.4.611
+      caniuse-lite: 1.0.30001570
+      electron-to-chromium: 1.4.612
       node-releases: 2.0.14
       update-browserslist-db: 1.0.13(browserslist@4.21.4)
     dev: false
@@ -10177,8 +10155,8 @@ packages:
     engines: {node: ^6 || ^7 || ^8 || ^9 || ^10 || ^11 || ^12 || >=13.7}
     hasBin: true
     dependencies:
-      caniuse-lite: 1.0.30001568
-      electron-to-chromium: 1.4.611
+      caniuse-lite: 1.0.30001570
+      electron-to-chromium: 1.4.612
       node-releases: 2.0.14
       update-browserslist-db: 1.0.13(browserslist@4.22.2)
     dev: false
@@ -10273,14 +10251,14 @@ packages:
   /caniuse-api@3.0.0:
     resolution: {integrity: sha512-bsTwuIg/BZZK/vreVTYYbSWoe2F+71P7K5QGEX+pT250DZbfU1MQ5prOKpPR+LL6uWKK3KMwMCAS74QB3Um1uw==}
     dependencies:
-      browserslist: 4.21.4
-      caniuse-lite: 1.0.30001568
+      browserslist: 4.22.2
+      caniuse-lite: 1.0.30001570
       lodash.memoize: 4.1.2
       lodash.uniq: 4.5.0
     dev: false
 
-  /caniuse-lite@1.0.30001568:
-    resolution: {integrity: sha512-vSUkH84HontZJ88MiNrOau1EBrCqEQYgkC5gIySiDlpsm8sGVrhU7Kx4V6h0tnqaHzIHZv08HlJIwPbL4XL9+A==}
+  /caniuse-lite@1.0.30001570:
+    resolution: {integrity: sha512-+3e0ASu4sw1SWaoCtvPeyXp+5PsjigkSt8OXZbF9StH5pQWbxEjLAZE3n8Aup5udop1uRiKA7a4utUk/uoSpUw==}
     dev: false
 
   /ccount@1.1.0:
@@ -11411,8 +11389,8 @@ packages:
     resolution: {integrity: sha512-WMwm9LhRUo+WUaRN+vRuETqG89IgZphVSNkdFgeb6sS/E4OrDIN7t48CAewSHXc6C8lefD8KKfr5vY61brQlow==}
     dev: false
 
-  /electron-to-chromium@1.4.611:
-    resolution: {integrity: sha512-ZtRpDxrjHapOwxtv+nuth5ByB8clyn8crVynmRNGO3wG3LOp8RTcyZDqwaI6Ng6y8FCK2hVZmJoqwCskKbNMaw==}
+  /electron-to-chromium@1.4.612:
+    resolution: {integrity: sha512-dM8BMtXtlH237ecSMnYdYuCkib2QHq0kpWfUnavjdYsyr/6OsAwg5ZGUfnQ9KD1Ga4QgB2sqXlB2NT8zy2GnVg==}
     dev: false
 
   /elliptic@6.5.4:
@@ -12475,7 +12453,6 @@ packages:
 
   /eventemitter3@4.0.7:
     resolution: {integrity: sha512-8guHBZCwKnFhYdHr2ysuRWErTwhoN2X8XELRlrRwpmfeY2jjuUN4taQMsULKUVo1K4DvZl+0pgfyoysHxvmvEw==}
-    requiresBuild: true
     dev: false
 
   /events@3.3.0:
@@ -12766,7 +12743,6 @@ packages:
   /follow-redirects@1.15.3:
     resolution: {integrity: sha512-1VzOtuEM8pC9SFU1E+8KfTjZyMztRsgEfwQl44z8A25uy13jSzTj6dyK2Df52iV0vgHCfBwLhDWevLn95w5v6Q==}
     engines: {node: '>=4.0'}
-    requiresBuild: true
     peerDependencies:
       debug: '*'
     peerDependenciesMeta:
@@ -13480,7 +13456,6 @@ packages:
   /http-proxy@1.18.1:
     resolution: {integrity: sha512-7mz/721AbnJwIVbnaSv1Cz3Am0ZLT/UBwkC92VlxhXv/k/BBQfM2fXElQNC27BVGr0uwUpplYPQM9LnaBMR5NQ==}
     engines: {node: '>=8.0.0'}
-    requiresBuild: true
     dependencies:
       eventemitter3: 4.0.7
       follow-redirects: 1.15.3
@@ -13813,7 +13788,6 @@ packages:
   /is-plain-obj@3.0.0:
     resolution: {integrity: sha512-gwsOE28k+23GP1B6vFl1oVh/WOzmawBrKwo5Ev6wMKzPkaXaCDIQKzLnvsA42DRlbVTWorkgTKIviAKCWkfUwA==}
     engines: {node: '>=10'}
-    requiresBuild: true
     dev: false
 
   /is-plain-object@2.0.4:
@@ -14909,7 +14883,7 @@ packages:
   /mdast-squeeze-paragraphs@4.0.0:
     resolution: {integrity: sha512-zxdPn69hkQ1rm4J+2Cs2j6wDEv7O17TfXTJ33tl/+JPIoEmtV9t2ZzBM5LPHE8QlHsmVD8t3vPKCyY3oH+H8MQ==}
     dependencies:
-      unist-util-remove: 2.1.0
+      unist-util-remove: 2.0.1
     dev: false
 
   /mdast-util-compact@2.0.1:
@@ -15760,7 +15734,7 @@ packages:
       postcss:
         optional: true
     dependencies:
-      browserslist: 4.21.4
+      browserslist: 4.22.2
       caniuse-api: 3.0.0
       colord: 2.9.3
       postcss: 8.4.32
@@ -15776,7 +15750,7 @@ packages:
       postcss:
         optional: true
     dependencies:
-      browserslist: 4.21.4
+      browserslist: 4.22.2
       postcss: 8.4.32
       postcss-value-parser: 4.2.0
     dev: false
@@ -16072,7 +16046,7 @@ packages:
       postcss:
         optional: true
     dependencies:
-      browserslist: 4.21.4
+      browserslist: 4.22.2
       caniuse-api: 3.0.0
       cssnano-utils: 4.0.0(postcss@8.4.32)
       postcss: 8.4.32
@@ -16116,7 +16090,7 @@ packages:
       postcss:
         optional: true
     dependencies:
-      browserslist: 4.21.4
+      browserslist: 4.22.2
       cssnano-utils: 4.0.0(postcss@8.4.32)
       postcss: 8.4.32
       postcss-value-parser: 4.2.0
@@ -16288,7 +16262,7 @@ packages:
       postcss:
         optional: true
     dependencies:
-      browserslist: 4.21.4
+      browserslist: 4.22.2
       postcss: 8.4.32
       postcss-value-parser: 4.2.0
     dev: false
@@ -16425,7 +16399,7 @@ packages:
       '@csstools/postcss-trigonometric-functions': 1.0.2(postcss@8.4.19)
       '@csstools/postcss-unset-value': 1.0.2(postcss@8.4.19)
       autoprefixer: 10.4.16(postcss@8.4.19)
-      browserslist: 4.21.4
+      browserslist: 4.22.2
       css-blank-pseudo: 3.0.3(postcss@8.4.19)
       css-has-pseudo: 3.0.4(postcss@8.4.19)
       css-prefers-color-scheme: 6.0.3(postcss@8.4.19)
@@ -16484,7 +16458,7 @@ packages:
       postcss:
         optional: true
     dependencies:
-      browserslist: 4.21.4
+      browserslist: 4.22.2
       caniuse-api: 3.0.0
       postcss: 8.4.32
     dev: false
@@ -16827,7 +16801,7 @@ packages:
       promise: 8.3.0
       raf: 3.4.1
       regenerator-runtime: 0.13.11
-      whatwg-fetch: 3.6.19
+      whatwg-fetch: 3.6.20
     dev: false
 
   /react-dev-utils@12.0.1(eslint@7.32.0)(typescript@5.3.3)(webpack@5.89.0):
@@ -16844,7 +16818,7 @@ packages:
     dependencies:
       '@babel/code-frame': 7.23.5
       address: 1.2.2
-      browserslist: 4.21.4
+      browserslist: 4.22.2
       chalk: 4.1.2
       cross-spawn: 7.0.3
       detect-port-alt: 1.1.6
@@ -16888,7 +16862,7 @@ packages:
     dependencies:
       '@babel/code-frame': 7.23.5
       address: 1.2.2
-      browserslist: 4.21.4
+      browserslist: 4.22.2
       chalk: 4.1.2
       cross-spawn: 7.0.3
       detect-port-alt: 1.1.6
@@ -17060,7 +17034,7 @@ packages:
       refractor: 3.6.0
     dev: false
 
-  /react-use-dimensions@1.2.1(@types/react@18.2.23)(react@18.2.0)(typescript@5.3.3):
+  /react-use-dimensions@1.2.1(@types/react@18.2.45)(react@18.2.0)(typescript@5.3.3):
     resolution: {integrity: sha512-XL+Rup9Hosxx3Ap9xpyQMbVwuUa4BSqiOjfBb2zDuGs4uv2FesFV+m8Z/huRx2BNptMd9ARPqFuSNA62zhCozg==}
     peerDependencies:
       '@types/react': '*'
@@ -17074,7 +17048,7 @@ packages:
       typescript:
         optional: true
     dependencies:
-      '@types/react': 18.2.23
+      '@types/react': 18.2.45
       react: 18.2.0
       typescript: 5.3.3
     dev: false
@@ -18118,7 +18092,7 @@ packages:
       postcss:
         optional: true
     dependencies:
-      browserslist: 4.21.4
+      browserslist: 4.22.2
       postcss: 8.4.32
       postcss-selector-parser: 6.0.13
     dev: false
@@ -18757,12 +18731,6 @@ packages:
       unist-util-is: 4.1.0
     dev: false
 
-  /unist-util-remove@2.1.0:
-    resolution: {integrity: sha512-J8NYPyBm4baYLdCbjmf1bhPu45Cr1MWTm77qd9istEkzWpnN6O9tMsEbB2JhNnBCqGENRqEWomQ+He6au0B27Q==}
-    dependencies:
-      unist-util-is: 4.1.0
-    dev: false
-
   /unist-util-stringify-position@2.0.3:
     resolution: {integrity: sha512-3faScn5I+hy9VleOq/qNbAd6pAx7iH5jYBMS9I1HgQVijz/4mv5Bvw5iw1sC/90CODiKo81G/ps8AJrISn687g==}
     dependencies:
@@ -19148,7 +19116,7 @@ packages:
       '@webassemblyjs/wasm-parser': 1.11.6
       acorn: 8.11.2
       acorn-import-assertions: 1.9.0(acorn@8.11.2)
-      browserslist: 4.21.4
+      browserslist: 4.22.2
       chrome-trace-event: 1.0.3
       enhanced-resolve: 5.15.0
       es-module-lexer: 1.4.1
@@ -19188,7 +19156,7 @@ packages:
       '@webassemblyjs/wasm-parser': 1.11.6
       acorn: 8.11.2
       acorn-import-assertions: 1.9.0(acorn@8.11.2)
-      browserslist: 4.21.4
+      browserslist: 4.22.2
       chrome-trace-event: 1.0.3
       enhanced-resolve: 5.15.0
       es-module-lexer: 1.4.1
@@ -19228,7 +19196,7 @@ packages:
       '@webassemblyjs/wasm-parser': 1.11.6
       acorn: 8.11.2
       acorn-import-assertions: 1.9.0(acorn@8.11.2)
-      browserslist: 4.21.4
+      browserslist: 4.22.2
       chrome-trace-event: 1.0.3
       enhanced-resolve: 5.15.0
       es-module-lexer: 1.4.1
@@ -19279,8 +19247,8 @@ packages:
       iconv-lite: 0.6.3
     dev: false
 
-  /whatwg-fetch@3.6.19:
-    resolution: {integrity: sha512-d67JP4dHSbm2TrpFj8AbO8DnL1JXL5J9u0Kq2xW6d0TFDbCA3Muhdt8orXC22utleTVj7Prqt82baN6RBvnEgw==}
+  /whatwg-fetch@3.6.20:
+    resolution: {integrity: sha512-EqhiFU6daOA8kpjOWTL0olhVOF3i7OrFzSYiGsEMB8GcXS+RrzauAERX65xMeNWVqxA6HXH2m69Z9LaKKdisfg==}
     dev: false
 
   /whatwg-mimetype@3.0.0:
@@ -19486,7 +19454,7 @@ packages:
     engines: {node: '>=10'}
     dev: false
 
-  /zustand@4.4.7(@types/react@18.2.23)(react@18.2.0):
+  /zustand@4.4.7(@types/react@18.2.45)(react@18.2.0):
     resolution: {integrity: sha512-QFJWJMdlETcI69paJwhSMJz7PPWjVP8Sjhclxmxmxv/RYI7ZOvR5BHX+ktH0we9gTWQMxcne8q1OY8xxz604gw==}
     engines: {node: '>=12.7.0'}
     peerDependencies:
@@ -19501,7 +19469,7 @@ packages:
       react:
         optional: true
     dependencies:
-      '@types/react': 18.2.23
+      '@types/react': 18.2.45
       react: 18.2.0
       use-sync-external-store: 1.2.0(react@18.2.0)
     dev: false
@@ -19525,12 +19493,12 @@ packages:
       '@teambit/defender.eslint-linter': 1.0.15(@teambit/legacy@node_modules+@teambit+legacy)
       '@teambit/defender.jest-tester': 1.0.13(@teambit/legacy@node_modules+@teambit+legacy)(@types/node@12.20.4)
       '@teambit/mdx.ui.mdx-scope-context': 1.0.0(react-dom@18.2.0)(react@18.2.0)
-      '@teambit/preview.react-preview': 1.0.23(@teambit/legacy@node_modules+@teambit+legacy)(@testing-library/react@14.1.2)(@types/react@18.2.23)(eslint@8.55.0)(graphql@14.7.0)(react-dom@18.2.0)(react@18.2.0)
+      '@teambit/preview.react-preview': 1.0.23(@teambit/legacy@node_modules+@teambit+legacy)(@testing-library/react@14.1.2)(@types/react@18.2.45)(eslint@8.55.0)(graphql@14.7.0)(react-dom@18.2.0)(react@18.2.0)
       '@teambit/react.mounter': 1.0.3
       '@teambit/react.react-env': 1.0.32(@teambit/legacy@node_modules+@teambit+legacy)(@testing-library/react@14.1.2)(@types/node@12.20.4)(@typescript-eslint/parser@6.14.0)
-      '@teambit/typescript.typescript-compiler': 2.0.14(@teambit/legacy@node_modules+@teambit+legacy)
+      '@teambit/typescript.typescript-compiler': 2.0.15(@teambit/legacy@node_modules+@teambit+legacy)
       '@testing-library/jest-dom': 6.1.5(@types/jest@29.5.11)(jest@29.3.1)
-      '@types/react': 18.2.23
+      '@types/react': 18.2.45
       '@types/react-dom': 18.2.17
       core-js: 3.34.0
       graphql: 14.7.0
@@ -19596,7 +19564,7 @@ packages:
       '@intershare/utils.general': file:galacfetch/utils/general(@faker-js/faker@8.3.1)(@types/node@12.20.4)
       '@mdx-js/react': 1.6.22(react@18.2.0)
       '@teambit/mdx.ui.mdx-scope-context': 1.0.0(react-dom@18.2.0)(react@18.2.0)
-      '@types/react': 18.2.23
+      '@types/react': 18.2.45
       '@types/react-dom': 18.2.17
       fake-indexeddb: 5.0.1
       graphql: 14.7.0
@@ -19604,7 +19572,7 @@ packages:
       react: 18.2.0
       react-dom: 18.2.0(react@18.2.0)
       react-router-dom: 6.8.1(react-dom@18.2.0)(react@18.2.0)
-      zustand: 4.4.7(@types/react@18.2.23)(react@18.2.0)
+      zustand: 4.4.7(@types/react@18.2.45)(react@18.2.0)
     transitivePeerDependencies:
       - '@faker-js/faker'
       - '@types/node'
@@ -19629,7 +19597,7 @@ packages:
       '@intershare/utils.general': file:galacfetch/utils/general(@faker-js/faker@8.3.1)(@types/node@12.20.4)
       '@mdx-js/react': 1.6.22(react@18.2.0)
       '@teambit/mdx.ui.mdx-scope-context': 1.0.0(react-dom@18.2.0)(react@18.2.0)
-      '@types/react': 18.2.23
+      '@types/react': 18.2.45
       '@types/react-dom': 18.2.17
       fake-indexeddb: 5.0.1
       graphql: 14.7.0
@@ -19637,7 +19605,7 @@ packages:
       react: 18.2.0
       react-dom: 18.2.0(react@18.2.0)
       react-router-dom: 6.8.1(react-dom@18.2.0)(react@18.2.0)
-      zustand: 4.4.7(@types/react@18.2.23)(react@18.2.0)
+      zustand: 4.4.7(@types/react@18.2.45)(react@18.2.0)
     transitivePeerDependencies:
       - '@faker-js/faker'
       - '@types/node'
@@ -19671,7 +19639,7 @@ packages:
       '@intershare/utils.general': file:galacfetch/utils/general(@faker-js/faker@8.3.1)(@types/node@12.20.4)
       '@mdx-js/react': 1.6.22(react@18.2.0)
       '@teambit/mdx.ui.mdx-scope-context': 1.0.0(react-dom@18.2.0)(react@18.2.0)
-      '@types/react': 18.2.23
+      '@types/react': 18.2.45
       '@types/react-dom': 18.2.17
       fake-indexeddb: 5.0.1
       graphql: 14.7.0
@@ -19680,7 +19648,7 @@ packages:
       react: 18.2.0
       react-dom: 18.2.0(react@18.2.0)
       react-router-dom: 6.8.1(react-dom@18.2.0)(react@18.2.0)
-      zustand: 4.4.7(@types/react@18.2.23)(react@18.2.0)
+      zustand: 4.4.7(@types/react@18.2.45)(react@18.2.0)
     transitivePeerDependencies:
       - '@types/node'
       - babel-plugin-macros
@@ -19701,7 +19669,7 @@ packages:
       '@intershare/utils.general': file:galacfetch/utils/general(@faker-js/faker@8.3.1)(@types/node@12.20.4)
       '@mdx-js/react': 1.6.22(react@18.2.0)
       '@teambit/mdx.ui.mdx-scope-context': 1.0.0(react-dom@18.2.0)(react@18.2.0)
-      '@types/react': 18.2.23
+      '@types/react': 18.2.45
       '@types/react-dom': 18.2.17
       graphql: 14.7.0
       jest: 29.3.1(@types/node@12.20.4)
@@ -19709,7 +19677,7 @@ packages:
       react-dom: 18.2.0(react@18.2.0)
       react-router-dom: 6.8.1(react-dom@18.2.0)(react@18.2.0)
       socket.io-client: 4.7.2
-      zustand: 4.4.7(@types/react@18.2.23)(react@18.2.0)
+      zustand: 4.4.7(@types/react@18.2.45)(react@18.2.0)
     transitivePeerDependencies:
       - '@faker-js/faker'
       - '@types/node'
@@ -19733,14 +19701,14 @@ packages:
       '@intershare/hooks.remote-ipfs-file-manager': file:galacfetch/hooks/remote-ipfs-file-manager(@faker-js/faker@8.3.1)(@types/node@12.20.4)(fake-indexeddb@5.0.1)
       '@mdx-js/react': 1.6.22(react@18.2.0)
       '@teambit/mdx.ui.mdx-scope-context': 1.0.0(react-dom@18.2.0)(react@18.2.0)
-      '@types/react': 18.2.23
+      '@types/react': 18.2.45
       '@types/react-dom': 18.2.17
       graphql: 14.7.0
       jest: 29.3.1(@types/node@12.20.4)
       react: 18.2.0
       react-dom: 18.2.0(react@18.2.0)
       react-router-dom: 6.8.1(react-dom@18.2.0)(react@18.2.0)
-      zustand: 4.4.7(@types/react@18.2.23)(react@18.2.0)
+      zustand: 4.4.7(@types/react@18.2.45)(react@18.2.0)
     transitivePeerDependencies:
       - '@faker-js/faker'
       - '@types/node'
@@ -19767,7 +19735,7 @@ packages:
       '@faker-js/faker': 8.3.1
       '@mdx-js/react': 1.6.22(react@18.2.0)
       '@teambit/mdx.ui.mdx-scope-context': 1.0.0(react-dom@18.2.0)(react@18.2.0)
-      '@types/react': 18.2.23
+      '@types/react': 18.2.45
       '@types/react-dom': 18.2.17
       graphql: 14.7.0
       jest: 29.3.1(@types/node@12.20.4)

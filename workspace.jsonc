@@ -34,6 +34,10 @@
     "policy": {
       "dependencies": {
         "@babel/runtime": "7.23.1",
+        "@teambit/defender.jest-tester": "^1.0.13",
+        "@teambit/preview.react-preview": "^1.0.23",
+        "@teambit/react.mounter": "^1.0.3",
+        "@teambit/typescript.typescript-compiler": "^2.0.15",
         "@types/jest": "^29.5.11",
         "@types/node": "20.8.0",
         "@types/react": "^18.2.43",
