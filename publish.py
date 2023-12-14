@@ -13,10 +13,14 @@ def ejecutar_comando(comando):
 
 # Ejecutar los comandos necesarios
 # Paso 1: Compilar con bit
-ejecutar_comando('bit compile')
+ejecutar_comando('echo "Verificando TSConfig"')
+ejecutar_comando('bit build')
 
+ejecutar_comando('bit compile')
 # Paso 2: Verificar el estado con bit
 ejecutar_comando('bit status')
+ejecutar_comando('bit lint')
+ejecutar_comando('bit test')
 
 # Solicitar el mensaje del usuario para el tag
 mensaje_tag = input("Introduce el mensaje para el tag: ")

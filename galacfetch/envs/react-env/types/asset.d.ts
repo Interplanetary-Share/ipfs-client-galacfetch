@@ -1,3 +1,7 @@
+/**
+ * this file is copied into your components' build output.
+ */
+
 declare module '*.png' {
   const value: any;
   export = value;
@@ -5,7 +9,9 @@ declare module '*.png' {
 declare module '*.svg' {
   import type { FunctionComponent, SVGProps } from 'react';
 
-  export const ReactComponent: FunctionComponent<SVGProps<SVGSVGElement> & { title?: string }>;
+  export const ReactComponent: FunctionComponent<
+    SVGProps<SVGSVGElement> & { title?: string }
+  >;
   const src: string;
   export default src;
 }
