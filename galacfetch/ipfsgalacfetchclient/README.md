@@ -42,7 +42,7 @@ A React Hook that connects to galacfetch IPFS nodes to manage files on the IPFS 
 ## 📦 Installation
 
 ```bash
-npm install ipfsgalacfetchclient
+npm i @galacfetch/ipfsgalacfetchclient
 ```
 
 ## 📖 Usage
@@ -124,11 +124,3 @@ This project is [MIT](https://github.com/Interplanetary-Share/ipfs-client-galacf
 ### Client:
 
 - allow edit public and private files (only if you are the owner)
-
-## write ts config from workspace
-
-```bash
-bit ws-config write
-```
-
-funny becouse it is not in any place
