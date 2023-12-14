@@ -164,6 +164,48 @@
         ]
       }
     },
+    "galacfetch/utils": {
+      "teambit.react/react": {
+        // Especifica tu entorno personalizado
+        "env": "intershare.galacfetch/envs/react-env"
+      },
+      "teambit.pkg/pkg": {
+        "packageManagerPublishArgs": ["--access public"],
+        "packageJson": {
+          "name": "@{scope}/{name}",
+          "author": "Kenneth Suarez Guineart <kenneth@interplanetaryshare.com> (https://kennethsuarez.es/)",
+          "bugs": {
+            "url": "https://github.com/Interplanetary-Share/ipfs-client-galacfetch/issues",
+            "email": "kenneth@interplanetaryshare.com"
+          },
+          "license": "GPL-3.0-or-later",
+          "private": false,
+          "files": [
+            "dist/src",
+            "README.md",
+            "dist/index.js",
+            "dist/index.d.ts",
+            "dist/index.js.map"
+          ],
+          "main": "dist/index.js",
+          "repository": {
+            "type": "git",
+            "url": "https://github.com/Interplanetary-Share/ipfs-client-galacfetch"
+          }
+        }
+      },
+      "teambit.component/dev-files": {
+        "devFilePatterns": [
+          "*.spec.ts",
+          "*.spec.tsx",
+          "*.test.js",
+          "*.test.jsx",
+          "*.composition.tsx",
+          "*.mdx",
+          "*.md"
+        ]
+      }
+    },
     "galacfetch/ipfsgalacfetchclient": {
       "teambit.react/react": {
         "env": "intershare.galacfetch/envs/react-env"
