@@ -15,35 +15,48 @@
     "moduleResolution": "node",
     "lib": ["es2016", "esnext", "dom"],
     "outDir": "dist",
-    "rootDir": ".",
     "strictNullChecks": false,
     "forceConsistentCasingInFileNames": false,
     "declaration": true,
-    "emitDeclarationOnly": true,
+    "emitDeclarationOnly": false,
     "declarationMap": true,
     "removeComments": true,
     "preserveConstEnums": true,
     "resolveJsonModule": true,
     "resolvePackageJsonExports": false,
     "strict": false,
-    "baseUrl": ".",
-    "rootDirs": ["."],
-    "paths": {
-      "@intershare/*": ["./node_modules/@intershare/*"]
-    }
+    "baseUrl": "."
+    // "paths": {
+    //   "@intershare/utils.general": [
+    //     "./node_modules/@intershare/utils.general/dis/"
+    //   ],
+    //   "@intershare/hooks.indexdb": [
+    //     "./node_modules/@intershare/hooks.indexdb/dist/"
+    //   ],
+    //   "@intershare/hooks.local-ipfs-file-manager": [
+    //     "./node_modules/@intershare/hooks.local-ipfs-file-manager/dist/"
+    //   ],
+    //   "@intershare/hooks.remote-ipfs-file-integrity": [
+    //     "./node_modules/@intershare/hooks.remote-ipfs-file-integrity/dist/"
+    //   ],
+    //   "@intershare/hooks.remote-ipfs-file-manager": [
+    //     "./node_modules/@intershare/hooks.remote-ipfs-file-manager/dist/"
+    //   ],
+    //   "@intershare/ipfsgalacfetchclient": [
+    //     "./node_modules/@intershare/ipfsgalacfetchclient/dist/"
+    //   ]
+    // }
   },
   "include": ["**/*.ts", "**/*.tsx", "**/*.js", "**/*.jsx"],
   "exclude": [
+    "node_modules",
     "dist/*",
     "docs/*",
     "compositions/*",
     "tests/*",
-    "**/*.spec.ts",
-    "**/*.spec.tsx",
-    "**/*.test.js",
-    "**/*.test.jsx",
-    "**/*.composition.tsx",
-    "**/*.mdx",
-    "**/*.md"
+    "**/*.spec.*",
+    "**/*.test.*",
+    "**/*.composition.*",
+    "**/*.docs.*"
   ]
 }

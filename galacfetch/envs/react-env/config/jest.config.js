@@ -22,7 +22,7 @@ module.exports = {
   modulePathIgnorePatterns: ['node_modules', 'dist', '.cache'],
   rootDir: '.',
   testEnvironment: 'jsdom',
-  setupFilesAfterEnv: ['./setup-jest.ts'],
+  // setupFilesAfterEnv: ['./setup-jest.ts'],
   moduleNameMapper: {
     '^@intershare/utils.general$': '<rootDir>/galacfetch/utils/general',
     '^@intershare/hooks.indexdb$': '<rootDir>/galacfetch/hooks/indexdb',
@@ -42,4 +42,4 @@ module.exports = {
   //     excludeComponents: true,
   //   }),
   // ],
-};
+}
