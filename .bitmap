@@ -46,17 +46,15 @@
     },
     "hooks/secure-connect-manager": {
         "name": "hooks/secure-connect-manager",
-        "scope": "",
+        "scope": "intershare.galacfetch",
         "version": "0.0.1",
-        "defaultScope": "intershare.galacfetch",
         "mainFile": "index.ts",
         "rootDir": "galacfetch/hooks/secure-connect-manager"
     },
     "hooks/web-rtc-local-share": {
         "name": "hooks/web-rtc-local-share",
-        "scope": "",
+        "scope": "intershare.galacfetch",
         "version": "0.0.1",
-        "defaultScope": "intershare.galacfetch",
         "mainFile": "index.ts",
         "rootDir": "galacfetch/hooks/web-rtc-local-share"
     },
