@@ -1,6 +1,7 @@
 import indexDbStore, { ObjectStoresEnum } from '@intershare/hooks.indexdb'
-import { remoteIpfsFileManager } from '@intershare/hooks.remote-ipfs-file-manager'
 import localIpfsFileManager from '@intershare/hooks.local-ipfs-file-manager'
+import { remoteIpfsFileManager } from '@intershare/hooks.remote-ipfs-file-manager'
+import secureConnectManager from '@intershare/hooks.secure-connect-manager'
 import {
   apiConstants,
   blobBufferToFile,
@@ -8,7 +9,6 @@ import {
 } from '@intershare/utils.general'
 import { create } from 'zustand'
 import { TRemoteIpfsFileIntegrity, Tconfig } from './common'
-import secureConnectManager from '@intershare/galacfetch.hooks.secure-connect-manager'
 
 export const remoteIpfsFileIntegrity = create<TRemoteIpfsFileIntegrity>(
   (set): TRemoteIpfsFileIntegrity => ({

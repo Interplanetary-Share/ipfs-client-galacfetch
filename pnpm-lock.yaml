@@ -149,7 +149,7 @@ importers:
         version: 1.0.32(@teambit/legacy@node_modules+@teambit+legacy)(@testing-library/react@14.1.2)(@types/node@12.20.4)(@typescript-eslint/parser@6.14.0)
       '@testing-library/jest-dom':
         specifier: ^6.1.5
-        version: 6.1.5(@types/jest@26.0.20)(jest@29.3.1)
+        version: 6.1.5(@types/jest@26.0.24)(jest@29.3.1)
       '@types/react':
         specifier: ^18.2.12
         version: 18.2.45
@@ -177,7 +177,7 @@ importers:
     devDependencies:
       '@types/jest':
         specifier: ^26.0.0
-        version: 26.0.20
+        version: 26.0.24
       '@types/node':
         specifier: 12.20.4
         version: 12.20.4
@@ -537,12 +537,6 @@ importers:
       '@intershare/envs.react-env':
         specifier: workspace:*
         version: file:galacfetch/envs/react-env(@teambit/legacy@node_modules+@teambit+legacy)(@testing-library/jest-dom@6.1.5)(@testing-library/react@14.1.2)(@types/node@12.20.4)(@typescript-eslint/parser@6.14.0)(eslint@8.55.0)
-      '@intershare/galacfetch.hooks.secure-connect-manager':
-        specifier: workspace:*
-        version: file:galacfetch/hooks/secure-connect-manager(@faker-js/faker@8.3.1)(@types/node@12.20.4)
-      '@intershare/galacfetch.hooks.web-rtc-local-share':
-        specifier: workspace:*
-        version: file:galacfetch/hooks/web-rtc-local-share(@faker-js/faker@8.3.1)(@types/node@12.20.4)(fake-indexeddb@5.0.1)
       '@intershare/hooks.indexdb':
         specifier: workspace:*
         version: file:galacfetch/hooks/indexdb(@faker-js/faker@8.3.1)(@types/node@12.20.4)(fake-indexeddb@5.0.1)
@@ -555,6 +549,12 @@ importers:
       '@intershare/hooks.remote-ipfs-file-manager':
         specifier: workspace:*
         version: file:galacfetch/hooks/remote-ipfs-file-manager(@faker-js/faker@8.3.1)(@types/node@12.20.4)(fake-indexeddb@5.0.1)
+      '@intershare/hooks.secure-connect-manager':
+        specifier: workspace:*
+        version: file:galacfetch/hooks/secure-connect-manager(@faker-js/faker@8.3.1)(@types/node@12.20.4)
+      '@intershare/hooks.web-rtc-local-share':
+        specifier: workspace:*
+        version: file:galacfetch/hooks/web-rtc-local-share(@faker-js/faker@8.3.1)(@types/node@12.20.4)(fake-indexeddb@5.0.1)
       '@intershare/utils.general':
         specifier: workspace:*
         version: file:galacfetch/utils/general(@faker-js/faker@8.3.1)(@types/node@12.20.4)
@@ -591,10 +591,6 @@ importers:
     dependenciesMeta:
       '@intershare/envs.react-env':
         injected: true
-      '@intershare/galacfetch.hooks.secure-connect-manager':
-        injected: true
-      '@intershare/galacfetch.hooks.web-rtc-local-share':
-        injected: true
       '@intershare/hooks.indexdb':
         injected: true
       '@intershare/hooks.local-ipfs-file-manager':
@@ -602,6 +598,10 @@ importers:
       '@intershare/hooks.remote-ipfs-file-integrity':
         injected: true
       '@intershare/hooks.remote-ipfs-file-manager':
+        injected: true
+      '@intershare/hooks.secure-connect-manager':
+        injected: true
+      '@intershare/hooks.web-rtc-local-share':
         injected: true
       '@intershare/utils.general':
         injected: true
@@ -613,12 +613,6 @@ importers:
       '@intershare/envs.react-env':
         specifier: workspace:*
         version: file:galacfetch/envs/react-env(@teambit/legacy@node_modules+@teambit+legacy)(@testing-library/jest-dom@6.1.5)(@testing-library/react@14.1.2)(@types/node@12.20.4)(@typescript-eslint/parser@6.14.0)(eslint@8.55.0)
-      '@intershare/galacfetch.hooks.secure-connect-manager':
-        specifier: workspace:*
-        version: file:galacfetch/hooks/secure-connect-manager(@faker-js/faker@8.3.1)(@types/node@12.20.4)
-      '@intershare/galacfetch.hooks.web-rtc-local-share':
-        specifier: workspace:*
-        version: file:galacfetch/hooks/web-rtc-local-share(@faker-js/faker@8.3.1)(@types/node@12.20.4)(fake-indexeddb@5.0.1)
       '@intershare/hooks.indexdb':
         specifier: workspace:*
         version: file:galacfetch/hooks/indexdb(@faker-js/faker@8.3.1)(@types/node@12.20.4)(fake-indexeddb@5.0.1)
@@ -631,6 +625,12 @@ importers:
       '@intershare/hooks.remote-ipfs-file-manager':
         specifier: workspace:*
         version: file:galacfetch/hooks/remote-ipfs-file-manager(@faker-js/faker@8.3.1)(@types/node@12.20.4)(fake-indexeddb@5.0.1)
+      '@intershare/hooks.secure-connect-manager':
+        specifier: workspace:*
+        version: file:galacfetch/hooks/secure-connect-manager(@faker-js/faker@8.3.1)(@types/node@12.20.4)
+      '@intershare/hooks.web-rtc-local-share':
+        specifier: workspace:*
+        version: file:galacfetch/hooks/web-rtc-local-share(@faker-js/faker@8.3.1)(@types/node@12.20.4)(fake-indexeddb@5.0.1)
       '@intershare/utils.general':
         specifier: workspace:*
         version: file:galacfetch/utils/general(@faker-js/faker@8.3.1)(@types/node@12.20.4)
@@ -646,10 +646,6 @@ importers:
     dependenciesMeta:
       '@intershare/envs.react-env':
         injected: true
-      '@intershare/galacfetch.hooks.secure-connect-manager':
-        injected: true
-      '@intershare/galacfetch.hooks.web-rtc-local-share':
-        injected: true
       '@intershare/hooks.indexdb':
         injected: true
       '@intershare/hooks.local-ipfs-file-manager':
@@ -657,6 +653,10 @@ importers:
       '@intershare/hooks.remote-ipfs-file-integrity':
         injected: true
       '@intershare/hooks.remote-ipfs-file-manager':
+        injected: true
+      '@intershare/hooks.secure-connect-manager':
+        injected: true
+      '@intershare/hooks.web-rtc-local-share':
         injected: true
       '@intershare/utils.general':
         injected: true
@@ -8461,7 +8461,7 @@ packages:
       redent: 3.0.0
     dev: false
 
-  /@testing-library/jest-dom@6.1.5(@types/jest@26.0.20)(jest@29.3.1):
+  /@testing-library/jest-dom@6.1.5(@types/jest@26.0.24)(jest@29.3.1):
     resolution: {integrity: sha512-3y04JLW+EceVPy2Em3VwNr95dOKqA8DhR0RJHhHKDZNYXcVXnEK7WIrpj4eYU8SVt/qYZ2aRWt/WgQ+grNES8g==}
     engines: {node: '>=14', npm: '>=6', yarn: '>=1'}
     peerDependencies:
@@ -8481,7 +8481,7 @@ packages:
     dependencies:
       '@adobe/css-tools': 4.3.2
       '@babel/runtime': 7.20.0
-      '@types/jest': 26.0.20
+      '@types/jest': 26.0.24
       aria-query: 5.3.0
       chalk: 3.0.0
       css.escape: 1.5.1
@@ -8709,8 +8709,8 @@ packages:
     dependencies:
       '@types/istanbul-lib-report': 3.0.3
 
-  /@types/jest@26.0.20:
-    resolution: {integrity: sha512-9zi2Y+5USJRxd0FsahERhBwlcvFh6D2GLQnY2FH2BzK8J9s9omvNHIbvABwIluXa0fD8XVKMLTO0aOEuUfACAA==}
+  /@types/jest@26.0.24:
+    resolution: {integrity: sha512-E/X5Vib8BWqZNRlDxj9vYXhsDwPYbPINqKF9BsnSoon4RQ0D9moEuLD8txgyypFLH7J4+Lho9Nr/c8H0Fi+17w==}
     dependencies:
       jest-diff: 26.6.2
       pretty-format: 26.6.2
@@ -10349,7 +10349,7 @@ packages:
     hasBin: true
     dependencies:
       caniuse-lite: 1.0.30001570
-      electron-to-chromium: 1.4.613
+      electron-to-chromium: 1.4.614
       node-releases: 2.0.14
       update-browserslist-db: 1.0.13(browserslist@4.21.4)
     dev: false
@@ -10360,7 +10360,7 @@ packages:
     hasBin: true
     dependencies:
       caniuse-lite: 1.0.30001570
-      electron-to-chromium: 1.4.613
+      electron-to-chromium: 1.4.614
       node-releases: 2.0.14
       update-browserslist-db: 1.0.13(browserslist@4.22.2)
     dev: false
@@ -11593,8 +11593,8 @@ packages:
     resolution: {integrity: sha512-WMwm9LhRUo+WUaRN+vRuETqG89IgZphVSNkdFgeb6sS/E4OrDIN7t48CAewSHXc6C8lefD8KKfr5vY61brQlow==}
     dev: false
 
-  /electron-to-chromium@1.4.613:
-    resolution: {integrity: sha512-r4x5+FowKG6q+/Wj0W9nidx7QO31BJwmR2uEo+Qh3YLGQ8SbBAFuDFpTxzly/I2gsbrFwBuIjrMp423L3O5U3w==}
+  /electron-to-chromium@1.4.614:
+    resolution: {integrity: sha512-X4ze/9Sc3QWs6h92yerwqv7aB/uU8vCjZcrMjA8N9R1pjMFRe44dLsck5FzLilOYvcXuDn93B+bpGYyufc70gQ==}
     dev: false
 
   /elliptic@6.5.4:
@@ -19916,6 +19916,7 @@ packages:
       '@intershare/hooks.indexdb': file:galacfetch/hooks/indexdb(@faker-js/faker@8.3.1)(@types/node@12.20.4)(fake-indexeddb@5.0.1)
       '@intershare/hooks.local-ipfs-file-manager': file:galacfetch/hooks/local-ipfs-file-manager(@faker-js/faker@8.3.1)(@types/node@12.20.4)(fake-indexeddb@5.0.1)
       '@intershare/hooks.remote-ipfs-file-manager': file:galacfetch/hooks/remote-ipfs-file-manager(@faker-js/faker@8.3.1)(@types/node@12.20.4)(fake-indexeddb@5.0.1)
+      '@intershare/hooks.secure-connect-manager': file:galacfetch/hooks/secure-connect-manager(@faker-js/faker@8.3.1)(@types/node@12.20.4)
       '@intershare/utils.general': file:galacfetch/utils/general(@faker-js/faker@8.3.1)(@types/node@12.20.4)
       '@mdx-js/react': 1.6.22(react@18.2.0)
       '@teambit/mdx.ui.mdx-scope-context': 1.0.0(react-dom@18.2.0)(react@18.2.0)
@@ -19932,10 +19933,12 @@ packages:
     transitivePeerDependencies:
       - '@types/node'
       - babel-plugin-macros
+      - bufferutil
       - immer
       - node-notifier
       - supports-color
       - ts-node
+      - utf-8-validate
     dev: false
 
   file:galacfetch/hooks/remote-ipfs-file-manager(@faker-js/faker@8.3.1)(@types/node@12.20.4)(fake-indexeddb@5.0.1):
@@ -19944,6 +19947,7 @@ packages:
     name: '@intershare/hooks.remote-ipfs-file-manager'
     dependencies:
       '@intershare/hooks.local-ipfs-file-manager': file:galacfetch/hooks/local-ipfs-file-manager(@faker-js/faker@8.3.1)(@types/node@12.20.4)(fake-indexeddb@5.0.1)
+      '@intershare/hooks.secure-connect-manager': file:galacfetch/hooks/secure-connect-manager(@faker-js/faker@8.3.1)(@types/node@12.20.4)
       '@intershare/utils.general': file:galacfetch/utils/general(@faker-js/faker@8.3.1)(@types/node@12.20.4)
       '@mdx-js/react': 1.6.22(react@18.2.0)
       '@teambit/mdx.ui.mdx-scope-context': 1.0.0(react-dom@18.2.0)(react@18.2.0)
@@ -19959,17 +19963,19 @@ packages:
       - '@faker-js/faker'
       - '@types/node'
       - babel-plugin-macros
+      - bufferutil
       - fake-indexeddb
       - immer
       - node-notifier
       - supports-color
       - ts-node
+      - utf-8-validate
     dev: false
 
   file:galacfetch/hooks/secure-connect-manager(@faker-js/faker@8.3.1)(@types/node@12.20.4):
     resolution: {directory: galacfetch/hooks/secure-connect-manager, type: directory}
     id: file:galacfetch/hooks/secure-connect-manager
-    name: '@intershare/galacfetch.hooks.secure-connect-manager'
+    name: '@intershare/hooks.secure-connect-manager'
     dependencies:
       '@intershare/utils.general': file:galacfetch/utils/general(@faker-js/faker@8.3.1)(@types/node@12.20.4)
       '@mdx-js/react': 1.6.22(react@18.2.0)
@@ -19998,10 +20004,11 @@ packages:
   file:galacfetch/hooks/web-rtc-local-share(@faker-js/faker@8.3.1)(@types/node@12.20.4)(fake-indexeddb@5.0.1):
     resolution: {directory: galacfetch/hooks/web-rtc-local-share, type: directory}
     id: file:galacfetch/hooks/web-rtc-local-share
-    name: '@intershare/galacfetch.hooks.web-rtc-local-share'
+    name: '@intershare/hooks.web-rtc-local-share'
     dependencies:
       '@intershare/hooks.indexdb': file:galacfetch/hooks/indexdb(@faker-js/faker@8.3.1)(@types/node@12.20.4)(fake-indexeddb@5.0.1)
       '@intershare/hooks.local-ipfs-file-manager': file:galacfetch/hooks/local-ipfs-file-manager(@faker-js/faker@8.3.1)(@types/node@12.20.4)(fake-indexeddb@5.0.1)
+      '@intershare/hooks.secure-connect-manager': file:galacfetch/hooks/secure-connect-manager(@faker-js/faker@8.3.1)(@types/node@12.20.4)
       '@intershare/utils.general': file:galacfetch/utils/general(@faker-js/faker@8.3.1)(@types/node@12.20.4)
       '@mdx-js/react': 1.6.22(react@18.2.0)
       '@teambit/mdx.ui.mdx-scope-context': 1.0.0(react-dom@18.2.0)(react@18.2.0)
@@ -20017,11 +20024,13 @@ packages:
       - '@faker-js/faker'
       - '@types/node'
       - babel-plugin-macros
+      - bufferutil
       - fake-indexeddb
       - immer
       - node-notifier
       - supports-color
       - ts-node
+      - utf-8-validate
     dev: false
 
   file:galacfetch/ipfsgalacfetchclient(@faker-js/faker@8.3.1)(@types/node@12.20.4)(fake-indexeddb@5.0.1):
@@ -20029,10 +20038,11 @@ packages:
     id: file:galacfetch/ipfsgalacfetchclient
     name: ipfsgalacfetchclient
     dependencies:
-      '@intershare/galacfetch.hooks.secure-connect-manager': file:galacfetch/hooks/secure-connect-manager(@faker-js/faker@8.3.1)(@types/node@12.20.4)
       '@intershare/hooks.indexdb': file:galacfetch/hooks/indexdb(@faker-js/faker@8.3.1)(@types/node@12.20.4)(fake-indexeddb@5.0.1)
       '@intershare/hooks.local-ipfs-file-manager': file:galacfetch/hooks/local-ipfs-file-manager(@faker-js/faker@8.3.1)(@types/node@12.20.4)(fake-indexeddb@5.0.1)
       '@intershare/hooks.remote-ipfs-file-manager': file:galacfetch/hooks/remote-ipfs-file-manager(@faker-js/faker@8.3.1)(@types/node@12.20.4)(fake-indexeddb@5.0.1)
+      '@intershare/hooks.secure-connect-manager': file:galacfetch/hooks/secure-connect-manager(@faker-js/faker@8.3.1)(@types/node@12.20.4)
+      '@intershare/hooks.web-rtc-local-share': file:galacfetch/hooks/web-rtc-local-share(@faker-js/faker@8.3.1)(@types/node@12.20.4)(fake-indexeddb@5.0.1)
       '@mdx-js/react': 1.6.22(react@18.2.0)
       '@teambit/mdx.ui.mdx-scope-context': 1.0.0(react-dom@18.2.0)(react@18.2.0)
       '@types/react': 18.2.45

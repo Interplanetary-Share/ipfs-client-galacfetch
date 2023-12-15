@@ -1,6 +1,6 @@
-import secureConnectManager from '@intershare/galacfetch.hooks.secure-connect-manager'
 import indexDbStore, { ObjectStoresEnum } from '@intershare/hooks.indexdb'
 import localIpfsFileManager from '@intershare/hooks.local-ipfs-file-manager'
+import secureConnectManager from '@intershare/hooks.secure-connect-manager'
 import { reassembleBlob } from '@intershare/utils.general'
 import { create } from 'zustand'
 import { TWebRTCLocalShare } from './common'
