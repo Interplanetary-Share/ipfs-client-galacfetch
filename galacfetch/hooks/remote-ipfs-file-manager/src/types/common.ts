@@ -1,10 +1,8 @@
 import {
   IPaginationAndSortingParams,
   IRemoteFileInfo,
-  TErrorStatus,
   TFileCreationProps,
   TFileEditProps,
-  TServerItem,
 } from './file'
 
 type FileDownloadPromise = {
@@ -16,13 +14,18 @@ type FileDownloadPromises = {
   [cid: string]: FileDownloadPromise
 }
 
+type TConfig = {
+  discoveryInterval: number
+}
+
 export type TRemoteIpfsFileManager = {
+  // status: undefined | 'idle' | 'loading' | TErrorStatus // TODO: delete this
+  // servers: TServerItem[] // TODO: move this to secure-connect-manager
+  // api: string | null // TODO: move this to secure-connect-manager
+  // connectToSocket: (url: string, api: string) => Promise<any> // TODO: move this to secure-connect-manager
+  config: TConfig
   fileDownloadPromises: FileDownloadPromises
-  status: undefined | 'idle' | 'loading' | TErrorStatus
-  servers: TServerItem[]
-  init: (api: string) => Promise<void>
-  // addNewBlobUrl: (urlFile: IFileUrlInfo) => void // MOVED TO LOCALIPFSSTORE
-  api: string | null
+  init: (config: TConfig) => void // TODO: make initialization automatic when servers list are modified
   remoteGetFileInfo: (cid: string) => Promise<IRemoteFileInfo | undefined>
   remoteGetFilesInfo: (
     isPublic: boolean,
@@ -36,5 +39,4 @@ export type TRemoteIpfsFileManager = {
     cid: string,
     fileprops: TFileEditProps
   ) => Promise<IRemoteFileInfo>
-  connectToSocket: (url: string, api: string) => Promise<any>
 }

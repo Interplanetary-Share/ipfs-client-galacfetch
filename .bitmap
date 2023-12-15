@@ -44,6 +44,22 @@
         "mainFile": "index.ts",
         "rootDir": "galacfetch/hooks/remote-ipfs-file-manager"
     },
+    "hooks/secure-connect-manager": {
+        "name": "hooks/secure-connect-manager",
+        "scope": "",
+        "version": "",
+        "defaultScope": "intershare.galacfetch",
+        "mainFile": "index.ts",
+        "rootDir": "galacfetch/hooks/secure-connect-manager",
+    },
+    "hooks/web-rtc-local-share": {
+        "name": "hooks/web-rtc-local-share",
+        "scope": "",
+        "version": "",
+        "defaultScope": "intershare.galacfetch",
+        "mainFile": "index.ts",
+        "rootDir": "galacfetch/hooks/web-rtc-local-share",
+    },
     "ipfsgalacfetchclient": {
         "name": "ipfsgalacfetchclient",
         "scope": "intershare.galacfetch",

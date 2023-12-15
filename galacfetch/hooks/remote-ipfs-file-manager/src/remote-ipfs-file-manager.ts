@@ -1,116 +1,82 @@
+import secureConnectManager from '@intershare/hooks.secure-connect-manager' // TODO: rename and exclude galacfetch
 import { localIpfsFileManager } from '@intershare/hooks.local-ipfs-file-manager'
 import { apiConstants } from '@intershare/utils.general'
-import { io } from 'socket.io-client'
 import { create } from 'zustand'
 import { TRemoteIpfsFileManager } from './types/common'
-import { IRemoteFileInfo, TServerItem } from './types/file'
+import { IRemoteFileInfo } from './types/file'
 
 export const remoteIpfsFileManager = create<TRemoteIpfsFileManager>(
   (set, get): TRemoteIpfsFileManager => ({
-    status: undefined,
-    servers: [],
-    api: null,
-    fileDownloadPromises: {},
-    init: async (api) => {
-      const { connectToSocket } = remoteIpfsFileManager.getState()
-
-      let getServers
-      try {
-        const response = await fetch(apiConstants.serverGetHost, {
-          headers: {
-            Authorization: `Bearer ${api}`,
-          },
-        })
-
-        if (!response.ok) {
-          throw new Error(`HTTP error! status: ${response.status}`)
-        }
-
-        getServers = await response.json()
-      } catch (err) {
-        console.error('Error fetching servers:', err)
-        throw new Error(String(err))
-      }
-
-      if (!getServers || getServers.length === 0) {
-        throw new Error('No servers found')
-      }
-
-      const serversList = [] as TServerItem[]
-      const socketPromises = getServers.map(async (server: string) => {
-        const { socket } = await connectToSocket(server, api)
-        serversList.push({
-          host: server,
-          ws: socket,
-        })
-        return socket
-      })
-
-      await Promise.all(socketPromises)
-      set({ servers: serversList, api })
+    config: {
+      discoveryInterval: 60000,
     },
-
-    connectToSocket: (url, api) => {
+    fileDownloadPromises: {},
+    init: (config) => {
       const { uploadBlobAndCreateUrl } = localIpfsFileManager.getState()
+      setInterval(() => {
+        const { wsConnected } = secureConnectManager.getState()
+        wsConnected.forEach((ws) => {
+          if (!ws.downloadListening) {
+            const blobList = {} as any
 
-      return new Promise((resolve) => {
-        const socket = io(url, {
-          auth: {
-            token: api,
-          },
-        })
+            ws.on('download/socket', async ({ status, chunk, cid, type }) => {
+              switch (status) {
+                case 1:
+                  blobList[cid] = []
+                  break
+                case 2:
+                  const blob = new Blob([chunk])
+                  blobList[cid].push(blob)
+                  break
+                case 3:
+                  const finalBlobFile = new Blob(blobList[cid], { type })
+                  delete blobList[cid] // Limpiar la memoria
 
-        socket.on('connect', () => {
-          resolve({
-            socket,
-          })
-        })
+                  const { fileDownloadPromises } = get()
+                  if (fileDownloadPromises[cid]) {
+                    try {
+                      const url = await uploadBlobAndCreateUrl(
+                        cid,
+                        finalBlobFile
+                      )
 
-        const blobList = {} as any
+                      if (!url) {
+                        throw new Error('Error al crear la URL del archivo.')
+                      }
 
-        socket.on('download/socket', async ({ status, chunk, cid, type }) => {
-          switch (status) {
-            case 1:
-              blobList[cid] = []
-              break
-            case 2:
-              const blob = new Blob([chunk])
-              blobList[cid].push(blob)
-              break
-            case 3:
-              const finalBlobFile = new Blob(blobList[cid], { type })
-              delete blobList[cid] // Limpiar la memoria
-
-              const { fileDownloadPromises } = get()
-              if (fileDownloadPromises[cid]) {
-                try {
-                  const url = await uploadBlobAndCreateUrl(cid, finalBlobFile)
-
-                  if (!url) {
-                    throw new Error('Error al crear la URL del archivo.')
+                      fileDownloadPromises[cid].resolve(url)
+                    } catch (error) {
+                      fileDownloadPromises[cid].reject(error)
+                    } finally {
+                      const updatedPromises = { ...fileDownloadPromises }
+                      delete updatedPromises[cid]
+                      set({ fileDownloadPromises: updatedPromises }) // Actualiza el estado
+                    }
                   }
 
-                  fileDownloadPromises[cid].resolve(url)
-                } catch (error) {
-                  fileDownloadPromises[cid].reject(error)
-                } finally {
-                  const updatedPromises = { ...fileDownloadPromises }
-                  delete updatedPromises[cid]
-                  set({ fileDownloadPromises: updatedPromises }) // Actualiza el estado
-                }
+                  break
+                default:
+                  console.error('Estado de descarga no reconocido:', status)
+                  // Manejar otros casos si es necesario
+                  break
               }
+            })
 
-              break
-            default:
-              // Manejar otros casos si es necesario
-              break
+            ws.downloadListening = true
           }
         })
-      })
+      }, config.discoveryInterval)
+      set((prevState) => ({
+        config: {
+          ...prevState.config,
+          ...config,
+        },
+      }))
     },
-
     remoteGetFileInfo: async (cid) => {
-      const { api } = remoteIpfsFileManager.getState()
+      const {
+        config: { api },
+      } = secureConnectManager.getState()
 
       try {
         const response = await fetch(`${apiConstants.fileApi}/${cid}`, {
@@ -135,7 +101,9 @@ export const remoteIpfsFileManager = create<TRemoteIpfsFileManager>(
 
     // TODO: check this i dont like it
     remoteGetFilesInfo: async (isPublic = false, queryParams) => {
-      const { api } = remoteIpfsFileManager.getState()
+      const {
+        config: { api },
+      } = secureConnectManager.getState()
 
       // Crear los parámetros de búsqueda
       const searchParams = new URLSearchParams({
@@ -176,12 +144,11 @@ export const remoteIpfsFileManager = create<TRemoteIpfsFileManager>(
     },
 
     remoteGetFile: async (cid: string): Promise<string> => {
-      const { servers, fileDownloadPromises } = remoteIpfsFileManager.getState()
+      const { fileDownloadPromises } = remoteIpfsFileManager.getState()
+      const { wsConnected } = secureConnectManager.getState()
 
-      if (servers.length === 0) {
-        throw new Error(
-          'No hay servidores disponibles para procesar la solicitud.'
-        )
+      if (!wsConnected || wsConnected.length === 0) {
+        throw new Error('No servers found')
       }
 
       return new Promise((resolve, reject) => {
@@ -194,13 +161,7 @@ export const remoteIpfsFileManager = create<TRemoteIpfsFileManager>(
         })
 
         try {
-          servers.forEach((server) => {
-            const { ws } = server
-            if (!ws) {
-              throw new Error(
-                'Conexión de websocket no encontrada en el servidor.'
-              )
-            }
+          wsConnected.forEach((ws) => {
             ws.emit('download', cid)
           })
         } catch (error) {
@@ -217,7 +178,9 @@ export const remoteIpfsFileManager = create<TRemoteIpfsFileManager>(
     },
 
     remoteUploadFile: async (file, fileProps) => {
-      const { api } = remoteIpfsFileManager.getState()
+      const {
+        config: { api },
+      } = secureConnectManager.getState()
       const { uploadBlobAndCreateUrl } = localIpfsFileManager.getState()
 
       const { name, description, extraProperties, isPublic } = fileProps
@@ -258,7 +221,9 @@ export const remoteIpfsFileManager = create<TRemoteIpfsFileManager>(
     },
 
     remotegetFileExtraProps: async (cid) => {
-      const { api } = remoteIpfsFileManager.getState()
+      const {
+        config: { api },
+      } = secureConnectManager.getState()
 
       try {
         const response = await fetch(
@@ -287,7 +252,9 @@ export const remoteIpfsFileManager = create<TRemoteIpfsFileManager>(
     },
 
     remoteUpdateFile: async (cid, fileProps) => {
-      const { api } = remoteIpfsFileManager.getState()
+      const {
+        config: { api },
+      } = secureConnectManager.getState()
 
       try {
         const response = await fetch(`${apiConstants.fileApi}/${cid}`, {

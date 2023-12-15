@@ -50,12 +50,3 @@ export type TFileCreationProps = {
 
 // Properties for File Editing
 export type TFileEditProps = Partial<TFileCreationProps>
-
-// Server Item Information
-export type TServerItem = {
-  host: string
-  ws: any
-  // TODO: WEBRTC ITERATION 2
-  //   peerCon: any
-  //   dataChan: any
-}

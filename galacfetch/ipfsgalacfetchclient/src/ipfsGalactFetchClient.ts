@@ -2,7 +2,6 @@ import { indexDbStore } from '@intershare/hooks.indexdb'
 import { localIpfsFileManager } from '@intershare/hooks.local-ipfs-file-manager'
 import {
   IPaginationAndSortingParams,
-  TErrorStatus,
   remoteIpfsFileManager,
   TFileCreationProps,
   TFileEditProps,
@@ -13,10 +12,14 @@ import {
   IFileRetrievalResponse,
   IFileUploadResponse,
 } from './types/file'
+import secureConnectManager from '../../hooks/secure-connect-manager'
 
 type Store = {
-  status: undefined | 'idle' | 'loading' | TErrorStatus
-  init: (api: string, repoName: string) => Promise<void>
+  init: (
+    api: string,
+    repoName: string,
+    discoveryInterval: number
+  ) => Promise<void>
   getFile: (
     cid: string,
     config?: IFileRetrievalConfig
@@ -37,35 +40,15 @@ type Store = {
 }
 
 export const ipfsGalactFetchClient = create<Store>(
-  (set): Store => ({
-    status: undefined,
-    init: async (api: string, dbName = 'galactfetch') => {
-      const { init } = remoteIpfsFileManager.getState()
-      const { initIndexedDb } = indexDbStore.getState()
-      set({ status: 'loading' })
-      const response = await init(api).catch((error) => {
-        set({
-          status: {
-            error: 'error',
-            message: error,
-          },
-        })
-        return error
-      })
-
-      if (response instanceof Error) {
-        set({
-          status: {
-            error: 'error',
-            message: response.message,
-          },
-        })
-        return response
-      }
-
-      await initIndexedDb(dbName) // Loads in bg, TODO: add loading state and monitor progress.
-      set({ status: 'idle' })
-      return response
+  (): Store => ({
+    init: async (
+      api: string,
+      dbName = 'galactfetch',
+      discoveryInterval = 60000
+    ) => {
+      secureConnectManager.getState().init({ api, discoveryInterval }) // Connect to sockets
+      await indexDbStore.getState().initIndexedDb(dbName) // Init indexedDb
+      remoteIpfsFileManager.getState().init({ discoveryInterval }) // Init remoteIpfsFileManager // check WS to listen
     },
     // TODO: eliminar el token de todas las respuestas posibles de archivos.
     getFile: async (

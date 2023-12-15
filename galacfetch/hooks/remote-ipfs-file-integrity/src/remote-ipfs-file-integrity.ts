@@ -17,6 +17,7 @@ export const remoteIpfsFileIntegrity = create<TRemoteIpfsFileIntegrity>(
       enabled: false,
       interval: 60000,
     },
+
     setConfig: (newConfig: Partial<Tconfig>) => {
       set((prevState) => ({
         config: {
