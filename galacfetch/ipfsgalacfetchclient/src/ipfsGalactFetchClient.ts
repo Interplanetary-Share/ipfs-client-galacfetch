@@ -1,3 +1,4 @@
+import secureConnectManager from '@intershare/galacfetch.hooks.secure-connect-manager'
 import { indexDbStore } from '@intershare/hooks.indexdb'
 import { localIpfsFileManager } from '@intershare/hooks.local-ipfs-file-manager'
 import {
@@ -12,7 +13,7 @@ import {
   IFileRetrievalResponse,
   IFileUploadResponse,
 } from './types/file'
-import secureConnectManager from '../../hooks/secure-connect-manager'
+import webRTCLocalShare from '@intershare/galacfetch.hooks.web-rtc-local-share'
 
 type Store = {
   init: (
@@ -49,6 +50,7 @@ export const ipfsGalactFetchClient = create<Store>(
       secureConnectManager.getState().init({ api, discoveryInterval }) // Connect to sockets
       await indexDbStore.getState().initIndexedDb(dbName) // Init indexedDb
       remoteIpfsFileManager.getState().init({ discoveryInterval }) // Init remoteIpfsFileManager // check WS to listen
+      webRTCLocalShare.getState().init({ discoveryInterval }) // Init webRTCLocalShare // check WS to listen
     },
     // TODO: eliminar el token de todas las respuestas posibles de archivos.
     getFile: async (

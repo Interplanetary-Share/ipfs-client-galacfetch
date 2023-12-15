@@ -33,6 +33,10 @@ module.exports = {
       '<rootDir>/galacfetch/hooks/remote-ipfs-file-manager',
     '^@intershare/hooks.remote-ipfs-file-integrity$':
       '<rootDir>/galacfetch/hooks/remote-ipfs-file-integrity',
+    '^@intershare/hooks.secure-connect-manager$':
+      '<rootDir>/galacfetch/hooks/secure-connect-manager',
+    '^@intershare/hooks.web-rtc-local-share$':
+      '<rootDir>/galacfetch/hooks/web-rtc-local-share',
   },
 
   // transformIgnorePatterns: [

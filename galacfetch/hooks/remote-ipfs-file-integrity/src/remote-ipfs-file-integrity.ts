@@ -8,6 +8,7 @@ import {
 } from '@intershare/utils.general'
 import { create } from 'zustand'
 import { TRemoteIpfsFileIntegrity, Tconfig } from './common'
+import secureConnectManager from '@intershare/galacfetch.hooks.secure-connect-manager'
 
 export const remoteIpfsFileIntegrity = create<TRemoteIpfsFileIntegrity>(
   (set): TRemoteIpfsFileIntegrity => ({
@@ -64,7 +65,10 @@ export const remoteIpfsFileIntegrity = create<TRemoteIpfsFileIntegrity>(
     },
 
     remoteCheckIntegrityFile: async (cid: string) => {
-      const { api, remoteGetFileInfo } = remoteIpfsFileManager.getState()
+      const { remoteGetFileInfo } = remoteIpfsFileManager.getState()
+      const {
+        config: { api },
+      } = secureConnectManager.getState()
       const fileInfo = await remoteGetFileInfo(cid)
 
       if (!fileInfo) {
@@ -97,7 +101,10 @@ export const remoteIpfsFileIntegrity = create<TRemoteIpfsFileIntegrity>(
     },
 
     syncFileWithRemote: async (cid: string) => {
-      const { api, remoteGetFileInfo } = remoteIpfsFileManager.getState()
+      const { remoteGetFileInfo } = remoteIpfsFileManager.getState()
+      const {
+        config: { api },
+      } = secureConnectManager.getState()
       const { iDb, getData } = indexDbStore.getState()
 
       try {

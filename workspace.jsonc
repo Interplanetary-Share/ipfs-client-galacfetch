@@ -80,7 +80,7 @@
    * see https://bit.dev/docs/workspace/variants for more info.
    **/
   "teambit.workspace/variants": {
-    "{galacfetch/hooks | galacfetch/utils | galacfetch/envs }": {
+    "galacfetch/hooks, galacfetch/utils, galacfetch/envs": {
       "teambit.react/react": {
         // Especifica tu entorno personalizado
         "env": "intershare.galacfetch/envs/react-env"
