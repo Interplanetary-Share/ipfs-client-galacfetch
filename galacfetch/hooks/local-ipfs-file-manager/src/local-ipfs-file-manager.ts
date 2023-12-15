@@ -12,7 +12,7 @@ import { IFileUrlInfo, TLocalIpfsFileManagerStore } from './types/common'
 const localIpfsFileManager = create<TLocalIpfsFileManagerStore>(
   (): TLocalIpfsFileManagerStore => ({
     urlFileList: [],
-
+    maxPreloadFiles: 10,
     getLocalFileUrl: async (cid: string) => {
       const { addNewBlobUrl, findPreloadFile } = localIpfsFileManager.getState()
       const { iDb, getData } = indexDbStore.getState()
@@ -94,6 +94,7 @@ const localIpfsFileManager = create<TLocalIpfsFileManagerStore>(
       const { urlFileList } = localIpfsFileManager.getState()
       return urlFileList.find((file) => file.cid === cid)
     },
+
     addNewBlobUrl: (blobToAdd: IFileUrlInfo) => {
       const { urlFileList, findPreloadFile } = localIpfsFileManager.getState()
 
@@ -103,6 +104,22 @@ const localIpfsFileManager = create<TLocalIpfsFileManagerStore>(
       localIpfsFileManager.setState({
         urlFileList: [...urlFileList, blobToAdd],
       })
+
+      if (
+        urlFileList.length > localIpfsFileManager.getState().maxPreloadFiles
+      ) {
+        const urlsToRevoke = urlFileList.slice(
+          0,
+          urlFileList.length - localIpfsFileManager.getState().maxPreloadFiles
+        )
+        urlsToRevoke.forEach((urlFile) => {
+          URL.revokeObjectURL(urlFile.url)
+        })
+        const newUrlFileList = urlFileList.slice(
+          urlFileList.length - localIpfsFileManager.getState().maxPreloadFiles
+        )
+        localIpfsFileManager.setState({ urlFileList: newUrlFileList })
+      }
     },
   })
 )
