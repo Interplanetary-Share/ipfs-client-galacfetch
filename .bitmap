@@ -51,6 +51,12 @@
         "defaultScope": "intershare.galacfetch",
         "mainFile": "index.ts",
         "rootDir": "galacfetch/hooks/secure-connect-manager",
+        "config": {
+            "intershare.galacfetch/envs/react-env": {},
+            "teambit.envs/envs": {
+                "env": "intershare.galacfetch/envs/react-env"
+            }
+        }
     },
     "hooks/web-rtc-local-share": {
         "name": "hooks/web-rtc-local-share",
@@ -59,6 +65,12 @@
         "defaultScope": "intershare.galacfetch",
         "mainFile": "index.ts",
         "rootDir": "galacfetch/hooks/web-rtc-local-share",
+        "config": {
+            "intershare.galacfetch/envs/react-env": {},
+            "teambit.envs/envs": {
+                "env": "intershare.galacfetch/envs/react-env"
+            }
+        }
     },
     "ipfsgalacfetchclient": {
         "name": "ipfsgalacfetchclient",
