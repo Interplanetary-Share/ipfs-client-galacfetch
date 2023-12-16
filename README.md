@@ -41,6 +41,7 @@ bit tag --message ":start: examplew" (Crea un tag)
 <!-- FORCE MODE -->
 
 bit tag --skip-tests --unmodified --message "fix build issues"
+bit tag --increment-by 8 // incrementa el tag en 8
 
 bit login (Inicia sesion en la nube)
 bit export (Lo envia a la nube)
