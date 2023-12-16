@@ -33,14 +33,14 @@
     "hooks/remote-ipfs-file-integrity": {
         "name": "hooks/remote-ipfs-file-integrity",
         "scope": "intershare.galacfetch",
-        "version": "d6ceabe51ccc3592ab3ae9bc13f346baf4b95077",
+        "version": "515fcad37d856051a0a29222b22e2929e867a8aa",
         "mainFile": "index.ts",
         "rootDir": "galacfetch/hooks/remote-ipfs-file-integrity"
     },
     "hooks/remote-ipfs-file-manager": {
         "name": "hooks/remote-ipfs-file-manager",
         "scope": "intershare.galacfetch",
-        "version": "b8141e18ff7c35d4b53b713d4b58a725a4409519",
+        "version": "c2ed627e55530dce22a66a55ca2708937c8965d7",
         "mainFile": "index.ts",
         "rootDir": "galacfetch/hooks/remote-ipfs-file-manager"
     },
@@ -61,7 +61,7 @@
     "ipfsgalacfetchclient": {
         "name": "ipfsgalacfetchclient",
         "scope": "intershare.galacfetch",
-        "version": "3e2f0a0ee3767c2c904dfc09fd4bbe7e2f63d8bf",
+        "version": "202d1758aa37625882052d02aca6c3dd7c62ecbf",
         "mainFile": "index.ts",
         "rootDir": "galacfetch/ipfsgalacfetchclient"
     },
