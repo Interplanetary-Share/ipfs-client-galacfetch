@@ -54,14 +54,14 @@
     "hooks/web-rtc-local-share": {
         "name": "hooks/web-rtc-local-share",
         "scope": "intershare.galacfetch",
-        "version": "d9b3a72d50d70070ec28a6bdf6204de71f463d0c",
+        "version": "9770edea23f1b9494f60bfaaf76c69c137b4c20e",
         "mainFile": "index.ts",
         "rootDir": "galacfetch/hooks/web-rtc-local-share"
     },
     "ipfsgalacfetchclient": {
         "name": "ipfsgalacfetchclient",
         "scope": "intershare.galacfetch",
-        "version": "f37c4afabdfb1ff1d8b0e8d11ca21001e93bc87a",
+        "version": "3e2f0a0ee3767c2c904dfc09fd4bbe7e2f63d8bf",
         "mainFile": "index.ts",
         "rootDir": "galacfetch/ipfsgalacfetchclient"
     },
