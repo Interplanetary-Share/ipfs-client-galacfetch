@@ -1,13 +1,9 @@
----
-description: 'IndexedDB Store to interact with IndexedDB for ipfsClientGalacFetch'
-labels: ['indexeddb', 'react', 'data storage', 'ipfs', 'ipfsclientgalacfetch']
----
-
-# indexDbStore Library Documentation
-
-## Overview
-
 `indexDbStore` is a comprehensive library designed to simplify interactions with IndexedDB in a React application. It provides an easy-to-use API for performing common database operations like initializing the database, CRUD operations, and managing data efficiently with an integrated garbage collector.
+
+[![npm version](https://img.shields.io/npm/v/@intershare/hooks.indexdb.svg)](https://www.npmjs.com/package/@intershare/hooks.indexdb)
+[![npm downloads](https://img.shields.io/npm/dm/@intershare/hooks.indexdb.svg)](https://www.npmjs.com/package/@intershare/hooks.indexdb)
+[![GitHub issues](https://img.shields.io/github/issues/Interplanetary-Share/ipfs-client-galacfetch)](https://github.com/Interplanetary-Share/ipfs-client-galacfetch/issues)
+[![GitHub pull requests](https://img.shields.io/github/issues-pr/Interplanetary-Share/ipfs-client-galacfetch)](https://github.com/Interplanetary-Share/ipfs-client-galacfetch/pulls)
 
 ## Installation
 
@@ -272,15 +268,4 @@ Provide as much information as possible, such as steps to reproduce the bug and 
 
 ### Contact
 
-For direct inquiries or specific concerns, feel free to reach out to Kenneth via email at kenneth@interplanetaryshare.com.
-
-### Badges and More
-
-Include these badges in your project's README or documentation for quick status insights and easy navigation:
-
-[![npm version](https://img.shields.io/npm/v/@intershare/hooks.indexdb.svg)](https://www.npmjs.com/package/@intershare/hooks.indexdb)
-[![npm downloads](https://img.shields.io/npm/dm/@intershare/hooks.indexdb.svg)](https://www.npmjs.com/package/@intershare/hooks.indexdb)
-[![GitHub issues](https://img.shields.io/github/issues/Interplanetary-Share/ipfs-client-galacfetch)](https://github.com/Interplanetary-Share/ipfs-client-galacfetch/issues)
-[![GitHub pull requests](https://img.shields.io/github/issues-pr/Interplanetary-Share/ipfs-client-galacfetch)](https://github.com/Interplanetary-Share/ipfs-client-galacfetch/pulls)
-
-These badges provide a quick glance at the npm version, current issues, and pull requests associated with the project.
+For direct inquiries or specific concerns, feel free to reach via email at kenneth@interplanetaryshare.com.
