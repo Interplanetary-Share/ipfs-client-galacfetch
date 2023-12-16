@@ -1,7 +1,7 @@
 /**
  * this is the main configuration file of your bit workspace.
  * for full documentation, please see: https://bit.dev/docs/workspace/workspace-configuration
- **/ {
+ **/{
   "$schema": "https://static.bit.dev/teambit/schemas/schema.json",
   /**
    * main configuration of the Bit workspace.
@@ -49,7 +49,9 @@
         "zustand": "^4.4.7"
       },
       "peerDependencies": {
+        "@babel/preset-env": "^7.23.6",
         "@babel/preset-flow": "^7.23.3",
+        "@babel/preset-react": "^7.23.3",
         "@babel/preset-typescript": "^7.23.3",
         "@faker-js/faker": "^8.3.1",
         "@teambit/defender.eslint-linter": "^1.0.15",
@@ -86,7 +88,9 @@
         "env": "intershare.galacfetch/envs/react-env"
       },
       "teambit.pkg/pkg": {
-        "packageManagerPublishArgs": ["--access public"],
+        "packageManagerPublishArgs": [
+          "--access public"
+        ],
         "packageJson": {
           "name": "@intershare/{name}",
           "author": "Kenneth Suarez Guineart <kenneth@interplanetaryshare.com> (https://kennethsuarez.es/)",
@@ -127,7 +131,9 @@
         "env": "intershare.galacfetch/envs/react-env"
       },
       "teambit.pkg/pkg": {
-        "packageManagerPublishArgs": ["--access public"],
+        "packageManagerPublishArgs": [
+          "--access public"
+        ],
         "packageJson": {
           "name": "{name}",
           "author": "Kenneth Suarez Guineart <kenneth@interplanetaryshare.com> (https://kennethsuarez.es/)",
@@ -165,6 +171,8 @@
     }
   },
   "teambit.generator/generator": {
-    "envs": ["intershare.galacfetch/envs/react-env"]
+    "envs": [
+      "intershare.galacfetch/envs/react-env"
+    ]
   }
 }
