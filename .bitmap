@@ -26,42 +26,42 @@
     "hooks/local-ipfs-file-manager": {
         "name": "hooks/local-ipfs-file-manager",
         "scope": "intershare.galacfetch",
-        "version": "40f396a0969080f1282c1361f4c8aa8d0ea7426c",
+        "version": "aeb583c1b1c1a1f3e6e2fcfe7dae2129fee87af0",
         "mainFile": "index.ts",
         "rootDir": "galacfetch/hooks/local-ipfs-file-manager"
     },
     "hooks/remote-ipfs-file-integrity": {
         "name": "hooks/remote-ipfs-file-integrity",
         "scope": "intershare.galacfetch",
-        "version": "515fcad37d856051a0a29222b22e2929e867a8aa",
+        "version": "9c80462e86867bd8cfb7336b18d60d61e1e9246c",
         "mainFile": "index.ts",
         "rootDir": "galacfetch/hooks/remote-ipfs-file-integrity"
     },
     "hooks/remote-ipfs-file-manager": {
         "name": "hooks/remote-ipfs-file-manager",
         "scope": "intershare.galacfetch",
-        "version": "c2ed627e55530dce22a66a55ca2708937c8965d7",
+        "version": "0836a3e466684bc019630b6055b15258c8df3b78",
         "mainFile": "index.ts",
         "rootDir": "galacfetch/hooks/remote-ipfs-file-manager"
     },
     "hooks/secure-connect-manager": {
         "name": "hooks/secure-connect-manager",
         "scope": "intershare.galacfetch",
-        "version": "b2bb2eb3bb9da5747e8764ad13bd73179ab38f37",
+        "version": "14b459f85f0b75114bbd43713ac0b0bda196cc36",
         "mainFile": "index.ts",
         "rootDir": "galacfetch/hooks/secure-connect-manager"
     },
     "hooks/web-rtc-local-share": {
         "name": "hooks/web-rtc-local-share",
         "scope": "intershare.galacfetch",
-        "version": "9770edea23f1b9494f60bfaaf76c69c137b4c20e",
+        "version": "6607c96adb6ee0a84ce6f8b4b34b91576bb4eea0",
         "mainFile": "index.ts",
         "rootDir": "galacfetch/hooks/web-rtc-local-share"
     },
     "ipfsgalacfetchclient": {
         "name": "ipfsgalacfetchclient",
         "scope": "intershare.galacfetch",
-        "version": "202d1758aa37625882052d02aca6c3dd7c62ecbf",
+        "version": "4b5799fba2285127ae432bb5cc1de533f246526c",
         "mainFile": "index.ts",
         "rootDir": "galacfetch/ipfsgalacfetchclient"
     },
