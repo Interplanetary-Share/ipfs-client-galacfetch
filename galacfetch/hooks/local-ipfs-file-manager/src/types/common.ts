@@ -6,7 +6,7 @@ export interface IFileUrlInfo {
 
 export type TLocalIpfsFileManagerStore = {
   urlFileList: IFileUrlInfo[]
-  maxPreloadFiles: number // todo, a
+  maxPreloadFiles: number
 
   uploadBlobAndCreateUrl: (
     cid: string,
@@ -17,4 +17,5 @@ export type TLocalIpfsFileManagerStore = {
 
   findPreloadFile: (cid: string) => IFileUrlInfo | undefined
   addNewBlobUrl: (urlFile: IFileUrlInfo) => void
+  preloadAllLocalFiles: () => Promise<void>
 }

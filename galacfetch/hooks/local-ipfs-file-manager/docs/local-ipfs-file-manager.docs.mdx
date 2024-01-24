@@ -12,11 +12,11 @@ labels:
 
 ## Local IPFS File Manager
 
-This store provides a comprehensive solution for managing files locally while ensuring synchronization with remote IPFS servers. It integrates with IndexedDB for local storage and interacts with remote IPFS servers for file integrity checks and synchronization.
+The `localIpfsFileManager` offers a comprehensive solution for managing local files, ensuring efficient synchronization with remote IPFS servers and robust integration with IndexedDB for local storage. This module enhances state management and optimizes interactions with both local and remote databases.
 
 ### How to Use
 
-To utilize this store, import and initialize it in your React component.
+To utilize this module in your React application, import and initialize it as follows:
 
 ```javascript
 import localIpfsFileManager from '@intershare/hooks.local-ipfs-file-manager'
@@ -31,55 +31,20 @@ export interface IFileUrlInfo {
   cid: string
 }
 
-export type TConfig = {
-  remote: {
-    enabled: boolean
-    integrity: {
-      check: boolean
-      sync: boolean
-    }
-  }
-}
-
 export type TLocalIpfsFileManagerStore = {
   urlFileList: IFileUrlInfo[]
-  config: TConfig
-  setConfig: (newConfig: Partial<TConfig>) => void
-
-  uploadBlobAndCreateUrl: (
-    cid: string,
-    blob: Blob
-  ) => Promise<string | undefined>
+  maxPreloadFiles: number
   getLocalFileUrl: (cid: string) => Promise<string | undefined>
+  uploadBlobAndCreateUrl: (cid: string, blob: Blob) => Promise<string>
   removeFileByCid: (cid: string) => Promise<void>
-
-  findPreloadFile: (cid: string) => IFileUrlInfo | undefined
-  addNewBlobUrl: (urlFile: IFileUrlInfo) => void
-  syncFileWithRemote: (cid: string, blob: Blob) => Promise<void>
+  preloadAllLocalFiles: () => Promise<void>
+  // Other utility functions...
 }
 ```
 
-### Configuration
+### Retrieve Local File URL
 
-Set or update the store configuration as needed.
-
-```javascript
-const { setConfig } = localIpfsFileManager()
-
-setConfig({
-  remote: {
-    enabled: true,
-    integrity: {
-      check: true,
-      sync: true,
-    },
-  },
-})
-```
-
-### Get Local File URL
-
-Retrieve the URL of a local file by its CID.
+Obtain the URL of a local file by its CID:
 
 ```javascript
 const { getLocalFileUrl } = localIpfsFileManager()
@@ -89,17 +54,17 @@ const url = await getLocalFileUrl('yourCID')
 
 ### Upload Blob and Create URL
 
-Upload a Blob object and create a URL for it.
+Upload a Blob object and generate a corresponding URL:
 
 ```javascript
 const { uploadBlobAndCreateUrl } = localIpfsFileManager()
 
-const url = await uploadBlobAndCreateUrl('yourCID', blob)
+const cid = await uploadBlobAndCreateUrl('yourCID', blob)
 ```
 
 ### Remove File by CID
 
-Remove a file from local storage by its CID.
+Delete a file from local storage using its CID:
 
 ```javascript
 const { removeFileByCid } = localIpfsFileManager()
@@ -109,19 +74,19 @@ await removeFileByCid('yourCID')
 
 ### Utility Functions
 
-#### Find Preloaded File
+#### Preload All Local Files
 
-Find a preloaded file in the local store.
+Preload all files stored locally:
 
 ```javascript
-const { findPreloadFile } = localIpfsFileManager()
+const { preloadAllLocalFiles } = localIpfsFileManager()
 
-const file = findPreloadFile('yourCID')
+await preloadAllLocalFiles()
 ```
 
-#### Add New Blob URL // TODO: Rename method
+#### Add New Blob URL
 
-This method adds new file info to the store. (not the actual file)
+Add new file information to the store (this does not upload the actual file):
 
 ```javascript
 const { addNewBlobUrl } = localIpfsFileManager()
@@ -132,14 +97,58 @@ addNewBlobUrl({
 })
 ```
 
-#### Sync File with Remote
+This module ensures efficient management of local files with capabilities such as adding, retrieving, and removing files, along with file loading optimization and memory management.
 
-Synchronize a local file with its remote version on the IPFS server.
+---
+
+# Notes About Dependent `indexDbStore` Module
+
+## indexDbStore: Managing IndexedDB in React
+
+`indexDbStore` is an effective solution for handling IndexedDB storage operations within React applications. It supports CRUD operations, storage size management, and includes an inbuilt garbage collector for performance optimization.
+
+### Basic Operations
+
+Once `indexDbStore` is initialized in your application, you can perform various storage operations:
+
+#### Saving Data
 
 ```javascript
-const { syncFileWithRemote } = localIpfsFileManager()
-
-await syncFileWithRemote('yourCID')
+const saveData = async () => {
+  // Your data here
+  await indexDbStore.getState().saveData('yourID', data, 'yourTable')
+}
 ```
 
-The store ensures efficient management of local files with capabilities like adding, retrieving, and removing files, along with synchronization with remote servers for data integrity and consistency.
+#### Retrieving Data
+
+```javascript
+const getData = async () => {
+  const data = await indexDbStore.getState().getData('yourID', 'yourTable')
+  return data
+}
+```
+
+#### Removing Data
+
+```javascript
+const removeData = async () => {
+  await indexDbStore.getState().removeData('yourID', 'yourTable')
+}
+```
+
+### Advanced Configuration
+
+Customize settings like the garbage collector for enhanced performance:
+
+```javascript
+indexDbStore.getState().setConfig({
+  // Configuration settings...
+})
+```
+
+### Considerations
+
+- Ensure IndexedDB is initialized before performing any operations.
+- Handle errors and exceptional cases for application stability.
+- Include resource cleanup in your React component lifecycle.

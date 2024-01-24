@@ -121,6 +121,27 @@ const localIpfsFileManager = create<TLocalIpfsFileManagerStore>(
         localIpfsFileManager.setState({ urlFileList: newUrlFileList })
       }
     },
+
+    preloadAllLocalFiles: async () => {
+      const { iDb, getAllKeys } = indexDbStore.getState()
+
+      if (!iDb) {
+        throw new Error('Indexed DB not initialized')
+      }
+
+      const allCids = (await getAllKeys(ObjectStoresEnum.files)) || []
+
+      const { getLocalFileUrl } = localIpfsFileManager.getState()
+
+      const promises = allCids.map(async (cid) => {
+        const normalizedCid = cid as string
+        await getLocalFileUrl(normalizedCid)
+      })
+
+      await Promise.all(promises)
+
+      return
+    },
   })
 )
 
