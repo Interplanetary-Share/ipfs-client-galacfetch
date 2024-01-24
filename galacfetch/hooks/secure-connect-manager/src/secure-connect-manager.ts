@@ -11,32 +11,71 @@ export const secureConnectManager = create<TSecureConnectManager>(
       api: '',
       discoveryInterval: 60000,
     },
+    intervalId: null,
 
     init: ({ api, discoveryInterval }) => {
-      setInterval(async () => {
-        const { getServersUrlFromApi, urlsDiscovered } =
-          secureConnectManager.getState()
-        const serverUrls = await getServersUrlFromApi(api)
+      const { intervalId: currentIntervalId } = secureConnectManager.getState()
 
-        if (serverUrls.length === 0) {
-          throw new Error('No servers found')
-        }
+      if (typeof currentIntervalId === 'number') {
+        clearInterval(currentIntervalId) // Limpia el intervalo
+        set({
+          intervalId: null,
+          wsConnected: [], // Actualiza el estado
+          urlsDiscovered: [],
+        }) // Actualiza el estado
+      }
 
-        const urlsToConnect = serverUrls.filter(
-          (url) => !urlsDiscovered.includes(url)
-        )
-        if (urlsToConnect.length > 0) {
-          console.log('New servers found:', serverUrls)
-          const { connectToSocket } = secureConnectManager.getState()
+      // Agrega un estado para manejar el estado del intervalo
+      let intervalId = null as null | number | NodeJS.Timeout
 
-          for (const urlToConnect of urlsToConnect) {
-            const { socket } = await connectToSocket(urlToConnect, api)
-            set((prevState) => ({
-              wsConnected: [...prevState.wsConnected, socket],
-            }))
+      try {
+        // Guarda una referencia al método 'set' actual
+
+        intervalId = setInterval(async () => {
+          const { getServersUrlFromApi, urlsDiscovered } =
+            secureConnectManager.getState()
+
+          try {
+            const serverUrls = await getServersUrlFromApi(api).catch((err) => {
+              console.error('Error fetching servers:', err)
+
+              if (typeof intervalId === 'number') {
+                clearInterval(intervalId) // Limpia el intervalo
+              }
+              set({ intervalId: null }) // Actualiza el estado
+              throw new Error(String(err))
+            })
+
+            if (serverUrls.length === 0) {
+              console.warn('No servers found 1')
+            } else {
+              const urlsToConnect = serverUrls.filter(
+                (url) => !urlsDiscovered.includes(url)
+              )
+
+              if (urlsToConnect.length > 0) {
+                console.log('New servers found:', serverUrls)
+                const { connectToSocket } = secureConnectManager.getState()
+
+                for (const urlToConnect of urlsToConnect) {
+                  const { socket } = await connectToSocket(urlToConnect, api)
+                  set((prevState) => ({
+                    wsConnected: [...prevState.wsConnected, socket],
+                    urlsDiscovered: [...prevState.urlsDiscovered, urlToConnect],
+                  }))
+                }
+              }
+            }
+          } catch (error) {
+            console.error('Error during server discovery:', error)
           }
-        }
-      }, discoveryInterval)
+        }, discoveryInterval)
+
+        console.log('Interval established successfully')
+      } catch (error) {
+        set({ intervalId: null }) // Actualiza el estado
+        console.error('Error initializing the interval:', error)
+      }
 
       set((prevState) => ({
         config: {
@@ -44,7 +83,10 @@ export const secureConnectManager = create<TSecureConnectManager>(
           api,
           discoveryInterval,
         },
+        intervalId, // Almacena el ID del intervalo en el estado
       }))
+
+      return intervalId !== null
     },
 
     connectToSocket: (url, api) => {
@@ -83,7 +125,7 @@ export const secureConnectManager = create<TSecureConnectManager>(
       }
 
       if (!getServers || getServers.length === 0) {
-        throw new Error('No servers found')
+        throw new Error('No servers found 2')
       }
 
       return getServers
