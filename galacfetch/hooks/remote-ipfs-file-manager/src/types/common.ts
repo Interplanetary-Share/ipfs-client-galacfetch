@@ -25,7 +25,7 @@ export type TRemoteIpfsFileManager = {
   // connectToSocket: (url: string, api: string) => Promise<any> // TODO: move this to secure-connect-manager
   config: TConfig
   fileDownloadPromises: FileDownloadPromises
-  init: (config: TConfig) => void // TODO: make initialization automatic when servers list are modified
+  init: (config?: TConfig) => void // TODO: make initialization automatic when servers list are modified
   remoteGetFileInfo: (cid: string) => Promise<IRemoteFileInfo | undefined>
   remoteGetFilesInfo: (
     isPublic: boolean,

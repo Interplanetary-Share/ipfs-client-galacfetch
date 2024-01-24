@@ -2,17 +2,17 @@
 
 ## Overview
 
-`Secure Connect Manager` is a robust library designed to manage WebSocket connections and server discovery in JavaScript applications. It provides a straightforward and efficient API for connecting to servers, handling active connections, and automatically discovering new servers.
+`Secure Connect Manager` is a sophisticated library crafted for managing WebSocket connections and server discovery in JavaScript applications. It excels in seamlessly connecting to servers, maintaining active connections, and dynamically discovering new servers.
 
 ## Installation
 
-To install the `Secure Connect Manager` library, run the following command in your project directory:
+Install the `Secure Connect Manager` library in your project using npm or yarn:
 
 ```bash
 npm i @intershare/hooks.secure-connect-manager
 ```
 
-Or, if you are using `yarn`:
+Or with yarn:
 
 ```bash
 yarn add @intershare/hooks.secure-connect-manager
@@ -20,7 +20,7 @@ yarn add @intershare/hooks.secure-connect-manager
 
 ## Initialization
 
-Before using `Secure Connect Manager`, you need to initialize the connection manager. Here's how you can do it:
+To use `Secure Connect Manager`, initialize the connection manager with your API endpoint and desired discovery interval:
 
 ```tsx
 import { secureConnectManager } from '@intershare/hooks.secure-connect-manager'
@@ -31,13 +31,13 @@ secureConnectManager.init({
 })
 ```
 
-This will set up the connection manager with your API endpoint and a discovery interval of 60 seconds.
+This configures the manager for your API endpoint with a 60-second discovery interval.
 
 ## Basic Usage
 
-### Connecting to WebSocket
+### Connecting to WebSocket Servers
 
-To connect to a WebSocket server:
+Initiate a connection to a WebSocket server:
 
 ```tsx
 await secureConnectManager.connectToSocket('serverUrl', 'apiToken')
@@ -45,7 +45,7 @@ await secureConnectManager.connectToSocket('serverUrl', 'apiToken')
 
 ### Server Discovery
 
-To automatically discover and connect to new servers:
+Automatically discover and connect to new servers:
 
 ```tsx
 secureConnectManager.init({
@@ -54,36 +54,37 @@ secureConnectManager.init({
 })
 ```
 
-The manager will periodically check for new servers and establish connections.
+The manager routinely checks for and connects to new servers.
 
 ## Advanced Features
 
 ### Custom Configuration
 
-You can customize the discovery interval and API endpoint:
+Customize the discovery interval and API endpoint:
 
 ```tsx
 secureConnectManager.init({
   api: 'yourNewApiEndpoint',
-  discoveryInterval: 30000, // Interval in milliseconds
+  discoveryInterval: 30000,
 })
 ```
 
-This sets a new API endpoint and changes the discovery interval to 30 seconds.
+Set a new API endpoint and adjust the discovery interval to 30 seconds.
 
 ## Types
 
-`Secure Connect Manager` uses several TypeScript types for better code management and error handling:
+`Secure Connect Manager` leverages TypeScript for enhanced code management and error handling:
 
-- `TSecureConnectManager`: Main manager type.
-- `TConfig`: Configuration type for the manager.
+- `TSecureConnectManager`: Primary manager type.
+- `TConfig`: Configuration type.
 
 ## Examples
 
 ### Initializing and Managing Connections
 
+Example React component for initializing and managing WebSocket connections:
+
 ```tsx
-// Example component to initialize and manage WebSocket connections
 import React, { useEffect } from 'react'
 import { secureConnectManager } from '@intershare/hooks.secure-connect-manager'
 
@@ -94,7 +95,7 @@ const ConnectionManager: React.FC = () => {
       discoveryInterval: 60000,
     })
 
-    // Additional logic to handle connections
+    // Additional logic for connection handling
   }, [])
 
   return <div>Connection Manager Initialized</div>
@@ -103,38 +104,38 @@ const ConnectionManager: React.FC = () => {
 export default ConnectionManager
 ```
 
-## Contributing to `Secure Connect Manager`
+## Contributing
 
-We welcome contributions to the `Secure Connect Manager` library! Whether it's improving the code, fixing bugs, or adding new features, your input is valuable. Here's how you can contribute:
+Contributions to `Secure Connect Manager` are welcome! Whether it's code improvements, bug fixes, or new features, your contributions are valued. Here's how to contribute:
 
 ### GitHub Repository
 
-Our code is hosted on GitHub. Visit our repository to view the source code, fork the project, or submit a pull request:
+Our code is on GitHub. Visit our repository to view the code, fork the project, or submit a pull request:
 
 🔗 [Secure Connect Manager on GitHub](https://github.com/Interplanetary-Share/ipfs-client-galacfetch/tree/main/galacfetch/hooks/secure-connect-manager)
 
 ### Submitting Pull Requests
 
-Have a suggestion or a bug fix? We encourage you to submit a pull request:
+Suggestions or bug fixes? Submit a pull request:
 
 🔗 [Submit a Pull Request](https://github.com/Interplanetary-Share/ipfs-client-galacfetch/pulls)
 
-Please ensure your code adheres to the project's coding standards and include tests for new functionality.
+Ensure your code meets the project's standards and includes tests for new features.
 
 ### Reporting Issues
 
-Encountered a bug or have a feature request? Open an issue on our GitHub page:
+Found a bug or have a feature request? Open an issue on our GitHub page:
 
 🔗 [Report an Issue](https://github.com/Interplanetary-Share/ipfs-client-galacfetch/issues)
 
-Provide as much information as possible, such as steps to reproduce the bug and the expected behavior.
+Provide detailed information for bug reproduction and expected behavior.
 
 ### npm Package
 
-`Secure Connect Manager` is available as an npm package. You can find it here for easy installation and updates:
+`Secure Connect Manager` is available as an npm package for easy installation and updates:
 
 🔗 [Secure Connect Manager on npm](https://www.npmjs.com/package/@intershare/hooks.secure-connect-manager)
 
 ### Contact
 
-For direct inquiries or specific concerns, feel free to reach out via email at kenneth@interplanetaryshare.com
+For direct inquiries or specific concerns, contact via email: kenneth@interplanetaryshare.com

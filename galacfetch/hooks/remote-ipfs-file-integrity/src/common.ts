@@ -1,12 +1,11 @@
-import { IFileUrlInfo } from '@intershare/hooks.local-ipfs-file-manager'
-
 export type Tconfig = {
   enabled: boolean
   interval: number
 }
 
 export type TRemoteIpfsFileIntegrity = {
-  filesChecked: IFileUrlInfo[]
+  filesChecked: string[]
+
   intervalId: number | undefined
   config: Tconfig
   setConfig: (newConfig: Partial<Tconfig>) => void

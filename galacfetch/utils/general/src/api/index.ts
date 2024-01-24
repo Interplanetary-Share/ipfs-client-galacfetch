@@ -1,4 +1,5 @@
-export const baseApi = 'https://api.galacfetch.com' // 'http://localhost:3010';
+// export const baseApi = 'https://api.galacfetch.com' // 'http://localhost:3010';
+export const baseApi = 'http://localhost:3010'
 
 // Server
 export const serverApi = `${baseApi}/server`

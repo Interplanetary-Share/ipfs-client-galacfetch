@@ -49,10 +49,8 @@ export const remoteIpfsFileIntegrity = create<TRemoteIpfsFileIntegrity>(
         if (enabled) {
           const { urlFileList } = localIpfsFileManager.getState()
           for (const file of urlFileList) {
-            if (filesChecked.includes(file)) continue
-            set((prevState) => ({
-              filesChecked: [...prevState.filesChecked, file],
-            }))
+            if (filesChecked.includes(file.cid)) continue
+
             const isIntegrityOk = await remoteCheckIntegrityFile(file.cid)
             if (!isIntegrityOk) {
               await syncFileWithRemote(file.cid)
@@ -92,6 +90,9 @@ export const remoteIpfsFileIntegrity = create<TRemoteIpfsFileIntegrity>(
           throw new Error(`HTTP error! status: ${response.status}`)
         }
 
+        set((prevState) => ({
+          filesChecked: [...prevState.filesChecked, cid],
+        }))
         const data = await response.json()
         return data as boolean
       } catch (error) {

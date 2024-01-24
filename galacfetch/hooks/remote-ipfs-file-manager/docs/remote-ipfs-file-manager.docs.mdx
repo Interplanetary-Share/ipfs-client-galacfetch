@@ -2,21 +2,20 @@
 
 ## Overview
 
-The `remoteIpfsFileManager` library, part of the `@intershare/hooks` suite, facilitates remote file management in a React application using IPFS (InterPlanetary File System) and WebRTC. It provides a comprehensive set of functionalities for file uploading, downloading, and metadata management through a remote IPFS node.
+`remoteIpfsFileManager`, part of the `@intershare/hooks` suite, streamlines the management of remote files in React applications using the InterPlanetary File System (IPFS). It specializes in file uploading, downloading, and metadata management, interfacing with remote IPFS nodes and leveraging WebSocket connections for efficient data transfer.
 
 ## Key Features
 
-- **File Uploading and Downloading**: Manage file transfers with remote IPFS nodes.
-- **Metadata Management**: Handle file properties such as name, description, and additional properties.
-- **WebRTC Integration**: Leverages WebRTC for efficient file transfer among peers.
-- **WebSocket Connection Management**: Uses WebSockets for establishing and maintaining connections with remote servers.
+- **File Uploading and Downloading**: Simplifies file transfers with remote IPFS nodes.
+- **Metadata Management**: Manages file properties, such as name, description, and additional attributes.
+- **WebSocket Connection Management**: Integrates with `secureConnectManager` for establishing and maintaining WebSocket connections with remote servers.
 
 ## Usage
 
 ### Initializing the Manager
 
 ```tsx
-import { remoteIpfsFileManager } from '@intershare/hooks.local-ipfs-file-manager'
+import { remoteIpfsFileManager } from '@intershare/hooks.remote-ipfs-file-manager'
 
 // Initialize with the discovery interval
 remoteIpfsFileManager().init({
@@ -91,19 +90,29 @@ remoteIpfsFileManager()
 
 ### WebSocket Connection Management
 
-`remoteIpfsFileManager` interacts with `secureConnectManager` to establish and maintain WebSocket connections for file transfers.
+`remoteIpfsFileManager` collaborates with `secureConnectManager` to facilitate WebSocket connections for file transfers, ensuring robust communication with remote servers.
 
-### WebRTC File Transfer
+### File Information Retrieval
 
-The library uses WebRTC technology for efficient peer-to-peer file transfer, providing a fallback mechanism to handle files when direct peer connections are not available.
+Allows querying of file information, both individually and collectively, with optional public visibility filters and query parameters for advanced search and sorting.
 
-### Garbage Collection
+## Compositions
 
-It also integrates with `localIpfsFileManager` for local file management, ensuring efficient storage and retrieval of file data.
+### Initialization of All Required Modules
+
+A React composition to initialize `remoteIpfsFileManager` alongside other essential modules such as `secureConnectManager` and `indexDbStore`.
+
+### File Upload Form
+
+Provides a user interface for selecting and uploading files through `remoteIpfsFileManager`, including handling file metadata.
+
+### Files List with Filters
+
+Enables users to view a list of files, applying filters to search and retrieve files from the backend using `remoteIpfsFileManager`.
 
 ## Contributing
 
-Contributions to `remoteIpfsFileManager` are welcome. If you have suggestions or bug fixes, please submit a pull request or open an issue on our GitHub repository:
+Contributions to `remoteIpfsFileManager` are welcome. For suggestions or bug fixes, please submit a pull request or open an issue on our GitHub repository:
 
 - [Submit a Pull Request](https://github.com/Interplanetary-Share/ipfs-client-galacfetch/pulls)
 - [Report an Issue](https://github.com/Interplanetary-Share/ipfs-client-galacfetch/issues)

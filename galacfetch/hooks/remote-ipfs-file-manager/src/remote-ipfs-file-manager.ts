@@ -13,6 +13,15 @@ export const remoteIpfsFileManager = create<TRemoteIpfsFileManager>(
     fileDownloadPromises: {},
     init: (config) => {
       const { uploadBlobAndCreateUrl } = localIpfsFileManager.getState()
+      const { config: configState } = remoteIpfsFileManager.getState()
+
+      if (!config || !config.discoveryInterval) {
+        config = {
+          ...configState,
+          ...config,
+        }
+      }
+
       setInterval(() => {
         const { wsConnected } = secureConnectManager.getState()
         wsConnected.forEach((ws) => {
