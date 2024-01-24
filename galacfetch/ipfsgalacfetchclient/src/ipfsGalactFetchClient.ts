@@ -19,7 +19,7 @@ type Store = {
   init: (
     api: string,
     repoName: string,
-    discoveryInterval: number
+    discoveryInterval?: number
   ) => Promise<void>
   getFile: (
     cid: string,
@@ -47,10 +47,14 @@ export const ipfsGalactFetchClient = create<Store>(
       dbName = 'galactfetch',
       discoveryInterval = 60000
     ) => {
-      secureConnectManager.getState().init({ api, discoveryInterval }) // Connect to sockets
-      await indexDbStore.getState().initIndexedDb(dbName) // Init indexedDb
-      remoteIpfsFileManager.getState().init({ discoveryInterval }) // Init remoteIpfsFileManager // check WS to listen
-      webRTCLocalShare.getState().init({ discoveryInterval }) // Init webRTCLocalShare // check WS to listen
+      try {
+        secureConnectManager.getState().init({ api, discoveryInterval }) // Connect to sockets
+        await indexDbStore.getState().initIndexedDb(dbName) // Init indexedDb
+        remoteIpfsFileManager.getState().init({ discoveryInterval }) // Init remoteIpfsFileManager // check WS to listen
+        webRTCLocalShare.getState().init({ discoveryInterval }) // Init webRTCLocalShare // check WS to listen
+      } catch (error) {
+        console.error(error)
+      }
     },
     // TODO: eliminar el token de todas las respuestas posibles de archivos.
     getFile: async (
