@@ -62,7 +62,7 @@ export const secureConnectManager = create<TSecureConnectManager>(
       } = secureConnectManager.getState()
       for (const url of serverUrls) {
         try {
-          const { socket } = await connectToSocket(url, api)
+          const socket = await connectToSocket(url, api)
           set((prevState) => ({
             wsConnected: [...prevState.wsConnected, socket],
             urlsDiscovered: [...prevState.urlsDiscovered, url],
@@ -105,9 +105,7 @@ export const secureConnectManager = create<TSecureConnectManager>(
         })
 
         socket.on('connect', () => {
-          resolve({
-            socket,
-          })
+          resolve(socket)
         })
       })
     },
