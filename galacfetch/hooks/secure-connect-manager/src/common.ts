@@ -5,13 +5,18 @@ type TConfig = {
   discoveryInterval: number
 }
 
+// Check if necessary export
+interface ExtendedSocket extends Socket {
+  downloadListening?: boolean
+}
+
 export type TSecureConnectManager = {
-  wsConnected: Socket[] // TODO: Definir el tipo específico de la conexión WebSocket
+  wsConnected: ExtendedSocket[]
   urlsDiscovered: string[]
   config: TConfig
-  intervalId?: null | number | NodeJS.Timeout // Nuevo campo para almacenar el ID del intervalo
+  intervalId?: null | number | NodeJS.Timeout
   init: (config: TConfig) => Promise<boolean>
-  connectToSocket: (url: string, api: string) => Promise<Socket> // TODO: Definir un tipo más específico
+  connectToSocket: (url: string, api: string) => Promise<ExtendedSocket> // TODO: Definir un tipo más específico
   getServersUrlFromApi: (api: string) => Promise<string[]>
 
   // Auxiliar functions

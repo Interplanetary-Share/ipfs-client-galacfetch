@@ -19,10 +19,6 @@ type TConfig = {
 }
 
 export type TRemoteIpfsFileManager = {
-  // status: undefined | 'idle' | 'loading' | TErrorStatus // TODO: delete this
-  // servers: TServerItem[] // TODO: move this to secure-connect-manager
-  // api: string | null // TODO: move this to secure-connect-manager
-  // connectToSocket: (url: string, api: string) => Promise<any> // TODO: move this to secure-connect-manager
   config: TConfig
   fileDownloadPromises: FileDownloadPromises
   init: (config?: TConfig) => void // TODO: make initialization automatic when servers list are modified
