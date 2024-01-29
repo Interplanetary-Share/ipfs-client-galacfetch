@@ -1,67 +1,143 @@
-`webRTCLocalShare` is a sophisticated component within the `@intershare/hooks.indexdb` library, designed to facilitate file sharing using WebRTC technology in a React application. It leverages IndexedDB for local storage and management of files, along with WebSockets for peer discovery and coordination.
+# webRTCLocalShare Component Documentation
+
+The `webRTCLocalShare` component is a robust solution for managing WebRTC connections and file sharing within React applications. It's part of the `@intershare/hooks.web-rtc-local-share` library and integrates seamlessly with `@intershare/hooks.secure-connect-manager` and `@intershare/hooks.indexdb` for comprehensive WebSocket management and local data storage, respectively.
 
 ## Key Features
 
-- **WebRTC Integration**: Enables real-time, peer-to-peer file sharing.
-- **Dynamic Discovery**: Regularly checks for connected peers and establishes WebRTC connections.
-- **File Management**: Coordinates file transfer status and data chunks using IndexedDB.
+- **Dynamic WebRTC Connection Handling**: Manages multiple WebRTC connections per WebSocket, allowing for scalable peer-to-peer interactions.
+- **File Sharing Mechanism**: Coordinates the sharing and receiving of files, handling file data and status updates.
+- **Data Channel Configuration**: Sets up and manages data channels for each WebRTC connection, facilitating file transfer operations.
+- **Client Discovery and Mapping**: Regularly discovers new clients and maps them for connection establishment.
 
-## Usage
+## Initialization
 
-### Initialization
+To initialize `webRTCLocalShare`, first import necessary modules and set up the component. Ensure that dependencies like `@intershare/hooks.secure-connect-manager` and `@intershare/hooks.indexdb` are also initialized.
 
-To initialize the `webRTCLocalShare` component, import it from `@intershare/hooks.indexdb` and configure it with the desired interval for peer discovery.
-
-```tsx
-import { webRTCLocalShare } from '@intershare/hooks.indexdb'
-
-// Initialize webRTCLocalShare
-webRTCLocalShare().init({
-  discoveryInterval: 60000, // Discovery interval in milliseconds
-})
-```
-
-### WebRTC File Sharing
-
-The component uses WebRTC to share files between connected peers. It checks for file availability, coordinates the transfer, and manages file data using IndexedDB.
-
-### WebRTC Connection Handling
-
-`webRTCLocalShare` establishes a new WebRTC connection with each peer and creates a data channel for file transfer. It handles offer, answer, and ice-candidate events to facilitate the peer connection process.
-
-### File Transfer Management
-
-The component listens for file requests and sends file data in chunks if the file is available locally. It also receives file data from peers, reassembles it, and stores it in IndexedDB.
-
-## Example
-
-Here is an example of how `webRTCLocalShare` can be used in a React application:
+### Initializing `webRTCLocalShare`
 
 ```tsx
-import React from 'react'
-import { webRTCLocalShare, ObjectStoresEnum } from '@intershare/hooks.indexdb'
+import React, { useEffect, useState } from 'react'
+import { webRTCLocalShare } from '@intershare/hooks.web-rtc-local-share'
+import { secureConnectManager } from '@intershare/hooks.secure-connect-manager'
+import { indexDbStore } from '@intershare/hooks.indexdb'
 
-const App: React.FC = () => {
-  // Set up webRTCLocalShare on component mount
-  React.useEffect(() => {
-    webRTCLocalShare().init({
-      discoveryInterval: 60000, // Check for peers every 60 seconds
+export const InitializeWebRTCLocalShare: React.FC = () => {
+  const [apiKey, setApiKey] = useState('')
+  const [status, setStatus] = useState({
+    webRTCLocalShare: 'Not initialized',
+    secureConnect: 'Not initialized',
+    indexDb: 'Not initialized',
+  })
+  const { init: initSecureConnectManager, intervalId } = secureConnectManager()
+  const { init: initWebRTCLocalShare } = webRTCLocalShare()
+  const { initIndexedDb } = indexDbStore()
+
+  useEffect(() => {
+    if (intervalId) {
+      setStatus((prev) => ({ ...prev, secureConnect: 'Initialized' }))
+    } else {
+      setStatus((prev) => ({ ...prev, secureConnect: 'Not initialized' }))
+    }
+  }, [intervalId])
+
+  const initializeAllModules = async () => {
+    initIndexedDb('myDatabase')
+      .then(() => setStatus((prev) => ({ ...prev, indexDb: 'Initialized' })))
+      .catch((error) => console.error('Error initializing IndexedDB', error))
+
+    // Inicialización de secureConnectManager con la API key
+    initSecureConnectManager({
+      api: apiKey,
+      discoveryInterval: 60000, // Intervalo de descubrimiento en milisegundos
     })
-  }, [])
 
+    // Inicialización de webRTCLocalShare
+    initWebRTCLocalShare({
+      discoveryInterval: 1000, // Intervalo de descubrimiento para WebRTC
+    })
+    setStatus((prev) => ({ ...prev, webRTCLocalShare: 'Initialized' }))
+  }
   return (
     <div>
-      <h1>WebRTC Local File Sharing</h1>
-      {/* Application UI here */}
+      <h3>Initialize WebRTC Local Share</h3>
+      <input
+        type="text"
+        value={apiKey}
+        onChange={(e) => setApiKey(e.target.value)}
+        placeholder="Enter API Key for SecureConnectManager"
+      />
+      <button onClick={initializeAllModules}>Initialize</button>
+      <div>
+        <p>IndexDB Status: {status.indexDb}</p>
+        <p>SecureConnectManager Status: {status.secureConnect}</p>
+        <p>WebRTCLocalShare Status: {status.webRTCLocalShare}</p>
+      </div>
     </div>
   )
 }
-
-export default App
 ```
 
-This setup initializes the `webRTCLocalShare` component and starts the peer discovery process.
+### Notes
+
+- The `init` function of `webRTCLocalShare` configures the discovery interval for WebRTC connections.
+- `secureConnectManager` and `indexDbStore` are used for managing WebSocket connections and local data storage, respectively.
+
+## Usage
+
+### Show Peer Connection Information
+
+The following example demonstrates how to display information about connected peers:
+
+```tsx
+import React from 'react'
+import { webRTCLocalShare } from '../src/web-rtc-local-share'
+
+export const ShowPeerConnectedInfo: React.FC = () => {
+  const { webRTCConnections } = webRTCLocalShare()
+
+  return (
+    <>
+      <h1>Connected Peers</h1>
+      {webRTCConnections.map((connection, i) => (
+        <div key={i}>
+          <div>Local Peer ID: {connection.localPeerId}</div>
+          <div>Remote Peer ID: {connection.remotePeerId}</div>
+          <div>dataChannelID: {connection.dataChannel?.id}</div>
+          <div>Establishing: {connection.isEstablishing ? 'Yes' : 'No'}</div>
+          <div>
+            Files Shared CID:
+            <ul>
+              {connection.filesShared.map((cid) => (
+                <li>{cid}</li>
+              ))}
+            </ul>
+          </div>
+          <div>
+            Files Received CID:
+            <ul>
+              {connection.filesReceived.map((cid) => (
+                <li>{cid}</li>
+              ))}
+            </ul>
+          </div>
+        </div>
+      ))}
+    </>
+  )
+}
+```
+
+### Notes
+
+- `webRTCConnections` provides details about each connected peer, including IDs, data channel status, and file sharing information.
+
+## Types
+
+- `Tconfig`: Configuration type for setting up the discovery interval.
+- `WebRTCConnectionInfo`: Contains detailed information about each WebRTC connection, including peer IDs, connection status, and associated data channels.
+- `TClientsMap`: Maps new clients for connection establishment.
+- `TWebRTCLocalShare`: Main type of the `webRTCLocalShare` component, encapsulating all functionalities and configurations.
 
 ## Contributing
 
-We are open to contributions! If you have ideas for improvements or bug fixes, please submit a pull request or open an issue on our GitHub repository.
+Contributions to enhance `webRTCLocalShare` are welcome. If you have ideas for improvements, bug fixes, or additional features, please submit a pull request or open an issue on the GitHub repository. Your contributions help in making `webRTCLocalShare` more efficient and versatile for React-based applications.
