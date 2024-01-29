@@ -4,7 +4,6 @@ import { webRTCLocalShare } from '../src/web-rtc-local-share'
 export const ShowPeerConnectedInfo: React.FC = () => {
   const { webRTCConnections } = webRTCLocalShare()
 
-      <div>State: {connection.state}</div>
   return (
     <>
       <h1>Connected Peers</h1>
