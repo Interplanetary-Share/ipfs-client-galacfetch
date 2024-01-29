@@ -26,7 +26,7 @@ module.exports = {
   moduleNameMapper: {
     '^@intershare/utils.general$': '<rootDir>/galacfetch/utils/general',
     '^@intershare/hooks.indexdb$': '<rootDir>/galacfetch/hooks/indexdb',
-    '^@intershare/hooks.ipfs-client$': '<rootDir>/galacfetch/hooks/ipfs-client',
+    '^ipfsgalacfetchclient$': '<rootDir>/galacfetch/ipfsgalacfetchclient',
     '^@intershare/hooks.local-ipfs-file-manager$':
       '<rootDir>/galacfetch/hooks/local-ipfs-file-manager',
     '^@intershare/hooks.remote-ipfs-file-manager$':

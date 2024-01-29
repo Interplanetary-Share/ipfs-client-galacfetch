@@ -1,24 +1,19 @@
 import { indexDbStore } from '@intershare/hooks.indexdb'
 import { localIpfsFileManager } from '@intershare/hooks.local-ipfs-file-manager'
+import remoteIpfsFileIntegrity from '@intershare/hooks.remote-ipfs-file-integrity'
 import {
   IPaginationAndSortingParams,
   remoteIpfsFileManager,
-  TFileCreationProps,
-  TFileEditProps,
 } from '@intershare/hooks.remote-ipfs-file-manager'
 import secureConnectManager from '@intershare/hooks.secure-connect-manager'
 import webRTCLocalShare from '@intershare/hooks.web-rtc-local-share'
 import { create } from 'zustand'
-import {
-  IFileRetrievalConfig,
-  IFileRetrievalResponse,
-  IFileUploadResponse,
-} from './types/file'
+import { IFileRetrievalConfig, IFileRetrievalResponse } from './types/file'
 
 type Store = {
   init: (
     api: string,
-    repoName: string,
+    dbName: string,
     discoveryInterval?: number
   ) => Promise<void>
   getFile: (
@@ -30,14 +25,6 @@ type Store = {
     config?: IFileRetrievalConfig,
     queryParams?: IPaginationAndSortingParams
   ) => Promise<IFileRetrievalResponse[]>
-  uploadFile: (
-    file: File,
-    fileProps: TFileCreationProps
-  ) => Promise<IFileUploadResponse>
-  updateFile: (
-    cid: string,
-    fileprops: TFileEditProps
-  ) => Promise<IFileRetrievalResponse>
 }
 
 export const ipfsGalactFetchClient = create<Store>(
@@ -52,7 +39,9 @@ export const ipfsGalactFetchClient = create<Store>(
         await indexDbStore.getState().initIndexedDb(dbName) // Init indexedDb
         remoteIpfsFileManager.getState().init({ discoveryInterval }) // Init remoteIpfsFileManager // check WS to listen
         webRTCLocalShare.getState().init({ discoveryInterval }) // Init webRTCLocalShare // check WS to listen
+        remoteIpfsFileIntegrity.getState().init() // Init remoteIpfsFileIntegrity // check WS to listen
       } catch (error) {
+        console.log('Error during initialization')
         console.error(error)
       }
     },
@@ -100,8 +89,7 @@ export const ipfsGalactFetchClient = create<Store>(
 
       return rest
     },
-    // TODO: change order queryParams, config to easy the use.
-    // TODO: sort by extraparams too.
+
     getFiles: async (
       isPublic = false,
       config?: IFileRetrievalConfig,
@@ -122,18 +110,6 @@ export const ipfsGalactFetchClient = create<Store>(
         })
       )
 
-      return response
-    },
-
-    uploadFile: async (file, fileProps) => {
-      const { remoteUploadFile } = remoteIpfsFileManager.getState()
-      const response = await remoteUploadFile(file, fileProps)
-      return response
-    },
-
-    updateFile: async (cid: string, fileProps: TFileEditProps) => {
-      const { remoteUpdateFile } = remoteIpfsFileManager.getState()
-      const response = await remoteUpdateFile(cid, fileProps)
       return response
     },
   })

@@ -13,6 +13,9 @@
     "^@intershare/hooks.ipfs-client$": "<rootDir>/galacfetch/hooks/ipfs-client",
     "^@intershare/hooks.local-ipfs-file-manager$": "<rootDir>/galacfetch/hooks/local-ipfs-file-manager",
     "^@intershare/hooks.remote-ipfs-file-manager$": "<rootDir>/galacfetch/hooks/remote-ipfs-file-manager",
-    "^@intershare/hooks.remote-ipfs-file-integrity$": "<rootDir>/galacfetch/hooks/remote-ipfs-file-integrity"
+    "^@intershare/hooks.remote-ipfs-file-integrity$": "<rootDir>/galacfetch/hooks/remote-ipfs-file-integrity",
+    "^ipfsgalacfetchclient$": "<rootDir>/galacfetch/ipfsgalacfetchclient",
+    "^@intershare/hooks.secure-connect-manager$": "<rootDir>/galacfetch/hooks/secure-connect-manager",
+    "^@intershare/hooks.web-rtc-local-share$": "<rootDir>/galacfetch/hooks/web-rtc-local-share"
   }
 }

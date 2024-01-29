@@ -108,7 +108,6 @@ export const remoteIpfsFileManager = create<TRemoteIpfsFileManager>(
       }
     },
 
-    // TODO: check this i dont like it
     remoteGetFilesInfo: async (isPublic = false, queryParams) => {
       const {
         config: { api },
