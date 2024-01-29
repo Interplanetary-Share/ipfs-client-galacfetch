@@ -18,6 +18,21 @@ type TConfig = {
   discoveryInterval: number
 }
 
+export type TRemoteStats = {
+  currentFiles: Array<string>
+  callsUpload: number
+  callsDownload: number
+  callsDelete: number
+  callsInfo: number
+  bytesDownload: number
+  bytesUpload: number
+  bytesDelete: number
+  date: string
+  token: string
+  // updatedAt
+  // createdAt
+}
+
 export type TRemoteIpfsFileManager = {
   config: TConfig
   fileDownloadPromises: FileDownloadPromises
@@ -35,4 +50,14 @@ export type TRemoteIpfsFileManager = {
     cid: string,
     fileprops: TFileEditProps
   ) => Promise<IRemoteFileInfo>
+
+  remoteGetFileStats: (
+    cid: string,
+    initDate: Date,
+    endDate: Date
+  ) => Promise<TRemoteStats[] | undefined>
+  remoteGetTokenStats: (
+    initDate: Date,
+    endDate: Date
+  ) => Promise<TRemoteStats[] | undefined>
 }

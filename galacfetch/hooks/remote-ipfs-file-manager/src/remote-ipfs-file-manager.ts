@@ -286,5 +286,71 @@ export const remoteIpfsFileManager = create<TRemoteIpfsFileManager>(
         throw error // Puedes decidir si quieres lanzar el error o manejarlo de otra manera
       }
     },
+    remoteGetFileStats: async (cid, initDate, endDate) => {
+      const {
+        config: { api },
+      } = secureConnectManager.getState()
+
+      const queryParams = new URLSearchParams({
+        initDate: initDate.toDateString(),
+        endDate: endDate.toDateString(),
+      })
+
+      try {
+        const response = await fetch(
+          `${apiConstants.statsFile}/${cid}?
+        ${queryParams.toString()}
+        `,
+          {
+            method: 'GET',
+            headers: {
+              Authorization: `Bearer ${api}`,
+            },
+          }
+        )
+
+        if (!response.ok) {
+          throw new Error(`HTTP error! status: ${response.status}`)
+        }
+
+        const data = await response.json()
+        return data
+      } catch (err) {
+        console.error(`Error fetching file stats: ${err}`)
+      }
+    },
+    remoteGetTokenStats: async (initDate, endDate) => {
+      const {
+        config: { api },
+      } = secureConnectManager.getState()
+
+      const queryParams = new URLSearchParams({
+        initDate: initDate.toDateString(),
+        endDate: endDate.toDateString(),
+      })
+
+      try {
+        const response = await fetch(
+          `${apiConstants.statsToken}?${queryParams.toString()}`,
+          {
+            method: 'GET',
+            headers: {
+              Authorization: `Bearer ${api}`,
+            },
+          }
+        )
+
+        if (!response.ok) {
+          throw new Error(`HTTP error! status: ${response.status}`)
+        }
+
+        const data = await response.json()
+        return data
+      } catch (err) {
+        console.error(`Error fetching token stats: ${err}`)
+      }
+    },
+
+    // TODO: implement remoteDeleteFile
   })
 )

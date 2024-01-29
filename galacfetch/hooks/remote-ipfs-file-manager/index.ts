@@ -8,6 +8,8 @@ import {
   TFileEditProps,
 } from './src/types/file'
 
+import { TRemoteStats } from './src/types/common'
+
 export { remoteIpfsFileManager }
 
 export type {
@@ -17,6 +19,7 @@ export type {
   TErrorStatus,
   TFileCreationProps,
   TFileEditProps,
+  TRemoteStats,
 }
 
 export default remoteIpfsFileManager

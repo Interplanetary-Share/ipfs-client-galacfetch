@@ -48,13 +48,17 @@ export const FilesListWithFilter: React.FC = () => {
           onChange={handleFilterChange}
         />
       </label>
-      <ul>
-        {files.map((file, index) => (
-          <li key={index}>
-            {file.name} - {file.isPublic ? 'Public' : 'Private'}
-          </li>
+      <div>
+        {files.map((file) => (
+          <div key={file.cid}>
+            <div>CID: {file.cid}</div>
+            <div>Filename: {file.name}</div>
+            <div>Size: {file.size}</div>
+            <div>Is Public: {file.isPublic ? 'Yes' : 'No'}</div>
+            <hr />
+          </div>
         ))}
-      </ul>
+      </div>
     </div>
   )
 }

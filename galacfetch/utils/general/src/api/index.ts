@@ -13,3 +13,8 @@ export const fileUpload = `${fileApi}/upload`
 export const getAllFiles = `${fileApi}/files`
 export const getExtraPropsFiles = `${fileApi}/extra`
 export const restoreIntegrity = `${fileApi}/restore/integrity` // TODO: this is in local-ipfs-file-manager
+
+// Stats
+export const statsApi = `${baseApi}/stats`
+export const statsFile = `${statsApi}/file`
+export const statsToken = `${statsApi}/token`
