@@ -1,93 +1,120 @@
-import { create } from 'zustand'
-import { TWebRTCLocalShare, WebRTCConnectionInfo } from './common'
-import secureConnectManager from '@intershare/hooks.secure-connect-manager'
-import localIpfsFileManager from '@intershare/hooks.local-ipfs-file-manager'
 import indexDbStore, { ObjectStoresEnum } from '@intershare/hooks.indexdb'
+import localIpfsFileManager from '@intershare/hooks.local-ipfs-file-manager'
+import { secureConnectManager } from '@intershare/hooks.secure-connect-manager'
 import {
+  blobToArrayBuffer,
+  chunkArrayBuffer,
   reassembleArrayBuffer,
   reassembleBlob,
 } from '@intershare/utils.general'
-import { blobToArrayBuffer, chunkArrayBuffer } from '@intershare/utils.general'
+import { create } from 'zustand'
+import { TClientsMap, TWebRTCLocalShare } from './common'
 
 export const webRTCLocalShare = create<TWebRTCLocalShare>(
   (set, get): TWebRTCLocalShare => ({
     config: {
       discoveryInterval: 60000,
     },
+    setupDiscoverClients: (ws) => {
+      const { createNewRTCPeerConnection } = webRTCLocalShare.getState()
+
+      ws.emit('client-maps-init')
+
+      ws.on('client-maps-new', (clientMap: TClientsMap) => {
+        console.log('Received new client map', clientMap)
+        createNewRTCPeerConnection(ws, clientMap)
+      })
+
+      ws.webRTCListening = true
+    },
     webRTCConnections: [],
     init: (config) => {
-      const { setupWebRTCConnection } = webRTCLocalShare.getState()
-      setInterval(() => {
-        console.log('Checking for new connections')
-        setupWebRTCConnection()
+      const initSetup = () => {
+        const { wsConnected } = secureConnectManager.getState()
+        const { setupDiscoverClients } = webRTCLocalShare.getState()
+        wsConnected.forEach((ws) => {
+          if (!ws.webRTCListening) {
+            console.log('Setting up discover clients for', ws.id)
+            setupDiscoverClients(ws)
+          }
+        })
+      }
+
+      setInterval(async () => {
+        initSetup()
+        console.log('Checking for new ws connections')
       }, config.discoveryInterval)
 
+      initSetup()
+
       set((prevState) => ({
-        config: {
-          ...prevState.config,
-          ...config,
-        },
+        config: { ...prevState.config, ...config },
       }))
     },
-    setupWebRTCConnection: async () => {
-      const {
-        setupDataChannel,
-        setupConnectionEvents,
-        setupICEEvents,
-        setupSDPEvents,
-      } = webRTCLocalShare.getState()
-      const { wsConnected } = secureConnectManager.getState()
 
-      // wsConnected.forEach((ws) => {
+    createNewRTCPeerConnection: (ws, client) => {
+      const { setupICEEvents } = get()
+      const peerConnection = new RTCPeerConnection()
 
-      // })
+      console.log('Creating new RTCPeerConnection', client, ws.id)
 
-      for await (const ws of wsConnected) {
-        const { webRTCConnections } = webRTCLocalShare.getState()
-        const isAlreadyConnected = webRTCConnections.find(
-          (conn) => conn.peerId === ws.id
-        )
-
-        if (!isAlreadyConnected) {
-          const peerConnection = new RTCPeerConnection()
-          const dataChannel = setupDataChannel(peerConnection)
-          setupConnectionEvents(peerConnection, ws)
-          setupICEEvents(peerConnection, ws)
-          setupSDPEvents(peerConnection, ws, dataChannel)
-
-          console.log('New connection established with', ws.id)
-
-          const newConnection: WebRTCConnectionInfo = {
-            peerId: ws.id,
-            state: peerConnection.connectionState,
+      set((state) => ({
+        webRTCConnections: [
+          ...state.webRTCConnections,
+          {
+            localPeerId: ws.id,
+            remotePeerId: client.newClientId,
+            connection: peerConnection,
+            isEstablishing: true,
             filesShared: [],
-          }
+            filesReceived: [],
+            dataChannel: null,
+          },
+        ],
+      }))
 
-          set((state) => ({
-            webRTCConnections: [...state.webRTCConnections, newConnection],
-          }))
-        }
-      }
+      setupICEEvents(peerConnection, ws, client)
     },
-    setupDataChannel: (peerConnection) => {
+
+    setupDataChannel: (peerConnection, dataChannelId, client) => {
+      const { setupDataChannelEvents } = webRTCLocalShare.getState()
       const dataChannel = peerConnection.createDataChannel('fileTransfer', {
         ordered: true,
         negotiated: true,
-        id: 0,
+        id: dataChannelId,
       })
-
-      // Setup data channel event handlers here
+      setupDataChannelEvents(dataChannel, client)
       return dataChannel
     },
-    setupConnectionEvents: (peerConnection, ws) => {
-      // Setup peer connection event handlers here
-    },
-    setupICEEvents: (peerConnection, ws) => {
+
+    setupICEEvents: (peerConnection, ws, client) => {
+      let isNegotiating = false
+      const { setupDataChannel } = webRTCLocalShare.getState()
+
+      const dataChannel = setupDataChannel(
+        peerConnection,
+        client.channelId,
+        client
+      )
+      console.log('Setting up ICE events', dataChannel)
+
+      set((state) => ({
+        webRTCConnections: state.webRTCConnections.map((conn) => {
+          if (
+            conn.localPeerId === ws.id &&
+            conn.remotePeerId === client.newClientId
+          ) {
+            return { ...conn, dataChannel, isEstablishing: false }
+          }
+          return conn
+        }),
+      }))
+
       // Cuando se genera un nuevo candidato ICE local
       peerConnection.onicecandidate = (event) => {
         if (event.candidate) {
           console.log(`Local ICE candidate: ${event.candidate.candidate}`)
-          ws.emit('ice-candidate', event.candidate, ws.id)
+          ws.emit('ice-candidate', event.candidate)
         }
       }
 
@@ -101,40 +128,85 @@ export const webRTCLocalShare = create<TWebRTCLocalShare>(
           console.error('Error adding received ICE candidate:', error)
         }
       })
-    },
 
-    setupSDPEvents: (peerConnection, ws, dataChannel) => {
-      const { getLocalFileUrl, uploadBlobAndCreateUrl, preloadAllLocalFiles } =
-        localIpfsFileManager.getState()
+      peerConnection.onnegotiationneeded = async () => {
+        try {
+          if (isNegotiating) {
+            console.log('Skipping unnecessary negotiation')
+            return
+          }
+          isNegotiating = true
 
-      const { getData } = indexDbStore.getState()
+          console.log(
+            'Negotiation needed - localDescription:',
+            peerConnection.localDescription
+          )
 
-      peerConnection.createOffer().then((offer) => {
-        peerConnection.setLocalDescription(offer)
-        ws.emit('offer', offer)
-      })
+          const offer = await peerConnection.createOffer()
+          await peerConnection.setLocalDescription(offer)
+
+          ws.emit('offer', offer, client.newClientId) // Send offer to remote peer
+        } catch (error) {
+          console.error('Error during negotiation:', error)
+        } finally {
+          isNegotiating = false
+        }
+      }
+
+      peerConnection.onsignalingstatechange = (event) => {
+        // Previene que se negocie múltiples veces
+        isNegotiating = peerConnection.signalingState !== 'stable'
+      }
 
       ws.on('offer', async (offer, senderSocketId) => {
-        console.log('Received offer', offer)
-        await peerConnection.setRemoteDescription(
-          new RTCSessionDescription(offer)
-        )
-        const answer = await peerConnection.createAnswer()
-        await peerConnection.setLocalDescription(answer)
-        ws.emit('answer', answer, senderSocketId)
+        try {
+          console.log('Received offer', offer)
+
+          // Comprueba si la conexión puede aceptar una oferta
+          if (peerConnection.signalingState === 'have-local-offer') {
+            await peerConnection.setRemoteDescription(
+              new RTCSessionDescription(offer)
+            )
+            const answer = await peerConnection.createAnswer()
+            await peerConnection.setLocalDescription(answer)
+
+            ws.emit('answer', answer, senderSocketId)
+          } else {
+            console.log(
+              'Not ready to accept offer. Current state:',
+              peerConnection.signalingState
+            )
+          }
+        } catch (error) {
+          console.error('Error handling offer:', error)
+        }
       })
 
-      ws.on('answer', (answer) => {
-        console.log('Received answer', answer)
-        const remoteAnswer = new RTCSessionDescription(answer)
-        peerConnection.setRemoteDescription(remoteAnswer)
+      ws.on('answer', async (answer) => {
+        try {
+          console.log('Received answer', answer)
+          const remoteAnswer = new RTCSessionDescription(answer)
+          if (peerConnection.signalingState !== 'stable') {
+            await peerConnection.setRemoteDescription(remoteAnswer)
+            console.log('Remote description set successfully')
+          } else {
+            console.log(
+              'Connection is already in stable state. Ignoring answer.'
+            )
+          }
+        } catch (error) {
+          console.error('Error setting remote description:', error)
+        }
       })
+    },
 
+    setupDataChannelEvents: (dataChannel, client) => {
+      const { getLocalFileUrl, uploadBlobAndCreateUrl, preloadAllLocalFiles } =
+        localIpfsFileManager.getState()
+      const { getData } = indexDbStore.getState()
       let ackHandlers = {}
-
       const waitForAck = (cid: string) => {
         return new Promise<void>((resolve) => {
-          // Aquí guardamos la función 'resolve' en algún lugar accesible
           ackHandlers[cid] = () => {
             return resolve()
           }
@@ -143,6 +215,7 @@ export const webRTCLocalShare = create<TWebRTCLocalShare>(
 
       dataChannel.onopen = async () => {
         console.log('DataChannel abierto')
+
         await preloadAllLocalFiles()
         const { urlFileList } = localIpfsFileManager.getState()
 
@@ -180,12 +253,43 @@ export const webRTCLocalShare = create<TWebRTCLocalShare>(
             break
           case 'getFile':
             await handleGetFileMessage(message)
+            set((state) => ({
+              webRTCConnections: state.webRTCConnections.map((conn) => {
+                if (
+                  conn.remotePeerId === client.newClientId &&
+                  !conn.filesShared.includes(message.cid)
+                ) {
+                  return {
+                    ...conn,
+                    filesShared: [...conn.filesShared, message.cid],
+                  }
+                }
+                return conn
+              }),
+            }))
             break
           case 'finish':
             await handleFinishMessage(message)
+
+            set((state) => ({
+              webRTCConnections: state.webRTCConnections.map((conn) => {
+                if (
+                  conn.remotePeerId === client.newClientId &&
+                  !conn.filesReceived.includes(message.cid)
+                ) {
+                  return {
+                    ...conn,
+                    filesReceived: [...conn.filesReceived, message.cid],
+                  }
+                }
+                return conn
+              }),
+            }))
+
             break
           case 'notifyOriginCompleted':
             ackHandlers[message.cid]()
+
             break
           default:
             console.log('Unhandled message type:', message.type)
@@ -193,7 +297,6 @@ export const webRTCLocalShare = create<TWebRTCLocalShare>(
       }
 
       const handleCheckFileMessage = async (message) => {
-        // significa que el archivo no está en la base de datos local
         arrayBufferStore = []
         const isFile = await getLocalFileUrl(message.cid)
         if (!isFile) {

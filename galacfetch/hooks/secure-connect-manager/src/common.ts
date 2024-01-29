@@ -6,8 +6,9 @@ type TConfig = {
 }
 
 // Check if necessary export
-interface ExtendedSocket extends Socket {
+export interface ExtendedSocket extends Socket {
   downloadListening?: boolean
+  webRTCListening?: boolean
 }
 
 export type TSecureConnectManager = {

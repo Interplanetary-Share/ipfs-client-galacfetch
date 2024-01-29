@@ -1,26 +1,50 @@
+import { ExtendedSocket } from '@intershare/hooks.secure-connect-manager/_src/src/common'
 import { Socket } from 'socket.io-client'
 
 type Tconfig = {
   discoveryInterval: number
 }
 
+// Tipos actualizados
+
+type WebRTCConnectionInfo = {
+  localPeerId: string // ID del WebSocket  local asociado
+  remotePeerId: string // ID del WebSocket remoto asociado
+  connection: RTCPeerConnection // La conexión WebRTC
+  isEstablishing: boolean // Indica si la conexión está en proceso de establecimiento
+  dataChannel: RTCDataChannel | null // DataChannel asociado
+  filesShared: string[] // IDs de archivos compartidos
+  filesReceived: string[] // IDs de archivos recibidos
+}
+
+export type TClientsMap = {
+  newClientId: string
+  clientId: string
+  channelId: number
+}
+
 export type TWebRTCLocalShare = {
   config: Tconfig
   init: (config: Tconfig) => void
+  // Here we save the clientUpdates
+  setupDiscoverClients: (ws: ExtendedSocket) => void // TODO: check circular dependency
+
   webRTCConnections: WebRTCConnectionInfo[]
-  setupWebRTCConnection: () => void
-  setupDataChannel: (peerConnection: RTCPeerConnection) => RTCDataChannel
-  setupConnectionEvents: (peerConnection: RTCPeerConnection, ws: Socket) => void
-  setupICEEvents: (peerConnection: RTCPeerConnection, ws: Socket) => void
-  setupSDPEvents: (
+
+  createNewRTCPeerConnection: (ws: Socket, client: TClientsMap) => void
+
+  setupDataChannel: (
+    peerConnection: RTCPeerConnection,
+    dataChannelId: number,
+    client: TClientsMap
+  ) => RTCDataChannel
+  setupICEEvents: (
     peerConnection: RTCPeerConnection,
     ws: Socket,
-    dataChannel: RTCDataChannel
+    client: TClientsMap
   ) => void
-}
-
-export type WebRTCConnectionInfo = {
-  peerId: string
-  state: RTCPeerConnectionState
-  filesShared: string[]
+  setupDataChannelEvents: (
+    dataChannel: RTCDataChannel,
+    client: TClientsMap
+  ) => void
 }
