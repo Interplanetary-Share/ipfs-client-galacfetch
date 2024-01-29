@@ -1,4 +1,4 @@
-import { ExtendedSocket } from '@intershare/hooks.secure-connect-manager/_src/src/common'
+import { ExtendedSocket } from '@intershare/hooks.secure-connect-manager'
 import { Socket } from 'socket.io-client'
 
 type Tconfig = {
