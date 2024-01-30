@@ -11,121 +11,66 @@
 {
     "envs/intershare-react-env": {
         "name": "envs/intershare-react-env",
-        "scope": "",
-        "version": "",
-        "defaultScope": "intershare.galacfetch",
+        "scope": "intershare.galacfetch",
+        "version": "0.0.12",
         "mainFile": "index.ts",
-        "rootDir": "galacfetch/envs/intershare-react-env",
-        "config": {
-            "teambit.envs/env": {},
-            "teambit.envs/envs": {
-                "env": "teambit.envs/env"
-            }
-        }
+        "rootDir": "galacfetch/envs/intershare-react-env"
     },
     "hooks/indexdb": {
         "name": "hooks/indexdb",
         "scope": "intershare.galacfetch",
-        "version": "94e40e0f6457bc035aa299a469eb5e9de251945e",
+        "version": "0.0.22",
         "mainFile": "index.ts",
-        "rootDir": "galacfetch/hooks/indexdb",
-        "config": {
-            "intershare.galacfetch/envs/intershare-react-env": {},
-            "teambit.envs/envs": {
-                "env": "intershare.galacfetch/envs/intershare-react-env"
-            }
-        }
+        "rootDir": "galacfetch/hooks/indexdb"
     },
     "hooks/local-ipfs-file-manager": {
         "name": "hooks/local-ipfs-file-manager",
         "scope": "intershare.galacfetch",
-        "version": "8eb1eb30cf4272fde49df068056c9a0494410495",
+        "version": "0.0.17",
         "mainFile": "index.ts",
-        "rootDir": "galacfetch/hooks/local-ipfs-file-manager",
-        "config": {
-            "intershare.galacfetch/envs/intershare-react-env": {},
-            "teambit.envs/envs": {
-                "env": "intershare.galacfetch/envs/intershare-react-env"
-            }
-        }
+        "rootDir": "galacfetch/hooks/local-ipfs-file-manager"
     },
     "hooks/remote-ipfs-file-integrity": {
         "name": "hooks/remote-ipfs-file-integrity",
         "scope": "intershare.galacfetch",
-        "version": "45236b4327efc6ee53fc5be64a9a2fc0343784b8",
+        "version": "0.0.17",
         "mainFile": "index.ts",
-        "rootDir": "galacfetch/hooks/remote-ipfs-file-integrity",
-        "config": {
-            "intershare.galacfetch/envs/intershare-react-env": {},
-            "teambit.envs/envs": {
-                "env": "intershare.galacfetch/envs/intershare-react-env"
-            }
-        }
+        "rootDir": "galacfetch/hooks/remote-ipfs-file-integrity"
     },
     "hooks/remote-ipfs-file-manager": {
         "name": "hooks/remote-ipfs-file-manager",
         "scope": "intershare.galacfetch",
-        "version": "5afa4808f43299f111695dc628830165b3c5bc38",
+        "version": "0.0.17",
         "mainFile": "index.ts",
-        "rootDir": "galacfetch/hooks/remote-ipfs-file-manager",
-        "config": {
-            "intershare.galacfetch/envs/intershare-react-env": {},
-            "teambit.envs/envs": {
-                "env": "intershare.galacfetch/envs/intershare-react-env"
-            }
-        }
+        "rootDir": "galacfetch/hooks/remote-ipfs-file-manager"
     },
     "hooks/secure-connect-manager": {
         "name": "hooks/secure-connect-manager",
         "scope": "intershare.galacfetch",
-        "version": "a9d94991a5e11f9d222fa8ea010d4452bb63da89",
+        "version": "0.0.14",
         "mainFile": "index.ts",
-        "rootDir": "galacfetch/hooks/secure-connect-manager",
-        "config": {
-            "intershare.galacfetch/envs/intershare-react-env": {},
-            "teambit.envs/envs": {
-                "env": "intershare.galacfetch/envs/intershare-react-env"
-            }
-        }
+        "rootDir": "galacfetch/hooks/secure-connect-manager"
     },
     "hooks/web-rtc-local-share": {
         "name": "hooks/web-rtc-local-share",
         "scope": "intershare.galacfetch",
-        "version": "7cdd0b02d150f67d4a2ad1371830313e806a0e50",
+        "version": "0.0.14",
         "mainFile": "index.ts",
-        "rootDir": "galacfetch/hooks/web-rtc-local-share",
-        "config": {
-            "intershare.galacfetch/envs/intershare-react-env": {},
-            "teambit.envs/envs": {
-                "env": "intershare.galacfetch/envs/intershare-react-env"
-            }
-        }
+        "rootDir": "galacfetch/hooks/web-rtc-local-share"
     },
     "ipfsgalacfetchclient": {
         "name": "ipfsgalacfetchclient",
         "scope": "intershare.galacfetch",
-        "version": "530daa02cfe3b237c96c25e53c1e7630b184a284",
+        "version": "0.0.17",
         "mainFile": "index.ts",
-        "rootDir": "galacfetch/ipfsgalacfetchclient",
-        "config": {
-            "intershare.galacfetch/envs/intershare-react-env": {},
-            "teambit.envs/envs": {
-                "env": "intershare.galacfetch/envs/intershare-react-env"
-            }
-        }
+        "rootDir": "galacfetch/ipfsgalacfetchclient"
     },
     "utils/general": {
         "name": "utils/general",
         "scope": "intershare.galacfetch",
-        "version": "e6982e80fdc9835b4f41ba63ebdb085b727e941c",
+        "version": "0.0.17",
         "mainFile": "index.ts",
-        "rootDir": "galacfetch/utils/general",
-        "config": {
-            "intershare.galacfetch/envs/intershare-react-env": {},
-            "teambit.envs/envs": {
-                "env": "intershare.galacfetch/envs/intershare-react-env"
-            }
-        }
+        "rootDir": "galacfetch/utils/general"
     },
     "$schema-version": "17.0.0"
 }
