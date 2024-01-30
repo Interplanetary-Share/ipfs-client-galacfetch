@@ -5,7 +5,7 @@ import {
   chunkBlobAsync,
   fileToBlobUrl,
   reassembleBlob,
-} from '../src/files'
+} from '@intershare/utils.general'
 
 describe('utils file', () => {
   globalThis.URL.createObjectURL = jest.fn(

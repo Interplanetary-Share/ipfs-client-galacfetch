@@ -1,5 +1,5 @@
 import indexDbStore, { ObjectStoresEnum } from '@intershare/hooks.indexdb'
-import localIpfsFileManager from '@intershare/hooks.local-ipfs-file-manager'
+import { localIpfsFileManager } from '@intershare/hooks.local-ipfs-file-manager'
 import { secureConnectManager } from '@intershare/hooks.secure-connect-manager'
 import {
   blobToArrayBuffer,
@@ -8,7 +8,7 @@ import {
   reassembleBlob,
 } from '@intershare/utils.general'
 import { create } from 'zustand'
-import { TClientsMap, TWebRTCLocalShare } from './common'
+import type { TClientsMap, TWebRTCLocalShare } from './common'
 
 export const webRTCLocalShare = create<TWebRTCLocalShare>(
   (set, get): TWebRTCLocalShare => ({
@@ -204,7 +204,7 @@ export const webRTCLocalShare = create<TWebRTCLocalShare>(
       const { getLocalFileUrl, uploadBlobAndCreateUrl, preloadAllLocalFiles } =
         localIpfsFileManager.getState()
       const { getData } = indexDbStore.getState()
-      let ackHandlers = {}
+      const ackHandlers = {}
       const waitForAck = (cid: string) => {
         return new Promise<void>((resolve) => {
           ackHandlers[cid] = () => {

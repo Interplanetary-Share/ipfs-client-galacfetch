@@ -33,12 +33,14 @@
     "packageManager": "teambit.dependencies/pnpm",
     "policy": {
       "dependencies": {
-        "@babel/runtime": "7.23.1",
-        "@teambit/compilation.babel-compiler": "^1.1.3",
+        "@faker-js/faker": "^8.4.0",
+        "@teambit/compilation.esbuild-compiler": "^0.0.4",
         "@teambit/defender.jest-tester": "^1.0.13",
+        "@teambit/defender.prettier-formatter": "^1.0.8",
+        "@teambit/dependencies.modules.packages-excluder": "^1.0.8",
         "@teambit/preview.react-preview": "^1.0.23",
         "@teambit/react.mounter": "^1.0.3",
-        "@teambit/typescript.typescript-compiler": "^2.0.15",
+        "@teambit/typescript.typescript-compiler": "^2.0.16",
         "@types/jest": "^29.5.11",
         "@types/node": "20.8.0",
         "@types/react": "^18.2.45",
@@ -46,12 +48,11 @@
         "@types/testing-library__jest-dom": "6.0.0",
         "core-js": "^3.34.0",
         "socket.io-client": "^4.7.2",
+        "webpack": "^5.90.0",
+        "webpack-dev-server": "^4.15.1",
         "zustand": "^4.4.7"
       },
       "peerDependencies": {
-        "@babel/preset-flow": "^7.23.3",
-        "@babel/preset-react": "^7.23.3",
-        "@babel/preset-typescript": "^7.23.3",
         "@faker-js/faker": "^8.3.1",
         "@teambit/defender.eslint-linter": "^1.0.15",
         "@teambit/eslint-config-bit-react": "^0.0.367",
@@ -84,7 +85,7 @@
     "galacfetch/hooks, galacfetch/utils, galacfetch/envs": {
       "teambit.react/react": {
         // Especifica tu entorno personalizado
-        "env": "intershare.galacfetch/envs/react-env"
+        "env": "intershare.galacfetch/envs/intershare-react-env"
       },
       "teambit.pkg/pkg": {
         "packageManagerPublishArgs": ["--access public"],
@@ -97,14 +98,14 @@
           },
           "license": "GPL-3.0-or-later",
           "private": false,
-          "files": [
-            "dist/src",
-            "README.md",
-            "dist/index.js",
-            "dist/index.d.ts",
-            "dist/index.js.map"
-          ],
-          "main": "dist/index.js",
+          // "files": [
+          //   "out/src",
+          //   "README.md",
+          //   "out/main.js",
+          //   "out/main.d.ts",
+          //   "out/main.js.map"
+          // ],
+          // "main": "out/main.js",
           "repository": {
             "type": "git",
             "url": "https://github.com/Interplanetary-Share/ipfs-client-galacfetch"
@@ -125,7 +126,7 @@
     },
     "galacfetch/ipfsgalacfetchclient": {
       "teambit.react/react": {
-        "env": "intershare.galacfetch/envs/react-env"
+        "env": "intershare.galacfetch/envs/intershare-react-env"
       },
       "teambit.pkg/pkg": {
         "packageManagerPublishArgs": ["--access public"],
@@ -138,14 +139,14 @@
           },
           "license": "GPL-3.0-or-later",
           "private": false,
-          "files": [
-            "dist/src",
-            "README.md",
-            "dist/index.js",
-            "dist/index.d.ts",
-            "dist/index.js.map"
-          ],
-          "main": "dist/index.js",
+          // "files": [
+          //   "out/src",
+          //   "README.md",
+          //   "out/main.js",
+          //   "out/main.d.ts",
+          //   "out/main.js.map"
+          // ],
+          // "main": "out/main.js",
           "repository": {
             "type": "git",
             "url": "https://github.com/Interplanetary-Share/ipfs-client-galacfetch"
@@ -166,6 +167,6 @@
     }
   },
   "teambit.generator/generator": {
-    "envs": ["intershare.galacfetch/envs/react-env"]
+    "envs": ["intershare.galacfetch/envs/intershare-react-env"]
   }
 }

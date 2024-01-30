@@ -1,5 +1,5 @@
 import { localIpfsFileManager } from '@intershare/hooks.local-ipfs-file-manager'
-import secureConnectManager from '@intershare/hooks.secure-connect-manager' // TODO: rename and exclude galacfetch
+import secureConnectManager from '@intershare/hooks.secure-connect-manager'
 import { apiConstants } from '@intershare/utils.general'
 import { create } from 'zustand'
 import { TRemoteIpfsFileManager } from './types/common'

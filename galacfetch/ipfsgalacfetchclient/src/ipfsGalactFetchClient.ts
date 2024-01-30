@@ -2,13 +2,13 @@ import { indexDbStore } from '@intershare/hooks.indexdb'
 import { localIpfsFileManager } from '@intershare/hooks.local-ipfs-file-manager'
 import remoteIpfsFileIntegrity from '@intershare/hooks.remote-ipfs-file-integrity'
 import {
-  IPaginationAndSortingParams,
+  type IPaginationAndSortingParams,
   remoteIpfsFileManager,
 } from '@intershare/hooks.remote-ipfs-file-manager'
 import secureConnectManager from '@intershare/hooks.secure-connect-manager'
 import webRTCLocalShare from '@intershare/hooks.web-rtc-local-share'
 import { create } from 'zustand'
-import { IFileRetrievalConfig, IFileRetrievalResponse } from './types/file'
+import type { IFileRetrievalConfig, IFileRetrievalResponse } from './types/file'
 
 type Store = {
   init: (

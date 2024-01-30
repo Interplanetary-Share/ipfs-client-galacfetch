@@ -1,5 +1,5 @@
+import { secureConnectManager } from '@intershare/hooks.secure-connect-manager'
 import React, { useEffect, useState } from 'react'
-import { secureConnectManager } from '../src/secure-connect-manager'
 
 export const InitSecureConnectManager = (): React.ReactElement => {
   const [status, setStatus] = useState<string>('Not initialized')

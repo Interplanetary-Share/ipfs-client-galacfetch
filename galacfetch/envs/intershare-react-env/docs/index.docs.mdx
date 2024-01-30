@@ -1,0 +1,54 @@
+---
+description: ' custom development environment for React, derived from the popular React Environment by TeamBit. This fork has been modified and optimized to enhance collaboration and efficiency in React projects.'
+labels: ['hook', 'react', 'intershare', 'environment']
+---
+
+---
+
+## Description
+
+**Intershare React Environment** is a custom development environment for React, derived from the popular [React Environment by TeamBit](https://bit.cloud/teambit/react/react-env). This fork has been modified and optimized to enhance collaboration and efficiency in React projects.
+
+## Features
+
+This environment allows for advanced management of React components, offering features such as automatic updates and efficient dependency handling.
+
+### Environment Usage
+
+To use this environment in your project, configure it like this example:
+
+```sh
+bit env set utils/general envs/intershare-react-env
+```
+
+Here `utils/general` is the `scope (utils)` and `component name (geneal)` and `env/intershare-react-env` is the scope and name of the environment.
+
+### Components Update
+
+To update your components to the latest available version, use the following command:
+
+```sh
+bit envs update
+```
+
+This command ensures that all components are synchronized with the latest updates of the environment.
+
+### Testing
+
+You can easily test all components using:
+
+```sh
+bit test
+```
+
+This command runs tests on all components to ensure their proper functioning.
+
+### Dependency Management
+
+In case of missing dependencies, the environment can be configured to install them automatically:
+
+```sh
+bit install --add-missing-deps
+```
+
+This command searches for and adds any missing dependencies. If you encounter an error related to `@teambit/react.react-env/config/tsconfig.json`, try running the command again, as it may fail on the first installation.

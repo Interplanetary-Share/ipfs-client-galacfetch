@@ -13,9 +13,7 @@
       "resolveSourceMapLocations": [
         "${workspaceFolder}/node_modules/@intershare/**/*.js"
       ],
-      "outFiles": [
-        "${workspaceFolder}/node_modules/@intershare/**/*.js"
-      ],
+      "outFiles": ["${workspaceFolder}/node_modules/@intershare/**/*.js"],
       "console": "integratedTerminal",
       "sourceMaps": true,
       "internalConsoleOptions": "neverOpen",

@@ -1,8 +1,6 @@
 import React, { useEffect, useState } from 'react'
-import {
-  ipfsGalactFetchClient,
-  secureConnectManager,
-} from 'ipfsgalacfetchclient'
+import secureConnectManager from '@intershare/hooks.secure-connect-manager'
+import { ipfsGalactFetchClient } from '../src/ipfsGalactFetchClient'
 
 export const InitializeAllModules: React.FC = () => {
   const { init } = ipfsGalactFetchClient()
@@ -37,7 +35,9 @@ export const InitializeAllModules: React.FC = () => {
         onChange={(e) => setApiKey(e.target.value)}
         placeholder="Enter API Key for SecureConnectManager"
       />
-      <button onClick={handleInitialize}>{status}</button>
+      <button type="button" onClick={handleInitialize}>
+        {status}
+      </button>
       <div>{status}</div>
     </div>
   )

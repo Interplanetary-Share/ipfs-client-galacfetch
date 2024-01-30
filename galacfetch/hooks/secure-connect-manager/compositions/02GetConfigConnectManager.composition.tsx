@@ -1,5 +1,5 @@
+import { secureConnectManager } from '@intershare/hooks.secure-connect-manager'
 import React from 'react'
-import { secureConnectManager } from '../src/secure-connect-manager'
 
 export const GetConfigConnectManager = (): React.ReactElement => {
   const { config, urlsDiscovered, intervalId } = secureConnectManager()

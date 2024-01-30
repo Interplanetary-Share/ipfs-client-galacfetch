@@ -1,5 +1,5 @@
 import indexDbStore, { ObjectStoresEnum } from '@intershare/hooks.indexdb'
-import localIpfsFileManager from '@intershare/hooks.local-ipfs-file-manager'
+import { localIpfsFileManager } from '@intershare/hooks.local-ipfs-file-manager'
 import { remoteIpfsFileManager } from '@intershare/hooks.remote-ipfs-file-manager'
 import secureConnectManager from '@intershare/hooks.secure-connect-manager'
 import {
@@ -8,7 +8,7 @@ import {
   reassembleBlob,
 } from '@intershare/utils.general'
 import { create } from 'zustand'
-import { TRemoteIpfsFileIntegrity, Tconfig } from './common'
+import type { TRemoteIpfsFileIntegrity, Tconfig } from './common'
 
 export const remoteIpfsFileIntegrity = create<TRemoteIpfsFileIntegrity>(
   (set): TRemoteIpfsFileIntegrity => ({

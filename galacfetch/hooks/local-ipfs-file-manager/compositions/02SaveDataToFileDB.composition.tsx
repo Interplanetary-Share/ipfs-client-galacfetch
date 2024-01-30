@@ -1,5 +1,5 @@
 import React, { useState } from 'react'
-import localIpfsFileManager from '@intershare/hooks.local-ipfs-file-manager'
+import { localIpfsFileManager } from '@intershare/hooks.local-ipfs-file-manager'
 
 export const UploadFile: React.FC = () => {
   const [file, setFile] = useState<File | null>(null)

@@ -59,3 +59,7 @@ bit start
 ### complete flow
 
 bit compile; bit status; bit snap --message ":start: examplew"; bit login; bit export; bit publish hooks/ipfs-client
+
+## PROBlemas de entonrno
+
+bit install --add-missing-deps (instala las dependencias que faltan)

@@ -1,5 +1,5 @@
 import React, { useEffect } from 'react'
-import localIpfsFileManager from '@intershare/hooks.local-ipfs-file-manager'
+import { localIpfsFileManager } from '@intershare/hooks.local-ipfs-file-manager'
 import { remoteIpfsFileIntegrity } from '@intershare/hooks.remote-ipfs-file-integrity'
 import secureConnectManager from '@intershare/hooks.secure-connect-manager'
 

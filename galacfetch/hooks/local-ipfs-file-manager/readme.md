@@ -19,7 +19,7 @@ The `localIpfsFileManager` offers a comprehensive solution for managing local fi
 To utilize this module in your React application, import and initialize it as follows:
 
 ```javascript
-import localIpfsFileManager from '@intershare/hooks.local-ipfs-file-manager'
+import { localIpfsFileManager } from '@intershare/hooks.local-ipfs-file-manager'
 ```
 
 #### Current Types and Interfaces
