@@ -99,13 +99,13 @@
           "license": "GPL-3.0-or-later",
           "private": false,
           // "files": [
-          //   "out/src",
+          //   "dist/src",
           //   "README.md",
-          //   "out/main.js",
-          //   "out/main.d.ts",
-          //   "out/main.js.map"
+          //   "dist/main.js",
+          //   "dist/main.d.ts",
+          //   "dist/main.js.map"
           // ],
-          // "main": "out/main.js",
+          // "main": "dist/main.js",
           "repository": {
             "type": "git",
             "url": "https://github.com/Interplanetary-Share/ipfs-client-galacfetch"
@@ -140,13 +140,13 @@
           "license": "GPL-3.0-or-later",
           "private": false,
           // "files": [
-          //   "out/src",
+          //   "dist/src",
           //   "README.md",
-          //   "out/main.js",
-          //   "out/main.d.ts",
-          //   "out/main.js.map"
+          //   "dist/main.js",
+          //   "dist/main.d.ts",
+          //   "dist/main.js.map"
           // ],
-          // "main": "out/main.js",
+          // "main": "dist/main.js",
           "repository": {
             "type": "git",
             "url": "https://github.com/Interplanetary-Share/ipfs-client-galacfetch"
