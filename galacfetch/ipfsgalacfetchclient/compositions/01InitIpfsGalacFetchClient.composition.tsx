@@ -1,10 +1,9 @@
 import React, { useEffect, useState } from 'react'
-import secureConnectManager from '@intershare/hooks.secure-connect-manager'
-import { ipfsGalactFetchClient } from '../src/ipfsGalactFetchClient'
+import { ipfsGalactFetchClient, hooks } from 'ipfsgalacfetchclient'
 
 export const InitializeAllModules: React.FC = () => {
   const { init } = ipfsGalactFetchClient()
-  const { intervalId } = secureConnectManager()
+  const { intervalId } = hooks.secureConnectManager()
   const [apiKey, setApiKey] = useState('')
   const [status, setStatus] = useState<string>('Not initialized')
 
