@@ -26,6 +26,7 @@ import {
 import { Tester } from '@teambit/tester'
 import { Preview } from '@teambit/preview'
 import { ConfigWriterList } from '@teambit/workspace-config-files'
+import { PackageGenerator } from '@teambit/pkg'
 
 import hostDependencies from './preview/host-dependencies'
 // import { webpackTransformer } from './config/webpack.config';
@@ -164,6 +165,25 @@ export class IntershareReactEnv extends ReactEnv {
         configPath: this.prettierConfigPath,
       }),
     ])
+  }
+
+  package() {
+    /**
+     * override the default package-generator service
+     */
+    return PackageGenerator.from({
+      /**
+       * override the default package.json properties
+       */
+      packageJson: {
+        /* extend the default package.json props */
+        ...this.packageJson,
+        type: 'module',
+        // TODO: add github repo url => change to subdirectories.
+        // @intershare/hooks.indexdb
+        // https://github.com/Interplanetary-Share/ipfs-client-galacfetch/tree/main/galacfetch/hooks/indexdb
+      },
+    })
   }
 }
 

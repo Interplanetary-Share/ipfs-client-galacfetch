@@ -1,25 +1,5 @@
 import { remoteIpfsFileManager } from './src/remote-ipfs-file-manager'
-import {
-  IDownloadChunkInfo,
-  IPaginationAndSortingParams,
-  IRemoteFileInfo,
-  TErrorStatus,
-  TFileCreationProps,
-  TFileEditProps,
-} from './src/types/file'
-
-import { TRemoteStats } from './src/types/common'
 
 export { remoteIpfsFileManager }
-
-export type {
-  IDownloadChunkInfo,
-  IPaginationAndSortingParams,
-  IRemoteFileInfo,
-  TErrorStatus,
-  TFileCreationProps,
-  TFileEditProps,
-  TRemoteStats,
-}
-
-export default remoteIpfsFileManager
+export * from './src/types/file'
+export * from './src/types/common'

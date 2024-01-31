@@ -1,6 +1,6 @@
 import React, { useEffect } from 'react'
 import { localIpfsFileManager } from '@intershare/hooks.local-ipfs-file-manager'
-import indexDbStore from '@intershare/hooks.indexdb'
+import { indexDbStore } from '@intershare/hooks.indexdb'
 
 export const FileList: React.FC = () => {
   const { urlFileList, removeFileByCid, preloadAllLocalFiles } =

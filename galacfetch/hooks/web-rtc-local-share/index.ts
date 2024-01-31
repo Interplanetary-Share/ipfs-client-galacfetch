@@ -1,4 +1,3 @@
 import { webRTCLocalShare } from './src/web-rtc-local-share'
-
 export { webRTCLocalShare }
-export default webRTCLocalShare
+export * from './src/common'

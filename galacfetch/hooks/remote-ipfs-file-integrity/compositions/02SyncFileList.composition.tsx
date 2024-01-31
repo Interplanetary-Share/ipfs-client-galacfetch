@@ -1,7 +1,7 @@
-import React, { useEffect } from 'react'
 import { localIpfsFileManager } from '@intershare/hooks.local-ipfs-file-manager'
 import { remoteIpfsFileIntegrity } from '@intershare/hooks.remote-ipfs-file-integrity'
-import secureConnectManager from '@intershare/hooks.secure-connect-manager'
+import { secureConnectManager } from '@intershare/hooks.secure-connect-manager'
+import React, { useEffect } from 'react'
 
 export const LocalFilesIntegrityCheck: React.FC = () => {
   const { urlFileList, preloadAllLocalFiles } = localIpfsFileManager()

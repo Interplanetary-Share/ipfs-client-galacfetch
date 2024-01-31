@@ -1,9 +1,9 @@
-import React, { useEffect, useState } from 'react'
 import {
   IRemoteFileInfo,
   remoteIpfsFileManager,
 } from '@intershare/hooks.remote-ipfs-file-manager'
-import secureConnectManager from '@intershare/hooks.secure-connect-manager'
+import { secureConnectManager } from '@intershare/hooks.secure-connect-manager'
+import React, { useEffect, useState } from 'react'
 
 export const FilesListWithFilter: React.FC = () => {
   const [files, setFiles] = useState<IRemoteFileInfo[]>([])

@@ -1,12 +1,12 @@
 import { indexDbStore } from '@intershare/hooks.indexdb'
 import { localIpfsFileManager } from '@intershare/hooks.local-ipfs-file-manager'
-import remoteIpfsFileIntegrity from '@intershare/hooks.remote-ipfs-file-integrity'
+import { remoteIpfsFileIntegrity } from '@intershare/hooks.remote-ipfs-file-integrity'
 import {
-  type IPaginationAndSortingParams,
   remoteIpfsFileManager,
+  type IPaginationAndSortingParams,
 } from '@intershare/hooks.remote-ipfs-file-manager'
-import secureConnectManager from '@intershare/hooks.secure-connect-manager'
-import webRTCLocalShare from '@intershare/hooks.web-rtc-local-share'
+import { secureConnectManager } from '@intershare/hooks.secure-connect-manager'
+import { webRTCLocalShare } from '@intershare/hooks.web-rtc-local-share'
 import { create } from 'zustand'
 import type { IFileRetrievalConfig, IFileRetrievalResponse } from './types/file'
 
@@ -59,7 +59,7 @@ export const ipfsGalactFetchClient = create<Store>(
       const { remoteGetFile, remotegetFileExtraProps, remoteGetFileInfo } =
         remoteIpfsFileManager.getState()
 
-      let url
+      let url: string | undefined
 
       if (config.showBlobUrl) {
         const preloadUrl = await getLocalFileUrl(cid)

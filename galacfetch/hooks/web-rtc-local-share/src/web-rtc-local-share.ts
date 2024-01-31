@@ -1,4 +1,4 @@
-import indexDbStore, { ObjectStoresEnum } from '@intershare/hooks.indexdb'
+import { indexDbStore, ObjectStoresEnum } from '@intershare/hooks.indexdb'
 import { localIpfsFileManager } from '@intershare/hooks.local-ipfs-file-manager'
 import { secureConnectManager } from '@intershare/hooks.secure-connect-manager'
 import {
