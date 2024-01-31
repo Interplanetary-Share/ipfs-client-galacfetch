@@ -12,8 +12,7 @@
     "**/*.cjs",
     "docs",
     "tests",
-    "test",
-    "compositions"
+    "test"
   ],
   "include": ["**/*", "**/*.json"],
   "compilerOptions": {
