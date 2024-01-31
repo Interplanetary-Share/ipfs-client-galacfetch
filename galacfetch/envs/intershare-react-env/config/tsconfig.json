@@ -14,13 +14,5 @@
     "tests",
     "test"
   ],
-  "include": ["**/*", "**/*.json"],
-  "compilerOptions": {
-    "target": "ESNext",
-    "module": "ESNext",
-    "moduleResolution": "node",
-    // "forceConsistentCasingInFileNames": true,
-    // "esModuleInterop": true,
-    "jsx": "react-jsx"
-  }
+  "include": ["**/*", "**/*.json"]
 }
