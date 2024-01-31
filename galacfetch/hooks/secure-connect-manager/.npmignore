@@ -1,0 +1,8 @@
+dist/tsconfig.tsbuildinfo
+
+package-tar/
+.bit-capsule-ready
+
+docs/
+compositions/
+tests/
