@@ -11,5 +11,9 @@
     "package.json",
     "**/*.cjs"
   ],
-  "include": ["**/*", "**/*.json"]
+  "include": ["**/*", "**/*.json"],
+  "compilerOptions": {
+    "target": "ESNext",
+    "module": "ESNext"
+  }
 }
