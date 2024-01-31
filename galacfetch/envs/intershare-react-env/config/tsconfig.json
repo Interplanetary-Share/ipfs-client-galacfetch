@@ -20,6 +20,6 @@
     "allowSyntheticDefaultImports": true,
     "forceConsistentCasingInFileNames": true,
     "preserveSymlinks": true,
-    "verbatimModuleSyntax": true
+    "isolatedModules": true
   }
 }
