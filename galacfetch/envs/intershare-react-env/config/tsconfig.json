@@ -14,6 +14,8 @@
   "include": ["**/*", "**/*.json"],
   "compilerOptions": {
     "target": "ESNext",
-    "module": "ESNext"
+    "module": "ESNext",
+    "jsx": "react-jsx",
+    "moduleResolution": "node"
   }
 }
