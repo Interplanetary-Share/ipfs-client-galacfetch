@@ -9,17 +9,19 @@
     "dist",
     "node_modules",
     "package.json",
-    "**/*.cjs"
+    "**/*.cjs",
+    "docs",
+    "tests",
+    "test",
+    "compositions"
   ],
   "include": ["**/*", "**/*.json"],
   "compilerOptions": {
     "target": "ESNext",
     "module": "ESNext",
-    "jsx": "react-jsx",
     "moduleResolution": "node",
-    "allowSyntheticDefaultImports": true,
     "forceConsistentCasingInFileNames": true,
-    "preserveSymlinks": true,
-    "isolatedModules": true
+    "esModuleInterop": true,
+    "jsx": "react-jsx"
   }
 }
