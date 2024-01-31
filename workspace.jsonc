@@ -105,7 +105,7 @@
           //   "dist/main.d.ts",
           //   "dist/main.js.map"
           // ],
-          // "main": "dist/main.js",
+          "main": "dist/index.js",
           "repository": {
             "type": "git",
             "url": "https://github.com/Interplanetary-Share/ipfs-client-galacfetch"
@@ -146,7 +146,7 @@
           //   "dist/main.d.ts",
           //   "dist/main.js.map"
           // ],
-          // "main": "dist/main.js",
+          "main": "dist/index.js",
           "repository": {
             "type": "git",
             "url": "https://github.com/Interplanetary-Share/ipfs-client-galacfetch"
