@@ -8,6 +8,7 @@ compositions/
 tests/
 artifacts/
 node_modules/
+preview/
 
 # some dist subfolders
 dist/preview-*.js

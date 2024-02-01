@@ -10,4 +10,8 @@ artifacts/
 node_modules/
 preview/
 
+# some dist subfolders
 dist/preview-*.js
+dist/config/
+dist/docs/
+dist/preview/
