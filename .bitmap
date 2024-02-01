@@ -12,63 +12,63 @@
     "envs/intershare-react-env": {
         "name": "envs/intershare-react-env",
         "scope": "intershare.galacfetch",
-        "version": "0.0.17",
+        "version": "cdf304f8cb808395b7c5980ca3ce7f9b1a00adbb",
         "mainFile": "index.ts",
         "rootDir": "galacfetch/envs/intershare-react-env"
     },
     "hooks/indexdb": {
         "name": "hooks/indexdb",
         "scope": "intershare.galacfetch",
-        "version": "0.0.27",
+        "version": "e9ad0ebc1cbd269b5e946a08a13dee2789b154bc",
         "mainFile": "index.ts",
         "rootDir": "galacfetch/hooks/indexdb"
     },
     "hooks/local-ipfs-file-manager": {
         "name": "hooks/local-ipfs-file-manager",
         "scope": "intershare.galacfetch",
-        "version": "0.0.22",
+        "version": "27935f914b8b3105399dc3e958e762a0292b2454",
         "mainFile": "index.ts",
         "rootDir": "galacfetch/hooks/local-ipfs-file-manager"
     },
     "hooks/remote-ipfs-file-integrity": {
         "name": "hooks/remote-ipfs-file-integrity",
         "scope": "intershare.galacfetch",
-        "version": "0.0.22",
+        "version": "dd1a6f7c4baf77cfe7a472e3cc50ec111757acb4",
         "mainFile": "index.ts",
         "rootDir": "galacfetch/hooks/remote-ipfs-file-integrity"
     },
     "hooks/remote-ipfs-file-manager": {
         "name": "hooks/remote-ipfs-file-manager",
         "scope": "intershare.galacfetch",
-        "version": "0.0.22",
+        "version": "d1334b415408686cab6027bef970a6bf734ec8d7",
         "mainFile": "index.ts",
         "rootDir": "galacfetch/hooks/remote-ipfs-file-manager"
     },
     "hooks/secure-connect-manager": {
         "name": "hooks/secure-connect-manager",
         "scope": "intershare.galacfetch",
-        "version": "0.0.19",
+        "version": "f4df161774726d2ced6ec84e3f890dc8c6a5134d",
         "mainFile": "index.ts",
         "rootDir": "galacfetch/hooks/secure-connect-manager"
     },
     "hooks/web-rtc-local-share": {
         "name": "hooks/web-rtc-local-share",
         "scope": "intershare.galacfetch",
-        "version": "0.0.19",
+        "version": "d6f7313eb499029b0dd7e40b15a56c8f7766192e",
         "mainFile": "index.ts",
         "rootDir": "galacfetch/hooks/web-rtc-local-share"
     },
     "ipfsgalacfetchclient": {
         "name": "ipfsgalacfetchclient",
         "scope": "intershare.galacfetch",
-        "version": "0.0.22",
+        "version": "f981d1f8bb06415da4ae6ed693b8c2e7e9a27b4b",
         "mainFile": "index.ts",
         "rootDir": "galacfetch/ipfsgalacfetchclient"
     },
     "utils/general": {
         "name": "utils/general",
         "scope": "intershare.galacfetch",
-        "version": "0.0.22",
+        "version": "4aec9695dad32ef169b2fccdbf02493b640ccc1b",
         "mainFile": "index.ts",
         "rootDir": "galacfetch/utils/general"
     },
