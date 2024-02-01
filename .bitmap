@@ -12,63 +12,63 @@
     "envs/intershare-react-env": {
         "name": "envs/intershare-react-env",
         "scope": "intershare.galacfetch",
-        "version": "cdf304f8cb808395b7c5980ca3ce7f9b1a00adbb",
+        "version": "f65c5ca97c11fa078fb1998fc9c351aef3db69d4",
         "mainFile": "index.ts",
         "rootDir": "galacfetch/envs/intershare-react-env"
     },
     "hooks/indexdb": {
         "name": "hooks/indexdb",
         "scope": "intershare.galacfetch",
-        "version": "e9ad0ebc1cbd269b5e946a08a13dee2789b154bc",
+        "version": "38d9d7e749adcbaf00b14d3af6244cc12b539264",
         "mainFile": "index.ts",
         "rootDir": "galacfetch/hooks/indexdb"
     },
     "hooks/local-ipfs-file-manager": {
         "name": "hooks/local-ipfs-file-manager",
         "scope": "intershare.galacfetch",
-        "version": "27935f914b8b3105399dc3e958e762a0292b2454",
+        "version": "42a4786ace0dda21874598722e3cbf3168f84c7d",
         "mainFile": "index.ts",
         "rootDir": "galacfetch/hooks/local-ipfs-file-manager"
     },
     "hooks/remote-ipfs-file-integrity": {
         "name": "hooks/remote-ipfs-file-integrity",
         "scope": "intershare.galacfetch",
-        "version": "dd1a6f7c4baf77cfe7a472e3cc50ec111757acb4",
+        "version": "f6ac26d1c3135b147d351f546743381da092c914",
         "mainFile": "index.ts",
         "rootDir": "galacfetch/hooks/remote-ipfs-file-integrity"
     },
     "hooks/remote-ipfs-file-manager": {
         "name": "hooks/remote-ipfs-file-manager",
         "scope": "intershare.galacfetch",
-        "version": "d1334b415408686cab6027bef970a6bf734ec8d7",
+        "version": "4a76a39f8caaf24708d4e502de459eb8013b28c6",
         "mainFile": "index.ts",
         "rootDir": "galacfetch/hooks/remote-ipfs-file-manager"
     },
     "hooks/secure-connect-manager": {
         "name": "hooks/secure-connect-manager",
         "scope": "intershare.galacfetch",
-        "version": "f4df161774726d2ced6ec84e3f890dc8c6a5134d",
+        "version": "903dfffe77820a0d228d5a2f69a639de1abeb3f6",
         "mainFile": "index.ts",
         "rootDir": "galacfetch/hooks/secure-connect-manager"
     },
     "hooks/web-rtc-local-share": {
         "name": "hooks/web-rtc-local-share",
         "scope": "intershare.galacfetch",
-        "version": "d6f7313eb499029b0dd7e40b15a56c8f7766192e",
+        "version": "3eed4949cf37d2e4372468f056cbd9e3dd0656b0",
         "mainFile": "index.ts",
         "rootDir": "galacfetch/hooks/web-rtc-local-share"
     },
     "ipfsgalacfetchclient": {
         "name": "ipfsgalacfetchclient",
         "scope": "intershare.galacfetch",
-        "version": "f981d1f8bb06415da4ae6ed693b8c2e7e9a27b4b",
+        "version": "594e90e5e12b1a8a097d629e40391f4aa7742992",
         "mainFile": "index.ts",
         "rootDir": "galacfetch/ipfsgalacfetchclient"
     },
     "utils/general": {
         "name": "utils/general",
         "scope": "intershare.galacfetch",
-        "version": "4aec9695dad32ef169b2fccdbf02493b640ccc1b",
+        "version": "2f5178079f0b02acd2f8661ff4e401b59b239bb1",
         "mainFile": "index.ts",
         "rootDir": "galacfetch/utils/general"
     },
