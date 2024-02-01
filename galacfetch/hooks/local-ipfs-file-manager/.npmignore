@@ -8,5 +8,6 @@ compositions/
 tests/
 artifacts/
 node_modules/
+preview/
 
 dist/preview-*.js
