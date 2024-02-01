@@ -6,3 +6,9 @@ package-tar/
 docs/
 compositions/
 tests/
+artifacts/
+node_modules/
+
+index.ts/
+src/
+tsconfig.json
