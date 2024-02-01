@@ -9,7 +9,8 @@ tests/
 artifacts/
 node_modules/
 preview/
-
+index.ts
+src/
 
 # some dist subfolders
 dist/preview-*.js
