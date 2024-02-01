@@ -12,7 +12,8 @@
     "**/*.cjs",
     "docs",
     "tests",
-    "test"
+    "test",
+    "compositions"
   ],
   "include": ["**/*", "**/*.json"]
 }

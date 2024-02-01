@@ -9,3 +9,4 @@ tests/
 artifacts/
 node_modules/
 
+dist/preview-*.js
