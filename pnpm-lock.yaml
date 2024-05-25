@@ -57,7 +57,7 @@ importers:
         specifier: ^14.1.2
         version: 14.1.2(react-dom@18.2.0)(react@18.2.0)
       '@types/react':
-        specifier: ^18.2.12
+        specifier: '>=18.2.12 <19.0.0'
         version: 18.2.48
       '@types/react-dom':
         specifier: ^18.2.5
@@ -20908,6 +20908,7 @@ packages:
       '@intershare/hooks.remote-ipfs-file-manager': file:galacfetch/hooks/remote-ipfs-file-manager(@faker-js/faker@8.4.0)(@types/node@12.20.4)(fake-indexeddb@5.0.2)(react@17.0.2)
       '@intershare/hooks.secure-connect-manager': file:galacfetch/hooks/secure-connect-manager(@faker-js/faker@8.4.0)(@types/node@12.20.4)(react@17.0.2)
       '@intershare/hooks.web-rtc-local-share': file:galacfetch/hooks/web-rtc-local-share(@faker-js/faker@8.4.0)(@types/node@12.20.4)(fake-indexeddb@5.0.2)(react@17.0.2)
+      '@intershare/utils.general': file:galacfetch/utils/general(@faker-js/faker@8.4.0)(@types/node@12.20.4)
       '@mdx-js/react': 1.6.22(react@17.0.2)
       '@teambit/mdx.ui.mdx-scope-context': 1.0.0(react-dom@18.2.0)(react@17.0.2)
       '@types/react': 18.2.48
@@ -20950,6 +20951,7 @@ packages:
       '@intershare/hooks.remote-ipfs-file-manager': file:galacfetch/hooks/remote-ipfs-file-manager(@faker-js/faker@8.4.0)(@types/node@12.20.4)(fake-indexeddb@5.0.2)(react@18.2.0)
       '@intershare/hooks.secure-connect-manager': file:galacfetch/hooks/secure-connect-manager(@faker-js/faker@8.4.0)(@types/node@12.20.4)(react@18.2.0)
       '@intershare/hooks.web-rtc-local-share': file:galacfetch/hooks/web-rtc-local-share(@faker-js/faker@8.4.0)(@types/node@12.20.4)(fake-indexeddb@5.0.2)(react@18.2.0)
+      '@intershare/utils.general': file:galacfetch/utils/general(@faker-js/faker@8.4.0)(@types/node@12.20.4)
       '@mdx-js/react': 1.6.22(react@18.2.0)
       '@teambit/mdx.ui.mdx-scope-context': 1.0.0(react-dom@18.2.0)(react@18.2.0)
       '@types/react': 18.2.48
