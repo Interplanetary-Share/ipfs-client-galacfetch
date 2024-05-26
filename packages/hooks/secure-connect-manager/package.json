@@ -16,7 +16,7 @@
     "typescript": "^5.4.5"
   },
   "dependencies": {
-    "@galacfetch/utils.general": "0.0.1",
+    "@galacfetch/utils.general": "^0.1.1",
     "socket.io-client": "^4.7.2",
     "zustand": "^4.5.2"
   },

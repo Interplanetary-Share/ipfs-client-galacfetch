@@ -1,6 +1,6 @@
 {
   "name": "@galacfetch/ipfs-client-examples",
-  "version": "0.0.1",
+  "version": "0.1.1",
   "description": "Examples of ipfsclientgalacfetch and sublibraries",
   "main": "src/index.tsx",
   "scripts": {
@@ -13,13 +13,13 @@
     "react": "^17.0.2",
     "react-dom": "^17.0.2",
     "react-scripts": "^5.0.1",
-    "@galacfetch/utils.general": "0.0.1",
-    "@galacfetch/indexdb": "0.0.1",
-    "@galacfetch/local-ipfs-file-manager": "0.0.1",
-    "@galacfetch/remote-ipfs-file-integrity": "0.0.1",
-    "@galacfetch/remote-ipfs-file-manager": "0.0.1",
-    "@galacfetch/secure-connect-manager": "0.0.1",
-    "@galacfetch/web-rtc-local-share": "0.0.1"
+    "@galacfetch/utils.general": "^0.1.1",
+    "@galacfetch/indexdb": "^0.1.1",
+    "@galacfetch/local-ipfs-file-manager": "^0.1.1",
+    "@galacfetch/remote-ipfs-file-integrity": "^0.1.1",
+    "@galacfetch/remote-ipfs-file-manager": "^0.1.1",
+    "@galacfetch/secure-connect-manager": "^0.1.1",
+    "@galacfetch/web-rtc-local-share": "^0.1.1"
   },
   "author": "kenneth7e7a@gmail.com",
   "license": "ISC",
