@@ -7,7 +7,8 @@
     "test": "echo \"Error: no test specified\" && exit 1",
     "start": "react-scripts start",
     "build": "react-scripts build",
-    "watch": "tsc -w"
+    "watch": "tsc -w",
+    "publish-npm": "npm publish --access public"
   },
   "dependencies": {
     "@galacfetch/indexdb": "^0.1.3",
