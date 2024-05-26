@@ -1,0 +1,23 @@
+{
+  "name": "@galacfetch/secure-connect-manager",
+  "version": "0.0.1",
+  "description": "## Overview",
+  "main": "dist/index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1",
+    "build": "tsc"
+  },
+  "author": "",
+  "license": "ISC",
+  "devDependencies": {
+    "@testing-library/react-hooks": "^8.0.1",
+    "@types/jest": "^29.5.12",
+    "jest": "^29.7.0",
+    "typescript": "^5.4.5"
+  },
+  "dependencies": {
+    "zustand": "^4.5.2",
+    "socket.io-client": "^4.7.2",
+    "@galacfetch/utils.general": "0.0.1"
+  }
+}

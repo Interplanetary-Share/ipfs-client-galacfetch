@@ -8,14 +8,14 @@
   "testEnvironment": "jsdom",
   "setupFilesAfterEnv": ["<rootDir>/setup-jest.ts"],
   "moduleNameMapper": {
-    "^@intershare/utils.general$": "<rootDir>/galacfetch/utils/general",
-    "^@intershare/hooks.indexdb$": "<rootDir>/galacfetch/hooks/indexdb",
-    "^@intershare/hooks.ipfs-client$": "<rootDir>/galacfetch/hooks/ipfs-client",
-    "^@intershare/hooks.local-ipfs-file-manager$": "<rootDir>/galacfetch/hooks/local-ipfs-file-manager",
-    "^@intershare/hooks.remote-ipfs-file-manager$": "<rootDir>/galacfetch/hooks/remote-ipfs-file-manager",
-    "^@intershare/hooks.remote-ipfs-file-integrity$": "<rootDir>/galacfetch/hooks/remote-ipfs-file-integrity",
-    "^ipfsgalacfetchclient$": "<rootDir>/galacfetch/ipfsgalacfetchclient",
-    "^@intershare/hooks.secure-connect-manager$": "<rootDir>/galacfetch/hooks/secure-connect-manager",
-    "^@intershare/hooks.web-rtc-local-share$": "<rootDir>/galacfetch/hooks/web-rtc-local-share"
+    "^@galacfetch/utils.general$": "<rootDir>/packages/utils/general",
+    "^@galacfetch/indexdb$": "<rootDir>/packages/hooks/indexdb",
+    "^@galacfetch/ipfs-client$": "<rootDir>/packages/hooks/ipfs-client",
+    "^@galacfetch/local-ipfs-file-manager$": "<rootDir>/packages/hooks/local-ipfs-file-manager",
+    "^@galacfetch/remote-ipfs-file-manager$": "<rootDir>/packages/hooks/remote-ipfs-file-manager",
+    "^@galacfetch/remote-ipfs-file-integrity$": "<rootDir>/packages/hooks/remote-ipfs-file-integrity",
+    "^ipfsgalacfetchclient$": "<rootDir>/packages/ipfsgalacfetchclient",
+    "^@galacfetch/secure-connect-manager$": "<rootDir>/packages/hooks/secure-connect-manager",
+    "^@galacfetch/web-rtc-local-share$": "<rootDir>/packages/hooks/web-rtc-local-share"
   }
 }

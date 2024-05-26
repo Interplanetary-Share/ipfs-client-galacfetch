@@ -1,0 +1,18 @@
+{
+  "name": "@galacfetch/utils.general",
+  "version": "0.0.1",
+  "description": "HELLO :D",
+  "main": "dist/index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1",
+    "start": "node dist/index.js",
+    "build": "tsc",
+    "dev": "tsc -w"
+  },
+  "author": "",
+  "license": "ISC",
+  "devDependencies": {
+    "@faker-js/faker": "^8.4.1",
+    "typescript": "^5.4.5"
+  }
+}
