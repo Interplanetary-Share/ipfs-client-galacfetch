@@ -12,6 +12,5 @@
     "packages/hooks/web-rtc-local-share",
     "packages/ipfsgalacfetchclient",
     "packages/utils/general"
-  ],
-  "versioning": "independent"
+  ]
 }
