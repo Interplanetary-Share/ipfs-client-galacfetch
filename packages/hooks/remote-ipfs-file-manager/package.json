@@ -1,6 +1,6 @@
 {
   "name": "@galacfetch/remote-ipfs-file-manager",
-  "version": "0.1.2",
+  "version": "0.1.3",
   "description": "hiii",
   "main": "dist/index.js",
   "directories": {
@@ -19,9 +19,9 @@
     "typescript": "^5.4.5"
   },
   "dependencies": {
-    "@galacfetch/local-ipfs-file-manager": "^0.1.2",
-    "@galacfetch/secure-connect-manager": "^0.1.2",
-    "@galacfetch/utils.general": "^0.1.2",
+    "@galacfetch/local-ipfs-file-manager": "^0.1.3",
+    "@galacfetch/secure-connect-manager": "^0.1.3",
+    "@galacfetch/utils.general": "^0.1.3",
     "zustand": "^4.5.2"
   }
 }

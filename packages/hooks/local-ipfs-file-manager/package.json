@@ -1,6 +1,6 @@
 {
   "name": "@galacfetch/local-ipfs-file-manager",
-  "version": "0.1.2",
+  "version": "0.1.3",
   "description": "---\r description: 'Local IPFS File Manager for managing files with IndexedDB integration'\r labels:\r   [\r     'local file management',\r     'IPFS',\r     'IndexedDB',\r     'file synchronization',\r     'react',\r   ]\r ---",
   "main": "dist/index.js",
   "directories": {
@@ -19,8 +19,8 @@
     "typescript": "^5.4.5"
   },
   "dependencies": {
-    "@galacfetch/indexdb": "^0.1.2",
-    "@galacfetch/utils.general": "^0.1.2",
+    "@galacfetch/indexdb": "^0.1.3",
+    "@galacfetch/utils.general": "^0.1.3",
     "zustand": "^4.5.2"
   }
 }
