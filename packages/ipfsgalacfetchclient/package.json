@@ -1,6 +1,6 @@
 {
   "name": "ipfsgalacfetchclient",
-  "version": "0.1.1",
+  "version": "0.1.2",
   "description": "## Overview",
   "main": "dist/index.js",
   "scripts": {
@@ -16,12 +16,12 @@
     "typescript": "^5.4.5"
   },
   "dependencies": {
-    "@galacfetch/indexdb": "^0.1.1",
-    "@galacfetch/local-ipfs-file-manager": "^0.1.1",
-    "@galacfetch/remote-ipfs-file-integrity": "^0.1.1",
-    "@galacfetch/remote-ipfs-file-manager": "^0.1.1",
-    "@galacfetch/secure-connect-manager": "^0.1.1",
-    "@galacfetch/web-rtc-local-share": "^0.1.1",
+    "@galacfetch/indexdb": "^0.1.2",
+    "@galacfetch/local-ipfs-file-manager": "^0.1.2",
+    "@galacfetch/remote-ipfs-file-integrity": "^0.1.2",
+    "@galacfetch/remote-ipfs-file-manager": "^0.1.2",
+    "@galacfetch/secure-connect-manager": "^0.1.2",
+    "@galacfetch/web-rtc-local-share": "^0.1.2",
     "zustand": "^4.5.2"
   },
   "gitHead": "5ef695db3024961db602d1148e21d5a464d21343"
