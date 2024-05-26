@@ -18,12 +18,12 @@
     "typescript": "^5.4.5"
   },
   "scripts": {
-    "version": "npm run build && npx lerna version",
+    "publish": "npx lerna publish from-package",
     "list": "npx lerna list",
     "changed": "npx lerna changed",
     "test": "npx lerna run test",
+    "version": "npm run build && npx lerna version",
     "publish-npm": "npx lerna run publish-npm",
-    "publish": "npx lerna publish from-package",
     "build": "npx lerna run build"
   }
 }
