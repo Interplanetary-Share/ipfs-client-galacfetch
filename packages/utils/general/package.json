@@ -1,13 +1,12 @@
 {
   "name": "@galacfetch/utils.general",
-  "version": "0.0.1",
+  "version": "0.1.1",
   "description": "HELLO :D",
   "main": "dist/index.js",
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1",
     "start": "node dist/index.js",
-    "build": "tsc",
-    "dev": "tsc -w"
+    "build": "tsc"
   },
   "author": "",
   "license": "ISC",

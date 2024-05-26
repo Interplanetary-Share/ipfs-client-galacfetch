@@ -3,10 +3,15 @@
   "version": "0.1.1",
   "npmClient": "pnpm",
   "packages": [
-    "packages/hooks/*",
+    "packages/examples",
+    "packages/hooks/indexdb",
+    "packages/hooks/local-ipfs-file-manager",
+    "packages/hooks/remote-ipfs-file-manager",
+    "packages/hooks/remote-ipfs-file-integrity",
+    "packages/hooks/secure-connect-manager",
+    "packages/hooks/web-rtc-local-share",
     "packages/ipfsgalacfetchclient",
-    "packages/utils/*",
-    "packages/examples"
+    "packages/utils/general"
   ],
   "versioning": "independent"
 }
