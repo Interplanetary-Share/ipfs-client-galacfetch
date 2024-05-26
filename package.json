@@ -18,7 +18,7 @@
     "typescript": "^5.4.5"
   },
   "scripts": {
-    "version": "npx lerna version",
+    "version": "npm run build && npx lerna version",
     "list": "npx lerna list",
     "changed": "npx lerna changed",
     "test": "npx lerna run test",
