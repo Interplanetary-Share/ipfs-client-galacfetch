@@ -7,4 +7,7 @@
 
 npm install -g typescript
 install -g react-scripts
+
+// tambien instalar pnpm para lerna
+npm install -g pnpm
 ```
