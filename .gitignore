@@ -104,8 +104,13 @@ build
 # TernJS port file
 .tern-port
 
-.history
+# VSCode settings
+.vscode/
 
+# History and OS files
+.history
 .DS_Store
 
-
+# Build output
+dist/
+build/
