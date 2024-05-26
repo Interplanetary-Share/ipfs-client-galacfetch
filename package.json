@@ -19,6 +19,8 @@
   },
   "scripts": {
     "publish": "npx lerna publish",
+    "list": "npx lerna list",
+    "changed": "npx lerna changed",
     "version": "npx lerna version",
     "test": "npx lerna run test",
     "build": "npx lerna run build"
