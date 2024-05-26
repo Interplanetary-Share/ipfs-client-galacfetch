@@ -1,6 +1,6 @@
 {
   "name": "@galacfetch/indexdb",
-  "version": "0.1.0",
+  "version": "0.1.1",
   "description": "`indexDbStore` is a comprehensive library designed to simplify interactions with IndexedDB in a React application. It provides an easy-to-use API for performing common database operations like initializing the database, CRUD operations, and managing data efficiently with an integrated garbage collector.",
   "main": "dist/index.js",
   "scripts": {

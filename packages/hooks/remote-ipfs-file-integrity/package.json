@@ -1,6 +1,6 @@
 {
   "name": "@galacfetch/remote-ipfs-file-integrity",
-  "version": "0.1.0",
+  "version": "0.1.1",
   "description": "`remoteIpfsFileIntegrity` is a React Hook tailored to manage the integrity of files within a remote IPFS filesystem. It allows for periodic checks of file integrity, synchronization of local files with remote servers, and configuration of check intervals, ensuring consistency and reliability of data.",
   "main": "dist/index.js",
   "directories": {
@@ -19,10 +19,10 @@
     "typescript": "^5.4.5"
   },
   "dependencies": {
-    "@galacfetch/indexdb": "^0.1.0",
-    "@galacfetch/local-ipfs-file-manager": "^0.1.0",
-    "@galacfetch/remote-ipfs-file-manager": "^0.1.0",
-    "@galacfetch/secure-connect-manager": "^0.1.0",
+    "@galacfetch/indexdb": "^0.1.1",
+    "@galacfetch/local-ipfs-file-manager": "^0.1.1",
+    "@galacfetch/remote-ipfs-file-manager": "^0.1.1",
+    "@galacfetch/secure-connect-manager": "^0.1.1",
     "@galacfetch/utils.general": "0.0.1",
     "zustand": "^4.5.2"
   },
