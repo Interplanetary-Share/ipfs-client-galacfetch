@@ -5,8 +5,8 @@
   "packages": [
     "packages/hooks/*",
     "packages/ipfsgalacfetchclient",
-    "packages/utils",
-    "packages/examples/*"
+    "packages/utils/*",
+    "packages/examples"
   ],
   "versioning": "independent"
 }
