@@ -1,6 +1,6 @@
 {
   "name": "@galacfetch/web-rtc-local-share",
-  "version": "0.0.1",
+  "version": "0.1.0",
   "description": "## Overview",
   "main": "dist/index.js",
   "scripts": {
@@ -16,10 +16,10 @@
     "typescript": "^5.4.5"
   },
   "dependencies": {
-    "zustand": "^4.5.2",
-    "@galacfetch/indexdb": "0.0.1",
-    "@galacfetch/local-ipfs-file-manager": "0.0.1",
-    "@galacfetch/secure-connect-manager": "0.0.1",
-    "@galacfetch/utils.general": "0.0.1"
+    "@galacfetch/indexdb": "^0.1.0",
+    "@galacfetch/local-ipfs-file-manager": "^0.1.0",
+    "@galacfetch/secure-connect-manager": "^0.1.0",
+    "@galacfetch/utils.general": "0.0.1",
+    "zustand": "^4.5.2"
   }
 }
