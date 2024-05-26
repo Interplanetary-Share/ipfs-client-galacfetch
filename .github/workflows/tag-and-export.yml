@@ -1,48 +1,37 @@
-# # This workflow hard-tags and exports soft-tagged components
+name: Auto Publish Package on Merge to Main
 
-# name: Auto Publish Package on Merge to Main
-# on:
-#   push:
-#     branches: [main]
+on:
+  push:
+    branches: [main]
 
-# jobs:
-#   tag-and-export:
-#     runs-on: ubuntu-latest
-#     if: contains(github.event.head_commit.message, '--skip-ci') == false
-#     steps:
-#       - uses: actions/checkout@v2
-#       - name: Use Node.js 19.x
-#         uses: actions/setup-node@v1
-#         with:
-#           node-version: 19.x
-#       - name: login to NPM
-#         run: npm set //registry.npmjs.org/:_authToken=${{ secrets.NPM_TOKEN }}
-#       - name: Install Bit Version Manager
-#         run: npm i -g @teambit/bvm
-#       - name: Install latest Bit version
-#         run: bvm install
-#       - name: add bvm bin folder to path
-#         run: echo "$HOME/bin" >> $GITHUB_PATH
-#       - name: Set up bit config
-#         run: |
-#           bit config set analytics_reporting false
-#           bit config set anonymous_reporting false
-#           bit config set user.token ${{ secrets.BIT_TOKEN }}
-#       - name: Install packages using bit
-#         run: bit install
-#       - name: compile components
-#         run: bit compile
-#       - name: Bit status
-#         run: bit status
-#       - name: Hard-tag pending components
-#         run: bit tag --message "${{ github.event.head_commit.message }}"
-#       - name: Export components
-#         run: bit export
+jobs:
+  publish:
+    runs-on: ubuntu-latest
+    if: contains(github.event.head_commit.message, '--skip-ci') == false
+    steps:
+      - name: Checkout repository
+        uses: actions/checkout@v2
 
-#       - name: Add & Commit
-#         uses: EndBug/add-and-commit@v9.1.3
-#         with:
-#           author_name: ${{ github.actor }}
-#           author_email: ${{ github.actor }}@users.noreply.github.com
-#           message: ':see_no_evil: update .bitmap version (auto) --skip-ci'
-#           add: '.bitmap'
+      - name: Set up Node.js
+        uses: actions/setup-node@v2
+        with:
+          node-version: '21.6'
+          cache: 'npm'
+
+      - name: Verify Node.js version
+        run: node --version
+
+      - name: Install dependencies
+        run: npm install
+
+      - name: Run tests
+        run: npm test
+
+      - name: Build packages
+        run: npm run build
+
+      - name: Login to npm
+        run: echo "//registry.npmjs.org/:_authToken=${{ secrets.NPM_TOKEN }}" > ~/.npmrc
+
+      - name: Publish to npm
+        run: npm publish --access public
