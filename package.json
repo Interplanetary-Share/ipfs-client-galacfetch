@@ -22,7 +22,6 @@
     "list": "npx lerna list",
     "changed": "npx lerna changed",
     "test": "npx lerna run test",
-    "version": "npm run build && npx lerna version",
     "publish-npm": "npx lerna run publish-npm",
     "build": "npx lerna run build"
   }
