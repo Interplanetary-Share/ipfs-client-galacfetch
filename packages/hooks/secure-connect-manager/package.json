@@ -19,6 +19,5 @@
     "@galacfetch/utils.general": "^0.1.2",
     "socket.io-client": "^4.7.2",
     "zustand": "^4.5.2"
-  },
-  "gitHead": "5ef695db3024961db602d1148e21d5a464d21343"
+  }
 }
